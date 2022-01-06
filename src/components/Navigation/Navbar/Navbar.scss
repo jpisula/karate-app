@@ -1,0 +1,129 @@
+@use '../../../lib/sass/media-queries';
+@use '../../../lib/sass/variables';
+
+nav {
+  height: 40px;
+  color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 20px;
+
+  .logo-container {
+    width: 75%;
+    height: 100%;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 20px;
+    height: 100%;
+    z-index: 1;
+
+    .hamburger-menu {
+      display: flex;
+      justify-content: space-evenly;
+
+      span {
+        display: none;
+      }
+
+      #hamburger-btn {
+        font-size: 18px;
+        font-weight: 800;
+        display: none;
+      }
+    }
+
+    .nav-links {
+      width: 57%;
+      padding-right: 2%;
+      height: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+  }
+}
+
+@include media-queries.sm {
+  nav {
+    height: 60px;
+
+    .logo-container {
+      width: 40%;
+    }
+  }
+}
+@include media-queries.md {
+  nav {
+    .logo-container {
+      width: 30%;
+    }
+  }
+}
+
+@include media-queries.gt-sm {
+  nav {
+    height: 80px;
+  }
+}
+
+@include media-queries.gt-md {
+  nav {
+    .logo-container {
+      width: 40%;
+    }
+    .wrapper {
+      .nav-links {
+        width: 60%;
+        padding: 0px 100px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) and (min-width: 600px) {
+  nav {
+    .wrapper {
+      .nav-links {
+        display: none;
+      }
+      .hamburger-menu {
+        width: 100px;
+        text-align: right;
+        margin-right: 10%;
+        span {
+          display: inline;
+        }
+
+        #hamburger-btn {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@include media-queries.lt-sm {
+  nav {
+    .wrapper {
+      .nav-links {
+        display: none;
+      }
+      .hamburger-menu {
+        width: 100px;
+        span {
+          display: none;
+        }
+
+        #hamburger-btn {
+          display: block;
+        }
+      }
+    }
+  }
+}

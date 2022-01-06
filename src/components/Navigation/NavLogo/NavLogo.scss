@@ -1,0 +1,64 @@
+@use '../../../lib/sass/variables';
+@use '../../../lib/sass/media-queries';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
+
+.logo {
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  align-items: center;
+  width: fit-content;
+  height: 100%;
+  color: white;
+
+  img {
+    width: 30px;
+  }
+
+  .red-text {
+    color: variables.$red-color;
+    transition: 0.5s;
+  }
+
+  #brand-name {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.5s;
+  }
+}
+
+.logo:hover {
+  cursor: pointer;
+  #brand-name {
+    color: variables.$red-color;
+  }
+  .red-text {
+    color: white;
+  }
+}
+
+@include media-queries.md {
+  .logo {
+    img {
+      width: 50px;
+    }
+
+    #brand-name {
+      font-size: 22px;
+    }
+  }
+}
+
+@include media-queries.gt-md {
+  .logo {
+    img {
+      width: 50px;
+    }
+
+    #brand-name {
+      font-size: 24px;
+    }
+  }
+}

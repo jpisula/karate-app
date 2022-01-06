@@ -1,0 +1,22 @@
+@use '../../lib/sass/media-queries';
+
+.vignette {
+  background-color: black;
+  opacity: 0.25;
+  width: inherit;
+  height: inherit;
+}
+
+.landing {
+  width: 100%;
+  background: url('./assets/landing.jpeg') no-repeat scroll center center /
+    cover;
+  display: none;
+}
+
+@include media-queries.gt-xs {
+  .landing {
+    display: block;
+    height: 80vh;
+  }
+}

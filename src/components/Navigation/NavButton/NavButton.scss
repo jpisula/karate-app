@@ -1,0 +1,47 @@
+@use '../../../lib/sass/media-queries';
+@use '../../../lib/sass/variables';
+
+.nav-link {
+  border-bottom: 2px solid variables.$red-color;
+  padding: 3px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: 0.3s;
+  position: relative;
+
+  span {
+    position: absolute;
+    margin-left: 5px;
+  }
+}
+
+.nav-link:hover {
+  border-color: white;
+  color: variables.$red-color;
+  cursor: pointer;
+}
+
+@include media-queries.lt-md {
+  .nav-link {
+    padding: 5px 5px;
+  }
+}
+
+@include media-queries.lt-md {
+  .nav-link {
+    font-size: 16px;
+  }
+}
+
+@include media-queries.gt-sm {
+  .nav-link {
+    width: 160px;
+  }
+}
+
+@include media-queries.sm {
+  .nav-link {
+    width: 115px;
+  }
+}

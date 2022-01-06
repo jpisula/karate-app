@@ -1,0 +1,29 @@
+@use 'lib/sass/reset';
+@use 'lib/sass/media-queries';
+
+body {
+  font-size: 14px;
+}
+
+.container {
+  margin: auto;
+  height: 100%;
+}
+
+@include media-queries.md {
+  body {
+    font-size: 20px;
+  }
+  .container {
+    width: 960px;
+  }
+}
+
+@include media-queries.gt-md {
+  body {
+    font-size: 20px;
+  }
+  .container {
+    width: 1024px;
+  }
+}
