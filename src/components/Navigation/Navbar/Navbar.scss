@@ -96,12 +96,18 @@ nav {
         width: 100px;
         text-align: right;
         margin-right: 10%;
+        display: flex;
+        justify-content: center;
+
         span {
           display: inline;
+          font-size: 14px;
+          margin-right: 8px;
         }
 
         #hamburger-btn {
           display: block;
+          font-size: 14px;
         }
       }
     }
