@@ -23,21 +23,6 @@ nav {
     height: 100%;
     z-index: 1;
 
-    .hamburger-menu {
-      display: flex;
-      justify-content: space-evenly;
-
-      span {
-        display: none;
-      }
-
-      #hamburger-btn {
-        font-size: 18px;
-        font-weight: 800;
-        display: none;
-      }
-    }
-
     .nav-links {
       width: 57%;
       padding-right: 2%;
@@ -92,24 +77,6 @@ nav {
       .nav-links {
         display: none;
       }
-      .hamburger-menu {
-        width: 100px;
-        text-align: right;
-        margin-right: 10%;
-        display: flex;
-        justify-content: center;
-
-        span {
-          display: inline;
-          font-size: 14px;
-          margin-right: 8px;
-        }
-
-        #hamburger-btn {
-          display: block;
-          font-size: 14px;
-        }
-      }
     }
   }
 }
@@ -119,16 +86,6 @@ nav {
     .wrapper {
       .nav-links {
         display: none;
-      }
-      .hamburger-menu {
-        width: 100px;
-        span {
-          display: none;
-        }
-
-        #hamburger-btn {
-          display: block;
-        }
       }
     }
   }
