@@ -12,8 +12,8 @@ function NavButton({ children, title, icon, isHamburgerMenu }) {
           className={isHamburgerMenu ? 'hamburger-menu nav-link' : 'nav-link'}
           onClick={() => setisDropdownOpen(!isDropdownOpen)}
         >
-          <span className={isHamburgerMenu ? 'nav-title' : ''}>{title}</span>{' '}
-          <span className='nav-icon'>{icon ? icon : ''}</span>
+          <p className={isHamburgerMenu ? 'nav-title' : ''}>{title}</p>{' '}
+          <p className='nav-icon'>{icon ? icon : ''}</p>
         </div>
         {isDropdownOpen && (
           <DropdownMenu isHamburgerMenu={isHamburgerMenu}>
@@ -25,7 +25,7 @@ function NavButton({ children, title, icon, isHamburgerMenu }) {
   } else {
     return (
       <div className='nav-link'>
-        {title} <span>{icon ? icon : ''}</span>
+        {title} <p>{icon ? icon : ''}</p>
       </div>
     );
   }

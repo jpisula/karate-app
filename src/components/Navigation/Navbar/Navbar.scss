@@ -1,10 +1,12 @@
 @use '../../../lib/sass/media-queries';
 @use '../../../lib/sass/variables';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
 nav {
+  font-family: 'Open Sans Condensed', sans-serif;
   height: 40px;
   color: white;
-  position: fixed;
+  position: inherit;
   width: 100%;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
@@ -37,14 +39,17 @@ nav {
 @include media-queries.sm {
   nav {
     height: 60px;
+    position: fixed;
 
     .logo-container {
       width: 40%;
     }
   }
 }
+
 @include media-queries.md {
   nav {
+    position: fixed;
     .logo-container {
       width: 30%;
     }
@@ -54,11 +59,13 @@ nav {
 @include media-queries.gt-sm {
   nav {
     height: 80px;
+    position: fixed;
   }
 }
 
 @include media-queries.gt-md {
   nav {
+    position: fixed;
     .logo-container {
       width: 40%;
     }
@@ -73,6 +80,7 @@ nav {
 
 @media screen and (max-width: 750px) and (min-width: 600px) {
   nav {
+    position: fixed;
     .wrapper {
       .nav-links {
         display: none;

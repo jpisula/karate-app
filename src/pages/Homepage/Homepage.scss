@@ -2,21 +2,24 @@
 
 .vignette {
   background-color: black;
-  opacity: 0.25;
+  opacity: 0.2;
   width: inherit;
   height: inherit;
 }
 
 .landing {
   width: 100%;
-  background: url('./assets/landing.jpeg') no-repeat scroll center center /
-    cover;
+  background-image: url('./assets/landing.jpeg');
+  background-position: 0% 60%;
+  background-size: cover;
+  background-attachment: scroll;
+
   display: none;
 }
 
 @include media-queries.gt-xs {
   .landing {
     display: block;
-    height: 80vh;
+    height: 70vh;
   }
 }

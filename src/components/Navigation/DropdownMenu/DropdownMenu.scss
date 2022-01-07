@@ -1,7 +1,39 @@
-.dropdown {
+@use '../../../lib/sass/media-queries';
+@use '../../../lib/sass/variables';
+
+.down-dropdown {
   position: absolute;
   top: 40px;
-  background-color: red;
-  width: 50px;
-  height: 50px;
+  left: 0px;
+  background-color: #292929;
+  border-top: 1px solid gray;
+  width: 100%;
+
+  .nav-link {
+    border: none;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      line-height: 30px;
+    }
+  }
+
+  .nav-link:hover {
+    color: variables.$red-color;
+    cursor: pointer;
+  }
+}
+
+@include media-queries.sm {
+  .down-dropdown {
+    top: 60px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid black;
+
+    .nav-link {
+      width: 100%;
+    }
+  }
 }

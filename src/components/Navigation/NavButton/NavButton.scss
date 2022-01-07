@@ -9,13 +9,14 @@
   text-align: center;
   transition: 0.3s;
   position: relative;
+  display: flex;
+  justify-content: center;
 
   .nav-title {
     display: none;
   }
 
   .nav-icon {
-    position: absolute;
     margin-left: 5px;
   }
 }
