@@ -15,7 +15,11 @@ function NavButton({ children, title, icon, isHamburgerMenu }) {
           <span className={isHamburgerMenu ? 'nav-title' : ''}>{title}</span>{' '}
           <span className='nav-icon'>{icon ? icon : ''}</span>
         </div>
-        {isDropdownOpen && <DropdownMenu>{children}</DropdownMenu>}
+        {isDropdownOpen && (
+          <DropdownMenu isHamburgerMenu={isHamburgerMenu}>
+            {children}
+          </DropdownMenu>
+        )}
       </>
     );
   } else {

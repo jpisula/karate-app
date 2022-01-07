@@ -13,7 +13,6 @@ function Navbar({ children }) {
 
         <div className='nav-links'>{children}</div>
 
-        {/* <div className='hamburger-menu'> */}
         <NavButton
           title={'Menu'}
           isHamburgerMenu={true}
@@ -21,7 +20,6 @@ function Navbar({ children }) {
         >
           {children}
         </NavButton>
-        {/* </div> */}
       </div>
     </nav>
   );
