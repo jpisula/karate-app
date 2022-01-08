@@ -1,4 +1,4 @@
-@use '../../../lib/sass/media-queries';
+@use '../../../lib/sass/media-queries' as mq;
 @use '../../../lib/sass/variables';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
@@ -36,7 +36,7 @@ nav {
   }
 }
 
-@include media-queries.sm {
+@include mq.tablet {
   nav {
     height: 60px;
     position: fixed;
@@ -47,7 +47,7 @@ nav {
   }
 }
 
-@include media-queries.md {
+@include mq.small-desktop {
   nav {
     position: fixed;
     .logo-container {
@@ -56,14 +56,14 @@ nav {
   }
 }
 
-@include media-queries.gt-sm {
+@include mq.bigger-than-tablet {
   nav {
     height: 80px;
     position: fixed;
   }
 }
 
-@include media-queries.gt-md {
+@include mq.bigger-than-desktop {
   nav {
     position: fixed;
     .logo-container {
@@ -78,7 +78,7 @@ nav {
   }
 }
 
-@media screen and (max-width: 750px) and (min-width: 600px) {
+@include mq.small-tablet {
   nav {
     position: fixed;
     .wrapper {
@@ -89,7 +89,7 @@ nav {
   }
 }
 
-@include media-queries.lt-sm {
+@include mq.mobile-and-tablet {
   nav {
     .wrapper {
       .nav-links {

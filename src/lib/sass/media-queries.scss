@@ -11,81 +11,79 @@ $screen-lg-max: 1919px;
 $screen-xl-max: 5000px;
 
 // media devices
-@mixin xs {
+@mixin mobile {
   @media screen and (max-width: #{$screen-xs-max}) {
     @content;
   }
 }
 
-@mixin sm {
+@mixin small-tablet {
+  @media screen and (max-width: 750px) and (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin tablet {
   @media screen and (min-width: #{$screen-sm-min}) and (max-width: #{$screen-sm-max}) {
     @content;
   }
 }
 
-@mixin md {
+@mixin small-desktop {
   @media screen and (min-width: #{$screen-md-min}) and (max-width: #{$screen-md-max}) {
     @content;
   }
 }
 
-@mixin lg {
+@mixin desktop {
   @media screen and (min-width: #{$screen-lg-min}) and (max-width: #{$screen-lg-max}) {
     @content;
   }
 }
 
-@mixin xl {
+@mixin big-desktop {
   @media screen and (min-width: #{$screen-xl-min}) and (max-width: #{$screen-xl-max}) {
     @content;
   }
 }
 
-// media lt queries
-@mixin lt-sm {
-  @media screen and (max-width: #{$screen-xs-max}) {
-    @content;
-  }
-}
-
-@mixin lt-md {
+@mixin mobile-and-tablet {
   @media screen and (max-width: #{$screen-sm-max}) {
     @content;
   }
 }
 
-@mixin lt-lg {
+@mixin mobile-and-tablet-and-desktop {
   @media screen and (max-width: #{$screen-md-max}) {
     @content;
   }
 }
 
-@mixin lt-xl {
+@mixin mobile-and-tablet-and-desktop-and-big-desktop {
   @media screen and (max-width: #{$screen-lg-max}) {
     @content;
   }
 }
 
-// media gt queries
-@mixin gt-xs {
+@mixin bigger-than-mobile {
   @media screen and (min-width: #{$screen-sm-min}) {
     @content;
   }
 }
 
-@mixin gt-sm {
+@mixin bigger-than-tablet {
   @media screen and (min-width: #{$screen-md-min}) {
     @content;
   }
 }
 
-@mixin gt-md {
+@mixin bigger-than-desktop {
   @media screen and (min-width: #{$screen-lg-min}) {
     @content;
   }
 }
 
-@mixin gt-lg {
+@mixin bigger-than-big-desktop {
   @media screen and (min-width: #{$screen-xl-min}) {
     @content;
   }

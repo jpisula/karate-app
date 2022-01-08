@@ -1,5 +1,5 @@
 @use '../../../lib/sass/variables';
-@use '../../../lib/sass/media-queries';
+@use '../../../lib/sass/media-queries' as mq;
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
 
 .logo {
@@ -39,7 +39,7 @@
   }
 }
 
-@include media-queries.md {
+@include mq.small-desktop {
   .logo {
     img {
       width: 50px;
@@ -51,7 +51,7 @@
   }
 }
 
-@include media-queries.gt-md {
+@include mq.bigger-than-desktop {
   .logo {
     img {
       width: 50px;

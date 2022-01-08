@@ -1,5 +1,5 @@
 @use 'lib/sass/reset';
-@use 'lib/sass/media-queries';
+@use 'lib/sass/media-queries' as mq;
 
 body {
   font-size: 14px;
@@ -11,7 +11,7 @@ body {
   height: 100%;
 }
 
-@include media-queries.md {
+@include mq.small-desktop {
   body {
     font-size: 20px;
   }
@@ -20,7 +20,7 @@ body {
   }
 }
 
-@include media-queries.gt-md {
+@include mq.bigger-than-desktop {
   body {
     font-size: 20px;
   }

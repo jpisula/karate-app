@@ -1,4 +1,4 @@
-@use '../../lib/sass/media-queries';
+@use '../../lib/sass/media-queries' as mq;
 
 .vignette {
   background-color: black;
@@ -17,7 +17,7 @@
   display: none;
 }
 
-@include media-queries.gt-xs {
+@include mq.bigger-than-mobile {
   .landing {
     display: block;
     height: 70vh;

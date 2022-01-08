@@ -1,4 +1,4 @@
-@use '../../../lib/sass/media-queries';
+@use '../../../lib/sass/media-queries' as mq;
 @use '../../../lib/sass/variables';
 
 .down-dropdown {
@@ -26,7 +26,7 @@
   }
 }
 
-@include media-queries.sm {
+@include mq.tablet {
   .down-dropdown {
     top: 60px;
     background-color: rgba(0, 0, 0, 0.5);
