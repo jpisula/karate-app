@@ -1,5 +1,6 @@
 @use 'lib/sass/reset';
 @use 'lib/sass/media-queries' as mq;
+@use './lib/sass/variables.scss' as v;
 
 body {
   font-size: 14px;
@@ -9,6 +10,16 @@ body {
 .container {
   margin: auto;
   height: 100%;
+}
+
+@include mq.mobile {
+  body {
+    font-size: 20px;
+  }
+  .container {
+    @include v.flexCenter(row);
+    width: 90%;
+  }
 }
 
 @include mq.small-desktop {

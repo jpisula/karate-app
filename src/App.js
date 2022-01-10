@@ -3,13 +3,14 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import Navbar from './components/Navigation/Navbar/Navbar';
 import Homepage from './pages/Homepage/Homepage';
 import NavButton from './components/Navigation/NavButton/NavButton';
+import Article from './pages/Article/Article';
 
 function App() {
   return (
     <>
       <Navbar>{navbarElements}</Navbar>
       <main>
-        <Homepage />
+        <Article />
       </main>
     </>
   );

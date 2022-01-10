@@ -1,0 +1,40 @@
+@use '../../lib/sass/variables.scss' as v;
+.article-container {
+  background-color: #d52323;
+  margin-top: 160px;
+  width: 90%;
+  border-radius: 3px;
+}
+
+.article-container .article-title {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  margin: 16px 5px 12px 5px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.article-container .article-date {
+  width: 90%;
+  font-size: 14px;
+  text-align: right;
+  padding: 3px;
+  margin-bottom: 16px;
+}
+
+.article-container .article-image {
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.article-container .article-text {
+  font-size: 14px;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+/*# sourceMappingURL=Article.css.map */
