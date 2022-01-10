@@ -1,7 +1,7 @@
 import './ArticlePage.scss';
 import articleImg from './assets/images.jpeg';
 
-function Article() {
+function ArticlePage() {
   return (
     <section className='container'>
       <div className='article-container'>
@@ -23,4 +23,4 @@ function Article() {
   );
 }
 
-export default Article;
+export default ArticlePage;
