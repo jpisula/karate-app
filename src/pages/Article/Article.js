@@ -1,4 +1,5 @@
 import './Article.scss';
+import articleImg from './assets/images.jpeg';
 
 function Article() {
   return (
@@ -6,11 +7,7 @@ function Article() {
       <div className='article-container'>
         <h2 className='article-title'>Lorem ipsum</h2>
         <p className='article-date'>07.01.2022</p>
-        <img
-          src='./assets/images.jpeg'
-          alt='ladne zdjecie'
-          className='article-image'
-        />
+        <img src={articleImg} alt='article photo' className='article-image' />
         <p className='article-text'>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
           condimentum viverra leo ut imperdiet. Nullam consequat a velit ac
