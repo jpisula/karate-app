@@ -1,4 +1,4 @@
-import './Article.scss';
+import './ArticlePage.scss';
 import articleImg from './assets/images.jpeg';
 
 function Article() {

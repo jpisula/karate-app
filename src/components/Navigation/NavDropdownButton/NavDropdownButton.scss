@@ -1,16 +1,19 @@
-@use '../../../lib/sass/media-queries' as mq;
 @use '../../../lib/sass/variables' as v;
 
-.nav-link {
+.dropdown-btn-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50%;
   border-bottom: 2px solid v.$red-color;
   transition: 0.3s;
+
+  .nav-title {
+    margin-right: 10px;
+  }
 }
 
-.nav-link:hover {
+.dropdown-btn-container:hover {
   cursor: pointer;
   border-color: white;
   color: v.$red-color;

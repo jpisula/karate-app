@@ -1,5 +1,6 @@
 import { TiThMenuOutline } from 'react-icons/ti';
 import NavButton from '../NavButton/NavButton';
+import NavHamburgerMenuButton from '../NavHamburgerMenuButton/NavHamburgerMenuButton';
 import NavLogo from '../NavLogo/NavLogo';
 import './Navbar.scss';
 
@@ -13,13 +14,9 @@ function Navbar({ children }) {
 
         <div className='nav-links'>{children}</div>
 
-        <NavButton
-          title={'Menu'}
-          isHamburgerMenu={true}
-          icon={<TiThMenuOutline id='hamburger-btn' />}
-        >
-          {children}
-        </NavButton>
+        <div className='hamburger-menu-container'>
+          <NavHamburgerMenuButton>{children}</NavHamburgerMenuButton>
+        </div>
       </div>
     </nav>
   );

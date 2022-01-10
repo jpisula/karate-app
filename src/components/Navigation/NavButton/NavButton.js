@@ -2,33 +2,13 @@ import { useState } from 'react';
 import DropdownMenu from '../DropdownMenu/DropdownMenu';
 import './NavButton.scss';
 
-function NavButton({ children, title, icon, isHamburgerMenu }) {
-  const [isDropdownOpen, setisDropdownOpen] = useState(false);
-
-  if (children) {
-    return (
-      <>
-        <div
-          className={isHamburgerMenu ? 'hamburger-menu nav-link' : 'nav-link'}
-          onClick={() => setisDropdownOpen(!isDropdownOpen)}
-        >
-          <p className={isHamburgerMenu ? 'nav-title' : ''}>{title}</p>{' '}
-          <p className='nav-icon'>{icon ? icon : ''}</p>
-        </div>
-        {isDropdownOpen && (
-          <DropdownMenu isHamburgerMenu={isHamburgerMenu}>
-            {children}
-          </DropdownMenu>
-        )}
-      </>
-    );
-  } else {
-    return (
-      <div className='nav-link'>
-        {title} <p>{icon ? icon : ''}</p>
-      </div>
-    );
-  }
+function NavButton({ title, icon, width }) {
+  return (
+    <div className='nav-link' style={{ width }}>
+      <div className='nav-title'>{title}</div>
+      {icon ? <div className='nav-icon'>{icon}</div> : ''}
+    </div>
+  );
 }
 
 export default NavButton;

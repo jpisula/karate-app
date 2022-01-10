@@ -1,11 +1,7 @@
 import './DropdownMenu.scss';
 
-function DropdownMenu({ children, isHamburgerMenu }) {
-  if (isHamburgerMenu) {
-    return <div className='down-dropdown'>{children}</div>;
-  } else {
-    return '';
-  }
+function DropdownMenu({ children }) {
+  return <div className='down-dropdown'>{children}</div>;
 }
 
 export default DropdownMenu;

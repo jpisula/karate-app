@@ -3,28 +3,35 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import Navbar from './components/Navigation/Navbar/Navbar';
 import Homepage from './pages/Homepage/Homepage';
 import NavButton from './components/Navigation/NavButton/NavButton';
-import Article from './pages/Article/Article';
+import NavDropdownButton from './components/Navigation/NavDropdownButton/NavDropdownButton';
+// import ArticlePage from './pages/ArticlePage/ArticlePage';
 
 function App() {
   return (
     <>
       <Navbar>{navbarElements}</Navbar>
       <main>
-        <Article />
+        <Homepage />
       </main>
     </>
   );
 }
 
+const navBtnWidth = '120px';
+
 const navbarElements = (
   <>
-    <NavButton sideMenu={true} title={`Informacje`} icon={<AiFillCaretDown />}>
-      <NavButton title={'Nasze sekcje'} />
-      <NavButton title={'Kalendarz'} />
-    </NavButton>
+    <NavDropdownButton
+      width={navBtnWidth}
+      title={`Informacje`}
+      icon={<AiFillCaretDown />}
+    >
+      <NavButton width={navBtnWidth} title={'Nasze sekcje'} />
+      <NavButton width={navBtnWidth} title={'Kalendarz'} />
+    </NavDropdownButton>
 
-    <NavButton title={'Nasze sekcje'} />
-    <NavButton title={'Kalendarz'} />
+    <NavButton width={navBtnWidth} title={'Nasze sekcje'} />
+    <NavButton width={navBtnWidth} title={'Kalendarz'} />
   </>
 );
 
