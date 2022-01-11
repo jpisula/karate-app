@@ -1,5 +1,5 @@
 @use '../../../lib/sass/media-queries' as mq;
-@use '../../../lib/sass/variables';
+@use '../../../lib/sass/variables' as v;
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
 
 nav {
@@ -12,87 +12,57 @@ nav {
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 20px;
 
-  .logo-container {
-    width: 75%;
-    height: 100%;
+  @include mq.bigger-than-mobile {
+    position: fixed;
   }
 
   .wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 20px;
     height: 100%;
+    width: 100%;
     z-index: 1;
 
-    .nav-links {
-      width: 57%;
-      padding-right: 2%;
+    .logo-container {
+      margin-left: 5%;
+      width: 70%;
       height: 100%;
-      display: flex;
+
+      @include mq.tablet {
+        width: 40%;
+      }
+
+      @include mq.bigger-than-tablet {
+        width: 30%;
+      }
+    }
+
+    .nav-links {
+      margin-right: 5%;
+      height: 100%;
+      display: none;
       justify-content: space-evenly;
       align-items: center;
-    }
-  }
-}
 
-@include mq.tablet {
-  nav {
-    height: 60px;
-    position: fixed;
+      @include mq.bigger-than-small-tablet {
+        display: flex;
+      }
 
-    .logo-container {
-      width: 40%;
-    }
-  }
-}
+      @include mq.tablet {
+        width: 50%;
+      }
 
-@include mq.small-desktop {
-  nav {
-    position: fixed;
-    .logo-container {
-      width: 30%;
-    }
-  }
-}
-
-@include mq.bigger-than-tablet {
-  nav {
-    height: 80px;
-    position: fixed;
-  }
-}
-
-@include mq.bigger-than-desktop {
-  nav {
-    position: fixed;
-    .logo-container {
-      width: 40%;
-    }
-    .wrapper {
-      .nav-links {
+      @include mq.bigger-than-tablet {
         width: 60%;
-        padding: 0px 100px;
       }
     }
-  }
-}
 
-@include mq.small-tablet {
-  nav {
-    position: fixed;
-    .wrapper {
-      .nav-links {
-        display: none;
-      }
-    }
-  }
-}
+    .hamburger-menu-container {
+      margin-right: 5%;
+      width: 25%;
 
-@include mq.mobile-and-tablet {
-  nav {
-    .wrapper {
-      .nav-links {
+      @include mq.bigger-than-small-tablet {
         display: none;
       }
     }

@@ -1,6 +1,20 @@
 @use '../../../lib/sass/media-queries' as mq;
 @use '../../../lib/sass/variables' as v;
 
+.hamburger-btn-container {
+  display: flex;
+  justify-content: end;
+
+  .nav-title {
+    margin-right: 10px;
+    display: none;
+
+    @include mq.small-tablet {
+      display: block;
+    }
+  }
+}
+
 .down-dropdown {
   position: absolute;
   top: 60px;
@@ -26,12 +40,12 @@
       cursor: pointer;
     }
 
-    span {
-      line-height: 30px;
-    }
-
     @include mq.tablet {
       width: 100%;
+    }
+
+    span {
+      line-height: 30px;
     }
   }
 }

@@ -1,8 +1,7 @@
-import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
-import './Article.scss';
+import './ArticlePage.scss';
 import articleImg from './assets/images.jpeg';
 
-function Article() {
+function ArticlePage() {
   return (
     <>
       <article className='container'>
@@ -29,4 +28,4 @@ function Article() {
   );
 }
 
-export default Article;
+export default ArticlePage;

@@ -1,4 +1,4 @@
-@use '../../../lib/sass/variables';
+@use '../../../lib/sass/variables' as v;
 @use '../../../lib/sass/media-queries' as mq;
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
 
@@ -12,12 +12,30 @@
   height: 100%;
   color: white;
 
+  &:hover {
+    cursor: pointer;
+    #brand-name {
+      color: v.$red-color;
+    }
+    .red-text {
+      color: white;
+    }
+  }
+
   img {
     width: 40px;
+
+    @include mq.small-desktop {
+      width: 50px;
+    }
+
+    @include mq.bigger-than-desktop {
+      width: 50px;
+    }
   }
 
   .red-text {
-    color: variables.$red-color;
+    color: v.$red-color;
     transition: 0.5s;
   }
 
@@ -26,38 +44,12 @@
     font-weight: 600;
     letter-spacing: 1px;
     transition: 0.5s;
-  }
-}
 
-.logo:hover {
-  cursor: pointer;
-  #brand-name {
-    color: variables.$red-color;
-  }
-  .red-text {
-    color: white;
-  }
-}
-
-@include mq.small-desktop {
-  .logo {
-    img {
-      width: 50px;
-    }
-
-    #brand-name {
+    @include mq.small-desktop {
       font-size: 22px;
     }
-  }
-}
 
-@include mq.bigger-than-desktop {
-  .logo {
-    img {
-      width: 50px;
-    }
-
-    #brand-name {
+    @include mq.bigger-than-desktop {
       font-size: 24px;
     }
   }
