@@ -2,7 +2,7 @@
 
 .article-container {
   background-color: #d52323;
-  margin-top: 160px;
+  margin-top: 80px;
   width: 90%;
   border-radius: 3px;
 
@@ -25,6 +25,7 @@
   .article-image {
     padding: 10px;
     box-sizing: border-box;
+    width: 100%;
   }
 
   .article-text {
@@ -34,4 +35,11 @@
     text-align: left;
     letter-spacing: 0.5px;
   }
+}
+
+.article-list-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
 }
