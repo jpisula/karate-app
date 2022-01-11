@@ -1,4 +1,4 @@
-@use '../../lib/sass/media-queries' as mq;
+@import '../../lib/sass/styles.scss';
 
 .vignette {
   background-color: black;
@@ -15,10 +15,8 @@
   background-attachment: scroll;
 
   display: none;
-}
 
-@include mq.bigger-than-mobile {
-  .landing {
+  @include media('>=mobile') {
     display: block;
     height: 70vh;
   }

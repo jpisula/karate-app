@@ -1,3 +1,4 @@
+// import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
 import './ArticlePage.scss';
 import articleImg from './assets/images.jpeg';
 
@@ -22,7 +23,7 @@ function ArticlePage() {
         </div>
       </article>
       <article className='container'>
-        <ArticlesList className='article-list-container'></ArticlesList>
+        {/* <ArticlesList className='article-list-container' /> */}
       </article>
     </>
   );

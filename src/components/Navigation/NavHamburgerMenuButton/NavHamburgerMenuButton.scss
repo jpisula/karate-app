@@ -1,46 +1,54 @@
-@use '../../../lib/sass/media-queries' as mq;
-@use '../../../lib/sass/variables' as v;
+@import '../../../lib/sass/styles.scss';
 
 .hamburger-btn-container {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
+
+  @include media('<=mobile') {
+    font-size: 20px;
+  }
 
   .nav-title {
     margin-right: 10px;
     display: none;
 
-    @include mq.small-tablet {
+    @include media('>=mobile', '<=tablet-portrait') {
       display: block;
     }
   }
 }
 
-.down-dropdown {
+.hamburger-down-dropdown {
   position: absolute;
   top: 60px;
   left: 0px;
   background-color: #292929;
   border-top: 1px solid gray;
   width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
 
-  @include mq.tablet {
-    top: 60px;
+  @include media('>=mobile') {
     background-color: rgba(0, 0, 0, 0.5);
     border-top: 1px solid black;
   }
 
-  .nav-link {
+  .nav-link,
+  .dropdown-btn-container {
     border: none;
-    height: 30px;
+    height: 40px;
     align-items: center;
     justify-content: center;
+    width: 150px;
 
     &:hover {
-      color: v.$red-color;
+      color: $red-color;
       cursor: pointer;
     }
 
-    @include mq.tablet {
+    @include media('>=tablet-portrait', '<=desktop') {
       width: 100%;
     }
 

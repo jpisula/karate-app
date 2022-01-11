@@ -17,21 +17,15 @@ function App() {
   );
 }
 
-const navBtnWidth = '120px';
-
 const navbarElements = (
   <>
-    <NavDropdownButton
-      width={navBtnWidth}
-      title={`Informacje`}
-      icon={<AiFillCaretDown />}
-    >
-      <NavButton width={navBtnWidth} title={'Nasze sekcje'} />
-      <NavButton width={navBtnWidth} title={'Kalendarz'} />
+    <NavDropdownButton title={`Informacje`} icon={<AiFillCaretDown />}>
+      <NavButton title={'Nasze sekcje'} />
+      <NavButton title={'Kalendarz'} />
     </NavDropdownButton>
 
-    <NavButton width={navBtnWidth} title={'Nasze sekcje'} />
-    <NavButton width={navBtnWidth} title={'Kalendarz'} />
+    <NavButton title={'Nasze sekcje'} />
+    <NavButton title={'Kalendarz'} />
   </>
 );
 
