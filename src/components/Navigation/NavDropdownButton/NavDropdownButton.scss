@@ -8,13 +8,13 @@
   border-bottom: 2px solid v.$red-color;
   transition: 0.3s;
 
+  &:hover {
+    cursor: pointer;
+    border-color: white;
+    color: v.$red-color;
+  }
+
   .nav-title {
     margin-right: 10px;
   }
-}
-
-.dropdown-btn-container:hover {
-  cursor: pointer;
-  border-color: white;
-  color: v.$red-color;
 }

@@ -8,10 +8,10 @@
   height: 50%;
   border-bottom: 2px solid v.$red-color;
   transition: 0.3s;
-}
 
-.nav-link:hover {
-  cursor: pointer;
-  border-color: white;
-  color: v.$red-color;
+  &:hover {
+    cursor: pointer;
+    border-color: white;
+    color: v.$red-color;
+  }
 }

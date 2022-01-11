@@ -1,5 +1,5 @@
 @use '../../../lib/sass/media-queries' as mq;
-@use '../../../lib/sass/variables';
+@use '../../../lib/sass/variables' as v;
 
 .down-dropdown {
   position: absolute;
@@ -9,30 +9,28 @@
   border-top: 1px solid gray;
   width: 100%;
 
+  @include mq.tablet {
+    top: 60px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top: 1px solid black;
+  }
+
   .nav-link {
     border: none;
     height: 30px;
     align-items: center;
     justify-content: center;
 
+    &:hover {
+      color: v.$red-color;
+      cursor: pointer;
+    }
+
     span {
       line-height: 30px;
     }
-  }
 
-  .nav-link:hover {
-    color: variables.$red-color;
-    cursor: pointer;
-  }
-}
-
-@include mq.tablet {
-  .down-dropdown {
-    top: 60px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-top: 1px solid black;
-
-    .nav-link {
+    @include mq.tablet {
       width: 100%;
     }
   }
