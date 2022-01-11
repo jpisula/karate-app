@@ -1,9 +1,10 @@
 import articleItemImg from '../../../pages/Article/assets/images.jpeg';
+import { BsArrowRight } from 'react-icons/bs';
 import './ArticleItem.scss';
 
 function ArticleItem() {
   return (
-    <section className='article-item-container'>
+    <article className='article-item-container'>
       <img
         src={articleItemImg}
         alt='article-item-photo'
@@ -13,8 +14,8 @@ function ArticleItem() {
         <h2 className='article-item-title'>Lorem ipsum</h2>
         <p className='article-item-date'>07.01.2022</p>
       </div>
-      <div className='strzala'></div>
-    </section>
+      <BsArrowRight className='article-item-arrow' />
+    </article>
   );
 }
 

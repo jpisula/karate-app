@@ -5,7 +5,7 @@ import articleImg from './assets/images.jpeg';
 function Article() {
   return (
     <>
-      <section className='container'>
+      <article className='container'>
         <div className='article-container'>
           <h2 className='article-title'>Lorem ipsum</h2>
           <p className='article-date'>07.01.2022</p>
@@ -21,10 +21,10 @@ function Article() {
             Donec convallis ut dui ac blandit.
           </p>
         </div>
-      </section>
-      <section className='container'>
+      </article>
+      <article className='container'>
         <ArticlesList className='article-list-container'></ArticlesList>
-      </section>
+      </article>
     </>
   );
 }
