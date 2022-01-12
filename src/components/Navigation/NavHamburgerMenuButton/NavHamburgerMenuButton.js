@@ -1,5 +1,7 @@
 import './NavHamburgerMenuButton.scss';
 import { TiThMenuOutline } from 'react-icons/ti';
+import { VscChromeClose } from 'react-icons/vsc';
+
 import { useState } from 'react';
 
 function NavHamburgerMenuButton({ children }) {
@@ -13,11 +15,13 @@ function NavHamburgerMenuButton({ children }) {
       >
         <div className='nav-title'>Menu</div>
         <div className='nav-icon'>
-          <TiThMenuOutline />
+          {isDropdownOpen ? <VscChromeClose /> : <TiThMenuOutline />}
         </div>
       </div>
 
-      {isDropdownOpen && <div className='down-dropdown'>{children}</div>}
+      {isDropdownOpen && (
+        <div className='hamburger-down-dropdown'>{children}</div>
+      )}
     </>
   );
 }

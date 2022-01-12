@@ -1,41 +1,29 @@
-@use 'lib/sass/reset';
-@use 'lib/sass/media-queries' as mq;
-@use './lib/sass/variables.scss' as v;
+@import './lib/sass/styles.scss';
 
 body {
-  font-size: 14px;
+  font-size: 16px;
   background-color: #1d1d1d;
+  color: white;
+
+  @include media('>=tablet-portrait') {
+    font-size: 22px;
+  }
 }
 
 .container {
   margin: auto;
   height: 100%;
-}
+  width: 100%;
 
-@include mq.mobile {
-  body {
-    font-size: 20px;
+  @include media('>=tablet-portrait') {
+    width: 768px;
   }
-  .container {
-    @include v.flexCenter(row);
-    width: 90%;
-  }
-}
 
-@include mq.small-desktop {
-  body {
-    font-size: 20px;
+  @include media('>=tablet-landscape') {
+    width: 990px;
   }
-  .container {
-    width: 960px;
-  }
-}
 
-@include mq.bigger-than-desktop {
-  body {
-    font-size: 20px;
-  }
-  .container {
-    width: 1024px;
+  @include media('>=desktop') {
+    width: 1400px;
   }
 }

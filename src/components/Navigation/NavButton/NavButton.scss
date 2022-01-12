@@ -1,17 +1,35 @@
-@use '../../../lib/sass/media-queries' as mq;
-@use '../../../lib/sass/variables' as v;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
+@import '../../../lib/sass/styles.scss';
 
 .nav-link {
+  font-family: 'Open Sans Condensed', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50%;
-  border-bottom: 2px solid v.$red-color;
+  border-bottom: 2px solid $red-color;
   transition: 0.3s;
+
+  @include media('>=tablet-portrait') {
+    width: 105px;
+  }
+
+  @include media('>=tablet-landscape', '<=desktop') {
+    font-size: 20px;
+  }
+
+  @include media('>=tablet-landscape') {
+    width: 125px;
+  }
+
+  @include media('>=desktop') {
+    font-size: 22px;
+    width: 150px;
+  }
 
   &:hover {
     cursor: pointer;
     border-color: white;
-    color: v.$red-color;
+    color: $red-color;
   }
 }

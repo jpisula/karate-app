@@ -1,20 +1,93 @@
-@use '../../../lib/sass/variables' as v;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap');
+@import '../../../lib/sass/styles.scss';
 
 .dropdown-btn-container {
+  font-family: 'Open Sans Condensed', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50%;
-  border-bottom: 2px solid v.$red-color;
+  border-bottom: 2px solid $red-color;
   transition: 0.3s;
+
+  @include media('>=tablet-portrait') {
+    width: 105px;
+  }
+
+  @include media('>=tablet-landscape', '<=desktop') {
+    font-size: 20px;
+  }
+
+  @include media('>=tablet-landscape') {
+    width: 125px;
+  }
+
+  @include media('>=desktop') {
+    font-size: 22px;
+    width: 150px;
+  }
 
   &:hover {
     cursor: pointer;
     border-color: white;
-    color: v.$red-color;
+    color: $red-color;
   }
 
   .nav-title {
     margin-right: 10px;
   }
+}
+
+.down-dropdown {
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid black;
+
+  display: flex;
+  justify-content: center;
+  @include media('>=tablet-landscape') {
+    top: 80px;
+  }
+
+  .nav-link,
+  .dropdown-btn-container {
+    height: 40px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    width: 250px;
+  }
+
+  // background-color: #292929;
+  // border-top: 1px solid gray;
+  // width: 100%;
+
+  // @include media('>=tablet-portrait', '<=desktop') {
+  //   top: 60px;
+  //   background-color: rgba(0, 0, 0, 0.5);
+  //   border-top: 1px solid black;
+  // }
+
+  // .nav-link {
+  //   border: none;
+  //   height: 30px;
+  //   align-items: center;
+  //   justify-content: center;
+
+  //   &:hover {
+  //     color: $red-color;
+  //     cursor: pointer;
+  //   }
+
+  //   @include media('>=tablet-portrait', '<=desktop') {
+  //     width: 100%;
+  //   }
+
+  //   span {
+  //     line-height: 30px;
+  //   }
+  // }
 }

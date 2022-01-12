@@ -1,0 +1,57 @@
+.section-info-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  margin-top: 60px;
+  border: 2px red dotted;
+  .group-name {
+    width: 100%;
+    height: auto;
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .group-description {
+    font-size: 14px;
+    font-weight: 200;
+    letter-spacing: 0.2px;
+    text-align: left;
+    margin-top: 10px;
+    line-height: 1.1;
+  }
+  .hours {
+    font-size: 14px;
+    font-weight: 100;
+    text-align: left;
+    margin-top: 30px;
+    line-height: 1.2;
+  }
+  .location {
+    font-size: 14px;
+    font-weight: 100;
+    text-align: left;
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+  .goglemapa {
+    width: 100%;
+    height: 200px;
+    background-color: salmon;
+    margin-top: 30px;
+  }
+  .enrolments {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 100;
+    text-align: left;
+  }
+  .phone-nr {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 100;
+    text-align: left;
+  }
+}
