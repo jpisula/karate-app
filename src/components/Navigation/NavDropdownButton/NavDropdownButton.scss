@@ -6,8 +6,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50%;
-  border-bottom: 2px solid $red-color;
+  height: 100%;
+  // border-bottom: 2px solid $red-color;
   transition: 0.3s;
 
   @include media('>=tablet-portrait') {
@@ -31,6 +31,12 @@
     cursor: pointer;
     border-color: white;
     color: $red-color;
+  }
+
+  &:hover {
+    .down-dropdown {
+      display: flex;
+    }
   }
 
   .nav-title {

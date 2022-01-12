@@ -8,12 +8,22 @@ function NavDropdownButton({ children, title, icon }) {
     <>
       <div
         className='dropdown-btn-container'
+        onMouseEnter={() => setIsDropdownOpen(true)}
+        onMouseLeave={() => setIsDropdownOpen(false)}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <div className='nav-title'>{title}</div>
         <div className='nav-icon'>{icon}</div>
       </div>
-      {isDropdownOpen && <div className='down-dropdown'>{children}</div>}
+      {isDropdownOpen && (
+        <div
+          className='down-dropdown'
+          onMouseEnter={() => setIsDropdownOpen(true)}
+          onMouseLeave={() => setIsDropdownOpen(false)}
+        >
+          {children}
+        </div>
+      )}
     </>
   );
 }
