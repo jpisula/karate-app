@@ -1,15 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './NavDropdownButton.scss';
 
 function NavDropdownButton({ children, title, icon }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const tabletPortraitWidth = 768;
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+  }, []);
+
+  const checkWindowWidth = (isOpen) => {
+    if (windowWidth >= tabletPortraitWidth) {
+      setIsDropdownOpen(isOpen);
+    }
+  };
 
   return (
     <>
       <div
         className='dropdown-btn-container'
-        onMouseEnter={() => setIsDropdownOpen(true)}
-        onMouseLeave={() => setIsDropdownOpen(false)}
+        onMouseEnter={() => checkWindowWidth(true)}
+        onMouseLeave={() => checkWindowWidth(false)}
         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       >
         <div className='nav-title'>{title}</div>
@@ -18,8 +31,8 @@ function NavDropdownButton({ children, title, icon }) {
       {isDropdownOpen && (
         <div
           className='down-dropdown'
-          onMouseEnter={() => setIsDropdownOpen(true)}
-          onMouseLeave={() => setIsDropdownOpen(false)}
+          onMouseEnter={() => checkWindowWidth(true)}
+          onMouseLeave={() => checkWindowWidth(false)}
         >
           {children}
         </div>
