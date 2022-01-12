@@ -4,6 +4,7 @@ import Navbar from './components/Navigation/Navbar/Navbar';
 import Homepage from './pages/Homepage/Homepage';
 import NavButton from './components/Navigation/NavButton/NavButton';
 import NavDropdownButton from './components/Navigation/NavDropdownButton/NavDropdownButton';
+import SectionsPage from './pages/SectionsPage/SectionsPage';
 // import ArticlePage from './pages/ArticlePage/ArticlePage';
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <>
       <Navbar>{navbarElements}</Navbar>
       <main>
-        <Homepage />
+        <SectionsPage />
       </main>
     </>
   );
