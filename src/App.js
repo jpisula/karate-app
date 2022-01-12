@@ -20,8 +20,24 @@ function App() {
 const navbarElements = (
   <>
     <NavDropdownButton title={`Informacje`} icon={<AiFillCaretDown />}>
-      <NavButton title={'Nasze sekcje'} />
-      <NavButton title={'Kalendarz'} />
+      <div className='column'>
+        <NavButton title={'Aktualności'} />
+        <NavButton title={'Harmonogram zajęć'} />
+        <NavButton title={'Nasi instruktorzy'} />
+        <NavButton title={'O OYAMA Karate'} />
+      </div>
+      <div className='column'>
+        <NavButton title={'Stopnie karate'} />
+        <NavButton title={'Przysięga dojo'} />
+        <NavButton title={'Etykieta dojo'} />
+        <NavButton title={'Słownik pojęć'} />
+      </div>
+      <div className='column'>
+        <NavButton title={'Galerie'} />
+        <NavButton title={'Klub GOLIAT'} />
+        <NavButton title={'Karate a prawo'} />
+        <NavButton title={'Dla sponsora'} />
+      </div>
     </NavDropdownButton>
 
     <NavButton title={'Nasze sekcje'} />

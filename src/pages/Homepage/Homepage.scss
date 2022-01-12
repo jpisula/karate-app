@@ -1,6 +1,8 @@
 @import '../../lib/sass/styles.scss';
 
 .vignette {
+  position: absolute;
+  top: 0;
   background-color: black;
   opacity: 0.2;
   width: inherit;
@@ -8,16 +10,32 @@
 }
 
 .landing {
+  position: relative;
   width: 100%;
   background-image: url('./assets/landing.jpeg');
   background-position: 0% 60%;
   background-size: cover;
   background-attachment: scroll;
+  color: $red-color;
 
   display: none;
 
   @include media('>=mobile') {
     display: block;
     height: 70vh;
+  }
+
+  .welcome-card {
+    height: 80%;
+    width: 50%;
+    top: 50;
+    margin: 0 auto;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-size: 32px;
   }
 }

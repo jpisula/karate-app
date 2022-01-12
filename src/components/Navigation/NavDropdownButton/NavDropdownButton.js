@@ -13,7 +13,7 @@ function NavDropdownButton({ children, title, icon }) {
         <div className='nav-title'>{title}</div>
         <div className='nav-icon'>{icon}</div>
       </div>
-      {/* {isDropdownOpen && <div className='down-dropdown'>{children}</div>} */}
+      {isDropdownOpen && <div className='down-dropdown'>{children}</div>}
     </>
   );
 }
