@@ -19,6 +19,7 @@ function App() {
 
 const navbarElements = (
   <>
+    <NavButton title={'Nasze sekcje'} />
     <NavDropdownButton title={`Informacje`} icon={<AiFillCaretDown />}>
       <div className='column'>
         <NavButton title={'Aktualności'} />
@@ -40,7 +41,6 @@ const navbarElements = (
       </div>
     </NavDropdownButton>
 
-    <NavButton title={'Nasze sekcje'} />
     <NavButton title={'Kalendarz'} />
   </>
 );
