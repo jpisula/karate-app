@@ -5,16 +5,22 @@ import Homepage from './pages/Homepage/Homepage';
 import NavButton from './components/Navigation/NavButton/NavButton';
 import NavDropdownButton from './components/Navigation/NavDropdownButton/NavDropdownButton';
 import SectionsPage from './pages/SectionsPage/SectionsPage';
-// import ArticlePage from './pages/ArticlePage/ArticlePage';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import ArticlePage from './pages/ArticlePage/ArticlePage';
 
 function App() {
   return (
-    <>
+    <Router>
       <Navbar>{navbarElements}</Navbar>
       <main>
-        <SectionsPage />
+        <Routes>
+          <Route path='/' element={<Homepage />} />
+          <Route path='/sections' element={<SectionsPage />} />
+          <Route path='/article' element={<ArticlePage />} />
+          <Route path='/*' element={<Homepage />} />
+        </Routes>
       </main>
-    </>
+    </Router>
   );
 }
 
