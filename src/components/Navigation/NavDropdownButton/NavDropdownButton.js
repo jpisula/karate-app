@@ -5,14 +5,14 @@ function NavDropdownButton({ children, title, icon }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const tabletPortraitWidth = 768;
+  const tabletLandscapeWidth = 1024;
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
   }, []);
 
   const checkWindowWidth = (isOpen) => {
-    if (windowWidth >= tabletPortraitWidth) {
+    if (windowWidth >= tabletLandscapeWidth) {
       setIsDropdownOpen(isOpen);
     }
   };

@@ -9,6 +9,8 @@
   height: 100%;
   // border-bottom: 2px solid $red-color;
   transition: 0.3s;
+  text-decoration: none;
+  color: inherit;
 
   @include media('>=tablet-portrait') {
     width: 105px;
