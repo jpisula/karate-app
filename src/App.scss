@@ -13,17 +13,17 @@ body {
 .container {
   margin: auto;
   height: 100%;
-  width: 100%;
+  width: 90%;
 
   @include media('>=tablet-portrait') {
-    width: 768px;
+    width: 748px;
   }
 
   @include media('>=tablet-landscape') {
-    width: 990px;
+    width: 980px;
   }
 
   @include media('>=desktop') {
-    width: 1400px;
+    width: 1360px;
   }
 }

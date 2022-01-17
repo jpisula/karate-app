@@ -7,17 +7,19 @@ import NavDropdownButton from './components/Navigation/NavDropdownButton/NavDrop
 import SectionsPage from './pages/SectionsPage/SectionsPage';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
+import CalendarPage from './pages/CalendarPage/CalendarPage';
 
 function App() {
   return (
     <Router>
       <Navbar>{navbarElements}</Navbar>
-      <main>
+      <main className='page-content'>
         <Routes>
           <Route path='/' element={<Homepage />} />
           <Route path='/sections' element={<SectionsPage />} />
           <Route path='/article' element={<ArticlePage />} />
           <Route path='/*' element={<Homepage />} />
+          <Route path='/calendar' element={<CalendarPage />} />
         </Routes>
       </main>
     </Router>
@@ -48,7 +50,7 @@ const navbarElements = (
       </div>
     </NavDropdownButton>
 
-    <NavButton title={'Kalendarz'} />
+    <NavButton linkTo={'calendar'} title={'Kalendarz'} />
   </>
 );
 
