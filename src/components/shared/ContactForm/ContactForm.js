@@ -24,9 +24,11 @@ function ContactForm() {
         className='contact-form-question'
         placeholder='pytanie'
       ></input>
-      <button type='submit' className='contact-form-submit-button'>
-        Wyslij
-      </button>
+      <div className='button-container'>
+        <button type='submit' className='contact-form-submit-button'>
+          Wyslij
+        </button>
+      </div>
     </form>
   );
 }

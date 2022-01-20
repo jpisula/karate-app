@@ -1,13 +1,22 @@
+import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
 import Sections from '../../components/shared/Sections/Sections';
 import SectionSelector from '../../components/shared/SectionSelector/SectionSelector';
+import { SectionsProvider } from '../../context/sections/SectionsContext';
 import './SectionsPage.scss';
 
 function SectionsPage() {
   return (
-    <article className='container'>
-      <SectionSelector></SectionSelector>
-      <Sections></Sections>
-    </article>
+    <SectionsProvider>
+      <article className='container'>
+        <div className='grid-container'>
+          <div className='article-content'>
+            <SectionSelector></SectionSelector>
+            <Sections></Sections>
+          </div>
+          <ArticlesList className='article-list-container' />
+        </div>
+      </article>
+    </SectionsProvider>
   );
 }
 

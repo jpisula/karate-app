@@ -10,11 +10,19 @@ function ArticleItem() {
         alt='article-item-photo'
         className='article-item-image'
       />
-      <div className='article-item-and-date'>
-        <h2 className='article-item-title'>Lorem ipsum</h2>
-        <p className='article-item-date'>07.01.2022</p>
+      <h2 className='article-item-title'>
+        Harmonogram rozpoczęcia Treningów Karate w Sezonie 2020-2021
+      </h2>
+      <p className='article-item-desc'>
+        Harmonogram dotyczy sekcji Karate Katowice Podlesie, Katowice Ligota ,
+        Katowice Panewniki oraz Gliwice Centrum zarówno dla dzieci młodzieży
+        oraz dorosłych.
+      </p>
+      <div className='article-item-button-container'>
+        <button type='button' className='article-item-button'>
+          Czytaj więcej
+        </button>
       </div>
-      <BsArrowRight className='article-item-arrow' />
     </article>
   );
 }

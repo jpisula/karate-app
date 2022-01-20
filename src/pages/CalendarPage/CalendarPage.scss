@@ -1,0 +1,59 @@
+.calendar-title {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 900;
+  margin-top: 30px;
+  letter-spacing: 0.3px;
+}
+.calendar-description {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 300;
+  margin: 20px 0;
+  line-height: 1.1;
+  span {
+    color: rgb(190, 15, 15);
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 200;
+  }
+}
+
+.calendar-info {
+  width: 100%;
+  height: auto;
+  font-size: 16px;
+  font-weight: 200;
+  .calendar-info-list {
+    list-style-type: decimal;
+    padding-left: 15px;
+    box-sizing: border-box;
+    line-height: 1.1;
+    letter-spacing: 0.1px;
+    .calendar-info-list-item {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.outside-table {
+  margin-bottom: 30px;
+}
+
+table {
+  margin: 1em auto 0 auto;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 0.7em;
+}
+
+table,
+td {
+  border: 1px red solid;
+}

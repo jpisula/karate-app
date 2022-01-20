@@ -1,4 +1,11 @@
 $red-color: #d9251c;
+$bg-color: #373234;
+$darker-bg-color: #242424;
+$large-font: 24px;
+$big-font: 20px;
+$med-font: 16px;
+$small-font: 14px;
+$tiny-font: 12px;
 
 @mixin flexCenter($direction) {
   display: flex;

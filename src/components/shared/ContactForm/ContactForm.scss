@@ -6,6 +6,8 @@
   box-sizing: border-box;
   margin-top: 20px;
   position: relative;
+  width: 100%;
+  height: auto;
   .contact-form-title {
     width: 100%;
     font-size: 22px;
@@ -30,18 +32,21 @@
     height: 100px;
     margin-top: 10px;
     text-align: start;
-    margin-bottom: calc(10px + 30px);
+    margin-bottom: 10px;
   }
-  .contact-form-submit-button {
-    width: 70px;
-    height: 30px;
-    border: 3px green solid;
-    box-sizing: border-box;
-    border-radius: 50px;
-    background-color: seagreen;
-    margin-top: 10px;
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
+  .button-container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 100%;
+    .contact-form-submit-button {
+      width: 70px;
+      height: 30px;
+      border: 3px green solid;
+      box-sizing: border-box;
+      border-radius: 50px;
+      background-color: seagreen;
+      margin-top: 10px;
+    }
   }
 }
