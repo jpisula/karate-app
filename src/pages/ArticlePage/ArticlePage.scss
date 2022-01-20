@@ -1,45 +1,119 @@
-@use '../../lib/sass/variables.scss' as v;
+@import '../../lib/sass/styles.scss';
 
 .article-container {
-  background-color: #d52323;
-  margin-top: 80px;
-  width: 90%;
-  border-radius: 3px;
+  background-color: $darker-bg-color;
 
   .article-title {
-    font-size: 24px;
+    width: 100%;
+    height: auto;
+    font-size: $large-font;
     text-align: center;
     font-weight: 600;
-    margin: 16px 5px 12px 5px;
     box-sizing: border-box;
+    padding: 25px 18px 25px 18px;
+    letter-spacing: 0.3px;
+
+    @include media('>=tablet-portrait', '<=tablet-landscape') {
+      padding: 40px 18px 20px;
+    }
+
+    @include media('>=tablet-landscape', '<=desktop') {
+      text-align: left;
+      padding: 40px 0;
+      font-size: $large-font;
+    }
   }
 
-  .article-date {
-    width: 90%;
-    font-size: 14px;
-    text-align: right;
-    padding: 3px;
-    margin-bottom: 16px;
+  .date-and-share-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+    margin: 15px 0 10px 0;
+    box-sizing: border-box;
+    padding: 0 16px;
+
+    @include media('>=tablet-portrait', '<=tablet-landscape') {
+      margin: 0 0 20px 0;
+    }
+
+    @include media('>=tablet-landscape', '<=desktop') {
+      padding: 0 0 20px 0;
+      margin: 0;
+    }
+
+    .article-date {
+      width: auto;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .share-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .media-icon {
+        width: 20px;
+        height: 20px;
+        margin-left: 15px;
+
+        @include media('>=tablet-portrait', '<=tablet-landscape') {
+          width: 25px;
+          height: 25px;
+        }
+
+        @include media('>=tablet-landscape', '<=desktop') {
+          width: 30px;
+          height: 30px;
+        }
+
+        &:hover {
+          color: $red-color;
+          cursor: pointer;
+          transition: 0.3s;
+          transform: scale(1.2);
+        }
+      }
+    }
   }
 
   .article-image {
-    padding: 10px;
     box-sizing: border-box;
     width: 100%;
+    height: 62.5%;
+    padding: 0;
   }
 
   .article-text {
-    font-size: 14px;
-    padding: 10px;
+    width: 100%;
+    height: auto;
+    font-size: $tiny-font;
+    padding: 25px 18px 25px 18px;
     box-sizing: border-box;
     text-align: left;
     letter-spacing: 0.5px;
-  }
-}
+    line-height: 15px;
 
-.article-list-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  flex-direction: column;
+    @include media('>=tablet-portrait', '<=tablet-landscape') {
+      padding: 40px 25px 40px 25px;
+      line-height: 19.2px;
+      font-size: $med-font;
+      font-weight: 600;
+    }
+
+    @include media('>=tablet-landscape', '<=desktop') {
+      font-size: $big-font;
+      line-height: 24px;
+      padding: 25px 0;
+    }
+  }
+
+  .article-list-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+  }
 }

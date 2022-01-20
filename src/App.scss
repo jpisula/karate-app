@@ -11,9 +11,8 @@ body {
 }
 
 .container {
-  margin: auto;
   height: 100%;
-  width: 90%;
+  margin: 0 auto;
 
   @include media('>=tablet-portrait') {
     width: 748px;
@@ -24,6 +23,6 @@ body {
   }
 
   @include media('>=desktop') {
-    width: 1360px;
+    width: 1340px;
   }
 }
