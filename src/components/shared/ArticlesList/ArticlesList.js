@@ -3,24 +3,23 @@ import ArticleItem from '../ArticleItem/ArticleItem';
 import { Link } from 'react-router-dom';
 import './ArticlesList.scss';
 
-function ArticlesList() {
+const generateArticleItems = (numberOfItems) => {
+  const ArticleItems = [];
+  for (let i = 0; i < numberOfItems; i++) {
+    ArticleItems.push(
+      <div className='article-item-container-margin'>
+        <ArticleItem></ArticleItem>
+      </div>
+    );
+  }
+
+  return ArticleItems;
+};
+
+function ArticlesList({ numberOfItems }) {
   return (
-    <div className='article-list-container'>
-      <p className='news-title'>Aktualności</p>
-      <div className='articles-container'>
-        <Link to={'/article/'}>
-          <ArticleItem></ArticleItem>
-        </Link>
-        <Link to={'/article/'}>
-          <ArticleItem></ArticleItem>
-        </Link>
-        <Link to={'/article/'}>
-          <ArticleItem></ArticleItem>
-        </Link>
-      </div>
-      <div className='more-news-button-container'>
-        <button className='more-news-button'>Więcej aktualności</button>
-      </div>
+    <div className='articles-container'>
+      {generateArticleItems(numberOfItems)}
     </div>
   );
 }

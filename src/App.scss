@@ -1,11 +1,17 @@
 @import './lib/sass/styles.scss';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
+html {
+  width: 100%;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   background-color: #373234;
   color: white;
+  position: absolute;
+  width: 100%;
 
   @include media('>=tablet-portrait') {
     font-size: 22px;
