@@ -7,6 +7,7 @@ import NavDropdownButton from './components/Navigation/NavDropdownButton/NavDrop
 import SectionsPage from './pages/SectionsPage/SectionsPage';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/*' element={<Homepage />} />
         </Routes>
       </main>
+      <Footer />
     </Router>
   );
 }

@@ -4,6 +4,7 @@ import instructorPhoto from './assets/instruktor.jpeg';
 import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
 import { Link } from 'react-router-dom';
 import { BsFillTelephoneFill } from 'react-icons/bs';
+import ContactForm from '../../components/shared/ContactForm/ContactForm';
 
 function Homepage() {
   return (
@@ -63,10 +64,10 @@ function Homepage() {
           </h2>
         </section>
 
-        <div className='container'>Hello World</div>
-        <div className='random' style={{ minHeight: 1000 }}>
-          a
-        </div>
+        <section className='contact'>
+          <h1>Skontaktuj się z nami!</h1>
+          <ContactForm />
+        </section>
       </div>
     </>
   );

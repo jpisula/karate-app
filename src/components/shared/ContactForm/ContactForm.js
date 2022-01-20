@@ -3,7 +3,7 @@ import './ContactForm.scss';
 function ContactForm() {
   return (
     <form className='contact-form-container container'>
-      <p className='contact-form-title'>Skontaktuj sie z nami!</p>
+      {/* <p className='contact-form-title'>Skontaktuj sie z nami!</p> */}
       <input
         type='text'
         className='contact-form-name'
