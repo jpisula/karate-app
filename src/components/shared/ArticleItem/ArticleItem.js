@@ -20,7 +20,7 @@ function ArticleItem() {
       </p>
       <div className='article-item-button-container'>
         <button type='button' className='article-item-button'>
-          Czytaj więcej
+          Czytaj dalej
         </button>
       </div>
     </article>

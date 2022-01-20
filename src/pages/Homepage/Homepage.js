@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import ContactForm from '../../components/shared/ContactForm/ContactForm';
 import GroupsAd from '../../components/shared/GroupsAd/GroupsAd';
+import Button from '../../components/shared/Button/Button';
 
 function Homepage() {
   return (
@@ -64,7 +65,7 @@ function Homepage() {
                 Polski...
               </p>
               <Link className='instructor-link' to='/'>
-                Czytaj dalej
+                <Button text={'Czytaj dalej'} />
               </Link>
             </div>
           </div>
@@ -72,8 +73,8 @@ function Homepage() {
 
         <section className='news-list'>
           <div className='container'>
-            <h2>Aktualności</h2>
-            <ArticlesList />
+            <h2 className='news-h2'>Aktualności</h2>
+            <ArticlesList numberOfItems={4} />
           </div>
         </section>
       </div>
