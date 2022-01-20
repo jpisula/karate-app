@@ -5,6 +5,7 @@ import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
 import { Link } from 'react-router-dom';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import ContactForm from '../../components/shared/ContactForm/ContactForm';
+import GroupsAd from '../../components/shared/GroupsAd/GroupsAd';
 
 function Homepage() {
   return (
@@ -25,11 +26,24 @@ function Homepage() {
           </div>
         </section>
 
-        <section className='news-list'>
+        <section className='groups'>
           <div className='container'>
-            <h2>Aktualności</h2>
-            <ArticlesList />
+            <h2>U nasz znajdziesz treningi dla...</h2>
+            <GroupsAd />
           </div>
+        </section>
+
+        <section className='annoucements'>
+          <h1>ZAPISY</h1>
+          <h2 className='phone'>
+            <BsFillTelephoneFill />
+            <div>000 - 000 - 000</div>
+          </h2>
+        </section>
+
+        <section className='contact'>
+          <h1>Skontaktuj się z nami!</h1>
+          <ContactForm />
         </section>
 
         <section className='instructor'>
@@ -56,17 +70,11 @@ function Homepage() {
           </div>
         </section>
 
-        <section className='annoucements'>
-          <h1>ZAPISY</h1>
-          <h2 className='phone'>
-            <BsFillTelephoneFill />
-            <div>000 - 000 - 000</div>
-          </h2>
-        </section>
-
-        <section className='contact'>
-          <h1>Skontaktuj się z nami!</h1>
-          <ContactForm />
+        <section className='news-list'>
+          <div className='container'>
+            <h2>Aktualności</h2>
+            <ArticlesList />
+          </div>
         </section>
       </div>
     </>
