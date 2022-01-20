@@ -1,8 +1,10 @@
 @import './lib/sass/styles.scss';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
 body {
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
-  background-color: #1d1d1d;
+  background-color: #373234;
   color: white;
 
   @include media('>=tablet-portrait') {

@@ -1,41 +1,123 @@
 @import '../../lib/sass/styles.scss';
 
-.vignette {
-  position: absolute;
-  top: 0;
-  background-color: black;
-  opacity: 0.2;
-  width: inherit;
-  height: inherit;
-}
+.homepage-content {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 30px;
 
-.landing {
-  position: relative;
-  width: 100%;
-  background-image: url('./assets/landing.jpeg');
-  background-position: 0% 60%;
-  background-size: cover;
-  background-attachment: scroll;
-  color: $red-color;
-
-  display: none;
-
-  @include media('>=mobile') {
-    display: block;
-    height: 70vh;
+  h1 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: white;
+    text-align: center;
   }
 
-  .welcome-card {
-    height: 80%;
-    width: 50%;
-    top: 50;
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    width: fit-content;
     margin: 0 auto;
-    display: flex;
-    align-content: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-weight: 800;
-    font-size: 32px;
+  }
+
+  section {
+    padding: 25px 18px;
+  }
+
+  .landing {
+    position: relative;
+    padding: 0;
+
+    .landing-image {
+      width: 100%;
+      height: 62.5%;
+      display: block;
+    }
+
+    .welcome-card-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+
+      .welcome-card {
+        margin: 25px 18px;
+      }
+    }
+  }
+
+  .news-list {
+    .article-list-container {
+      padding-top: 25px;
+    }
+  }
+
+  .instructor {
+    background-color: #242424;
+    margin: 0 auto;
+
+    .instructor-card {
+      margin: 25px 0 0 0;
+      @include flexCenter(column);
+
+      h3 {
+        font-size: 16px;
+        font-weight: 700;
+        padding: 25px 0;
+      }
+
+      p {
+        font-size: 12px;
+        line-height: 20px;
+      }
+
+      .image-wrapper {
+        width: 150px;
+        height: 150px;
+
+        .instructor-image {
+          object-fit: scale-down;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          background-color: black;
+          overflow: hidden;
+        }
+      }
+
+      .instructor-link {
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        padding-top: 25px;
+        margin: 0 0 0 auto;
+
+        &:hover {
+          color: $red-color;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+
+  .annoucements {
+    background-color: $red-color;
+
+    h1 {
+      letter-spacing: 2px;
+      padding-bottom: 10px;
+    }
+
+    h2 {
+      letter-spacing: 3px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 10px;
+      }
+    }
   }
 }

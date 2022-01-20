@@ -1,4 +1,4 @@
-import articleItemImg from '../../../pages/Article/assets/images.jpeg';
+import articleItemImg from '../../../pages/ArticlePage/assets/images.jpeg';
 import { BsArrowRight } from 'react-icons/bs';
 import './ArticleItem.scss';
 
