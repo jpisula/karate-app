@@ -28,7 +28,7 @@ function Homepage() {
 
         <section className='groups'>
           <div className='container'>
-            <h2>U nasz znajdziesz treningi dla...</h2>
+            <h2>U nas znajdziesz treningi dla...</h2>
             <GroupsAd />
           </div>
         </section>
