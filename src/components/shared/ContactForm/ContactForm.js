@@ -8,25 +8,28 @@ const onBtnClick = (e) => {
 
 function ContactForm() {
   return (
-    <form className='contact-form-container'>
+    <form className='contact-form'>
       <Input
-        classes={'contact-form-normal'}
+        classes={'contact-input-normal'}
         placeholder={'Twoje imię...'}
         label={'Twoje imię'}
       />
       <Input
-        classes={'contact-form-normal'}
+        classes={'contact-input-normal'}
         placeholder={'E-mail...'}
         label={'E-mail'}
       />
       <Input
-        classes={'contact-form-normal'}
+        classes={'contact-input-normal'}
         placeholder={'Numer telefonu...'}
         label={'Numer telefonu'}
       />
       <label>
         <p>Wiadomość</p>
-        <textarea className={'contact-form-big'} placeholder={'Wiadomość...'} />
+        <textarea
+          className={'contact-input-big'}
+          placeholder={'Wiadomość...'}
+        />
       </label>
 
       <Button text='Wyślij formularz' onClick={onBtnClick} />

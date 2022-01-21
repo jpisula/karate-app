@@ -5,6 +5,7 @@ import { BsFillTelephoneFill } from 'react-icons/bs';
 import ContactForm from '../../components/shared/ContactForm/ContactForm';
 import GroupsAd from '../../components/shared/GroupsAd/GroupsAd';
 import Button from '../../components/shared/Button/Button';
+import karateImg from './assets/karate.jpeg';
 import InstructorCard from '../../components/shared/InstructorCard/InstructorCard';
 
 function Homepage() {
@@ -42,7 +43,14 @@ function Homepage() {
         </section>
 
         <section className='contact'>
-          <h1>Skontaktuj się z nami!</h1>
+          <div
+            className='parallax'
+            style={{ backgroundImage: `url(${karateImg})` }}
+          >
+            <div className='vignette'>
+              <h1>Skontaktuj się z nami!</h1>
+            </div>
+          </div>
           <ContactForm />
         </section>
 
