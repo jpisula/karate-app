@@ -2,7 +2,7 @@
 
 .article-item-container {
   max-width: 339px;
-  height: 364px;
+  min-height: 364px;
   border: 1px solid $red-color;
   box-sizing: border-box;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
@@ -40,14 +40,20 @@
 
   .article-item-desc {
     font-size: 12px;
-    width: 100%;
-    padding: 0 10px 10px 10px;
+    width: auto;
+    margin: 0 10px 10px 10px;
     box-sizing: border-box;
     line-height: 16px;
     text-align: justify;
     border: none;
     background: transparent;
     color: white;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .article-item-button {
