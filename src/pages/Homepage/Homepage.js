@@ -1,6 +1,8 @@
 import './Homepage.scss';
 import landingPhoto from './assets/landing.jpeg';
 import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
+import { ParallaxProvider, ParallaxBanner } from 'react-scroll-parallax';
+
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import ContactForm from '../../components/shared/ContactForm/ContactForm';
 import GroupsAd from '../../components/shared/GroupsAd/GroupsAd';
@@ -43,15 +45,26 @@ function Homepage() {
         </section>
 
         <section className='contact'>
-          <div
-            className='parallax'
-            style={{ backgroundImage: `url(${karateImg})` }}
-          >
-            <div className='vignette'>
-              <h1>Skontaktuj się z nami!</h1>
-            </div>
-          </div>
-          <ContactForm />
+          <ParallaxProvider>
+            <ParallaxBanner
+              className='contact-parallax'
+              layers={[
+                {
+                  image: karateImg,
+                  amount: 0.5
+                }
+              ]}
+              style={{
+                height: '100%',
+                padding: ''
+              }}
+            >
+              <div className='contact-container'>
+                <h1>Skontaktuj się z nami!</h1>
+                <ContactForm />
+              </div>
+            </ParallaxBanner>
+          </ParallaxProvider>
         </section>
 
         <section className='instructor'>
