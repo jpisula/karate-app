@@ -1,12 +1,11 @@
 import './Homepage.scss';
 import landingPhoto from './assets/landing.jpeg';
-import instructorPhoto from './assets/instruktor.jpeg';
 import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
-import { Link } from 'react-router-dom';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import ContactForm from '../../components/shared/ContactForm/ContactForm';
 import GroupsAd from '../../components/shared/GroupsAd/GroupsAd';
 import Button from '../../components/shared/Button/Button';
+import InstructorCard from '../../components/shared/InstructorCard/InstructorCard';
 
 function Homepage() {
   return (
@@ -50,31 +49,14 @@ function Homepage() {
         <section className='instructor'>
           <div className='container'>
             <h2>Instruktor</h2>
-            <div className='instructor-card'>
-              <div className='image-wrapper'>
-                <img
-                  src={instructorPhoto}
-                  alt='Instructor image'
-                  className='instructor-image'
-                />
-              </div>
-              <h3>Michał Bodziony</h3>
-              <p>
-                Jako instruktor wychowałem wielu utytułowanych zawodników, w tym
-                Wicemistrza Europy, wielokrotnych Wicemistrzów i Mistrzów
-                Polski...
-              </p>
-              <Link className='instructor-link' to='/'>
-                <Button text={'Czytaj dalej'} />
-              </Link>
-            </div>
+            <InstructorCard />
           </div>
         </section>
 
         <section className='news-list'>
           <div className='container'>
             <h2 className='news-h2'>Aktualności</h2>
-            <ArticlesList numberOfItems={4} />
+            <ArticlesList className='articles-list' numberOfItems={4} />
           </div>
         </section>
       </div>

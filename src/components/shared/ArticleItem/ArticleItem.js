@@ -18,11 +18,9 @@ function ArticleItem() {
         Katowice Panewniki oraz Gliwice Centrum zarówno dla dzieci młodzieży
         oraz dorosłych.
       </p>
-      <div className='article-item-button-container'>
-        <button type='button' className='article-item-button'>
-          Czytaj dalej
-        </button>
-      </div>
+      <button type='button' className='article-item-button'>
+        Czytaj dalej
+      </button>
     </article>
   );
 }

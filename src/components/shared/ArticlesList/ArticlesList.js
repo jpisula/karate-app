@@ -7,7 +7,7 @@ const generateArticleItems = (numberOfItems) => {
   const ArticleItems = [];
   for (let i = 0; i < numberOfItems; i++) {
     ArticleItems.push(
-      <div className='article-item-container-margin'>
+      <div key={`article ${i}`} className='article-item-container-margin'>
         <ArticleItem></ArticleItem>
       </div>
     );

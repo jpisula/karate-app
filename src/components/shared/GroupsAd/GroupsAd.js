@@ -7,26 +7,18 @@ import familyKarateImg from './assets/family-karate.jpeg';
 const GroupsAd = () => {
   return (
     <div className='groups-ad-list'>
+      <GroupAdItem title='DZIECI' imgSrc={kidsKarateImg} XImgPosition={-26} />
       <GroupAdItem
-        title='DLA DZIECI'
-        imgSrc={kidsKarateImg}
-        XImgPosition={-26}
-      />
-      <GroupAdItem
-        title='DLA MŁODZIEŻY'
+        title='MŁODZIEŻY'
         imgSrc={teenagersKarateImg}
         XImgPosition={-3}
       />
       <GroupAdItem
-        title='DLA DOROSŁYCH'
+        title='DOROSŁYCH'
         imgSrc={adultsKarateImg}
         XImgPosition={0}
       />
-      <GroupAdItem
-        title='DLA RODZIN'
-        imgSrc={familyKarateImg}
-        XImgPosition={-50}
-      />
+      <GroupAdItem title='RODZIN' imgSrc={familyKarateImg} XImgPosition={-50} />
     </div>
   );
 };

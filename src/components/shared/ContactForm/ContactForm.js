@@ -25,7 +25,7 @@ function ContactForm() {
         label={'Numer telefonu'}
       />
       <label>
-        Wiadomość
+        <p>Wiadomość</p>
         <textarea className={'contact-form-big'} placeholder={'Wiadomość...'} />
       </label>
 
