@@ -26,6 +26,7 @@
   .landing {
     position: relative;
     padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
 
     .landing-image {
       width: 100%;
@@ -59,7 +60,12 @@
     .news-h2 {
       margin-bottom: 25px;
     }
+
     .articles-list {
+      margin: 0 auto;
+    }
+
+    .button-container {
       margin: 0 auto;
     }
   }

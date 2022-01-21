@@ -78,6 +78,7 @@ function Homepage() {
           <div className='container'>
             <h2 className='news-h2'>Aktualności</h2>
             <ArticlesList className='articles-list' numberOfItems={4} />
+            <Button text='Więcej aktualności' onClick={() => {}} />
           </div>
         </section>
       </div>

@@ -19,6 +19,7 @@
 
   .article-item-container-margin {
     width: fit-content;
+    margin: 0 auto;
 
     @include media('>=tablet-portrait', '<=tablet-landscape') {
       padding: 0 8px 16px 0;

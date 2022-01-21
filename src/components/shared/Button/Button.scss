@@ -1,6 +1,7 @@
 @import '../../../lib/sass/styles.scss';
 
 .button-container {
+  width: fit-content;
   button {
     font-size: $small-font;
     letter-spacing: 1px;
