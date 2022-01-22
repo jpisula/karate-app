@@ -4,9 +4,11 @@ import examImg from './assets/exam.jpeg';
 import { articles } from '../../database/articles/articles';
 import { BsFacebook, BsWhatsapp } from 'react-icons/bs';
 import { FaFacebookMessenger } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
 
 function ArticlePage() {
-  const article = articles[0];
+  const { id } = useParams();
+  const article = id ? articles[id] : articles[0];
   return (
     <div className='article-page'>
       <div className='container'>

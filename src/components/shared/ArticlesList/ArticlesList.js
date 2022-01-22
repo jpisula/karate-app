@@ -8,7 +8,7 @@ const generateArticleItems = (numberOfItems) => {
     const article = articles[i];
     ArticleItems.push(
       <div key={`article ${i}`} className='article-item-container-margin'>
-        <ArticleItem article={article} />
+        <ArticleItem article={article} id={i} />
       </div>
     );
   }

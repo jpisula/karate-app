@@ -1,8 +1,9 @@
 import articleItemImg from '../../../pages/ArticlePage/assets/images.jpeg';
 import { BsArrowRight } from 'react-icons/bs';
 import './ArticleItem.scss';
+import { Link } from 'react-router-dom';
 
-function ArticleItem({ article }) {
+function ArticleItem({ article, id }) {
   return (
     <article className='article-item-container'>
       <img
@@ -10,14 +11,18 @@ function ArticleItem({ article }) {
         alt='article-item-photo'
         className='article-item-image'
       />
-      <h2 className='article-item-title'>{article.title}</h2>
+      <h2 className='article-item-title'>
+        <Link to={`/article/${id}`}>{article.title}</Link>
+      </h2>
       <p
         className='article-item-desc'
         dangerouslySetInnerHTML={{ __html: article.text }}
       />
-      <button type='button' className='article-item-button'>
-        Czytaj dalej
-      </button>
+      <Link to={`/article/${id}`}>
+        <button type='button' className='article-item-button'>
+          Czytaj dalej
+        </button>
+      </Link>
     </article>
   );
 }
