@@ -2,8 +2,8 @@ import './Button.scss';
 
 function Button({ text, onClick }) {
   return (
-    <div className='button-container'>
-      <button onClick={onClick}>{text}</button>
+    <div onClick={onClick} className='button-container'>
+      <button>{text}</button>
     </div>
   );
 }

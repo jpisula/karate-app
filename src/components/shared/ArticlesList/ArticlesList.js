@@ -1,6 +1,4 @@
-import ArticlePage from '../../../pages/ArticlePage/ArticlePage';
 import ArticleItem from '../ArticleItem/ArticleItem';
-import { Link } from 'react-router-dom';
 import './ArticlesList.scss';
 
 const generateArticleItems = (numberOfItems) => {

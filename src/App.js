@@ -5,25 +5,36 @@ import Homepage from './pages/Homepage/Homepage';
 import NavButton from './components/Navigation/NavButton/NavButton';
 import NavDropdownButton from './components/Navigation/NavDropdownButton/NavDropdownButton';
 import SectionsPage from './pages/SectionsPage/SectionsPage';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useLocation
+} from 'react-router-dom';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
 import Footer from './components/Footer/Footer';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
+import NewsPage from './pages/NewsPage/NewsPage';
+import { useEffect } from 'react/cjs/react.production.min';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
-      <Navbar>{navbarElements}</Navbar>
-      <main className='page-content'>
-        <Routes>
-          <Route path='/' element={<Homepage />} />
-          <Route path='/sections' element={<SectionsPage />} />
-          <Route path='/article' element={<ArticlePage />} />
-          <Route path='/*' element={<Homepage />} />
-          <Route path='/calendar' element={<CalendarPage />} />
-        </Routes>
-      </main>
-      <Footer />
+      <ScrollToTop>
+        <Navbar>{navbarElements}</Navbar>
+        <main className='page-content'>
+          <Routes>
+            <Route path='/' element={<Homepage />} />
+            <Route path='/sections' element={<SectionsPage />} />
+            <Route path='/article' element={<ArticlePage />} />
+            <Route path='/newslist' element={<NewsPage />} />
+            <Route path='/calendar' element={<CalendarPage />} />
+            <Route path='/*' element={<Homepage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </ScrollToTop>
     </Router>
   );
 }

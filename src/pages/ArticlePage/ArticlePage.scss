@@ -28,7 +28,7 @@
   }
 }
 
-.page-content {
+.article-page {
   @include media('>=desktop') {
     display: grid;
     grid-template-rows: 100% 100%;

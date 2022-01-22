@@ -6,7 +6,7 @@ import { FaFacebookMessenger } from 'react-icons/fa';
 
 function ArticlePage() {
   return (
-    <>
+    <div className='article-page'>
       <div className='container'>
         <div className='grid-container'>
           <article className='article-container'>
@@ -89,7 +89,7 @@ function ArticlePage() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
