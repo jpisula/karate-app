@@ -11,7 +11,7 @@
     color: white;
     text-align: center;
 
-    @include media('>=tablet-portrait', '<=tablet-landscape') {
+    @include media('>=tablet-portrait') {
       font-size: 24px;
     }
   }
@@ -22,7 +22,7 @@
     width: fit-content;
     margin: 0 auto;
 
-    @include media('>=tablet-portrait', '<=tablet-landscape') {
+    @include media('>=tablet-portrait') {
       font-size: 22px;
     }
   }
@@ -30,7 +30,11 @@
   section {
     padding: 25px 18px;
 
-    @include media('>=tablet-portrait', '<=tablet-landscape') {
+    @include media('>=mobile') {
+      padding: 40px 18px;
+    }
+
+    @include media('>=tablet-portrait') {
       padding: 40px 0;
     }
   }
@@ -44,6 +48,11 @@
       width: 100%;
       height: 62.5%;
       display: block;
+      object-fit: cover;
+
+      @include media('>=tablet-portrait') {
+        height: 480px;
+      }
     }
 
     .welcome-card-wrapper {
@@ -71,6 +80,10 @@
   .news-list {
     .news-h2 {
       margin-bottom: 25px;
+
+      @include media('>=tablet-portrait') {
+        margin-bottom: 40px;
+      }
     }
 
     .articles-list {
@@ -121,6 +134,14 @@
       background-color: rgba(0, 0, 0, 0.6);
       padding: 25px 18px;
       width: auto;
+
+      @include media('>=mobile') {
+        padding: 40px 18px;
+      }
+
+      @include media('>=tablet-portrait') {
+        padding: 40px 0;
+      }
 
       h1 {
         margin-bottom: 25px;

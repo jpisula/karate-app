@@ -18,7 +18,11 @@
     transition: 0.3s ease all;
     z-index: 1;
 
-    @include media('>=tablet-portrait', '<=tablet-landscape') {
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include media('>=tablet-portrait') {
       font-size: $med-font;
     }
   }
