@@ -1,6 +1,8 @@
 @import '../../../lib/sass/styles.scss';
 
 .articles-container {
+  margin: 0 auto;
+
   @include media('>=tablet-portrait', '<=tablet-landscape') {
     height: auto;
     display: grid;
@@ -22,15 +24,15 @@
     margin: 0 auto;
 
     @include media('>=tablet-portrait', '<=tablet-landscape') {
-      padding: 0 8px 16px 0;
+      padding: 0 8px 25px 0;
 
       &:nth-of-type(2n) {
-        padding: 0 0 16px 8px;
+        padding: 0 0 25px 8px;
       }
     }
 
-    @include media('<=tablet-portrait', '<=tablet-landscape') {
-      margin-bottom: 25px;
+    @include media('<tablet-portrait') {
+      padding-bottom: 25px;
     }
   }
 }

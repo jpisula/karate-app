@@ -2,6 +2,7 @@
 
 .button-container {
   width: fit-content;
+
   button {
     font-size: $small-font;
     letter-spacing: 1px;
@@ -16,6 +17,10 @@
     color: white;
     transition: 0.3s ease all;
     z-index: 1;
+
+    @include media('>=tablet-portrait', '<=tablet-landscape') {
+      font-size: $med-font;
+    }
   }
 
   button:before {

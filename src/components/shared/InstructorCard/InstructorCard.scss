@@ -1,17 +1,24 @@
 @import '../../../lib/sass/styles.scss';
 
 .instructor-card {
-  margin: 25px 0 0 0;
+  max-width: 339px;
+  margin: 25px auto 0 auto;
   @include flexCenter(column);
 
   h3 {
     font-size: 16px;
     font-weight: 700;
     padding: 25px 0;
+
+    @include media('>=tablet-portrait', '<=tablet-landscape') {
+      font-size: 20px;
+    }
   }
 
   p {
     font-size: 12px;
+    text-align: center;
+
     line-height: 20px;
   }
 
@@ -36,7 +43,7 @@
     text-decoration: none;
     color: white;
     padding-top: 25px;
-    margin: 0 0 0 auto;
+    margin: 0 auto;
 
     &:hover {
       color: $red-color;

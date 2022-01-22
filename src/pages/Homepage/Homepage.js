@@ -22,9 +22,11 @@ function Homepage() {
           />
           <div className='welcome-card-wrapper'>
             <div className='welcome-card'>
-              <h1>
-                Strona sekcji Katowice Ligota, Panewniki, Podlesie i Gliwice
-              </h1>
+              <div className='container'>
+                <h1>
+                  Strona sekcji Katowice Ligota, Panewniki, Podlesie i Gliwice
+                </h1>
+              </div>
             </div>
           </div>
         </section>
