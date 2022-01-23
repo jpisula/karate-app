@@ -2,34 +2,56 @@ import { useContext } from 'react';
 import SectionsContext from '../../../context/sections/SectionsContext';
 import './SectionSelector.scss';
 
+const places = [
+  {
+    id: 'LIGOTA',
+    title: 'Katowice Ligota'
+  },
+  {
+    id: 'PIOTROWICE',
+    title: 'Katowice Piotrowice'
+  },
+  {
+    id: 'PODLESIE',
+    title: 'Katowice Podlesie'
+  },
+  {
+    id: 'GLIWICE',
+    title: 'Gliwice'
+  }
+];
+
+const generateSelectorItems = (sectionToDisplay, dispatch) => {
+  let selectorItems = [];
+
+  for (let i = 0; i < places.length; i++) {
+    selectorItems.push(
+      <div
+        className={`section-selector-button ${
+          sectionToDisplay.id === places[i].id && 'active'
+        }`}
+        onClick={() =>
+          dispatch({ type: 'SET_SECTION_TO_DISPLAY', payload: places[i] })
+        }
+      >
+        {places[i].id}
+      </div>
+    );
+  }
+
+  return selectorItems;
+};
+
 function SectionSelector() {
-  const { dispatch } = useContext(SectionsContext);
+  const { sectionToDisplay, dispatch } = useContext(SectionsContext);
+
   return (
     <div className='section-selector-button-container'>
-      <div
-        className='section-selector-button'
-        onClick={() =>
-          dispatch({ type: 'SET_SECTION_TO_DISPLAY', payload: 'LIGOTA' })
-        }
-      >
-        Katowice Ligota
-      </div>
-      <div
-        className='section-selector-button'
-        onClick={() =>
-          dispatch({ type: 'SET_SECTION_TO_DISPLAY', payload: 'PIOTROWICE' })
-        }
-      >
-        Katowice Piotrowice
-      </div>
-      <div
-        className='section-selector-button'
-        onClick={() =>
-          dispatch({ type: 'SET_SECTION_TO_DISPLAY', payload: 'GLIWICE' })
-        }
-      >
-        Gliwice
-      </div>
+      {
+        <div className='container'>
+          {generateSelectorItems(sectionToDisplay, dispatch)}
+        </div>
+      }
     </div>
   );
 }

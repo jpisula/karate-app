@@ -1,19 +1,28 @@
-import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
 import Sections from '../../components/shared/Sections/Sections';
 import SectionSelector from '../../components/shared/SectionSelector/SectionSelector';
 import { SectionsProvider } from '../../context/sections/SectionsContext';
+import ArticleListContainer from '../../components/shared/ArticleListContainer/ArticleListContainer';
 import './SectionsPage.scss';
 
 function SectionsPage() {
   return (
     <SectionsProvider>
-      <article className='container'>
+      <article className='sections-page-content'>
         <div className='sections-page-grid-container'>
-          <div className='article-content'>
-            <SectionSelector></SectionSelector>
-            <Sections></Sections>
+          <div className='sections-content'>
+            <div className='container'>
+              <header>
+                <h1 className='title'>Nasze sekcje</h1>
+              </header>
+            </div>
+
+            <SectionSelector />
+
+            <section>
+              <Sections />
+            </section>
           </div>
-          <ArticlesList className='article-list-container' />
+          <ArticleListContainer />
         </div>
       </article>
     </SectionsProvider>
