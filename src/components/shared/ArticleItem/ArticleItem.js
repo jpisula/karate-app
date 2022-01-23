@@ -8,7 +8,7 @@ function ArticleItem({ article, id }) {
     <article className='article-item-container'>
       <img
         src={article.imageUrl}
-        alt='article-item-photo'
+        alt='Article image'
         className='article-item-image'
       />
       <h2 className='article-item-title'>

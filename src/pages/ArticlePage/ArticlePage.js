@@ -13,8 +13,8 @@ function ArticlePage() {
   const article = id ? articles[id] : articles[0];
   return (
     <section className='article-page'>
-      <div className='container'>
-        <div className='article-page-grid-container'>
+      <div className='article-page-grid-container'>
+        <div className='container'>
           <article className='article-container'>
             <header>
               <h1>{article.title}</h1>
@@ -41,20 +41,20 @@ function ArticlePage() {
               />
             </main>
           </article>
-
-          <section className='article-list-container'>
-            <header className='news-title-container'>
-              <h2 className='news-h2'>Aktualności</h2>
-            </header>
-            <main>
-              <ArticlesList className='article-list' numberOfItems={4} />
-              <Button
-                text='Więcej aktualności'
-                onClick={() => navigate('/newslist', { replace: true })}
-              />
-            </main>
-          </section>
         </div>
+
+        <section className='article-list-container'>
+          <header className='news-title-container'>
+            <h2 className='news-h2'>Aktualności</h2>
+          </header>
+          <main>
+            <ArticlesList className='article-list' numberOfItems={3} />
+            <Button
+              text='Więcej aktualności'
+              onClick={() => navigate('/newslist', { replace: true })}
+            />
+          </main>
+        </section>
       </div>
     </section>
   );

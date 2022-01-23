@@ -4,6 +4,12 @@
   font-family: 'Open Sans', sans-serif;
   line-height: 30px;
 
+  .container {
+    @include media('>=desktop') {
+      width: auto;
+    }
+  }
+
   .article-page-grid-container {
     display: block;
 
@@ -18,6 +24,7 @@
     @include media('>=desktop') {
       width: 871px;
       grid-column-start: 1;
+      margin: 0 auto;
     }
 
     h1 {
@@ -30,14 +37,16 @@
       padding: 25px 18px 10px 18px;
       letter-spacing: 0.3px;
 
+      @include media('>=tablet-portrait') {
+        font-size: $large-font;
+      }
+
       @include media('>=tablet-portrait', '<=tablet-landscape') {
         padding: 40px 18px 20px;
       }
 
       @include media('>=tablet-landscape', '<=desktop') {
-        text-align: left;
         padding: 40px 0;
-        font-size: $large-font;
       }
 
       @include media('>=tablet-landscape') {
@@ -73,6 +82,14 @@
         width: auto;
         // font-size: 14px;
         text-align: right;
+
+        @include media('>=tablet-portrait') {
+          font-size: $small-font;
+        }
+
+        @include media('>=desktop') {
+          font-size: $med-font;
+        }
       }
 
       .share-container {
@@ -124,6 +141,7 @@
       width: 100%;
       height: auto;
       font-size: $tiny-font;
+      font-weight: 600;
       padding: 25px 18px;
       box-sizing: border-box;
       text-align: left;
@@ -134,11 +152,10 @@
         padding: 40px 25px;
         line-height: 19.2px;
         font-size: $med-font;
-        font-weight: 600;
       }
 
       @include media('>=tablet-landscape', '<=desktop') {
-        font-size: $big-font;
+        font-size: $med-font;
         line-height: 24px;
         padding: 25px 0;
       }
@@ -146,12 +163,15 @@
   }
 
   .article-list-container {
+    width: auto;
     @include flexCenter(column);
     background-color: $darker-bg-color;
     padding: 25px 0;
 
     @include media('>=desktop') {
       grid-column-start: 2;
+      padding: 0;
+      padding-bottom: 40px;
     }
 
     .news-h2 {
@@ -169,8 +189,9 @@
       }
 
       @include media('>=desktop') {
+        font-size: $large-font;
         text-align: center;
-        padding: 60px 0;
+        padding: 60px 0 30px 0;
       }
     }
 
