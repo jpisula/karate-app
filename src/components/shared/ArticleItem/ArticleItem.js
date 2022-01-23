@@ -14,10 +14,7 @@ function ArticleItem({ article, id }) {
       <h2 className='article-item-title'>
         <Link to={`/article/${id}`}>{article.title}</Link>
       </h2>
-      <p
-        className='article-item-desc'
-        dangerouslySetInnerHTML={{ __html: article.text }}
-      />
+      <p className='article-item-desc'>{article.desc}</p>
       <Link to={`/article/${id}`}>
         <button type='button' className='article-item-button'>
           Czytaj dalej
