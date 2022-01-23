@@ -38,11 +38,10 @@
   .article-item-desc {
     font-size: 12px;
     width: auto;
-    max-height: 320px;
     margin: 0 10px 10px 10px;
     box-sizing: border-box;
     line-height: 16px;
-    text-align: justify;
+    text-align: left;
     border: none;
     background: transparent;
     color: white;
@@ -52,7 +51,6 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    visibility: visible;
   }
 
   .article-item-button {
