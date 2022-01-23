@@ -12,7 +12,7 @@ function ArticlePage() {
   return (
     <div className='article-page'>
       <div className='container'>
-        <div className='grid-container'>
+        <div className='article-page-grid-container'>
           <article className='article-container'>
             <h2 className='article-title'>{article.title}</h2>
             <div className='date-and-share-container'>
