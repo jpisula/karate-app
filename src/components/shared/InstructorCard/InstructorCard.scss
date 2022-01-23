@@ -6,17 +6,17 @@
   @include flexCenter(column);
 
   h3 {
-    font-size: 16px;
+    font-size: $med-font;
     font-weight: 700;
     padding: 25px 0;
 
     @include media('>=tablet-portrait', '<=tablet-landscape') {
-      font-size: 20px;
+      font-size: $big-font;
     }
   }
 
   p {
-    font-size: 12px;
+    font-size: $tiny-font;
     text-align: center;
 
     line-height: 20px;
@@ -38,7 +38,7 @@
   }
 
   .instructor-link {
-    font-size: 14px;
+    font-size: $small-font;
     font-weight: 600;
     text-decoration: none;
     color: white;

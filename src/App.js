@@ -17,6 +17,7 @@ import CalendarPage from './pages/CalendarPage/CalendarPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import { useEffect } from 'react/cjs/react.production.min';
 import ScrollToTop from './components/ScrollToTop';
+import TrainingsSchedule from './pages/info-pages/TrainingsSchedule/TrainingsSchedule';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path='/article/:id' element={<ArticlePage />} />
             <Route path='/newslist' element={<NewsPage />} />
             <Route path='/calendar' element={<CalendarPage />} />
+            <Route path='/schedule' element={<TrainingsSchedule />} />
             <Route path='/*' element={<Homepage />} />
           </Routes>
         </main>
@@ -44,8 +46,8 @@ const navbarElements = (
     <NavButton linkTo={'sections'} title={'Nasze sekcje'} />
     <NavDropdownButton title={`Informacje`} icon={<AiFillCaretDown />}>
       <div className='column'>
-        <NavButton title={'Aktualności'} />
-        <NavButton title={'Harmonogram zajęć'} />
+        <NavButton linkTo={'newslist'} title={'Aktualności'} />
+        <NavButton linkTo={'schedule'} title={'Harmonogram zajęć'} />
         <NavButton title={'Nasi instruktorzy'} />
         <NavButton title={'O OYAMA Karate'} />
       </div>

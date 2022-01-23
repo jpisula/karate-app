@@ -1,3 +1,5 @@
+@import '../../lib/sass/styles.scss';
+
 .calendar-title {
   width: 100%;
   height: auto;
@@ -11,14 +13,14 @@
   width: 100%;
   height: auto;
   text-align: center;
-  font-size: 18px;
+  font-size: $medder-font;
   font-weight: 300;
   margin: 20px 0;
   line-height: 1.1;
   span {
     color: rgb(190, 15, 15);
     margin-top: 20px;
-    font-size: 16px;
+    font-size: $med-font;
     font-weight: 200;
   }
 }
@@ -26,7 +28,7 @@
 .calendar-info {
   width: 100%;
   height: auto;
-  font-size: 16px;
+  font-size: $med-font;
   font-weight: 200;
   .calendar-info-list {
     list-style-type: decimal;

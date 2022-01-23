@@ -9,7 +9,7 @@
   max-width: 694px;
   margin: 0 auto;
 
-  font-size: 12px;
+  font-size: $tiny-font;
   font-weight: 800;
 
   label {
@@ -19,7 +19,7 @@
       line-height: 25px;
 
       // @include media('>=tablet-portrait', '<=tablet-landscape') {
-      //   font-size: 16px;
+      //   font-size: $med-font;
       // }
     }
 

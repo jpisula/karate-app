@@ -15,7 +15,7 @@
   }
 
   .news-h2 {
-    font-size: 18px;
+    font-size: $medder-font;
     font-weight: 700;
     width: fit-content;
     margin: 0 auto;
@@ -23,7 +23,7 @@
 
     @include media('>=tablet-landscape', '<=desktop') {
       line-height: 30px;
-      font-size: 22px;
+      font-size: $bigger-font;
       font-weight: 800;
       padding: 40px 0;
     }

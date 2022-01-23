@@ -17,7 +17,7 @@
   }
 
   @include media('>=tablet-landscape', '<=desktop') {
-    font-size: 20px;
+    font-size: $big-font;
   }
 
   @include media('>=tablet-landscape') {
@@ -25,7 +25,7 @@
   }
 
   @include media('>=desktop') {
-    font-size: 22px;
+    font-size: $bigger-font;
     width: 150px;
   }
 

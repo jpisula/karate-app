@@ -80,7 +80,7 @@
 
       .article-date {
         width: auto;
-        // font-size: 14px;
+        // font-size: $small-font;
         text-align: right;
 
         @include media('>=tablet-portrait') {

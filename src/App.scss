@@ -7,14 +7,14 @@ html {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
+  font-size: $med-font;
   background-color: #373234;
   color: white;
   position: absolute;
   width: 100%;
 
   @include media('>=tablet-portrait') {
-    font-size: 22px;
+    font-size: $bigger-font;
   }
 }
 

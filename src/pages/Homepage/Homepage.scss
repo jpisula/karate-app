@@ -5,25 +5,25 @@
   line-height: 30px;
 
   h1 {
-    font-size: 20px;
+    font-size: $big-font;
     font-weight: 800;
     letter-spacing: 2px;
     color: white;
     text-align: center;
 
     @include media('>=tablet-portrait') {
-      font-size: 24px;
+      font-size: $large-font;
     }
   }
 
   h2 {
-    font-size: 18px;
+    font-size: $medder-font;
     font-weight: 700;
     width: fit-content;
     margin: 0 auto;
 
     @include media('>=tablet-portrait') {
-      font-size: 22px;
+      font-size: $bigger-font;
     }
   }
 
