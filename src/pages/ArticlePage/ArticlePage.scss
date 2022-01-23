@@ -46,11 +46,11 @@
       }
 
       @include media('>=tablet-landscape', '<=desktop') {
-        padding: 40px 0;
+        padding: 40px 16px;
       }
 
       @include media('>=tablet-landscape') {
-        padding: 60px 0;
+        padding: 60px 16px;
       }
     }
 
@@ -74,7 +74,7 @@
       }
 
       @include media('>=tablet-landscape', '<=desktop') {
-        padding: 0 0 20px 0;
+        padding: 0 0 20px 16px;
         margin: 0;
       }
 
