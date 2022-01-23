@@ -8,7 +8,7 @@ function ArticlePage() {
   return (
     <>
       <div className='container'>
-        <div className='grid-container'>
+        <div className='article-page-grid-container'>
           <article className='article-container'>
             <h2 className='article-title'>Letnie sesje egzaminacyjne</h2>
             <div className='date-and-share-container'>

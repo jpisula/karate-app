@@ -17,6 +17,11 @@
     margin: 0 auto;
   }
 
+  @include media('>=desktop') {
+    width: 339px;
+    margin: 0 auto;
+  }
+
   .article-item-container-margin {
     width: fit-content;
 
@@ -28,7 +33,11 @@
       }
     }
 
-    @include media('<=tablet-portrait', '<=tablet-landscape') {
+    @include media('>=mobile', '<=tablet-portrait') {
+      margin-bottom: 12px;
+    }
+
+    @include media('>=desktop') {
       margin-bottom: 12px;
     }
   }
