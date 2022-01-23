@@ -1,5 +1,5 @@
 @import '../../lib/sass/styles.scss';
-.grid-container {
+.sections-page-grid-container {
   @include media('>=tablet-landscape') {
     display: grid;
     grid-template-areas: '.article-content .article-list-container';

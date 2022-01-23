@@ -8,7 +8,7 @@ function SectionsPage() {
   return (
     <SectionsProvider>
       <article className='container'>
-        <div className='grid-container'>
+        <div className='sections-page-grid-container'>
           <div className='article-content'>
             <SectionSelector></SectionSelector>
             <Sections></Sections>
