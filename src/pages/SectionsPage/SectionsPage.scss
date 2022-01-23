@@ -4,6 +4,12 @@
   font-family: 'Open Sans', sans-serif;
   line-height: 30px;
 
+  @include media('>=desktop') {
+    .container {
+      width: auto;
+    }
+  }
+
   .sections-page-grid-container {
     @include media('>=desktop') {
       display: grid;
