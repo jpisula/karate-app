@@ -6,10 +6,10 @@ import { BsFacebook, BsWhatsapp } from 'react-icons/bs';
 import { FaFacebookMessenger } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from '../../components/shared/Button/Button';
+import ArticleListContainer from '../../components/shared/ArticleListContainer/ArticleListContainer';
 
 function ArticlePage() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const article = id ? articles[id] : articles[0];
   return (
     <section className='article-page'>
@@ -43,18 +43,7 @@ function ArticlePage() {
           </article>
         </div>
 
-        <section className='article-list-container'>
-          <header className='news-title-container'>
-            <h2 className='news-h2'>Aktualności</h2>
-          </header>
-          <main>
-            <ArticlesList className='article-list' numberOfItems={3} />
-            <Button
-              text='Więcej aktualności'
-              onClick={() => navigate('/newslist', { replace: true })}
-            />
-          </main>
-        </section>
+        <ArticleListContainer />
       </div>
     </section>
   );

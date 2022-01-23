@@ -161,43 +161,4 @@
       }
     }
   }
-
-  .article-list-container {
-    width: auto;
-    @include flexCenter(column);
-    background-color: $darker-bg-color;
-    padding: 25px 0;
-
-    @include media('>=desktop') {
-      grid-column-start: 2;
-      padding: 0;
-      padding-bottom: 40px;
-    }
-
-    .news-h2 {
-      font-size: 18px;
-      font-weight: 700;
-      width: fit-content;
-      margin: 0 auto;
-      margin-bottom: 25px;
-
-      @include media('>=tablet-landscape', '<=desktop') {
-        line-height: 30px;
-        font-size: 22px;
-        font-weight: 800;
-        padding: 40px 0;
-      }
-
-      @include media('>=desktop') {
-        font-size: $large-font;
-        text-align: center;
-        padding: 60px 0 30px 0;
-      }
-    }
-
-    .button-container {
-      margin: 0 auto;
-      margin-top: 25px;
-    }
-  }
 }
