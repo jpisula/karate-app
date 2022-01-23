@@ -5,29 +5,31 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 90%;
-  margin-top: 40px;
+  width: 100%;
+
   .place {
     width: 100%;
     height: auto;
-    padding-bottom: 20px;
-    text-align: left;
-    font-size: $medder-font;
+    padding: 25px 0;
+    text-align: center;
+    font-size: $big-font;
     letter-spacing: 0.5px;
-    font-weight: 300;
+    font-weight: 800;
     box-sizing: border-box;
+
+    @include media('>=tablet-portrait') {
+      font-size: $large-font;
+      padding: 40px 0;
+    }
   }
 
   .group-photo {
-    height: 200px;
+    height: 62.5%;
     width: 100%;
   }
 
   .sections-info-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
+    @include flexCenter(column);
     height: auto;
     width: 100%;
   }

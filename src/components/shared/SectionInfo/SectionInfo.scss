@@ -1,59 +1,183 @@
 @import '../../../lib/sass/styles.scss';
 
-.section-info-container {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
+.group-description {
+  font-size: $tiny-font;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-align: left;
+  margin: 25px 0;
+  line-height: 16px;
+  box-sizing: border-box;
+
+  @include media('>=tablet-portrait', '<=tablet-landscape') {
+    font-size: $med-font;
+    line-height: 22px;
+  }
+
+  @include media('>=tablet-landscape', '<=desktop') {
+    font-size: $big-font;
+    line-height: 27px;
+  }
+}
+
+.schedule-wrapper {
+  padding: 25px 18px;
+  box-sizing: border-box;
+  background-color: $red-color;
   width: 100%;
-  height: auto;
-  margin-top: 60px;
-  border: 2px red dotted;
-  .group-name {
+
+  .container {
+    @include media('>=desktop') {
+      width: 100%;
+    }
+  }
+
+  .schedule-title {
+    font-size: 18px;
+    font-weight: 700;
     width: 100%;
     height: auto;
-    font-size: $medder-font;
-    font-weight: 400;
     text-align: center;
-    letter-spacing: 0.3px;
+
+    @include media('>=tablet-portrait') {
+      font-size: 22px;
+      padding: 10px 0;
+    }
+
+    @include media('>=tablet-landscape', '<=desktop') {
+      font-size: $large-font;
+    }
   }
-  .group-description {
-    font-size: $small-font;
-    font-weight: 200;
-    letter-spacing: 0.2px;
-    text-align: left;
-    margin-top: 10px;
-    line-height: 1.1;
-  }
-  .hours {
-    font-size: $small-font;
-    font-weight: 100;
-    text-align: left;
-    margin-top: 30px;
-    line-height: 1.2;
-  }
+
   .location {
-    font-size: $small-font;
-    font-weight: 100;
-    text-align: left;
-    margin-top: 10px;
-    line-height: 1.4;
-  }
-  .google-maps-localisation {
+    font-weight: 700;
+    font-size: $tiny-font;
     width: 100%;
-    height: 200px;
-    background-color: salmon;
-    margin-top: 30px;
-  }
-  .enrolments {
-    margin-top: 20px;
-    font-size: $small-font;
-    font-weight: 100;
+    height: auto;
     text-align: left;
+
+    @include media('>=tablet-portrait') {
+      font-size: $med-font;
+      padding: 5px 0;
+    }
+
+    @include media('>=tablet-landscape', '<=desktop') {
+      font-size: $big-font;
+    }
   }
-  .phone-nr {
-    margin-top: 10px;
-    font-size: $small-font;
-    font-weight: 100;
-    text-align: left;
+
+  $schedule-border: 1px solid white;
+
+  .schedule {
+    width: 100%;
+
+    .hours {
+      border-left: $schedule-border;
+      padding-left: 30px;
+    }
+
+    tr {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: $schedule-border;
+      font-size: $tiny-font;
+      font-weight: 600;
+
+      &:first-of-type {
+        border-top: none;
+      }
+
+      @include media('>=tablet-portrait', '<=tablet-landscape') {
+        font-size: $med-font;
+      }
+
+      @include media('>=tablet-landscape', '<=desktop') {
+        font-size: $big-font;
+      }
+    }
+  }
+}
+
+.google-maps-localisation {
+  width: 100%;
+  height: 400px;
+  padding: 25px 18px;
+  box-sizing: border-box;
+}
+
+.contact {
+  padding: 0;
+  position: relative;
+  width: 100%;
+
+  .contact-parallax {
+    background-color: rgba(0, 0, 0, 0.6);
+
+    @include media('>=desktop') {
+      width: 100%;
+    }
+  }
+
+  .contact-container {
+    position: relative;
+    top: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 25px 18px;
+    width: auto;
+
+    .contact-title {
+      font-size: 18px;
+      font-weight: 700;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+
+      @include media('>=tablet-portrait', '<=tablet-landscape') {
+        font-size: 22px;
+        margin-bottom: 15px;
+      }
+
+      @include media('>=tablet-landscape', '<=desktop') {
+        font-size: $large-font;
+        margin-bottom: 20px;
+      }
+    }
+
+    .phone-nr {
+      @include flexCenter(row);
+      font-size: $big-font;
+      font-weight: 800;
+      color: $red-color;
+      margin-bottom: 10px;
+
+      @include media('>=tablet-portrait', '<=tablet-landscape') {
+        font-size: $large-font;
+        margin-bottom: 15px;
+      }
+
+      @include media('>=tablet-landscape', '<=desktop') {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      div {
+        padding-left: 15px;
+      }
+    }
+
+    @include media('>=mobile') {
+      padding: 40px 18px;
+    }
+
+    @include media('>=tablet-portrait') {
+      padding: 40px 0;
+    }
+
+    h1 {
+      margin-bottom: 25px;
+    }
   }
 }

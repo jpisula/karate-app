@@ -1,37 +1,81 @@
 import ContactForm from '../ContactForm/ContactForm';
 import './SectionInfo.scss';
+import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
+import karateImg from '../../../pages/Homepage/assets/karate.jpeg';
+// import GoogleMaps from '../GoogleMaps/GoogleMaps';
+import { BsFillTelephoneFill } from 'react-icons/bs';
 
 function SectionInfo() {
   return (
-    <article className='section-info-container'>
-      <h2 className='group-name'>Lorem Ipsum</h2>
-      <p className='group-description'>
-        Aliquam erat volutpat. Nunc id sem enim. In at lacus et velit sodales
-        ullamcorper. Nulla rhoncus ac nisl in vulputate. Lorem ipsum dolor sit
-        amet, consectetur adipiscing elit. Curabitur facilisis odio in justo
-        venenatis, vitae pulvinar justo volutpat.
-      </p>
-      <p className='hours'>
-        godziny: <br />
-        <br /> wt.: 17.00 - 18.00 <br /> czw.: 18.00 - 19.00
-      </p>
-      <p className='location'>
-        Aliquam erat volutpat. <br /> Nunc id sem enim.
-      </p>
-      <div className='google-maps-localisation'>
-        {/* <iframe
-          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d82049.00784139201!2d21.915878193645028!3d50.010764891975676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473cfb0487a9e705%3A0x45889be6cac7200a!2sRevolutionary%20Act%20Monument!5e0!3m2!1sen!2spl!4v1642455110754!5m2!1sen!2spl'
-          width='300'
-          height='100'
-          style='border:0;'
-          allowfullscreen
-          loading='lazy'
-        ></iframe> */}
+    <>
+      <div className='container'>
+        <p className='group-description'>
+          Sekcja Katowice Ligota skierowana jest głównie dla dzieci oraz
+          dorosłych. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Quisque posuere, ante quis finibus efficitur, purus est porttitor
+          justo, ut consequat erat eros ac velit. Fusce elementum pretium
+          fringilla. Etiam accumsan accumsan condimentum. Cras tincidunt augue
+          purus, sit amet facilisis leo placerat ac. Nam eleifend, est et
+          lobortis elementum, nunc nisl.
+        </p>
       </div>
-      <h2 className='enrolments'>zapisy</h2>
-      <p className='phone-nr'>nr tel.: 000 000 000</p>
-      <ContactForm></ContactForm>
-    </article>
+
+      <div className='schedule-wrapper'>
+        <div className='container'>
+          <h2 className='schedule-title'>ZAJĘCIA</h2>
+          <p className='location'>
+            Gimnazjum nr 23 - ul. Zielonogórska 23, Katowice
+          </p>
+          <table className='schedule'>
+            <tr>
+              <td>Dzieci</td>
+              <td className='hours'>17:30 - 18:30</td>
+            </tr>
+            <tr>
+              <td>Młodzież i starsi</td>
+              <td className='hours'>18:30 - 20:30</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div className='google-maps-localisation'>
+        <iframe
+          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1540.2524319392696!2d18.67112752933099!3d50.29303558961911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471130ff1be1498f%3A0x34685a67d45e900c!2sSzko%C5%82a%20Podstawowa%20nr%2028!5e0!3m2!1spl!2spl!4v1642958476522!5m2!1spl!2spl'
+          width='100%'
+          height='100%'
+          allowFullScreen=''
+          loading='lazy'
+        ></iframe>
+      </div>
+
+      <section className='contact'>
+        <ParallaxProvider>
+          <ParallaxBanner
+            className='contact-parallax'
+            layers={[
+              {
+                image: karateImg,
+                amount: 0.5
+              }
+            ]}
+            style={{
+              height: '100%',
+              padding: ''
+            }}
+          >
+            <div className='contact-container'>
+              <h1 className='contact-title'>ZAPISY TRWAJĄ</h1>
+              <h2 className='phone-nr'>
+                <BsFillTelephoneFill />
+                <div>000 - 000 - 000</div>
+              </h2>
+              <ContactForm />
+            </div>
+          </ParallaxBanner>
+        </ParallaxProvider>
+      </section>
+    </>
   );
 }
 

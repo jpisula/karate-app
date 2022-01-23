@@ -4,7 +4,7 @@ import SectionsReducer from './SectionsReducer';
 const SectionsContext = createContext();
 
 export const SectionsProvider = ({ children }) => {
-  const initialState = 'LIGOTA';
+  const initialState = { id: 'LIGOTA', title: 'Katowice Ligota' };
 
   const [state, dispatch] = useReducer(SectionsReducer, initialState);
   return (
