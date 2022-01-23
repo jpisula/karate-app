@@ -25,6 +25,10 @@
   .article-item-container-margin {
     width: fit-content;
 
+    @include media('<=mobile') {
+      margin-bottom: 12px;
+    }
+
     @include media('>=tablet-portrait', '<=tablet-landscape') {
       padding: 0 8px 16px 0;
 
@@ -38,7 +42,7 @@
     }
 
     @include media('>=desktop') {
-      margin-bottom: 12px;
+      margin-bottom: 30px;
     }
   }
 }

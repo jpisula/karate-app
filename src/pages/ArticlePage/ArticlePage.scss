@@ -29,6 +29,11 @@
       font-weight: 800;
       padding: 40px 0;
     }
+
+    @include media('>=desktop') {
+      text-align: center;
+      padding: 60px 0;
+    }
   }
 }
 
@@ -202,10 +207,6 @@
 
     @include media('>=tablet-portrait', '<=tablet-landscape') {
       padding: 0 37px;
-    }
-
-    @include media('<=desktop') {
-      background-color: $darker-bg-color;
     }
 
     @include media('>=desktop') {
