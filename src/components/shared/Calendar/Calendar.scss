@@ -1,0 +1,59 @@
+@import '../../../lib/sass/styles.scss';
+
+.calendar-container {
+  margin: 0 auto;
+  width: 90%;
+  margin-bottom: 20px;
+
+  .top {
+    @include flexCenter(row);
+    justify-content: space-between;
+    padding: 15px 0;
+    background-color: $red-color;
+    font-size: $med-font;
+    font-weight: 800;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    .arrow-left {
+      padding-left: 10px;
+      font-size: $large-font;
+    }
+
+    .month-and-year {
+    }
+
+    .arrow-right {
+      padding-right: 10px;
+      font-size: $large-font;
+    }
+  }
+  .week-days {
+    display: grid;
+    grid-template: 100% / repeat(7, 1fr);
+    padding: 15px 0;
+    color: black;
+    background-color: white;
+
+    .week-day {
+      @include flexCenter(row);
+      font-size: $small-font;
+      font-weight: 300;
+    }
+  }
+
+  .month-days {
+    display: grid;
+    grid-template: repeat(5, 1fr) / repeat(7, 1fr);
+    color: black;
+    background-color: white;
+    padding-bottom: 5px;
+
+    .day-tile {
+      @include flexCenter(row);
+      font-size: $tiny-font;
+      font-weight: 200;
+      height: 30px;
+    }
+  }
+}
