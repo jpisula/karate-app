@@ -26,7 +26,9 @@ function Homepage() {
             <div className='welcome-card'>
               <div className='container'>
                 <h1>
-                  Strona sekcji Katowice Ligota, Panewniki, Podlesie i Gliwice
+                  <span>Strona</span> <span>Sekcji</span>{' '}
+                  <span>Katowice Ligota, </span> <span>Panewniki, </span>{' '}
+                  <span>Podlesie </span> <span>i Gliwice</span>
                 </h1>
               </div>
             </div>
@@ -73,8 +75,12 @@ function Homepage() {
 
         <section className='instructor'>
           <div className='container'>
-            <h2>Instruktor</h2>
-            <InstructorCard />
+            <h2>Instruktor i pomocnicy</h2>
+            <div className='instructors-wrapper'>
+              <InstructorCard name={'Michał Bodziony'} />
+              <InstructorCard name={'Michał Bodziony'} />
+              <InstructorCard name={'Michał Bodziony'} />
+            </div>
           </div>
         </section>
 

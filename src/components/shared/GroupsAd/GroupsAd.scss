@@ -15,7 +15,7 @@
     margin-top: 25px;
     position: relative;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
-    transition: 0.5s linear all;
+    transition: 0.3s;
 
     @include media('>=tablet-portrait') {
       max-width: 500px;
@@ -23,8 +23,31 @@
     }
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.1);
       cursor: pointer;
+    }
+
+    &::before {
+      transform: scaleX(0);
+      transform-origin: bottom right;
+    }
+
+    &:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: $red-color;
+      opacity: 0.5;
+      transition: transform 0.5s ease;
     }
 
     h1 {

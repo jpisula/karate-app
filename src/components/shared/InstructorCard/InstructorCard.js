@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import instructorPhoto from './assets/instruktor.jpeg';
 import './InstructorCard.scss';
 
-function InstructorCard() {
+function InstructorCard({ name }) {
   return (
     <div className='instructor-card'>
       <div className='image-wrapper'>
@@ -13,7 +13,7 @@ function InstructorCard() {
           className='instructor-image'
         />
       </div>
-      <h3>Michał Bodziony</h3>
+      <h3>{name}</h3>
       <p>
         Jako instruktor wychowałem wielu utytułowanych zawodników, w tym
         Wicemistrza Europy, wielokrotnych Wicemistrzów i Mistrzów Polski...

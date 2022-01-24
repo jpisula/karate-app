@@ -1,8 +1,8 @@
 @import '../../../lib/sass/styles.scss';
 
 .instructor-card {
-  max-width: 339px;
-  margin: 25px auto 0 auto;
+  max-width: 300px;
+  margin: 25px 0;
   @include flexCenter(column);
 
   h3 {
