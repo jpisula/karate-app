@@ -70,24 +70,15 @@
 
   .schedule {
     width: 100%;
+    line-height: 20px;
 
-    .hours {
-      border-left: $schedule-border;
-      padding-left: 30px;
+    @include media('>=mobile') {
+      line-height: 30px;
     }
 
-    tr {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: $schedule-border;
+    thead {
       font-size: $tiny-font;
       font-weight: 600;
-
-      &:first-of-type {
-        border-top: none;
-      }
 
       @include media('>=tablet-portrait', '<=tablet-landscape') {
         font-size: $med-font;
@@ -95,6 +86,54 @@
 
       @include media('>=tablet-landscape', '<=desktop') {
         font-size: $big-font;
+      }
+
+      .days-row {
+        th {
+          padding-bottom: 5px;
+        }
+      }
+    }
+
+    tbody {
+      .hours {
+        width: 1%;
+        white-space: nowrap;
+      }
+
+      tr {
+        border-top: $schedule-border;
+        font-size: $tiny-font;
+        font-weight: 600;
+
+        &:first-of-type {
+          border-top: none;
+        }
+
+        @include media('>=tablet-portrait', '<=tablet-landscape') {
+          font-size: $med-font;
+        }
+
+        @include media('>=tablet-landscape', '<=desktop') {
+          font-size: $big-font;
+        }
+
+        .hours {
+          border-left: $schedule-border;
+          padding: 0 10px;
+
+          &:last-child {
+            padding: 0 0 0 10px;
+          }
+
+          @include media('>=mobile') {
+            padding: 0 30px;
+
+            &:last-child {
+              padding: 0 0 0 30px;
+            }
+          }
+        }
       }
     }
   }

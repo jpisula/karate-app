@@ -27,14 +27,25 @@ function SectionInfo() {
             Gimnazjum nr 23 - ul. Zielonogórska 23, Katowice
           </p>
           <table className='schedule'>
-            <tr>
-              <td>Dzieci</td>
-              <td className='hours'>17:30 - 18:30</td>
-            </tr>
-            <tr>
-              <td>Młodzież i starsi</td>
-              <td className='hours'>18:30 - 20:30</td>
-            </tr>
+            <thead>
+              <tr className='days-row'>
+                <th></th>
+                <th>Wtorki</th>
+                <th>Czwartki</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className='group-row'>
+                <td className='group'>Dzieci</td>
+                <td className='hours'>17:30 - 18:30</td>
+                <td className='hours'>17:30 - 18:30</td>
+              </tr>
+              <tr className='group-row'>
+                <td className='group'>Młodzież i starsi</td>
+                <td className='hours'>18:30 - 20:30</td>
+                <td className='hours'>18:30 - 20:30</td>
+              </tr>
+            </tbody>
           </table>
         </div>
       </div>
