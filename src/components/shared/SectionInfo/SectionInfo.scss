@@ -5,9 +5,13 @@
   font-weight: 600;
   letter-spacing: 0.2px;
   text-align: left;
-  margin: 25px 0;
+  margin: 25px 18px;
   line-height: 16px;
   box-sizing: border-box;
+
+  @include media('>=tablet-portrait') {
+    margin: 25px 0;
+  }
 
   @include media('>=tablet-portrait', '<=tablet-landscape') {
     font-size: $med-font;
@@ -89,8 +93,14 @@
       }
 
       .days-row {
+        text-align: left;
         th {
+          padding-left: 10px;
           padding-bottom: 5px;
+
+          @include media('>=mobile') {
+            padding-left: 30px;
+          }
         }
       }
     }
@@ -144,6 +154,10 @@
   height: 400px;
   padding: 25px 18px;
   box-sizing: border-box;
+
+  @include media('>=tablet-portrait') {
+    padding: 25px 0;
+  }
 }
 
 .contact {

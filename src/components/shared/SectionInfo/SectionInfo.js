@@ -51,13 +51,15 @@ function SectionInfo() {
       </div>
 
       <div className='google-maps-localisation'>
-        <iframe
-          src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1540.2524319392696!2d18.67112752933099!3d50.29303558961911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471130ff1be1498f%3A0x34685a67d45e900c!2sSzko%C5%82a%20Podstawowa%20nr%2028!5e0!3m2!1spl!2spl!4v1642958476522!5m2!1spl!2spl'
-          width='100%'
-          height='100%'
-          allowFullScreen=''
-          loading='lazy'
-        ></iframe>
+        <div className='container'>
+          <iframe
+            src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1540.2524319392696!2d18.67112752933099!3d50.29303558961911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471130ff1be1498f%3A0x34685a67d45e900c!2sSzko%C5%82a%20Podstawowa%20nr%2028!5e0!3m2!1spl!2spl!4v1642958476522!5m2!1spl!2spl'
+            width='100%'
+            height='100%'
+            allowFullScreen=''
+            loading='lazy'
+          ></iframe>
+        </div>
       </div>
 
       <section className='contact'>
