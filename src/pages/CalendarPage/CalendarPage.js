@@ -1,4 +1,5 @@
 import { tab } from '@testing-library/user-event/dist/tab';
+import Calendar from '../../components/shared/Calendar/Calendar';
 import './CalendarPage.scss';
 
 function CalendarPage() {
@@ -13,7 +14,7 @@ function CalendarPage() {
           najbliższym czasie.
         </span>
       </div>
-      <table className='outside-table'>
+      {/* <table className='outside-table'>
         <tbody>
           <tr>
             <td>
@@ -85,7 +86,10 @@ function CalendarPage() {
             </td>
           </tr>
         </tbody>
-      </table>
+      </table> */}
+
+      <Calendar />
+
       <div className='calendar-info'>
         <ol className='calendar-info-list'>
           <li className='calendar-info-list-item'>
