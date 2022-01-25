@@ -1,23 +1,17 @@
-import './App.scss';
 import { AiFillCaretDown } from 'react-icons/ai';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.scss';
+import Footer from './components/Footer/Footer';
 import Navbar from './components/Navigation/Navbar/Navbar';
-import Homepage from './pages/Homepage/Homepage';
 import NavButton from './components/Navigation/NavButton/NavButton';
 import NavDropdownButton from './components/Navigation/NavDropdownButton/NavDropdownButton';
-import SectionsPage from './pages/SectionsPage/SectionsPage';
-import {
-  Route,
-  BrowserRouter as Router,
-  Routes,
-  useLocation
-} from 'react-router-dom';
-import ArticlePage from './pages/ArticlePage/ArticlePage';
-import Footer from './components/Footer/Footer';
-import CalendarPage from './pages/CalendarPage/CalendarPage';
-import NewsPage from './pages/NewsPage/NewsPage';
-import { useEffect } from 'react/cjs/react.production.min';
 import ScrollToTop from './components/ScrollToTop';
+import ArticlePage from './pages/ArticlePage/ArticlePage';
+import CalendarPage from './pages/CalendarPage/CalendarPage';
+import Homepage from './pages/Homepage/Homepage';
 import TrainingsSchedule from './pages/info-pages/TrainingsSchedule/TrainingsSchedule';
+import NewsPage from './pages/NewsPage/NewsPage';
+import SectionsPage from './pages/SectionsPage/SectionsPage';
 
 function App() {
   return (

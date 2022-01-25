@@ -78,8 +78,8 @@ function Homepage() {
             <h2>Instruktor i pomocnicy</h2>
             <div className='instructors-wrapper'>
               <InstructorCard name={'Michał Bodziony'} />
-              <InstructorCard name={'Michał Bodziony'} />
-              <InstructorCard name={'Michał Bodziony'} />
+              <InstructorCard name={'Dawid Kłyż'} />
+              <InstructorCard name={'Tomasz Kos'} />
             </div>
           </div>
         </section>
