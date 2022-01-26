@@ -44,6 +44,7 @@ function Calendar() {
   const [chosenMonth, setChosenMonth] = useState(0);
   const [calendarTitle, setCalendartitle] = useState(`STYCZEŃ 2022`);
   const [louderForOthers, setlouderForOthers] = useState(false);
+  const [daysToMove, setDaysToMove] = useState(0);
 
   useEffect(() => {
     setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
@@ -53,35 +54,25 @@ function Calendar() {
 
   useEffect(() => {
     if (louderForOthers === true) {
-      // setPrevChosenMonth(prevChosenMonthTemp);
-      let daysToMove = countDays(
-        prevChosenMonth,
-        prevChosenYear,
-        chosenMonth,
-        chosenYear,
-        months,
-        nrOfAllDays
+      setDaysToMove(
+        countDays(
+          prevChosenMonth,
+          prevChosenYear,
+          chosenMonth,
+          chosenYear,
+          months,
+          nrOfAllDays
+        )
       );
-      changeStartDay((startDay + (daysToMove % 7)) % 7);
       setlouderForOthers(false);
     }
   }, [louderForOthers]);
 
-  // useEffect(() => {
-  //   // console.log(prevChosenMonth);
-
-  //   setChosenMonth(currentMonth);
-
-  //   // console.log(daysToMove);
-  // }, [currentMonth]);
-
-  // useEffect(() => {
-  //   setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
-  // }, [chosenMonth]);
-
-  // useEffect(() => {
-  //   // setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
-  // }, [prevChosenMonth]);
+  useEffect(() => {
+    changeStartDay(((startDay + (daysToMove % 7)) % 7) + 1);
+    console.log(daysToMove);
+    console.log(startDay);
+  }, [daysToMove]);
 
   const handleDateSwitcherClick = () => {
     if (isMonthSwitcherOpen) {
@@ -110,7 +101,7 @@ function Calendar() {
       changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
     } else if (side === 'RIGHT') {
       setPrevChosenMonth(chosenMonth);
-      changeStartDay(((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1);
+      changeStartDay(((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1); // + 1
 
       if (chosenMonth < 11 && !isYearSwitcherOpen) {
         setChosenMonth(chosenMonth + 1);
@@ -135,9 +126,9 @@ function Calendar() {
       dayTiles.push(
         <div
           className='day-tile'
-          style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
+          style={{ gridColumnStart: `${(startDay + i - 1) % 7}` }} //  +1
         >
-          {i + 1}
+          {`${i + 1}`}
         </div>
       );
     }
