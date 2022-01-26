@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Children, cloneElement, useEffect, useState } from 'react';
 import './NavDropdownButton.scss';
 
 function NavDropdownButton({ children, title, icon }) {
@@ -34,7 +34,9 @@ function NavDropdownButton({ children, title, icon }) {
           onMouseEnter={() => checkWindowWidth(true)}
           onMouseLeave={() => checkWindowWidth(false)}
         >
-          {children}
+          {Children.map(children, (child) =>
+            cloneElement(child, { setIsDropdownOpen })
+          )}
         </div>
       )}
     </>

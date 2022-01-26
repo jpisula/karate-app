@@ -1,6 +1,6 @@
 import { TiThMenuOutline } from 'react-icons/ti';
 import { VscChromeClose } from 'react-icons/vsc';
-import { useEffect, useState } from 'react';
+import { Children, cloneElement, useEffect, useState } from 'react';
 import './NavScrollButton.scss';
 import { CSSTransition } from 'react-transition-group';
 
@@ -35,7 +35,11 @@ function NavScrollButton({ children }) {
             setIsDropdownOpen={setIsDropdownOpen}
             isDropdownOpen={isDropdownOpen}
           />
-          <div className='nav-items'>{children}</div>
+          <div className='nav-items'>
+            {Children.map(children, (child) =>
+              cloneElement(child, { setIsDropdownOpen })
+            )}
+          </div>
         </div>
       )}
     </>

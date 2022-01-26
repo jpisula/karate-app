@@ -2,7 +2,7 @@ import './NavHamburgerMenuButton.scss';
 import { TiThMenuOutline } from 'react-icons/ti';
 import { VscChromeClose } from 'react-icons/vsc';
 
-import { useState } from 'react';
+import { Children, cloneElement, useState } from 'react';
 
 function NavHamburgerMenuButton({ children }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -20,7 +20,11 @@ function NavHamburgerMenuButton({ children }) {
       </div>
 
       {isDropdownOpen && (
-        <div className='hamburger-down-dropdown'>{children}</div>
+        <div className='hamburger-down-dropdown'>
+          {Children.map(children, (child) =>
+            cloneElement(child, { setIsDropdownOpen })
+          )}
+        </div>
       )}
     </>
   );
