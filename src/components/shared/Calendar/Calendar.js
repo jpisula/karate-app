@@ -28,11 +28,21 @@ function Calendar() {
   const [startDay, changeStartDay] = useState(6);
   const [isYearSwitcherOpen, setYearSwitcher] = useState(false);
   const [isMonthSwitcherOpen, setMonthSwitcher] = useState(false);
-  const [chosenYear, setChosenYear] = useState('2022');
-  const [prevChosenYear, setPrevChosenYear] = useState('2022');
+  const [chosenYear, setChosenYear] = useState(2022);
+  const [prevChosenYear, setPrevChosenYear] = useState(2022);
   const [prevChosenMonth, setPrevChosenMonth] = useState(0);
   const [chosenMonth, setChosenMonth] = useState(0);
-  const [calendarTitle, setCalendartitle] = useState('STYCZEŃ 2022');
+  const [calendarTitle, setCalendartitle] = useState(`STYCZEŃ 2022`);
+
+  useEffect(() => {}, []);
+
+  // useEffect(() => {
+  //   forceUpdate();
+  // }, [setChosenMonth]);
+
+  // useEffect(() => {
+  //   forceUpdate();
+  // }, [setChosenYear]);
 
   useEffect(() => {
     setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
@@ -40,7 +50,6 @@ function Calendar() {
 
   useEffect(() => {
     setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
-    console.log(chosenMonth);
   }, [chosenMonth]);
 
   useEffect(() => {
@@ -49,6 +58,40 @@ function Calendar() {
   }, [chosenYear]);
 
   const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
+
+  const handleArrowClick = (side) => {
+    if (side === 'LEFT') {
+      let prevStart;
+      if (chosenMonth > 0 && !isYearSwitcherOpen) {
+        prevStart = startDay - ((months[chosenMonth - 1].nrOfDays % 7) % 7);
+        setPrevChosenMonth(chosenMonth);
+        setChosenMonth(chosenMonth - 1);
+        // console.log(prevChosenMonth, prevChosenYear, chosenMonth, chosenYear);
+      } else if (!isYearSwitcherOpen) {
+        setPrevChosenYear(chosenYear);
+        setChosenYear(chosenYear - 1);
+        prevStart =
+          startDay -
+          ((months[chosenMonth - 1 < 0 ? 11 : chosenMonth - 1].nrOfDays % 7) %
+            7);
+        setChosenMonth(11);
+        // console.log(prevChosenMonth, prevChosenYear, chosenMonth, chosenYear);
+      }
+      changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
+    } else if (side === 'RIGHT') {
+      setPrevChosenMonth(chosenMonth);
+      changeStartDay(((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1);
+
+      if (chosenMonth < 11 && !isYearSwitcherOpen) {
+        setChosenMonth(chosenMonth + 1);
+        // console.log(prevChosenMonth, prevChosenYear, chosenMonth, chosenYear);
+      } else if (!isYearSwitcherOpen) {
+        setChosenYear(chosenYear + 1);
+        setChosenMonth(0);
+        // console.log(prevChosenMonth, prevChosenYear, chosenMonth, chosenYear);
+      }
+    }
+  };
 
   const isYearCommon = (y) => {
     if (y % 4 === 0 && y % 100 !== 0) {
@@ -68,23 +111,40 @@ function Calendar() {
   const countDays = (month1, year1, momnth2, year2) => {
     let days = 0;
     let commonYears = 0;
-    if (isYearCommon(year1)) {
-      days++;
-    }
-    if (isYearCommon(year2)) {
-      days++;
-    }
-    for (let i = month1; i < 12; i++) {
-      days += months[i].nrOfDays;
-    }
-    for (let i = year1 + 1; i < year2; i++) {
-      if (isYearCommon(i)) {
-        commonYears++;
-      }
-      days +=
-        commonYears * (nrOfAllDays + 1) + nrOfAllDays * (year2 - year1 - 1);
-      for (let i = 0; i < momnth2; i++) {
+    console.log(month1, year1, momnth2, year2);
+
+    if (year1 === year2) {
+      for (let i = month1 + 1; i < momnth2; i++) {
         days += months[i].nrOfDays;
+      }
+      return days;
+    } else {
+      if (isYearCommon(year1)) {
+        days++;
+      }
+      if (isYearCommon(year2)) {
+        days++;
+      }
+
+      if (year1 > year2) {
+        for (let i = month1; i < 12; i++) {
+          days += months[i].nrOfDays;
+        }
+        for (let i = 0; i < momnth2; i++) {
+          days += months[i].nrOfDays;
+        }
+      } else {
+        for (let i = month1 + 1; i < momnth2; i++) {
+          days += months[i].nrOfDays;
+        }
+      }
+
+      for (let i = year1 + 1; i < year2; i++) {
+        if (isYearCommon(i)) {
+          commonYears++;
+        }
+        days +=
+          commonYears * (nrOfAllDays + 1) + nrOfAllDays * (year2 - year1 - 1);
       }
     }
     return days;
@@ -131,6 +191,7 @@ function Calendar() {
         <li
           className='month-item'
           onClick={(event) => {
+            setPrevChosenMonth(chosenMonth);
             setChosenMonth(
               months.findIndex((el) => el.name === event.target.innerText)
             );
@@ -142,7 +203,7 @@ function Calendar() {
               chosenMonth,
               chosenYear
             );
-            // startDay += daysToMove % 7;
+            startDay = (startDay + (daysToMove % 7)) % 7;
             console.log(daysToMove);
           }}
         >
@@ -158,25 +219,7 @@ function Calendar() {
       <header className='top'>
         <IoMdArrowDropleft
           className='arrow-left'
-          onClick={() => {
-            if (chosenMonth > 0 && !isYearSwitcherOpen) {
-              const prevStart =
-                startDay - ((months[chosenMonth - 1].nrOfDays % 7) % 7);
-              changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
-              setPrevChosenMonth(chosenMonth);
-              setChosenMonth(chosenMonth - 1);
-            } else if (!isYearSwitcherOpen) {
-              setPrevChosenYear(chosenYear);
-              setChosenYear(chosenYear - 1);
-              const prevStart =
-                startDay -
-                ((months[chosenMonth - 1 < 0 ? 11 : chosenMonth - 1].nrOfDays %
-                  7) %
-                  7);
-              changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
-              setChosenMonth(11);
-            }
-          }}
+          onClick={() => handleArrowClick('LEFT')}
         />
         <p
           className='month-and-year'
@@ -192,22 +235,7 @@ function Calendar() {
         </p>
         <IoMdArrowDropright
           className='arrow-right'
-          onClick={() => {
-            if (chosenMonth < 11 && !isYearSwitcherOpen) {
-              changeStartDay(
-                ((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1
-              );
-              setPrevChosenMonth(chosenMonth);
-              setChosenMonth(chosenMonth + 1);
-            } else if (!isYearSwitcherOpen) {
-              setPrevChosenYear(chosenYear);
-              setChosenYear(chosenYear + 1);
-              setChosenMonth(0);
-              changeStartDay(
-                ((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1
-              );
-            }
-          }}
+          onClick={() => handleArrowClick('RIGHT')}
         />
       </header>
       <main className='calendar-content'>
