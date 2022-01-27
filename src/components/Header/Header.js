@@ -35,8 +35,20 @@ const Header = ({ navConfig }) => {
   }, []);
 
   useEffect(() => {
-    setIsScrollButtonVisible(offset > 350);
+    if (!navLinksShown) {
+      setIsScrollButtonVisible(offset > 350);
+    } else {
+      setIsScrollButtonVisible(false);
+    }
   }, [offset]);
+
+  useEffect(() => {
+    if (!navLinksShown) {
+      setIsScrollButtonVisible(offset > 350);
+    } else {
+      setIsScrollButtonVisible(false);
+    }
+  }, [navLinksShown]);
 
   const setNavLinksDisplay = (windowWidth) => {
     if (

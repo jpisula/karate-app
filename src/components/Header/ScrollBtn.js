@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import NavItems from './NavItems';
 import './ScrollBtn.scss';
@@ -10,6 +10,7 @@ const ScrollBtn = ({
   isScrollButtonVisible
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const nodeRef = useRef(null);
 
   return (
     <>
@@ -17,15 +18,15 @@ const ScrollBtn = ({
         in={isScrollButtonVisible}
         timeout={(200, 0)}
         classNames={'nav-scroll-anim'}
+        nodeRef={nodeRef}
         unmountOnExit
       >
         <div
           className='nav-scroll'
+          ref={nodeRef}
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <div className='nav-icon'>
-            {isDropdownOpen ? closeIcon : hamburgerIcon}
-          </div>
+          <div className='nav-icon'>{!isDropdownOpen && hamburgerIcon}</div>
         </div>
       </CSSTransition>
 
