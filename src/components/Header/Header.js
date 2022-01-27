@@ -1,7 +1,9 @@
-import './Header.scss';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import './Header.scss';
+import NavItems from './NavItems';
+import NavLogo from './NavLogo';
+import ScrollBtn from './ScrollBtn';
 
 const Header = ({ navConfig }) => {
   const { styles, logo, items, widthToShowItems, hamburgerIcon, closeIcon } =
@@ -9,7 +11,10 @@ const Header = ({ navConfig }) => {
 
   const [navLinksShown, setNavLinksShown] = useState(false);
   const [isHamburgerDropdownOpen, setIsHamburgerDropdownOpen] = useState(false);
+  const [isScrollButtonVisible, setIsScrollButtonVisible] = useState(false);
+  const [offset, setOffset] = useState(0);
 
+  //resize handling useEffect
   useEffect(() => {
     setNavLinksDisplay(window.innerWidth);
 
@@ -21,6 +26,17 @@ const Header = ({ navConfig }) => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    const onScroll = () => setOffset(window.pageYOffset);
+    window.removeEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsScrollButtonVisible(offset > 350);
+  }, [offset]);
 
   const setNavLinksDisplay = (windowWidth) => {
     if (
@@ -40,59 +56,31 @@ const Header = ({ navConfig }) => {
   };
 
   return (
-    <header className='navigation' style={navigationStyles}>
-      <nav>
-        <NavLogo logo={logo} />
-        {navLinksShown && <NavItem items={items} className={'nav-links'} />}
-        {!navLinksShown &&
-          generateHamburgerDropdown(
-            items,
-            hamburgerIcon,
-            closeIcon,
-            'nav-hamburger',
-            isHamburgerDropdownOpen,
-            setIsHamburgerDropdownOpen
-          )}
-      </nav>
-    </header>
+    <>
+      <header className='navigation' style={navigationStyles}>
+        <nav>
+          <NavLogo logo={logo} />
+          {navLinksShown && <NavItems items={items} className={'nav-links'} />}
+          {!navLinksShown &&
+            generateHamburgerDropdown(
+              items,
+              hamburgerIcon,
+              closeIcon,
+              'nav-hamburger',
+              isHamburgerDropdownOpen,
+              setIsHamburgerDropdownOpen
+            )}
+        </nav>
+      </header>
+
+      <ScrollBtn
+        items={items}
+        hamburgerIcon={hamburgerIcon}
+        closeIcon={closeIcon}
+        isScrollButtonVisible={isScrollButtonVisible}
+      />
+    </>
   );
-};
-
-const NavLogo = ({ logo }) => {
-  const { title, titleHTML, src } = logo;
-  return (
-    <Link to='/' className='logo'>
-      <img src={src} alt='logo' />
-      <div>{title || titleHTML}</div>
-    </Link>
-  );
-};
-
-const NavItem = ({ items, className }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const navItems = [];
-  for (const item of items) {
-    const { title, to, icon, subItems } = item;
-
-    const expandDropdown = () => {
-      setIsDropdownOpen(!isDropdownOpen);
-    };
-
-    navItems.push(
-      <>
-        <Link onClick={subItems && expandDropdown} to={to} className='nav-link'>
-          <div className='nav-title'>{title}</div>
-          {icon ? <div className='nav-icon'>{icon}</div> : ''}
-        </Link>
-
-        {subItems && isDropdownOpen && (
-          <NavItem items={subItems} className={'nav-link-dropdown'} />
-        )}
-      </>
-    );
-  }
-
-  return <div className={className}>{navItems}</div>;
 };
 
 const generateHamburgerDropdown = (
@@ -115,7 +103,12 @@ const generateHamburgerDropdown = (
         </div>
       </div>
       {isHamburgerDropdownOpen && (
-        <NavItem items={items} className={'hamburger-dropdown'} />
+        <NavItems
+          items={items}
+          className={'hamburger-dropdown'}
+          isDropdownOpen={isHamburgerDropdownOpen}
+          setIsDropdownOpen={setIsHamburgerDropdownOpen}
+        />
       )}
     </>
   );
