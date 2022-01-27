@@ -1,9 +1,9 @@
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
-import { useEffect } from 'react/cjs/react.development';
 import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
 import Button from '../../components/shared/Button/Button';
 import ContactForm from '../../components/shared/ContactForm/ContactForm';
