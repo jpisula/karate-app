@@ -3,9 +3,9 @@ import Button from '../Button/Button';
 import instructorPhoto from './assets/instruktor.jpeg';
 import './InstructorCard.scss';
 
-function InstructorCard({ name }) {
+function InstructorCard({ animation, name }) {
   return (
-    <div className='instructor-card'>
+    <div data-aos={animation} className='instructor-card'>
       <div className='image-wrapper'>
         <img
           src={instructorPhoto}

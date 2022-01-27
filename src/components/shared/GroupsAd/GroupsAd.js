@@ -4,28 +4,40 @@ import teenagersKarateImg from './assets/karate-teenagers.jpeg';
 import adultsKarateImg from './assets/adults-karate.jpeg';
 import familyKarateImg from './assets/family-karate.jpeg';
 
-const GroupsAd = () => {
+const GroupsAd = ({ animation }) => {
   return (
     <div className='groups-ad-list'>
-      <GroupAdItem title='DZIECI' imgSrc={kidsKarateImg} XImgPosition={-26} />
+      <GroupAdItem
+        title='DZIECI'
+        imgSrc={kidsKarateImg}
+        XImgPosition={-26}
+        animation={animation}
+      />
       <GroupAdItem
         title='MŁODZIEŻY'
         imgSrc={teenagersKarateImg}
         XImgPosition={-3}
+        animation={animation}
       />
       <GroupAdItem
         title='DOROSŁYCH'
         imgSrc={adultsKarateImg}
         XImgPosition={0}
+        animation={animation}
       />
-      <GroupAdItem title='RODZIN' imgSrc={familyKarateImg} XImgPosition={-50} />
+      <GroupAdItem
+        title='RODZIN'
+        imgSrc={familyKarateImg}
+        XImgPosition={-50}
+        animation={animation}
+      />
     </div>
   );
 };
 
-const GroupAdItem = ({ title, imgSrc, XImgPosition }) => {
+const GroupAdItem = ({ title, imgSrc, XImgPosition, animation }) => {
   return (
-    <div className='group-ad'>
+    <div className='group-ad' data-aos={animation}>
       <img
         src={imgSrc}
         alt='karate kids photo'
