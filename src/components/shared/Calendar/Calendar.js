@@ -45,6 +45,13 @@ function Calendar() {
   const [calendarTitle, setCalendartitle] = useState(`STYCZEŃ 2022`);
   const [louderForOthers, setlouderForOthers] = useState(false);
   const [daysToMove, setDaysToMove] = useState(0);
+  // const [loud, setLoud] = useState(true);
+
+  // useEffect(() => {
+  //   if (loud) {
+  //     changeStartDay((startDay + (daysToMove % 7)) % 7);
+  //   }
+  // }, []);
 
   useEffect(() => {
     setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
@@ -69,9 +76,17 @@ function Calendar() {
   }, [louderForOthers]);
 
   useEffect(() => {
-    changeStartDay(((startDay + (daysToMove % 7)) % 7) + 1);
-    console.log(daysToMove);
-    console.log(startDay);
+    // if (!loud) {
+    changeStartDay(
+      (startDay + (daysToMove % 7)) % 7 <= 0
+        ? 7
+        : (startDay + (daysToMove % 7)) % 7
+    ); //+ 1
+    // );
+    // console.log(daysToMove);
+    // console.log(startDay);
+    // }
+    // setLoud(false);
   }, [daysToMove]);
 
   const handleDateSwitcherClick = () => {
@@ -126,7 +141,7 @@ function Calendar() {
       dayTiles.push(
         <div
           className='day-tile'
-          style={{ gridColumnStart: `${(startDay + i - 1) % 7}` }} //  +1
+          style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }} //  +1
         >
           {`${i + 1}`}
         </div>

@@ -14,8 +14,6 @@ export const countDays = (
   nrOfAllDays
 ) => {
   let days = 0;
-  let commonYears = 0;
-  // console.log(month1, year1, month2, year2);
 
   if (year1 === year2) {
     for (let i = month1; i < month2; i++) {
@@ -36,10 +34,10 @@ export const countDays = (
 
     for (let i = year1 + 1; i < year2; i++) {
       if (isYearCommon(i)) {
-        commonYears++;
+        days += nrOfAllDays + 1;
+      } else {
+        days += nrOfAllDays;
       }
-      days +=
-        commonYears * (nrOfAllDays + 1) + nrOfAllDays * (year2 - year1 - 1);
     }
   } else {
     if (isYearCommon(year1)) {
