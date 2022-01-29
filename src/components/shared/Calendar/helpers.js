@@ -15,13 +15,29 @@ export const countDays = (
 ) => {
   let days = 0;
 
-  if (year1 === year2) {
+  if (year1 === year2 && month2 > month1) {
     for (let i = month1; i < month2; i++) {
       days += months[i].nrOfDays;
     }
+    if (isYearCommon(year1) && month1 <= 1 && month2 > 1) {
+      days++;
+    }
+    return days;
+  } else if (year1 === year2 && month2 < month1) {
+    for (let i = month1 - 1; i >= month2; i--) {
+      days += months[i].nrOfDays;
+    }
+    if (isYearCommon(year1) && month2 <= 1 && month1 > 1) {
+      days++;
+    }
+    days *= -1;
     return days;
   } else if (year1 < year2) {
     if (isYearCommon(year1) && month1 < 2) {
+      days++;
+    }
+
+    if (isYearCommon(year2) && month2 > 1) {
       days++;
     }
 
@@ -39,13 +55,32 @@ export const countDays = (
         days += nrOfAllDays;
       }
     }
+    return days;
   } else {
-    if (isYearCommon(year1)) {
+    // if (isYearCommon(year1)) {
+    //   days++;
+    // }
+    if (isYearCommon(year2) && month2 < 2) {
       days++;
     }
-    if (isYearCommon(year2)) {
+
+    if (isYearCommon(year1) && month1 > 1) {
       days++;
     }
+    for (let i = month1 - 1; i >= 0; i--) {
+      days += months[i].nrOfDays;
+    }
+    for (let i = year1 - 1; i > year2; i--) {
+      if (isYearCommon(i)) {
+        days += nrOfAllDays + 1;
+      } else {
+        days += nrOfAllDays;
+      }
+    }
+    for (let i = 11; i >= month2; i--) {
+      days += months[i].nrOfDays;
+    }
+    days *= -1;
   }
   return days;
 };

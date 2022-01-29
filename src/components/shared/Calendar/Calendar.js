@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import reactDom from 'react-dom';
 import './Calendar.scss';
 import CalendarView from './CalendarView';
 import {
@@ -31,6 +32,23 @@ function Calendar() {
     { name: 'GRUDZIEŃ', nrOfDays: 31 }
   ];
 
+  const events = [
+    {
+      id: 1,
+      title: 'MP',
+      dayStart: 24,
+      dayEnd: 24,
+      month: 4,
+      year: 2022,
+      city: 'radom',
+      address: 'ulica chujawalaszczyka 69/420',
+      category: 'tournament',
+      customColor: '',
+      description: 'Ktores mp w polsce i ogolnie opis',
+      imgSrc: 'imgsrc'
+    }
+  ];
+
   for (let i = 0; i < 12; i++) {
     nrOfAllDays += months[i].nrOfDays;
   }
@@ -45,19 +63,16 @@ function Calendar() {
   const [calendarTitle, setCalendartitle] = useState(`STYCZEŃ 2022`);
   const [louderForOthers, setlouderForOthers] = useState(false);
   const [daysToMove, setDaysToMove] = useState(0);
-  // const [loud, setLoud] = useState(true);
-
-  // useEffect(() => {
-  //   if (loud) {
-  //     changeStartDay((startDay + (daysToMove % 7)) % 7);
-  //   }
-  // }, []);
 
   useEffect(() => {
     setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
     setYearSwitcher(false);
     nrOfFebDays = chosenYear % 4 === 0 && chosenYear % 100 !== 0 ? 29 : 28;
   }, [chosenYear]);
+
+  useEffect(() => {
+    loudEvents();
+  }, [chosenMonth]);
 
   useEffect(() => {
     if (louderForOthers === true) {
@@ -76,18 +91,47 @@ function Calendar() {
   }, [louderForOthers]);
 
   useEffect(() => {
-    // if (!loud) {
-    changeStartDay(
-      (startDay + (daysToMove % 7)) % 7 <= 0
-        ? 7
-        : (startDay + (daysToMove % 7)) % 7
-    ); //+ 1
-    // );
-    // console.log(daysToMove);
-    // console.log(startDay);
-    // }
-    // setLoud(false);
+    const daysToMoveMod7 = (startDay + (daysToMove % 7)) % 7;
+    const newStartDayFuture = daysToMoveMod7 <= 0 ? 7 : daysToMoveMod7;
+    const newStartDayPast =
+      daysToMoveMod7 <= 0 ? daysToMoveMod7 + 7 : daysToMoveMod7;
+    changeStartDay(daysToMove > 0 ? newStartDayFuture : newStartDayPast);
   }, [daysToMove]);
+
+  const loudEvents = () => {
+    for (const event of events) {
+      if (event.year === chosenYear && event.month - 1 === chosenMonth) {
+        for (let i = event.dayStart; i <= event.dayEnd; i++) {
+          const dayElement = document.querySelector(`[data-day~="${i}"]`);
+          dayElement.classList.add(
+            'event-type',
+            `event-type-${event.category}`
+          );
+          let hoverDiv = (
+            <>
+              {dayElement.dataset.day}
+              <div className='event'>
+                <img src='' alt='' />
+                <h2 className='title'></h2>
+                <p className='date'></p>
+                <p className='address'></p>
+                <p className='description'></p>
+              </div>
+            </>
+          );
+          console.log('hoverDiv', hoverDiv);
+          reactDom.render(hoverDiv, dayElement);
+        }
+      }
+    }
+  };
+
+  const deleteEvents = () => {
+    document.querySelectorAll('.event-type').forEach((el) => {
+      el.classList.remove('event-type', 'event-type-tournament');
+      el.textContent = el.dataset.day;
+    });
+  };
 
   const handleDateSwitcherClick = () => {
     if (isMonthSwitcherOpen) {
@@ -98,6 +142,7 @@ function Calendar() {
   };
 
   const handleArrowClick = (side) => {
+    deleteEvents();
     if (side === 'LEFT') {
       let prevStart;
       if (chosenMonth > 0 && !isYearSwitcherOpen) {
@@ -116,7 +161,7 @@ function Calendar() {
       changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
     } else if (side === 'RIGHT') {
       setPrevChosenMonth(chosenMonth);
-      changeStartDay(((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1); // + 1
+      changeStartDay(((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1);
 
       if (chosenMonth < 11 && !isYearSwitcherOpen) {
         setChosenMonth(chosenMonth + 1);
@@ -140,8 +185,9 @@ function Calendar() {
     for (let i = 0; i < numberOfTiles; i++) {
       dayTiles.push(
         <div
+          data-day={i + 1}
           className='day-tile'
-          style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }} //  +1
+          style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
         >
           {`${i + 1}`}
         </div>
