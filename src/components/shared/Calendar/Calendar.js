@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import reactDom from 'react-dom';
 import './Calendar.scss';
 import CalendarView from './CalendarView';
+import DayTile from './DayTile.js';
 import {
   isYearCommon,
   countDays,
@@ -9,6 +10,7 @@ import {
   nrOfFebDays,
   nrOfAllDays
 } from './helpers.js';
+import events from '../../../database/events.js';
 
 function Calendar() {
   let nrOfFebDays = 28;
@@ -32,23 +34,6 @@ function Calendar() {
     { name: 'GRUDZIEŃ', nrOfDays: 31 }
   ];
 
-  const events = [
-    {
-      id: 1,
-      title: 'MP',
-      dayStart: 24,
-      dayEnd: 24,
-      month: 4,
-      year: 2022,
-      city: 'radom',
-      address: 'ulica chujawalaszczyka 69/420',
-      category: 'tournament',
-      customColor: '',
-      description: 'Ktores mp w polsce i ogolnie opis',
-      imgSrc: 'imgsrc'
-    }
-  ];
-
   for (let i = 0; i < 12; i++) {
     nrOfAllDays += months[i].nrOfDays;
   }
@@ -70,9 +55,9 @@ function Calendar() {
     nrOfFebDays = chosenYear % 4 === 0 && chosenYear % 100 !== 0 ? 29 : 28;
   }, [chosenYear]);
 
-  useEffect(() => {
-    loudEvents();
-  }, [chosenMonth]);
+  // useEffect(() => {
+  //   loudEvents();
+  // }, [chosenMonth]);
 
   useEffect(() => {
     if (louderForOthers === true) {
@@ -98,40 +83,13 @@ function Calendar() {
     changeStartDay(daysToMove > 0 ? newStartDayFuture : newStartDayPast);
   }, [daysToMove]);
 
-  const loudEvents = () => {
-    for (const event of events) {
-      if (event.year === chosenYear && event.month - 1 === chosenMonth) {
-        for (let i = event.dayStart; i <= event.dayEnd; i++) {
-          const dayElement = document.querySelector(`[data-day~="${i}"]`);
-          dayElement.classList.add(
-            'event-type',
-            `event-type-${event.category}`
-          );
-          let hoverDiv = (
-            <>
-              {dayElement.dataset.day}
-              <div className='event'>
-                <img src='' alt='' />
-                <h2 className='title'></h2>
-                <p className='date'></p>
-                <p className='address'></p>
-                <p className='description'></p>
-              </div>
-            </>
-          );
-          console.log('hoverDiv', hoverDiv);
-          reactDom.render(hoverDiv, dayElement);
-        }
-      }
-    }
-  };
+  // const loudEvents = () => {
 
-  const deleteEvents = () => {
-    document.querySelectorAll('.event-type').forEach((el) => {
-      el.classList.remove('event-type', 'event-type-tournament');
-      el.textContent = el.dataset.day;
-    });
-  };
+  // };
+
+  // const deleteEvents = () => {
+
+  // };
 
   const handleDateSwitcherClick = () => {
     if (isMonthSwitcherOpen) {
@@ -142,7 +100,7 @@ function Calendar() {
   };
 
   const handleArrowClick = (side) => {
-    deleteEvents();
+    // deleteEvents();
     if (side === 'LEFT') {
       let prevStart;
       if (chosenMonth > 0 && !isYearSwitcherOpen) {
@@ -184,13 +142,20 @@ function Calendar() {
     let dayTiles = [];
     for (let i = 0; i < numberOfTiles; i++) {
       dayTiles.push(
-        <div
-          data-day={i + 1}
-          className='day-tile'
+        <DayTile
+          dataDay={i + 1}
           style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
-        >
-          {`${i + 1}`}
-        </div>
+          chosenMonth={chosenMonth}
+          chosenYear={chosenYear}
+          events={events}
+        />
+        // <div
+        //   data-day={i + 1}
+        //   className='day-tile'
+        //   style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
+        // >
+        //   {`${i + 1}`}
+        // </div>
       );
     }
     return dayTiles;
