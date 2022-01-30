@@ -1,9 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import reactDom from 'react-dom';
 import './Calendar.scss';
-import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
+import CalendarView from './CalendarView';
+import DayTile from './DayTile.js';
+import {
+  isYearCommon,
+  countDays,
+  months,
+  nrOfFebDays,
+  nrOfAllDays
+} from './helpers.js';
+import events from '../../../database/events.js';
 
 function Calendar() {
   let nrOfFebDays = 28;
+  let nrOfAllDays = 0;
+  let prevChosenMonthTemp = 0;
+
+  const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
 
   const months = [
     { name: 'STYCZEŃ', nrOfDays: 31 },
@@ -20,7 +34,6 @@ function Calendar() {
     { name: 'GRUDZIEŃ', nrOfDays: 31 }
   ];
 
-  let nrOfAllDays = 0;
   for (let i = 0; i < 12; i++) {
     nrOfAllDays += months[i].nrOfDays;
   }
@@ -28,33 +41,93 @@ function Calendar() {
   const [startDay, changeStartDay] = useState(6);
   const [isYearSwitcherOpen, setYearSwitcher] = useState(false);
   const [isMonthSwitcherOpen, setMonthSwitcher] = useState(false);
-  const [chosenYear, setChosenYear] = useState('2022');
-  const [prevChosenYear, setPrevChosenYear] = useState('2022');
+  const [chosenYear, setChosenYear] = useState(2022);
+  const [prevChosenYear, setPrevChosenYear] = useState(2022);
   const [prevChosenMonth, setPrevChosenMonth] = useState(0);
   const [chosenMonth, setChosenMonth] = useState(0);
-  const [calendarTitle, setCalendartitle] = useState('STYCZEŃ 2022');
+  const [calendarTitle, setCalendartitle] = useState(`STYCZEŃ 2022`);
+  const [louderForOthers, setlouderForOthers] = useState(false);
+  const [daysToMove, setDaysToMove] = useState(0);
 
   useEffect(() => {
     setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
-  }, [chosenYear]);
-
-  useEffect(() => {
-    setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
-    console.log(chosenMonth);
-  }, [chosenMonth]);
-
-  useEffect(() => {
     setYearSwitcher(false);
     nrOfFebDays = chosenYear % 4 === 0 && chosenYear % 100 !== 0 ? 29 : 28;
   }, [chosenYear]);
 
-  const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
+  // useEffect(() => {
+  //   loudEvents();
+  // }, [chosenMonth]);
 
-  const isYearCommon = (y) => {
-    if (y % 4 === 0 && y % 100 !== 0) {
-      return true;
+  useEffect(() => {
+    if (louderForOthers === true) {
+      setDaysToMove(
+        countDays(
+          prevChosenMonth,
+          prevChosenYear,
+          chosenMonth,
+          chosenYear,
+          months,
+          nrOfAllDays
+        )
+      );
+      setlouderForOthers(false);
     }
-    return false;
+  }, [louderForOthers]);
+
+  useEffect(() => {
+    const daysToMoveMod7 = (startDay + (daysToMove % 7)) % 7;
+    const newStartDayFuture = daysToMoveMod7 <= 0 ? 7 : daysToMoveMod7;
+    const newStartDayPast =
+      daysToMoveMod7 <= 0 ? daysToMoveMod7 + 7 : daysToMoveMod7;
+    changeStartDay(daysToMove > 0 ? newStartDayFuture : newStartDayPast);
+  }, [daysToMove]);
+
+  // const loudEvents = () => {
+
+  // };
+
+  // const deleteEvents = () => {
+
+  // };
+
+  const handleDateSwitcherClick = () => {
+    if (isMonthSwitcherOpen) {
+      setMonthSwitcher(!isMonthSwitcherOpen);
+    } else {
+      setYearSwitcher(!isYearSwitcherOpen);
+    }
+  };
+
+  const handleArrowClick = (side) => {
+    // deleteEvents();
+    if (side === 'LEFT') {
+      let prevStart;
+      if (chosenMonth > 0 && !isYearSwitcherOpen) {
+        prevStart = startDay - ((months[chosenMonth - 1].nrOfDays % 7) % 7);
+        setPrevChosenMonth(chosenMonth);
+        setChosenMonth(chosenMonth - 1);
+      } else if (!isYearSwitcherOpen) {
+        setPrevChosenYear(chosenYear);
+        setChosenYear(chosenYear - 1);
+        prevStart =
+          startDay -
+          ((months[chosenMonth - 1 < 0 ? 11 : chosenMonth - 1].nrOfDays % 7) %
+            7);
+        setChosenMonth(11);
+      }
+      changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
+    } else if (side === 'RIGHT') {
+      setPrevChosenMonth(chosenMonth);
+      changeStartDay(((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1);
+
+      if (chosenMonth < 11 && !isYearSwitcherOpen) {
+        setChosenMonth(chosenMonth + 1);
+      } else if (!isYearSwitcherOpen) {
+        setChosenYear(chosenYear + 1);
+        setChosenMonth(0);
+      }
+    }
   };
 
   const generateWeekDays = () => {
@@ -65,41 +138,24 @@ function Calendar() {
     return weekDays;
   };
 
-  const countDays = (month1, year1, momnth2, year2) => {
-    let days = 0;
-    let commonYears = 0;
-    if (isYearCommon(year1)) {
-      days++;
-    }
-    if (isYearCommon(year2)) {
-      days++;
-    }
-    for (let i = month1; i < 12; i++) {
-      days += months[i].nrOfDays;
-    }
-    for (let i = year1 + 1; i < year2; i++) {
-      if (isYearCommon(i)) {
-        commonYears++;
-      }
-      days +=
-        commonYears * (nrOfAllDays + 1) + nrOfAllDays * (year2 - year1 - 1);
-      for (let i = 0; i < momnth2; i++) {
-        days += months[i].nrOfDays;
-      }
-    }
-    return days;
-  };
-
   const generateDayTiles = (numberOfTiles, startDay) => {
     let dayTiles = [];
     for (let i = 0; i < numberOfTiles; i++) {
       dayTiles.push(
-        <div
-          className='day-tile'
+        <DayTile
+          dataDay={i + 1}
           style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
-        >
-          {i + 1}
-        </div>
+          chosenMonth={chosenMonth}
+          chosenYear={chosenYear}
+          events={events}
+        />
+        // <div
+        //   data-day={i + 1}
+        //   className='day-tile'
+        //   style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
+        // >
+        //   {`${i + 1}`}
+        // </div>
       );
     }
     return dayTiles;
@@ -113,8 +169,9 @@ function Calendar() {
           className='year-item'
           onClick={(event) => {
             setPrevChosenYear(chosenYear);
+            setChosenYear(Number.parseInt(event.target.innerText));
             setMonthSwitcher(!isMonthSwitcherOpen);
-            setChosenYear(event.target.innerText);
+            setYearSwitcher(false);
           }}
         >
           {i}
@@ -124,28 +181,23 @@ function Calendar() {
     return yearsListItems;
   };
 
+  const handleMonthChooseClick = (e) => {
+    setMonthSwitcher(!isMonthSwitcherOpen);
+    setYearSwitcher(false);
+    setPrevChosenMonth(chosenMonth);
+    const currentMonth = months.findIndex(
+      (el) => el.name === e.target.innerText
+    );
+    setChosenMonth(currentMonth);
+
+    setlouderForOthers(true);
+  };
+
   const generateMonthListItems = () => {
     let monthListItems = [];
     for (let i = 0; i < 11; i++) {
       monthListItems.push(
-        <li
-          className='month-item'
-          onClick={(event) => {
-            setChosenMonth(
-              months.findIndex((el) => el.name === event.target.innerText)
-            );
-            setMonthSwitcher(!isMonthSwitcherOpen);
-            setYearSwitcher(false);
-            let daysToMove = countDays(
-              prevChosenMonth,
-              prevChosenYear,
-              chosenMonth,
-              chosenYear
-            );
-            // startDay += daysToMove % 7;
-            console.log(daysToMove);
-          }}
-        >
+        <li className='month-item' onClick={handleMonthChooseClick}>
           {months[i].name}
         </li>
       );
@@ -154,83 +206,21 @@ function Calendar() {
   };
 
   return (
-    <section className='calendar-container'>
-      <header className='top'>
-        <IoMdArrowDropleft
-          className='arrow-left'
-          onClick={() => {
-            if (chosenMonth > 0 && !isYearSwitcherOpen) {
-              const prevStart =
-                startDay - ((months[chosenMonth - 1].nrOfDays % 7) % 7);
-              changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
-              setPrevChosenMonth(chosenMonth);
-              setChosenMonth(chosenMonth - 1);
-            } else if (!isYearSwitcherOpen) {
-              setPrevChosenYear(chosenYear);
-              setChosenYear(chosenYear - 1);
-              const prevStart =
-                startDay -
-                ((months[chosenMonth - 1 < 0 ? 11 : chosenMonth - 1].nrOfDays %
-                  7) %
-                  7);
-              changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
-              setChosenMonth(11);
-            }
-          }}
-        />
-        <p
-          className='month-and-year'
-          onClick={() => {
-            if (isMonthSwitcherOpen) {
-              setMonthSwitcher(!isMonthSwitcherOpen);
-            } else {
-              setYearSwitcher(!isYearSwitcherOpen);
-            }
-          }}
-        >
-          {calendarTitle}
-        </p>
-        <IoMdArrowDropright
-          className='arrow-right'
-          onClick={() => {
-            if (chosenMonth < 11 && !isYearSwitcherOpen) {
-              changeStartDay(
-                ((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1
-              );
-              setPrevChosenMonth(chosenMonth);
-              setChosenMonth(chosenMonth + 1);
-            } else if (!isYearSwitcherOpen) {
-              setPrevChosenYear(chosenYear);
-              setChosenYear(chosenYear + 1);
-              setChosenMonth(0);
-              changeStartDay(
-                ((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1
-              );
-            }
-          }}
-        />
-      </header>
-      <main className='calendar-content'>
-        {isYearSwitcherOpen && (
-          <div className='year-switcher'>
-            <div className='year-list-wrapper'>
-              <ul className='year-list'>{generateYearsListItems()}</ul>
-            </div>
-          </div>
-        )}
-        {isMonthSwitcherOpen && (
-          <div className='month-switcher'>
-            <div className='month-list-wrapper'>
-              <ul className='month-list'>{generateMonthListItems()}</ul>
-            </div>
-          </div>
-        )}
-        <div className='week-days'>{generateWeekDays()}</div>
-        <div className='month-days'>
-          {generateDayTiles(months[chosenMonth].nrOfDays, startDay)}
-        </div>
-      </main>
-    </section>
+    <CalendarView
+      calendarTitle={calendarTitle}
+      chosenMonth={chosenMonth}
+      generateMonthListItems={generateMonthListItems}
+      generateWeekDays={generateWeekDays}
+      generateYearsListItems={generateYearsListItems}
+      handleArrowClick={handleArrowClick}
+      isMonthSwitcherOpen={isMonthSwitcherOpen}
+      isYearSwitcherOpen={isYearSwitcherOpen}
+      months={months}
+      startDay={startDay}
+      generateDayTiles={generateDayTiles}
+      handleDateSwitcherClick={handleDateSwitcherClick}
+      chosenYear={chosenYear}
+    />
   );
 }
 
