@@ -72,7 +72,13 @@ const Header = ({ navConfig }) => {
       <header className='navigation' style={navigationStyles}>
         <nav>
           <NavLogo logo={logo} />
-          {navLinksShown && <NavItems items={items} className={'nav-links'} />}
+          {navLinksShown && (
+            <NavItems
+              items={items}
+              className={'nav-links'}
+              expandedNavLinks={true}
+            />
+          )}
           {!navLinksShown &&
             generateHamburgerDropdown(
               items,

@@ -2,7 +2,14 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 
-const NavItems = ({ items, className, isDropdownOpen, setIsDropdownOpen }) => {
+const NavItems = ({
+  items,
+  className,
+  expandedNavLinks,
+  isDropdownOpen,
+  setIsDropdownOpen,
+  onMouseEnterSetDropdown
+}) => {
   const [isSubDropdownOpen, setIsSubDropdownOpen] = useState(false);
 
   const navItems = [];
@@ -33,7 +40,12 @@ const NavItems = ({ items, className, isDropdownOpen, setIsDropdownOpen }) => {
           </Link>
         )}
         {subItems && (
-          <div onClick={expandDropdown} className='nav-link'>
+          <div
+            onClick={expandDropdown}
+            onMouseEnter={() => expandedNavLinks && setIsSubDropdownOpen(true)}
+            onMouseLeave={() => expandedNavLinks && setIsSubDropdownOpen(false)}
+            className='nav-link'
+          >
             {linkInsideHTML}
           </div>
         )}
@@ -42,15 +54,33 @@ const NavItems = ({ items, className, isDropdownOpen, setIsDropdownOpen }) => {
           <NavItems
             items={subItems}
             className={'nav-link-dropdown'}
+            expandedNavLinks={expandedNavLinks}
             isDropdownOpen={isDropdownOpen}
             setIsDropdownOpen={setIsDropdownOpen}
+            onMouseEnterSetDropdown={setIsSubDropdownOpen}
           />
         )}
       </>
     );
   }
 
-  return <div className={className}>{navItems}</div>;
+  return (
+    <div
+      className={className}
+      onMouseEnter={() =>
+        expandedNavLinks && onMouseEnterSetDropdown !== undefined
+          ? onMouseEnterSetDropdown(true)
+          : ''
+      }
+      onMouseLeave={() =>
+        expandedNavLinks && onMouseEnterSetDropdown !== undefined
+          ? onMouseEnterSetDropdown(false)
+          : ''
+      }
+    >
+      {navItems}
+    </div>
+  );
 };
 
 export default NavItems;
