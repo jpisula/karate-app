@@ -25,14 +25,29 @@
 }
 
 .schedule-wrapper {
-  padding: 25px 18px;
   box-sizing: border-box;
   background-color: $red-color;
   width: 100%;
 
-  .container {
+  .schedule-parallax {
+    background-color: rgba(0, 0, 0, 0.6);
+
     @include media('>=desktop') {
       width: 100%;
+    }
+  }
+
+  .container {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: auto;
+
+    @include media('>=desktop') {
+      width: 100%;
+    }
+
+    .schedule-info-wrapper {
+      padding: 25px 18px;
     }
   }
 
