@@ -14,6 +14,7 @@ import Homepage from './pages/Homepage/Homepage';
 import TrainingsSchedule from './pages/info-pages/TrainingsSchedule/TrainingsSchedule';
 import NewsPage from './pages/NewsPage/NewsPage';
 import SectionsPage from './pages/SectionsPage/SectionsPage';
+import KinderPage from './pages/KinderPage/KinderPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Homepage />} />
             <Route path='/sections' element={<SectionsPage />} />
+            <Route path='/kinder' element={<KinderPage />} />
             <Route path='/article/:id' element={<ArticlePage />} />
             <Route path='/newslist' element={<NewsPage />} />
             <Route path='/calendar' element={<CalendarPage />} />
@@ -79,7 +81,7 @@ const navConfig = {
     },
     {
       title: 'Przedszkolaki',
-      to: '/sections'
+      to: '/kinder'
     },
     {
       title: 'Informacje',

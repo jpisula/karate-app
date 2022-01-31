@@ -1,0 +1,19 @@
+@import '../../../lib/sass/styles.scss';
+
+.trainings-schedule {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 30px;
+
+  h1 {
+    padding: 25px 0;
+    width: 100%;
+    text-align: center;
+    font-size: $big-font;
+    font-weight: 800;
+
+    @include media('>=tablet-portrait') {
+      font-size: $large-font;
+      padding: 40px 0;
+    }
+  }
+}
