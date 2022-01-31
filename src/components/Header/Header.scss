@@ -96,17 +96,18 @@
     transition: 0.3s;
     text-decoration: none;
     color: inherit;
+    letter-spacing: 1px;
 
     .nav-icon {
       margin-left: 5px;
     }
 
     @include media('>=tablet-landscape', '<=desktop') {
-      font-size: $big-font;
+      font-size: $med-font;
     }
 
     @include media('>=desktop') {
-      font-size: $bigger-font;
+      font-size: $big-font;
     }
 
     &:hover {

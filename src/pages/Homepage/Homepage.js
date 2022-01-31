@@ -1,6 +1,6 @@
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
@@ -15,6 +15,20 @@ import './Homepage.scss';
 
 function Homepage() {
   const navigate = useNavigate();
+
+  const [numOfArticleItems, setNumOfArticleItems] = useState(
+    window.innerWidth > 1440 ? 6 : 4
+  );
+  //resize handling useEffect
+  useEffect(() => {
+    const handleResize = () => {
+      setNumOfArticleItems(window.innerWidth > 1440 ? 6 : 4);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -98,13 +112,12 @@ function Homepage() {
             </h2>
             <ArticlesList
               className='articles-list'
-              numberOfItems={window.innerWidth > 1440 ? 6 : 4}
+              numberOfItems={numOfArticleItems}
               animation='zoom-in'
             />
             <Button
               text='Więcej aktualności'
               onClick={() => navigate('/newslist', { replace: true })}
-              animation={'zoom-in'}
             />
           </div>
         </section>
