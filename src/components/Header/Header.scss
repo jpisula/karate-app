@@ -29,7 +29,7 @@
     display: flex;
 
     @include media('>=tablet-portrait') {
-      width: 50%;
+      width: 60%;
     }
   }
 
@@ -48,7 +48,11 @@
       margin-left: 5px;
     }
 
-    @include media('>=tablet-landscape', '<=desktop') {
+    @include media('>=tablet-portrait') {
+      font-size: $small-font;
+    }
+
+    @include media('>=tablet-landscape') {
       font-size: $med-font;
     }
 

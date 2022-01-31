@@ -78,6 +78,10 @@ const navConfig = {
       to: '/sections'
     },
     {
+      title: 'Przedszkolaki',
+      to: '/sections'
+    },
+    {
       title: 'Informacje',
       to: '/',
       icon: <AiFillCaretDown />,
