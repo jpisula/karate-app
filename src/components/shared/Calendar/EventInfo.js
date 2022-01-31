@@ -48,6 +48,10 @@ const EventInfo = () => {
                   payload: events[event.id - 2].year
                 });
                 dispatch({
+                  type: 'SET_PREV_CHOSEN_MONTH',
+                  payload: chosenMonth
+                });
+                dispatch({
                   type: 'SET_MONTH',
                   payload: events[event.id - 2].month - 1
                 });
@@ -64,6 +68,10 @@ const EventInfo = () => {
                 dispatch({
                   type: 'SET_YEAR',
                   payload: events[event.id].year
+                });
+                dispatch({
+                  type: 'SET_PREV_CHOSEN_MONTH',
+                  payload: chosenMonth
                 });
                 dispatch({
                   type: 'SET_MONTH',
