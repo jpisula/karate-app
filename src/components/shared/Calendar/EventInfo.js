@@ -8,7 +8,15 @@ import {
 import events from '../../../database/events.js';
 
 const EventInfo = () => {
-  const { event } = useContext(CalendarContext);
+  const {
+    event,
+    dispatch,
+    chosenMonth,
+    chosenYear,
+    louderForOthers,
+    startDay
+  } = useContext(CalendarContext);
+  console.log(event);
   const {
     imgSrc,
     title,
@@ -20,8 +28,6 @@ const EventInfo = () => {
     description,
     city
   } = event;
-  const { dispatch } = useContext(CalendarContext);
-  console.log(event);
   return (
     <div className='edges'>
       <div className='event-container'>
@@ -37,6 +43,20 @@ const EventInfo = () => {
             onClick={() => {
               if (event.id - 2 >= 0) {
                 dispatch({ type: 'SET_EVENT', payload: events[event.id - 2] });
+                dispatch({
+                  type: 'SET_YEAR',
+                  payload: events[event.id - 2].year
+                });
+                dispatch({
+                  type: 'SET_PREV_CHOSEN_MONTH',
+                  payload: chosenMonth
+                });
+                dispatch({
+                  type: 'SET_MONTH',
+                  payload: events[event.id - 2].month - 1
+                });
+                dispatch({ type: 'SET_LOUDER', payload: true });
+                console.log(chosenYear, chosenMonth);
               }
             }}
           />
@@ -45,6 +65,20 @@ const EventInfo = () => {
             onClick={() => {
               if (event.id < events.length) {
                 dispatch({ type: 'SET_EVENT', payload: events[event.id] });
+                dispatch({
+                  type: 'SET_YEAR',
+                  payload: events[event.id].year
+                });
+                dispatch({
+                  type: 'SET_PREV_CHOSEN_MONTH',
+                  payload: chosenMonth
+                });
+                dispatch({
+                  type: 'SET_MONTH',
+                  payload: events[event.id].month - 1
+                });
+                dispatch({ type: 'SET_LOUDER', payload: true });
+                console.log(chosenYear, chosenMonth);
               }
             }}
           />

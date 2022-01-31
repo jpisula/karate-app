@@ -11,13 +11,28 @@ import {
   nrOfAllDays
 } from './helpers.js';
 import events from '../../../database/events.js';
+import { useContext } from 'react';
+import CalendarContext from './CalendarContext';
 
 function Calendar() {
   let nrOfFebDays = 28;
   let nrOfAllDays = 0;
-  let prevChosenMonthTemp = 0;
 
   const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
+
+  const {
+    dispatch,
+    chosenMonth,
+    chosenYear,
+    louderForOthers,
+    startDay,
+    isYearSwitcherOpen,
+    isMonthSwitcherOpen,
+    prevChosenYear,
+    prevChosenMonth,
+    calendarTitle,
+    daysToMove
+  } = useContext(CalendarContext);
 
   const months = [
     { name: 'STYCZEŃ', nrOfDays: 31 },
@@ -38,27 +53,20 @@ function Calendar() {
     nrOfAllDays += months[i].nrOfDays;
   }
 
-  const [startDay, changeStartDay] = useState(6);
-  const [isYearSwitcherOpen, setYearSwitcher] = useState(false);
-  const [isMonthSwitcherOpen, setMonthSwitcher] = useState(false);
-  const [chosenYear, setChosenYear] = useState(2022);
-  const [prevChosenYear, setPrevChosenYear] = useState(2022);
-  const [prevChosenMonth, setPrevChosenMonth] = useState(0);
-  const [chosenMonth, setChosenMonth] = useState(0);
-  const [calendarTitle, setCalendartitle] = useState(`STYCZEŃ 2022`);
-  const [louderForOthers, setlouderForOthers] = useState(false);
-  const [daysToMove, setDaysToMove] = useState(0);
-
   useEffect(() => {
-    setCalendartitle(`${months[chosenMonth].name} ${chosenYear}`);
-    setYearSwitcher(false);
+    dispatch({
+      type: 'SET_CALENDAR_TITLE',
+      payload: `${months[chosenMonth].name} ${chosenYear}`
+    });
+    dispatch({ type: 'SET_YEAR_SWITCHER', payload: false });
     nrOfFebDays = chosenYear % 4 === 0 && chosenYear % 100 !== 0 ? 29 : 28;
   }, [chosenYear]);
 
   useEffect(() => {
     if (louderForOthers === true) {
-      setDaysToMove(
-        countDays(
+      dispatch({
+        type: 'SET_DAYS_TO_MOVE',
+        payload: countDays(
           prevChosenMonth,
           prevChosenYear,
           chosenMonth,
@@ -66,8 +74,8 @@ function Calendar() {
           months,
           nrOfAllDays
         )
-      );
-      setlouderForOthers(false);
+      });
+      dispatch({ type: 'SET_LOUDER', payload: false });
     }
   }, [louderForOthers]);
 
@@ -76,22 +84,23 @@ function Calendar() {
     const newStartDayFuture = daysToMoveMod7 <= 0 ? 7 : daysToMoveMod7;
     const newStartDayPast =
       daysToMoveMod7 <= 0 ? daysToMoveMod7 + 7 : daysToMoveMod7;
-    changeStartDay(daysToMove > 0 ? newStartDayFuture : newStartDayPast);
+    dispatch({
+      type: 'SET_START_DAY',
+      payload: daysToMove > 0 ? newStartDayFuture : newStartDayPast
+    });
   }, [daysToMove]);
-
-  // const loudEvents = () => {
-
-  // };
-
-  // const deleteEvents = () => {
-
-  // };
 
   const handleDateSwitcherClick = () => {
     if (isMonthSwitcherOpen) {
-      setMonthSwitcher(!isMonthSwitcherOpen);
+      dispatch({
+        type: 'SET_IS_MONTH_SWITCHER_OPEN',
+        payload: !isMonthSwitcherOpen
+      });
     } else {
-      setYearSwitcher(!isYearSwitcherOpen);
+      dispatch({
+        type: 'SET_IS_YEAR_SWITCHER_OPEN',
+        payload: !isYearSwitcherOpen
+      });
     }
   };
 
@@ -100,27 +109,34 @@ function Calendar() {
       let prevStart;
       if (chosenMonth > 0 && !isYearSwitcherOpen) {
         prevStart = startDay - ((months[chosenMonth - 1].nrOfDays % 7) % 7);
-        setPrevChosenMonth(chosenMonth);
-        setChosenMonth(chosenMonth - 1);
+        dispatch({ type: 'SET_PREV_CHOSEN_MONTH', payload: chosenMonth });
+        dispatch({ type: 'SET_MONTH', payload: chosenMonth - 1 });
       } else if (!isYearSwitcherOpen) {
-        setPrevChosenYear(chosenYear);
-        setChosenYear(chosenYear - 1);
+        dispatch({ type: 'SET_PREV_CHOSEN_YEAR', payload: chosenYear });
+        dispatch({ type: 'SET_YEAR', payload: chosenYear - 1 });
         prevStart =
           startDay -
           ((months[chosenMonth - 1 < 0 ? 11 : chosenMonth - 1].nrOfDays % 7) %
             7);
-        setChosenMonth(11);
+        dispatch({ type: 'SET_MONTH', payload: 11 });
       }
-      changeStartDay(prevStart <= 0 ? prevStart + 7 : prevStart);
+      dispatch({
+        type: 'SET_START_DAY',
+        payload: prevStart <= 0 ? prevStart + 7 : prevStart
+      });
     } else if (side === 'RIGHT') {
-      setPrevChosenMonth(chosenMonth);
-      changeStartDay(((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1);
+      dispatch({ type: 'SET_PREV_CHOSEN_MONTH', payload: chosenMonth });
+
+      dispatch({
+        type: 'SET_START_DAY',
+        payload: ((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1
+      });
 
       if (chosenMonth < 11 && !isYearSwitcherOpen) {
-        setChosenMonth(chosenMonth + 1);
+        dispatch({ type: 'SET_MONTH', payload: chosenMonth + 1 });
       } else if (!isYearSwitcherOpen) {
-        setChosenYear(chosenYear + 1);
-        setChosenMonth(0);
+        dispatch({ type: 'SET_YEAR', payload: chosenYear + 1 });
+        dispatch({ type: 'SET_MONTH', payload: 0 });
       }
     }
   };
@@ -156,10 +172,16 @@ function Calendar() {
         <li
           className='year-item'
           onClick={(event) => {
-            setPrevChosenYear(chosenYear);
-            setChosenYear(Number.parseInt(event.target.innerText));
-            setMonthSwitcher(!isMonthSwitcherOpen);
-            setYearSwitcher(false);
+            dispatch({ type: 'SET_PREV_CHOSEN_YEAR', payload: chosenYear });
+            dispatch({
+              type: 'SET_YEAR',
+              payload: Number.parseInt(event.target.innerText)
+            });
+            dispatch({
+              type: 'SET_IS_MONTH_SWITCHER_OPEN',
+              payload: !isMonthSwitcherOpen
+            });
+            dispatch({ type: 'SET_IS_YEAR_SWITCHER_OPEN', payload: false });
           }}
         >
           {i}
@@ -170,15 +192,19 @@ function Calendar() {
   };
 
   const handleMonthChooseClick = (e) => {
-    setMonthSwitcher(!isMonthSwitcherOpen);
-    setYearSwitcher(false);
-    setPrevChosenMonth(chosenMonth);
+    dispatch({
+      type: 'SET_IS_MONTH_SWITCHER_OPEN',
+      payload: !isMonthSwitcherOpen
+    });
+    dispatch({ type: 'SET_IS_YEAR_SWITCHER_OPEN', payload: false });
+    dispatch({ type: 'SET_PREV_CHOSEN_MONTH', payload: chosenMonth });
+
     const currentMonth = months.findIndex(
       (el) => el.name === e.target.innerText
     );
-    setChosenMonth(currentMonth);
+    dispatch({ type: 'SET_MONTH', payload: currentMonth });
 
-    setlouderForOthers(true);
+    dispatch({ type: 'SET_LOUDER', payload: true });
   };
 
   const generateMonthListItems = () => {
