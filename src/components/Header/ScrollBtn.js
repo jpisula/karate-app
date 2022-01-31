@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import NavItems from './NavItems';
 import './ScrollBtn.scss';
@@ -11,6 +11,13 @@ const ScrollBtn = ({
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const nodeRef = useRef(null);
+  useEffect(() => {
+    if (isDropdownOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isDropdownOpen]);
 
   return (
     <>
