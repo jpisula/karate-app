@@ -25,6 +25,10 @@ function CalendarPage() {
           <EventInfo />
         </section>
 
+        <p className='event-switcher-instuction'>
+          Uzywaj strzałek, aby przeglądać kolejne wydarzenia!
+        </p>
+
         <div className='calendar-info'>
           <ol className='calendar-info-list'>
             <li className='calendar-info-list-item'>
