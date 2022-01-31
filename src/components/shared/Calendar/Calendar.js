@@ -55,10 +55,6 @@ function Calendar() {
     nrOfFebDays = chosenYear % 4 === 0 && chosenYear % 100 !== 0 ? 29 : 28;
   }, [chosenYear]);
 
-  // useEffect(() => {
-  //   loudEvents();
-  // }, [chosenMonth]);
-
   useEffect(() => {
     if (louderForOthers === true) {
       setDaysToMove(
@@ -100,7 +96,6 @@ function Calendar() {
   };
 
   const handleArrowClick = (side) => {
-    // deleteEvents();
     if (side === 'LEFT') {
       let prevStart;
       if (chosenMonth > 0 && !isYearSwitcherOpen) {
@@ -149,13 +144,6 @@ function Calendar() {
           chosenYear={chosenYear}
           events={events}
         />
-        // <div
-        //   data-day={i + 1}
-        //   className='day-tile'
-        //   style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
-        // >
-        //   {`${i + 1}`}
-        // </div>
       );
     }
     return dayTiles;

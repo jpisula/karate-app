@@ -94,6 +94,10 @@
     .arrow-left {
       padding-left: 10px;
       font-size: $large-font;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .month-and-year {
@@ -108,6 +112,10 @@
     .arrow-right {
       padding-right: 10px;
       font-size: $large-font;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
   .week-days {

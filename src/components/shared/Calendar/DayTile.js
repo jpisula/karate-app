@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import CalendarContext from './CalendarContext';
 
 const DayTile = ({ dataDay, style, chosenMonth, chosenYear, events }) => {
