@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './Header.scss';
+import './NavLogo.scss';
 
 const NavLogo = ({ logo }) => {
   const { title, titleHTML, src } = logo;
