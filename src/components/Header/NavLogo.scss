@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap');
-@import '../../../lib/sass/styles.scss';
+@import '../../lib/sass/styles.scss';
 
 .logo {
   font-family: 'Lato', sans-serif;
@@ -23,10 +22,10 @@
 
   &:hover {
     cursor: pointer;
-    #brand-name {
+    div {
       color: $red-color;
     }
-    .red-text {
+    .special-text {
       color: white;
     }
   }
@@ -43,12 +42,12 @@
     }
   }
 
-  .red-text {
+  .special-text {
     color: $red-color;
     transition: 0.5s;
   }
 
-  #brand-name {
+  div {
     font-weight: 600;
     letter-spacing: 1px;
     transition: 0.5s;

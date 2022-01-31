@@ -2,6 +2,7 @@ import ContactForm from '../ContactForm/ContactForm';
 import './SectionInfo.scss';
 import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
 import karateImg from '../../../pages/Homepage/assets/karate.jpeg';
+import dojo from '../../../assets/treningi-sala.webp';
 // import GoogleMaps from '../GoogleMaps/GoogleMaps';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 
@@ -20,35 +21,53 @@ function SectionInfo() {
         </p>
       </div>
 
-      <div className='schedule-wrapper'>
-        <div className='container'>
-          <h2 className='schedule-title'>ZAJĘCIA</h2>
-          <p className='location'>
-            Gimnazjum nr 23 - ul. Zielonogórska 23, Katowice
-          </p>
-          <table className='schedule'>
-            <thead>
-              <tr className='days-row'>
-                <th></th>
-                <th>Wtorki</th>
-                <th>Czwartki</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className='group-row'>
-                <td className='group'>Dzieci</td>
-                <td className='hours'>17:30 - 18:30</td>
-                <td className='hours'>17:30 - 18:30</td>
-              </tr>
-              <tr className='group-row'>
-                <td className='group'>Młodzież i starsi</td>
-                <td className='hours'>18:30 - 20:30</td>
-                <td className='hours'>18:30 - 20:30</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <section className='schedule-wrapper'>
+        <ParallaxProvider>
+          <ParallaxBanner
+            className='schedule-parallax'
+            layers={[
+              {
+                image: dojo,
+                amount: 0.5
+              }
+            ]}
+            style={{
+              height: '100%',
+              padding: ''
+            }}
+          >
+            <div className='container'>
+              <div className='schedule-info-wrapper'>
+                <h2 className='schedule-title'>ZAJĘCIA</h2>
+                <p className='location'>
+                  Gimnazjum nr 23 - ul. Zielonogórska 23, Katowice
+                </p>
+                <table className='schedule'>
+                  <thead>
+                    <tr className='days-row'>
+                      <th></th>
+                      <th>Wtorki</th>
+                      <th>Czwartki</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className='group-row'>
+                      <td className='group'>Dzieci</td>
+                      <td className='hours'>17:30 - 18:30</td>
+                      <td className='hours'>17:30 - 18:30</td>
+                    </tr>
+                    <tr className='group-row'>
+                      <td className='group'>Młodzież i starsi</td>
+                      <td className='hours'>18:30 - 20:30</td>
+                      <td className='hours'>18:30 - 20:30</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </ParallaxBanner>
+        </ParallaxProvider>
+      </section>
 
       <div className='google-maps-localisation'>
         <div className='container'>

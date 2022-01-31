@@ -1,8 +1,8 @@
 import './Button.scss';
 
-function Button({ text, onClick }) {
+function Button({ text, onClick, animation }) {
   return (
-    <div onClick={onClick} className='button-container'>
+    <div onClick={onClick} data-aos={animation} className='button-container'>
       <button>{text}</button>
     </div>
   );

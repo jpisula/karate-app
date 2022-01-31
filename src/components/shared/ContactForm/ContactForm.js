@@ -6,25 +6,28 @@ const onBtnClick = (e) => {
   console.log(e);
 };
 
-function ContactForm() {
+function ContactForm({ animation, btnAnimation }) {
   return (
     <form className='contact-form'>
       <Input
         classes={'contact-input-normal'}
         placeholder={'Twoje imię...'}
         label={'Twoje imię'}
+        animation={animation}
       />
       <Input
         classes={'contact-input-normal'}
         placeholder={'E-mail...'}
         label={'E-mail'}
+        animation={animation}
       />
       <Input
         classes={'contact-input-normal'}
         placeholder={'Numer telefonu...'}
         label={'Numer telefonu'}
+        animation={animation}
       />
-      <label>
+      <label data-aos={animation}>
         <p>Wiadomość</p>
         <textarea
           className={'contact-input-big'}
@@ -32,14 +35,18 @@ function ContactForm() {
         />
       </label>
 
-      <Button text='Wyślij formularz' onClick={onBtnClick} />
+      <Button
+        text='Wyślij formularz'
+        onClick={onBtnClick}
+        animation={btnAnimation}
+      />
     </form>
   );
 }
 
-const Input = ({ classes, placeholder, label }) => {
+const Input = ({ classes, placeholder, label, animation }) => {
   return (
-    <label>
+    <label data-aos={animation}>
       <p>{label}</p>
       <input type='text' className={classes} placeholder={placeholder} />
     </label>

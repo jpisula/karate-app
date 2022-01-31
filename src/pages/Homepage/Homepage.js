@@ -1,3 +1,6 @@
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect, useState } from 'react';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
@@ -12,6 +15,24 @@ import './Homepage.scss';
 
 function Homepage() {
   const navigate = useNavigate();
+
+  const [numOfArticleItems, setNumOfArticleItems] = useState(
+    window.innerWidth > 1440 ? 6 : 4
+  );
+  //resize handling useEffect
+  useEffect(() => {
+    const handleResize = () => {
+      setNumOfArticleItems(window.innerWidth > 1440 ? 6 : 4);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
 
   return (
     <>
@@ -37,14 +58,14 @@ function Homepage() {
 
         <section className='groups'>
           <div className='container'>
-            <h2>U nas znajdziesz treningi dla...</h2>
-            <GroupsAd />
+            <h2 data-aos='zoom-in'>U nas znajdziesz treningi dla...</h2>
+            <GroupsAd animation={'zoom-in'} />
           </div>
         </section>
 
         <section className='annoucements'>
-          <h1>ZAPISY</h1>
-          <h2 className='phone'>
+          <h1 data-aos='flip-up'>ZAPISY</h1>
+          <h2 className='phone' data-aos='flip-up'>
             <BsFillTelephoneFill />
             <div>000 - 000 - 000</div>
           </h2>
@@ -66,8 +87,8 @@ function Homepage() {
               }}
             >
               <div className='contact-container'>
-                <h1>Skontaktuj się z nami!</h1>
-                <ContactForm />
+                <h1 data-aos='flip-up'>Skontaktuj się z nami!</h1>
+                <ContactForm animation='fade-right' btnAnimation='zoom-in' />
               </div>
             </ParallaxBanner>
           </ParallaxProvider>
@@ -75,21 +96,24 @@ function Homepage() {
 
         <section className='instructor'>
           <div className='container'>
-            <h2>Instruktor i pomocnicy</h2>
+            <h2 data-aos='flip-up'>Instruktor i pomocnicy</h2>
             <div className='instructors-wrapper'>
-              <InstructorCard name={'Michał Bodziony'} />
-              <InstructorCard name={'Dawid Kłyż'} />
-              <InstructorCard name={'Tomasz Kos'} />
+              <InstructorCard animation={'zoom-in'} name={'Michał Bodziony'} />
+              <InstructorCard animation={'zoom-in'} name={'Dawid Kłyż'} />
+              <InstructorCard animation={'zoom-in'} name={'Tomasz Kos'} />
             </div>
           </div>
         </section>
 
         <section className='news-list'>
           <div className='container'>
-            <h2 className='news-h2'>Aktualności</h2>
+            <h2 className='news-h2' data-aos='flip-up'>
+              Aktualności
+            </h2>
             <ArticlesList
               className='articles-list'
-              numberOfItems={window.innerWidth > 1440 ? 6 : 4}
+              numberOfItems={numOfArticleItems}
+              animation='zoom-in'
             />
             <Button
               text='Więcej aktualności'
