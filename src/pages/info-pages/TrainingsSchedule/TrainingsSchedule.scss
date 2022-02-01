@@ -10,10 +10,54 @@
     text-align: center;
     font-size: $big-font;
     font-weight: 800;
+    letter-spacing: 1px;
 
     @include media('>=tablet-portrait') {
       font-size: $large-font;
       padding: 40px 0;
+    }
+  }
+
+  h2 {
+    padding-bottom: 25px;
+    margin: 0 auto;
+    font-size: $med-font;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  h3 {
+    margin: 0 auto;
+    font-size: $med-font;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .schedule {
+    width: 80%;
+    margin: 0 auto;
+
+    .Collapsible svg {
+      stroke-width: 1.5;
+    }
+    .Collapsible {
+      margin-bottom: 25px;
+    }
+
+    .Collapsible__trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .Collapsible__trigger.is-open svg {
+      transform: rotate(90deg);
+      transition: 0.5s;
+    }
+
+    .Collapsible__trigger.is-closed svg {
+      transform: rotate(0deg);
+      transition: 0.3s;
     }
   }
 }
