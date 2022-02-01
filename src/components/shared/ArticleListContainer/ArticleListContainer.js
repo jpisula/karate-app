@@ -4,7 +4,7 @@ import ArticlesList from '../ArticlesList/ArticlesList';
 import Button from '../Button/Button';
 import './ArticleListContainer.scss';
 
-function ArticleListContainer() {
+function ArticleListContainer({ currentArticleId }) {
   const navigate = useNavigate();
   const [numOfItems, setNumOfItems] = useState(
     window.innerWidth >= 768 && window.innerWidth < 1440 ? 4 : 3
@@ -27,7 +27,11 @@ function ArticleListContainer() {
         <h2 className='news-h2'>Aktualności</h2>
       </header>
       <main>
-        <ArticlesList className='article-list' numberOfItems={numOfItems} />
+        <ArticlesList
+          className='article-list'
+          numberOfItems={numOfItems}
+          currentArticleId={currentArticleId}
+        />
         <Button
           text='Więcej aktualności'
           onClick={() => navigate('/newslist', { replace: true })}

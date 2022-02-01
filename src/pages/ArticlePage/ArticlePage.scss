@@ -151,12 +151,12 @@
       @include media('>=tablet-portrait', '<=tablet-landscape') {
         padding: 40px 25px;
         line-height: 19.2px;
-        font-size: $med-font;
+        font-size: $small-font;
       }
 
-      @include media('>=tablet-landscape', '<=desktop') {
+      @include media('>=tablet-landscape') {
         font-size: $med-font;
-        line-height: 24px;
+        line-height: 26px;
         padding: 25px 0;
       }
     }

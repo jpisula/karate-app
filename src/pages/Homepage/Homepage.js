@@ -58,14 +58,14 @@ function Homepage() {
 
         <section className='groups'>
           <div className='container'>
-            <h2 data-aos='zoom-in'>U nas znajdziesz treningi dla...</h2>
-            <GroupsAd animation={'zoom-in'} />
+            <h2>U nas znajdziesz treningi dla...</h2>
+            <GroupsAd />
           </div>
         </section>
 
         <section className='annoucements'>
-          <h1 data-aos='flip-up'>ZAPISY</h1>
-          <h2 className='phone' data-aos='flip-up'>
+          <h1 data-aos='zoom-in'>ZAPISY</h1>
+          <h2 className='phone' data-aos='zoom-in'>
             <BsFillTelephoneFill />
             <div>000 - 000 - 000</div>
           </h2>
@@ -87,7 +87,7 @@ function Homepage() {
               }}
             >
               <div className='contact-container'>
-                <h1 data-aos='flip-up'>Skontaktuj się z nami!</h1>
+                <h1 data-aos='zoom-in'>Skontaktuj się z nami!</h1>
                 <ContactForm animation='fade-right' btnAnimation='zoom-in' />
               </div>
             </ParallaxBanner>
@@ -96,7 +96,7 @@ function Homepage() {
 
         <section className='instructor'>
           <div className='container'>
-            <h2 data-aos='flip-up'>Instruktor i pomocnicy</h2>
+            <h2 data-aos='zoom-in'>Instruktor i pomocnicy</h2>
             <div className='instructors-wrapper'>
               <InstructorCard animation={'zoom-in'} name={'Michał Bodziony'} />
               <InstructorCard animation={'zoom-in'} name={'Dawid Kłyż'} />
@@ -107,7 +107,7 @@ function Homepage() {
 
         <section className='news-list'>
           <div className='container'>
-            <h2 className='news-h2' data-aos='flip-up'>
+            <h2 className='news-h2' data-aos='zoom-in'>
               Aktualności
             </h2>
             <ArticlesList

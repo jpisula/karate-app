@@ -17,7 +17,7 @@ function ArticlePage() {
               <h1>{article.title}</h1>
               <section className='date-and-share-container'>
                 <p className='article-date'>
-                  dodano: {new Date(article.date).toDateString()}
+                  dodano: {new Date(article.date).toLocaleDateString('pl')}
                 </p>
                 <div className='share-container'>
                   <BsFacebook className='media-icon' />
@@ -32,15 +32,12 @@ function ArticlePage() {
               />
             </header>
             <main>
-              <p
-                className='article-text'
-                dangerouslySetInnerHTML={{ __html: article.text }}
-              />
+              <div className='article-text'>{article.text}</div>
             </main>
           </article>
         </div>
 
-        <ArticleListContainer />
+        <ArticleListContainer currentArticleId={id} />
       </div>
     </section>
   );
