@@ -1,6 +1,7 @@
 export const trainingsSchedule = [
   {
     name: 'Grupy Dziecięce (4-6 lat)',
+    category: 'kinder',
     sections: [
       {
         place: 'SP. Nr 61, ZSS Nr 12 Katowice-Ligota',
@@ -48,6 +49,7 @@ export const trainingsSchedule = [
   },
   {
     name: 'Grupy Dzieci Szkolnych (7+ lat)',
+    category: 'children',
     sections: [
       {
         place: 'SP. Nr 35 Katowice - Ligota',
@@ -112,7 +114,8 @@ export const trainingsSchedule = [
     ]
   },
   {
-    name: 'Młodzież, Studenci i Dorośli',
+    name: 'Młodzież, Studenci, Dorośli i Rodziny',
+    category: 'adults',
     sections: [
       {
         place: 'SP. Nr35 Katowice - Ligota',

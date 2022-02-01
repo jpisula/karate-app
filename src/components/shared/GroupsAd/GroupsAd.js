@@ -13,28 +13,28 @@ const GroupsAd = ({ animation }) => {
         imgSrc={kidsKarateImg}
         XImgPosition={-26}
         animation={animation}
-        to='/kinder'
+        to='/schedule/kinder'
       />
       <GroupAdItem
         title='MŁODZIEŻY'
         imgSrc={teenagersKarateImg}
         XImgPosition={-3}
         animation={animation}
-        to='/sections'
+        to='/schedule/children'
       />
       <GroupAdItem
         title='DOROSŁYCH'
         imgSrc={adultsKarateImg}
         XImgPosition={0}
         animation={animation}
-        to='/sections'
+        to='/schedule/adults'
       />
       <GroupAdItem
         title='RODZIN'
         imgSrc={familyKarateImg}
         XImgPosition={-50}
         animation={animation}
-        to='/sections'
+        to='/schedule/adults'
       />
     </div>
   );

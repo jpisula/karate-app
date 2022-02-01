@@ -30,6 +30,7 @@ function App() {
             <Route path='/newslist' element={<NewsPage />} />
             <Route path='/calendar' element={<CalendarPage />} />
             <Route path='/schedule' element={<TrainingsSchedule />} />
+            <Route path='/schedule/:group' element={<TrainingsSchedule />} />
             <Route path='/*' element={<Homepage />} />
           </Routes>
         </main>

@@ -8,9 +8,11 @@ import ArticlesList from '../../../components/shared/ArticlesList/ArticlesList';
 import Button from '../../../components/shared/Button/Button';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const TrainingsSchedule = () => {
   const navigate = useNavigate();
+  const { group } = useParams();
 
   const [numOfArticleItems, setNumOfArticleItems] = useState(
     window.innerWidth > 1440 ? 6 : 4
@@ -32,6 +34,7 @@ const TrainingsSchedule = () => {
       schedule.push(
         <Collapsible
           trigger={[<h3>{scheduleGroup.name}</h3>, <BsChevronDown />]}
+          open={group && scheduleGroup.category === group}
         >
           <div className='table-wrapper'>
             <Table>
