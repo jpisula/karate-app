@@ -31,11 +31,48 @@
     font-size: $med-font;
     font-weight: 600;
     text-align: center;
+    text-decoration: underline;
   }
 
   .schedule {
     width: 80%;
     margin: 0 auto;
+
+    .table-wrapper {
+      font-size: $tiny-font;
+      font-weight: 400;
+      margin: 25px auto 25px auto;
+
+      p {
+        line-height: 20px;
+      }
+
+      .tdBefore {
+        font-size: $small-font;
+        font-weight: 600;
+      }
+
+      .responsiveTable tbody tr {
+        padding: 0;
+      }
+
+      tbody {
+        tr {
+          margin-bottom: 5px;
+
+          td {
+            padding: 0 5px;
+            padding-top: 5px;
+            padding-bottom: 10px;
+            background-color: rgba(0, 0, 0, 0.2);
+          }
+
+          td:nth-child(odd) {
+            background-color: rgba(217, 37, 28, 0.5);
+          }
+        }
+      }
+    }
 
     .Collapsible svg {
       stroke-width: 1.5;
@@ -50,9 +87,15 @@
       align-items: center;
     }
 
-    .Collapsible__trigger.is-open svg {
-      transform: rotate(90deg);
-      transition: 0.5s;
+    .Collapsible__trigger.is-open {
+      h3 {
+        text-align: left;
+        margin: 0;
+      }
+      svg {
+        transform: rotate(90deg);
+        transition: 0.5s;
+      }
     }
 
     .Collapsible__trigger.is-closed svg {

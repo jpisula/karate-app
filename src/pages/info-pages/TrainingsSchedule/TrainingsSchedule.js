@@ -3,6 +3,8 @@ import Collapsible from 'react-collapsible';
 import ArticleListContainer from '../../../components/shared/ArticleListContainer/ArticleListContainer';
 import { trainingsSchedule } from '../../../configs/trainings-schedule';
 import { BsChevronDown } from 'react-icons/bs';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
 const TrainingsSchedule = () => {
   const generateCollapsibleElements = () => {
@@ -12,11 +14,84 @@ const TrainingsSchedule = () => {
         <Collapsible
           trigger={[<h3>{scheduleGroup.name}</h3>, <BsChevronDown />]}
         >
-          <p>World</p>
+          <div className='table-wrapper'>
+            <Table>
+              <Thead>
+                <Tr>
+                  <Th>
+                    <p>Miejsce</p>
+                  </Th>
+                  <Th>
+                    <p>Adres</p>
+                  </Th>
+                  <Th>
+                    <p>Dzień i Godzina</p>
+                  </Th>
+                  <Th>
+                    <p>Instruktor</p>
+                  </Th>
+                  <Th>
+                    <p>Pomocnicy</p>
+                  </Th>
+                </Tr>
+              </Thead>
+              <Tbody>{generateScheduleTableRows(scheduleGroup)}</Tbody>
+            </Table>
+          </div>
         </Collapsible>
       );
     }
     return schedule;
+  };
+
+  const generateScheduleTableRows = (scheduleGroup) => {
+    const rows = [];
+    for (const section of scheduleGroup.sections) {
+      const {
+        place,
+        address,
+        schedule,
+        instructor,
+        instructorEmail,
+        instructorPhone,
+        instructorHelpers
+      } = section;
+
+      rows.push(
+        <Tr>
+          <Td>
+            <p>{place}</p>
+          </Td>
+          <Td>
+            <p>{address}</p>
+          </Td>
+          <Td>
+            {schedule.map((date) => {
+              return (
+                <p>
+                  {date.days} - {date.hours}
+                </p>
+              );
+            })}
+          </Td>
+          <Td>
+            <p>{instructor}</p>
+            <p>{instructorEmail}</p>
+            <p>{instructorPhone}</p>
+          </Td>
+          <Td>
+            {instructorHelpers.length > 0 ? (
+              instructorHelpers.map((helper) => {
+                return <p>{helper}</p>;
+              })
+            ) : (
+              <p>-</p>
+            )}
+          </Td>
+        </Tr>
+      );
+    }
+    return rows;
   };
 
   return (
