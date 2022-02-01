@@ -56,7 +56,7 @@ export const countDays = (
       }
     }
     return days;
-  } else {
+  } else if (year2 < year1) {
     // if (isYearCommon(year1)) {
     //   days++;
     // }

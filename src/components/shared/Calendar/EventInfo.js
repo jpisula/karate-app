@@ -21,13 +21,22 @@ const EventInfo = () => {
     description,
     city
   } = event;
+
+  const setDate = (date) => {
+    return date > 9 ? date : '0' + date;
+  };
+
   return (
     <div className='edges'>
       <div className='event-container'>
         <img src={imgSrc} alt='' />
         <h2 className='title'>{title}</h2>
         <p className='date'>
-          {dayStart === dayEnd ? dayStart : `${dayStart} - ${dayEnd}`}
+          {`${
+            dayStart === dayEnd
+              ? setDate(dayStart)
+              : `${setDate(dayStart)} - ${setDate(dayEnd)}`
+          }.${setDate(month)}.${year}`}
         </p>
         <p className='city'>{city}</p>
         <p className='address'>{address}</p>

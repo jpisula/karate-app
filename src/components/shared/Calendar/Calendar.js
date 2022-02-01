@@ -31,7 +31,8 @@ function Calendar() {
     prevChosenYear,
     prevChosenMonth,
     calendarTitle,
-    daysToMove
+    daysToMove,
+    isMonthChosen
   } = useContext(CalendarContext);
 
   const months = [
@@ -91,7 +92,28 @@ function Calendar() {
   }, [daysToMove]);
 
   const handleDateSwitcherClick = () => {
-    if (isMonthSwitcherOpen) {
+    console.log(isYearSwitcherOpen);
+    if (isMonthChosen) {
+      dispatch({
+        type: 'SET_DAYS_TO_MOVE',
+        payload: countDays(
+          0,
+          chosenYear,
+          prevChosenMonth,
+          prevChosenYear,
+          months,
+          nrOfAllDays
+        )
+      });
+      dispatch({
+        type: 'SET_IS_MONTH_SWITCHER_OPEN',
+        payload: !isMonthSwitcherOpen
+      });
+      dispatch({
+        type: 'SET_IS_MONTH_CHOSEN',
+        payload: false
+      });
+    } else if (isMonthSwitcherOpen) {
       dispatch({
         type: 'SET_IS_MONTH_SWITCHER_OPEN',
         payload: !isMonthSwitcherOpen
@@ -176,6 +198,7 @@ function Calendar() {
         <li
           className='year-item'
           onClick={(event) => {
+            dispatch({ type: 'SET_IS_MONTH_CHOSEN', payload: true });
             dispatch({ type: 'SET_PREV_CHOSEN_YEAR', payload: chosenYear });
             dispatch({
               type: 'SET_YEAR',
@@ -196,6 +219,7 @@ function Calendar() {
   };
 
   const handleMonthChooseClick = (e) => {
+    dispatch({ type: 'SET_IS_MONTH_CHOSEN', payload: false });
     dispatch({
       type: 'SET_IS_MONTH_SWITCHER_OPEN',
       payload: !isMonthSwitcherOpen
