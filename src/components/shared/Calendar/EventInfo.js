@@ -8,15 +8,8 @@ import {
 import events from '../../../database/events.js';
 
 const EventInfo = () => {
-  const {
-    event,
-    dispatch,
-    chosenMonth,
-    chosenYear,
-    louderForOthers,
-    startDay
-  } = useContext(CalendarContext);
-  console.log(event);
+  const { event, dispatch, chosenMonth, chosenYear } =
+    useContext(CalendarContext);
   const {
     imgSrc,
     title,
@@ -33,7 +26,9 @@ const EventInfo = () => {
       <div className='event-container'>
         <img src={imgSrc} alt='' />
         <h2 className='title'>{title}</h2>
-        <p className='date'>{`${dayStart} - ${dayEnd} ${month} ${year}r.`}</p>
+        <p className='date'>
+          {dayStart === dayEnd ? dayStart : `${dayStart} - ${dayEnd}`}
+        </p>
         <p className='city'>{city}</p>
         <p className='address'>{address}</p>
         <p className='description'>{description}</p>
@@ -41,7 +36,11 @@ const EventInfo = () => {
           <BsFillArrowLeftSquareFill
             className='arrow'
             onClick={() => {
-              if (event.id - 2 >= 0) {
+              if (
+                event.id - 2 >= 0 &&
+                (chosenMonth !== events[event.id - 2].month ||
+                  chosenYear !== events[event.id - 2].year)
+              ) {
                 dispatch({ type: 'SET_EVENT', payload: events[event.id - 2] });
                 dispatch({
                   type: 'SET_YEAR',
@@ -56,14 +55,17 @@ const EventInfo = () => {
                   payload: events[event.id - 2].month - 1
                 });
                 dispatch({ type: 'SET_LOUDER', payload: true });
-                console.log(chosenYear, chosenMonth);
               }
             }}
           />
           <BsFillArrowRightSquareFill
             className='arrow'
             onClick={() => {
-              if (event.id < events.length) {
+              if (
+                event.id < events.length &&
+                (chosenMonth !== events[event.id].month ||
+                  chosenYear !== events[event.id].year)
+              ) {
                 dispatch({ type: 'SET_EVENT', payload: events[event.id] });
                 dispatch({
                   type: 'SET_YEAR',
@@ -78,7 +80,6 @@ const EventInfo = () => {
                   payload: events[event.id].month - 1
                 });
                 dispatch({ type: 'SET_LOUDER', payload: true });
-                console.log(chosenYear, chosenMonth);
               }
             }}
           />

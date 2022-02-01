@@ -2,7 +2,7 @@
 
 .calendar-container {
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
   margin-bottom: 20px;
 
   .calendar-content {
@@ -23,6 +23,14 @@
         height: 75%;
         overflow: hidden;
         width: 20%;
+
+        @include media('>=mobile', '<=tablet-portrait') {
+          width: 30%;
+        }
+
+        @include media('>=tablet-portrait', '<=tablet-landscape') {
+          width: 40%;
+        }
 
         .year-list {
           height: 200px;
@@ -50,6 +58,16 @@
               font-weight: 300;
               transition: all linear 0.3s;
             }
+
+            @include media('>=mobile', '<=tablet-portrait') {
+              font-size: $large-font;
+              padding-top: 10px;
+            }
+
+            @include media('>=tablet-portrait', '<=tablet-landscape') {
+              font-size: 30px;
+              padding-top: 12px;
+            }
           }
         }
       }
@@ -74,6 +92,16 @@
             @extend .year-item;
             font-size: $small-font;
             padding-top: 6px;
+
+            @include media('>=mobile', '<=tablet-portrait') {
+              font-size: $med-font;
+              padding-top: 9px;
+            }
+
+            @include media('>=tablet-portrait', '<=tablet-landscape') {
+              font-size: $medder-font;
+              padding-top: 10px;
+            }
           }
         }
       }
@@ -91,6 +119,14 @@
     border-top-right-radius: 10px;
     width: 100%;
 
+    @include media('>=mobile', '<=tablet-portrait') {
+      padding: 20px 0;
+    }
+
+    @include media('>=tablet-portrait', '<=tablet-landscape') {
+      padding: 25px 0;
+    }
+
     .arrow-left {
       padding-left: 10px;
       font-size: $large-font;
@@ -98,9 +134,25 @@
       &:hover {
         cursor: pointer;
       }
+
+      @include media('>=mobile', '<=tablet-portrait') {
+        font-size: 30px;
+      }
+
+      @include media('>=tablet-portrait', '<=tablet-landscape') {
+        font-size: 40px;
+      }
     }
 
     .month-and-year {
+      @include media('>=mobile', '<=tablet-portrait') {
+        font-size: $big-font;
+      }
+
+      @include media('>=tablet-portrait', '<=tablet-landscape') {
+        font-size: $large-font;
+      }
+
       &:hover {
         color: black;
         cursor: pointer;
@@ -116,6 +168,14 @@
       &:hover {
         cursor: pointer;
       }
+
+      @include media('>=mobile', '<=tablet-portrait') {
+        font-size: 30px;
+      }
+
+      @include media('>=tablet-portrait', '<=tablet-landscape') {
+        font-size: 40px;
+      }
     }
   }
   .week-days {
@@ -125,10 +185,28 @@
     color: black;
     background-color: white;
 
+    @include media('>=mobile', '<=tablet-portrait') {
+      padding: 20px 0;
+    }
+
+    @include media('>=tablet-portrait', '<=tablet-landscape') {
+      padding: 25px 0;
+    }
+
     .week-day {
       @include flexCenter(row);
       font-size: $small-font;
       font-weight: 300;
+
+      @include media('>=mobile', '<=tablet-portrait') {
+        font-size: $med-font;
+        font-weight: 400;
+      }
+
+      @include media('>=tablet-portrait', '<=tablet-landscape') {
+        font-size: $medder-font;
+        font-weight: 600;
+      }
     }
   }
 
@@ -144,6 +222,18 @@
       font-size: $tiny-font;
       font-weight: 200;
       height: 30px;
+
+      @include media('>=mobile', '<=tablet-portrait') {
+        height: 45px;
+        font-size: $med-font;
+        font-weight: 400;
+      }
+
+      @include media('>=tablet-portrait', '<=tablet-landscape') {
+        height: 65px;
+        font-size: $big-font;
+        font-weight: 600;
+      }
     }
   }
 }
