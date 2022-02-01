@@ -1,18 +1,10 @@
-import { useEffect, useState } from 'react';
-import reactDom from 'react-dom';
+import { useContext, useEffect } from 'react';
+import events from '../../../configs/events.js';
 import './Calendar.scss';
+import CalendarContext from './CalendarContext';
 import CalendarView from './CalendarView';
 import DayTile from './DayTile.js';
-import {
-  isYearCommon,
-  countDays,
-  months,
-  nrOfFebDays,
-  nrOfAllDays
-} from './helpers.js';
-import events from '../../../configs/events.js';
-import { useContext } from 'react';
-import CalendarContext from './CalendarContext';
+import { countDays } from './helpers.js';
 
 function Calendar() {
   let nrOfFebDays = 28;

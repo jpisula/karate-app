@@ -1,19 +1,16 @@
-// import { useState, useEffect } from 'react';
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-
 import ScrollToTop from './components/ScrollToTop';
+import { navConfig } from './configs/nav';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
 import Homepage from './pages/Homepage/Homepage';
 import TrainingsSchedule from './pages/info-pages/TrainingsSchedule/TrainingsSchedule';
+import KinderPage from './pages/KinderPage/KinderPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import SectionsPage from './pages/SectionsPage/SectionsPage';
-import KinderPage from './pages/KinderPage/KinderPage';
-import { navConfig } from './configs/nav';
 
 function App() {
   return (
