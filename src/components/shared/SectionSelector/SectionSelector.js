@@ -27,6 +27,7 @@ const generateSelectorItems = (sectionToDisplay, dispatch) => {
   for (let i = 0; i < places.length; i++) {
     selectorItems.push(
       <div
+        key={places[i].id}
         className={`section-selector-button ${
           sectionToDisplay.id === places[i].id && 'active'
         }`}

@@ -1,9 +1,11 @@
 export const trainingsSchedule = [
   {
+    id: 0,
     name: 'Grupy Dziecięce (4-6 lat)',
     category: 'kinder',
     sections: [
       {
+        id: 's0',
         place: 'SP. Nr 61, ZSS Nr 12 Katowice-Ligota',
         address: 'Ul. Kołobrzeska 8',
         schedule: [
@@ -18,6 +20,7 @@ export const trainingsSchedule = [
         instructorHelpers: []
       },
       {
+        id: 's1',
         place: 'MDK Południe Katowice - Podlesie',
         address: 'Ul. Sołtysia 25',
         schedule: [
@@ -32,6 +35,7 @@ export const trainingsSchedule = [
         instructorHelpers: []
       },
       {
+        id: 's2',
         place: 'SP. Nr 28 Gliwice',
         address: 'Ul. M. Strzody 4',
         schedule: [
@@ -48,10 +52,12 @@ export const trainingsSchedule = [
     ]
   },
   {
+    id: 1,
     name: 'Grupy Dzieci Szkolnych (7+ lat)',
     category: 'children',
     sections: [
       {
+        id: 's3',
         place: 'SP. Nr 35 Katowice - Ligota',
         address: 'Ul. Zielonogórska 23',
         schedule: [
@@ -66,6 +72,7 @@ export const trainingsSchedule = [
         instructorHelpers: ['Senpai Dawid Kłyż']
       },
       {
+        id: 's4',
         place: 'SP. Nr 67 Katowice - Panewniki',
         address: 'Ul. Zielona 5',
         schedule: [
@@ -84,6 +91,7 @@ export const trainingsSchedule = [
         instructorHelpers: []
       },
       {
+        id: 's5',
         place: 'MDK Południe Katowice - Podlesie',
         address: 'Ul. Sołtysia 25',
         schedule: [
@@ -98,6 +106,7 @@ export const trainingsSchedule = [
         instructorHelpers: []
       },
       {
+        id: 's6',
         place: 'SP. Nr 28 Gliwice - Centrum',
         address: 'Ul. M. Strzody 4',
         schedule: [
@@ -114,10 +123,12 @@ export const trainingsSchedule = [
     ]
   },
   {
+    id: 2,
     name: 'Młodzież, Studenci, Dorośli i Rodziny',
     category: 'adults',
     sections: [
       {
+        id: 's7',
         place: 'SP. Nr35 Katowice - Ligota',
         address: 'Ul. Zielonogórska 23',
         schedule: [
@@ -132,6 +143,7 @@ export const trainingsSchedule = [
         instructorHelpers: ['Senpai Dawid Kłyż']
       },
       {
+        id: 's8',
         place: 'SP. Nr 67 Katowice - Panewniki',
         address: 'Ul. Zielona 5',
         schedule: [
@@ -150,6 +162,7 @@ export const trainingsSchedule = [
         instructorHelpers: ['Senpai Dawid Kłyż']
       },
       {
+        id: 's9',
         place: 'SP. Nr 28 Gliwice - Centrum',
         address: 'Ul. M. Strzody 4',
         schedule: [

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 
@@ -33,7 +33,7 @@ const NavItems = ({
     );
 
     navItems.push(
-      <>
+      <Fragment key={`navitems-${title}`}>
         {!subItems && (
           <Link onClick={expandDropdown} to={to} className='nav-link'>
             {linkInsideHTML}
@@ -60,7 +60,7 @@ const NavItems = ({
             onMouseEnterSetDropdown={setIsSubDropdownOpen}
           />
         )}
-      </>
+      </Fragment>
     );
   }
 

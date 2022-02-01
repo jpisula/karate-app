@@ -6,7 +6,7 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import './SuperResponsiveTableStyle.css';
 import ArticlesList from '../../../components/shared/ArticlesList/ArticlesList';
 import Button from '../../../components/shared/Button/Button';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -32,35 +32,37 @@ const TrainingsSchedule = () => {
     const schedule = [];
     for (const scheduleGroup of trainingsSchedule) {
       schedule.push(
-        <Collapsible
-          trigger={[<h3>{scheduleGroup.name}</h3>, <BsChevronDown />]}
-          open={group && scheduleGroup.category === group}
-        >
-          <div className='table-wrapper'>
-            <Table>
-              <Thead>
-                <Tr>
-                  <Th>
-                    <p>Miejsce</p>
-                  </Th>
-                  <Th>
-                    <p>Adres</p>
-                  </Th>
-                  <Th>
-                    <p>Dzień i Godzina</p>
-                  </Th>
-                  <Th>
-                    <p>Instruktor</p>
-                  </Th>
-                  <Th>
-                    <p>Pomocnicy</p>
-                  </Th>
-                </Tr>
-              </Thead>
-              <Tbody>{generateScheduleTableRows(scheduleGroup)}</Tbody>
-            </Table>
-          </div>
-        </Collapsible>
+        <Fragment key={`schedule-collapse-${scheduleGroup.id}`}>
+          <Collapsible
+            trigger={[<h3>{scheduleGroup.name}</h3>, <BsChevronDown />]}
+            open={group && scheduleGroup.category === group}
+          >
+            <div className='table-wrapper'>
+              <Table>
+                <Thead>
+                  <Tr>
+                    <Th>
+                      <p>Miejsce</p>
+                    </Th>
+                    <Th>
+                      <p>Adres</p>
+                    </Th>
+                    <Th>
+                      <p>Dzień i Godzina</p>
+                    </Th>
+                    <Th>
+                      <p>Instruktor</p>
+                    </Th>
+                    <Th>
+                      <p>Pomocnicy</p>
+                    </Th>
+                  </Tr>
+                </Thead>
+                <Tbody>{generateScheduleTableRows(scheduleGroup)}</Tbody>
+              </Table>
+            </div>
+          </Collapsible>
+        </Fragment>
       );
     }
     return schedule;
@@ -70,6 +72,7 @@ const TrainingsSchedule = () => {
     const rows = [];
     for (const section of scheduleGroup.sections) {
       const {
+        id,
         place,
         address,
         schedule,
@@ -80,37 +83,39 @@ const TrainingsSchedule = () => {
       } = section;
 
       rows.push(
-        <Tr>
-          <Td>
-            <p>{place}</p>
-          </Td>
-          <Td>
-            <p>{address}</p>
-          </Td>
-          <Td>
-            {schedule.map((date) => {
-              return (
-                <p>
-                  {date.days} - {date.hours}
-                </p>
-              );
-            })}
-          </Td>
-          <Td>
-            <p>{instructor}</p>
-            <p>{instructorEmail}</p>
-            <p>tel. {instructorPhone}</p>
-          </Td>
-          <Td>
-            {instructorHelpers.length > 0 ? (
-              instructorHelpers.map((helper) => {
-                return <p>{helper}</p>;
-              })
-            ) : (
-              <p>-</p>
-            )}
-          </Td>
-        </Tr>
+        <Fragment key={`schedule-${id}-${place.replace(/ /g, '')}`}>
+          <Tr>
+            <Td>
+              <p>{place}</p>
+            </Td>
+            <Td>
+              <p>{address}</p>
+            </Td>
+            <Td>
+              {schedule.map((date) => {
+                return (
+                  <p>
+                    {date.days} - {date.hours}
+                  </p>
+                );
+              })}
+            </Td>
+            <Td>
+              <p>{instructor}</p>
+              <p>{instructorEmail}</p>
+              <p>tel. {instructorPhone}</p>
+            </Td>
+            <Td>
+              {instructorHelpers.length > 0 ? (
+                instructorHelpers.map((helper) => {
+                  return <p>{helper}</p>;
+                })
+              ) : (
+                <p>-</p>
+              )}
+            </Td>
+          </Tr>
+        </Fragment>
       );
     }
     return rows;
