@@ -44,12 +44,11 @@
 
   .special-text {
     color: $red-color;
-    transition: 0.5s;
+    transition: color 0.5s;
   }
 
   div {
     font-weight: 600;
     letter-spacing: 1px;
-    transition: 0.5s;
   }
 }
