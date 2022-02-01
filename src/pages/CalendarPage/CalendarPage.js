@@ -30,7 +30,7 @@ function CalendarPage() {
         </p>
 
         <div className='calendar-info'>
-          <ol className='calendar-info-list'>
+          <ul className='calendar-info-list'>
             <li className='calendar-info-list-item'>
               Organizatorzy ww. imprez zastrzegają sobie prawo do dokonania
               zmian organizacyjno-programowych, będących następstwem
@@ -41,7 +41,7 @@ function CalendarPage() {
               Kalendarz nie zawiera zawodów organizowanych przez federacje
               karate współpracujące z OYAMA PFK,
             </li>
-          </ol>
+          </ul>
         </div>
       </article>
     </CalendarProvider>

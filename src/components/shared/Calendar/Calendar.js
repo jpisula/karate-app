@@ -105,9 +105,9 @@ function Calendar() {
   };
 
   const handleArrowClick = (side) => {
-    if (side === 'LEFT') {
+    if (side === 'LEFT' && !isYearSwitcherOpen && !isMonthSwitcherOpen) {
       let prevStart;
-      if (chosenMonth > 0 && !isYearSwitcherOpen) {
+      if (chosenMonth > 0) {
         prevStart = startDay - ((months[chosenMonth - 1].nrOfDays % 7) % 7);
         dispatch({ type: 'SET_PREV_CHOSEN_MONTH', payload: chosenMonth });
         dispatch({ type: 'SET_MONTH', payload: chosenMonth - 1 });
@@ -124,7 +124,11 @@ function Calendar() {
         type: 'SET_START_DAY',
         payload: prevStart <= 0 ? prevStart + 7 : prevStart
       });
-    } else if (side === 'RIGHT') {
+    } else if (
+      side === 'RIGHT' &&
+      !isYearSwitcherOpen &&
+      !isMonthSwitcherOpen
+    ) {
       dispatch({ type: 'SET_PREV_CHOSEN_MONTH', payload: chosenMonth });
 
       dispatch({
@@ -132,7 +136,7 @@ function Calendar() {
         payload: ((startDay + months[chosenMonth].nrOfDays - 1) % 7) + 1
       });
 
-      if (chosenMonth < 11 && !isYearSwitcherOpen) {
+      if (chosenMonth < 11 && !isYearSwitcherOpen && !isMonthSwitcherOpen) {
         dispatch({ type: 'SET_MONTH', payload: chosenMonth + 1 });
       } else if (!isYearSwitcherOpen) {
         dispatch({ type: 'SET_YEAR', payload: chosenYear + 1 });
@@ -209,7 +213,7 @@ function Calendar() {
 
   const generateMonthListItems = () => {
     let monthListItems = [];
-    for (let i = 0; i < 11; i++) {
+    for (let i = 0; i <= 11; i++) {
       monthListItems.push(
         <li className='month-item' onClick={handleMonthChooseClick}>
           {months[i].name}
