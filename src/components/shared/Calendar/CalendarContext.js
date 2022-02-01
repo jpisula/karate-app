@@ -15,7 +15,8 @@ export const CalendarProvider = ({ children }) => {
     prevChosenYear: 2022,
     prevChosenMonth: 0,
     calendarTitle: `STYCZEŃ 2022`,
-    daysToMove: 0
+    daysToMove: 0,
+    isMonthChosen: false
   };
 
   const [state, dispatch] = useReducer(CalendarReducer, initialState);
@@ -34,6 +35,7 @@ export const CalendarProvider = ({ children }) => {
         prevChosenMonth: state.prevChosenMonth,
         calendarTitle: state.calendarTitle,
         daysToMove: state.daysToMove,
+        isMonthChosen: state.isMonthChosen,
         dispatch
       }}
     >

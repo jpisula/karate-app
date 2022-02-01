@@ -55,6 +55,11 @@ const CalendarReducer = (state, action) => {
         ...state,
         daysToMove: action.payload
       };
+    case 'SET_IS_MONTH_CHOSEN':
+      return {
+        ...state,
+        isMonthChosen: action.payload
+      };
     default:
       return state;
   }

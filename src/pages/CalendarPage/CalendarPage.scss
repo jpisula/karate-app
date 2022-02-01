@@ -76,13 +76,13 @@
   margin: 0 auto;
   max-width: 320px;
 
-  @include media('>=mobile', '<=tablet-portrait') {
+  @include media('>=mobile', '<=tablet-landscape') {
     max-width: 420px;
   }
 
-  @include media('>=tablet-portrait', '<=tablet-landscape') {
-    max-width: 520px;
-  }
+  // @include media('>=tablet-portrait', '<=tablet-landscape') {
+  //   max-width: 520px;
+  // }
 }
 
 .event-info {
