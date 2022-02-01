@@ -1,7 +1,8 @@
+import { footerConfig } from '../../configs/footer';
 import NavLogo from '../Header/NavLogo';
 import './Footer.scss';
 
-function Footer({ footerConfig }) {
+function Footer() {
   const { logo } = footerConfig;
   return (
     <footer className='footer'>

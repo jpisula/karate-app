@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
-import instructorPhoto from './assets/instruktor.jpeg';
+import instructorPhoto from '../../../assets/instruktor.jpeg';
 import './InstructorCard.scss';
 
 function InstructorCard({ animation, name }) {

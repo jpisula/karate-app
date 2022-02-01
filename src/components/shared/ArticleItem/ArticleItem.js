@@ -1,7 +1,5 @@
-import articleItemImg from '../../../pages/ArticlePage/assets/images.jpeg';
-import { BsArrowRight } from 'react-icons/bs';
-import './ArticleItem.scss';
 import { Link } from 'react-router-dom';
+import './ArticleItem.scss';
 
 function ArticleItem({ article, id }) {
   return (

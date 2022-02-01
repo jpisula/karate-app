@@ -5,7 +5,7 @@ import {
   BsFillArrowLeftSquareFill,
   BsFillArrowRightSquareFill
 } from 'react-icons/bs';
-import events from '../../../database/events.js';
+import events from '../../../configs/events.js';
 
 const EventInfo = () => {
   const { event, dispatch, chosenMonth, chosenYear } =

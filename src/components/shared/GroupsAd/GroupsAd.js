@@ -1,8 +1,8 @@
 import './GroupsAd.scss';
-import kidsKarateImg from './assets/kids-karate.jpeg';
-import teenagersKarateImg from './assets/karate-teenagers.jpeg';
-import adultsKarateImg from './assets/adults-karate.jpeg';
-import familyKarateImg from './assets/family-karate.jpeg';
+import kidsKarateImg from '../../../assets/kids-karate.jpeg';
+import teenagersKarateImg from '../../../assets/karate-teenagers.jpeg';
+import adultsKarateImg from '../../../assets/adults-karate.jpeg';
+import familyKarateImg from '../../../assets/family-karate.jpeg';
 import { Link } from 'react-router-dom';
 
 const GroupsAd = ({ animation }) => {

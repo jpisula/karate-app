@@ -1,9 +1,8 @@
 import ContactForm from '../ContactForm/ContactForm';
 import './SectionInfo.scss';
 import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
-import karateImg from '../../../pages/Homepage/assets/karate.jpeg';
+import karateImg from '../../../assets/karate.jpeg';
 import dojo from '../../../assets/treningi-sala.webp';
-// import GoogleMaps from '../GoogleMaps/GoogleMaps';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 
 function SectionInfo() {

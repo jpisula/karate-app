@@ -10,7 +10,7 @@ import {
   nrOfFebDays,
   nrOfAllDays
 } from './helpers.js';
-import events from '../../../database/events.js';
+import events from '../../../configs/events.js';
 import { useContext } from 'react';
 import CalendarContext from './CalendarContext';
 

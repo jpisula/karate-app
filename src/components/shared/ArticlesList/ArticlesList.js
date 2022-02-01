@@ -1,4 +1,4 @@
-import { articles } from '../../../database/articles/articles';
+import { articles } from '../../../configs/articles';
 import ArticleItem from '../ArticleItem/ArticleItem';
 import './ArticlesList.scss';
 

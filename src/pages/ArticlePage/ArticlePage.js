@@ -1,12 +1,9 @@
-import ArticlesList from '../../components/shared/ArticlesList/ArticlesList';
-import './ArticlePage.scss';
-import examImg from './assets/exam.jpeg';
-import { articles } from '../../database/articles/articles';
 import { BsFacebook, BsWhatsapp } from 'react-icons/bs';
 import { FaFacebookMessenger } from 'react-icons/fa';
-import { useNavigate, useParams } from 'react-router-dom';
-import Button from '../../components/shared/Button/Button';
+import { useParams } from 'react-router-dom';
 import ArticleListContainer from '../../components/shared/ArticleListContainer/ArticleListContainer';
+import { articles } from '../../configs/articles';
+import './ArticlePage.scss';
 
 function ArticlePage() {
   const { id } = useParams();
