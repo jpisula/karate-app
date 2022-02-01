@@ -32,11 +32,53 @@
     font-weight: 600;
     text-align: center;
     text-decoration: underline;
+
+    &:hover {
+      cursor: pointer;
+      color: $red-color;
+      transition: 0.5s;
+    }
   }
 
   .schedule {
     width: 80%;
     margin: 0 auto;
+
+    @include media('>tablet-landscape') {
+      width: 100%;
+      .table-wrapper {
+        font-size: $small-font;
+        font-weight: 400;
+        margin: 40px auto 40px auto;
+        text-align: left;
+
+        p {
+          line-height: 25px;
+          padding-left: 10px;
+        }
+
+        th {
+          color: white;
+          background-color: $red-color;
+          font-size: $med-font;
+          font-weight: 600;
+          padding: 15px 0;
+        }
+
+        tbody {
+          background-color: rgba(0, 0, 0, 0.4);
+
+          td {
+            padding-top: 5px;
+            padding-bottom: 5px;
+          }
+
+          tr:nth-child(even) {
+            background-color: rgba(217, 37, 28, 0.5);
+          }
+        }
+      }
+    }
 
     @include media('<=tablet-landscape') {
       .table-wrapper {
@@ -59,7 +101,7 @@
 
         tbody {
           tr {
-            margin-bottom: 5px;
+            margin-bottom: 10px;
 
             td {
               padding: 0 5px;
@@ -83,16 +125,27 @@
       margin-bottom: 25px;
     }
 
+    @include media('>tablet-landscape') {
+      margin-bottom: 40px;
+    }
+
     .Collapsible__trigger {
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      @include media('>tablet-portrait') {
+        max-width: 400px;
+        margin: 0 auto;
+      }
     }
 
     .Collapsible__trigger.is-open {
-      h3 {
-        text-align: left;
-        margin: 0;
+      @include media('<=tablet-landscape') {
+        h3 {
+          text-align: left;
+          margin: 0;
+        }
       }
       svg {
         transform: rotate(90deg);
@@ -103,6 +156,47 @@
     .Collapsible__trigger.is-closed svg {
       transform: rotate(0deg);
       transition: 0.3s;
+    }
+  }
+
+  .news-list {
+    background-color: $darker-bg-color;
+    padding: 40px 0;
+
+    .news-h2 {
+      font-size: $medder-font;
+      font-weight: 700;
+      width: fit-content;
+      margin: 0 auto;
+
+      @include media('>=tablet-portrait') {
+        font-size: $bigger-font;
+      }
+
+      @include media('>=tablet-portrait') {
+        margin-bottom: 40px;
+      }
+    }
+
+    .articles-container {
+      @include media('>=desktop') {
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-auto-rows: minmax(min-content, max-content);
+        width: fit-content;
+        grid-gap: 40px;
+        margin: 0 auto;
+      }
+    }
+
+    .articles-list {
+      margin: 0 auto;
+    }
+
+    .button-container {
+      margin: 0 auto;
+      margin-top: 25px;
     }
   }
 }

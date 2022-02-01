@@ -96,20 +96,6 @@ export const trainingsSchedule = [
         instructorHelpers: []
       },
       {
-        place: 'MDK Południe Katowice - Podlesie',
-        address: 'Ul. Sołtysia 25',
-        schedule: [
-          {
-            days: 'Poniedziałek',
-            hours: '16:00'
-          }
-        ],
-        instructor: 'Sensei Michał Bodziony',
-        instructorEmail: 'michalbodziony@oyama-karate.eu',
-        instructorPhone: '600-383-727',
-        instructorHelpers: []
-      },
-      {
         place: 'SP. Nr 28 Gliwice - Centrum',
         address: 'Ul. M. Strzody 4',
         schedule: [
