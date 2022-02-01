@@ -4,7 +4,7 @@ import ArticleListContainer from '../../../components/shared/ArticleListContaine
 import { trainingsSchedule } from '../../../configs/trainings-schedule';
 import { BsChevronDown } from 'react-icons/bs';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import './SuperResponsiveTableStyle.css';
 
 const TrainingsSchedule = () => {
   const generateCollapsibleElements = () => {
@@ -77,7 +77,7 @@ const TrainingsSchedule = () => {
           <Td>
             <p>{instructor}</p>
             <p>{instructorEmail}</p>
-            <p>{instructorPhone}</p>
+            <p>tel. {instructorPhone}</p>
           </Td>
           <Td>
             {instructorHelpers.length > 0 ? (
