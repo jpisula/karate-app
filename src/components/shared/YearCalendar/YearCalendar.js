@@ -1,6 +1,6 @@
 import './YearCalendar.scss';
 import { useState } from 'react';
-import events from '../../../database/events';
+import events from '../../../configs/events';
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill
