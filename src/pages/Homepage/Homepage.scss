@@ -191,6 +191,7 @@
 
   .news-list {
     .news-h2 {
+      margin: 0 auto;
       margin-bottom: 25px;
 
       @include media('>=tablet-portrait') {
