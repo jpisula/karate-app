@@ -9,7 +9,7 @@ function SectionInfo({ section }) {
   return (
     <>
       <div className='container'>
-        <p className='group-description'>{section.description}</p>
+        <div className='group-description'>{section.description}</div>
       </div>
 
       <section className='schedule-wrapper'>
@@ -35,12 +35,26 @@ function SectionInfo({ section }) {
                   <thead>
                     <tr className='days-row'>
                       <th></th>
-                      <th>Wtorki</th>
-                      <th>Czwartki</th>
+                      {section.days.map((day) => (
+                        <th key={day}>{day}</th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className='group-row'>
+                    {section.groups.map((group) => (
+                      <tr key={group.name} className='group-row'>
+                        <td className='group'>{group.name}</td>
+                        {group.schedule.map((sched) => (
+                          <td
+                            key={`${sched.hours}-${sched.day}`}
+                            className='hours'
+                          >
+                            {sched.hours}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                    {/* <tr className='group-row'>
                       <td className='group'>Dzieci</td>
                       <td className='hours'>17:30 - 18:30</td>
                       <td className='hours'>17:30 - 18:30</td>
@@ -49,7 +63,7 @@ function SectionInfo({ section }) {
                       <td className='group'>Młodzież i starsi</td>
                       <td className='hours'>18:30 - 20:30</td>
                       <td className='hours'>18:30 - 20:30</td>
-                    </tr>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
