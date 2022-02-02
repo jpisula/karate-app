@@ -1,6 +1,7 @@
 import Calendar from '../../components/shared/Calendar/Calendar';
 import { CalendarProvider } from '../../components/shared/Calendar/CalendarContext';
 import EventInfo from '../../components/shared/Calendar/EventInfo';
+import YearCalendar from '../../components/shared/YearCalendar/YearCalendar';
 import './CalendarPage.scss';
 
 function CalendarPage() {
@@ -24,6 +25,8 @@ function CalendarPage() {
         <section className='event-info'>
           <EventInfo />
         </section>
+
+        <YearCalendar />
 
         <p className='event-switcher-instuction'>
           Uzywaj strzałek, aby przeglądać kolejne wydarzenia!

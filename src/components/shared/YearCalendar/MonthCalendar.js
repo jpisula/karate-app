@@ -1,7 +1,5 @@
 import './MonthCalendar.scss';
 
-const MonthCalendar = () => {
-  return <></>;
-};
+const MonthCalendar = () => {};
 
 export default MonthCalendar;

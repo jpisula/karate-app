@@ -1,0 +1,74 @@
+@import '../../../lib/sass/styles.scss';
+
+$arrow-size: 50px;
+
+.calendar-container {
+  width: 100%;
+  height: auto;
+
+  .year-arrows-container {
+    @include flexCenter(row);
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+
+    .arrow-left,
+    .arrow-right {
+      font-size: $arrow-size;
+
+      &:hover {
+        cursor: pointer;
+        color: red;
+        transform: scale(1.1);
+        transition: all linear 0.3s;
+      }
+    }
+
+    .year {
+      font-size: $arrow-size;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+  }
+
+  .months-container {
+    width: 100%;
+    display: grid;
+    grid-template: repeat(4, 250px) / repeat(3, 1fr);
+    grid-gap: auto;
+
+    .month-container {
+      margin: 10px;
+      box-sizing: border-box;
+      height: auto;
+    }
+
+    .month-name {
+      width: 100%;
+      height: auto;
+      padding: 10px 0;
+      background-color: red;
+      font-size: $med-font;
+      text-align: center;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .day-tiles-container {
+      display: grid;
+      grid-template: repeat(6, 1fr) / repeat(7, 1fr);
+      background-color: white;
+      box-sizing: border-box;
+
+      .day-tile {
+        @include flexCenter(row);
+        width: 100%;
+        height: 30px;
+        color: black;
+        font-size: $small-font;
+      }
+    }
+  }
+}
