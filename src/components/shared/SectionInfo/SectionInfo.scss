@@ -18,9 +18,14 @@
     line-height: 22px;
   }
 
-  @include media('>=tablet-landscape', '<=desktop') {
+  @include media('>=tablet-landscape') {
     font-size: $big-font;
     line-height: 27px;
+  }
+
+  @include media('>=desktop') {
+    font-size: $med-font;
+    line-height: 25px;
   }
 }
 

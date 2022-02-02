@@ -139,6 +139,59 @@ export const articles = [
         </p>
         <br />
         <br />
+        <p>Od poniedziałku 6 września powrócimy na sale według harmonogramu:</p>
+        <br />
+        <p style={{ textDecoration: 'underline', fontWeight: 600 }}>
+          Treningi dla dzieci przedszkolnych:
+        </p>
+        <br />
+        <p style={{ fontWeight: 800 }}>KATOWICE</p>
+        <p>
+          MDK Południe Katowice - Podlesie Ul. Sołtysia 25 - startuje
+          poniedziałek 6 września 2021 o 15:20
+        </p>
+        <br />
+        <p>
+          Sp. nr 61 Katowice - Ligota Ul. Kołobrzeska 8 - startuje wtorek
+          7.września 2021 o 16:30
+        </p>
+        <br />
+        <p style={{ fontWeight: 800 }}>GLIWICE</p>
+        <p>
+          Sp. nr 28 Gliwice - centrum startuje w piątek 10 września 2021 o 17:20
+        </p>
+        <br />
+        <br />
+        <p style={{ textDecoration: 'underline', fontWeight: 600 }}>
+          Treningi dla dzieci młodzieży oraz dorosłych:
+        </p>
+        <br />
+        <p style={{ fontWeight: 800 }}>KATOWICE</p>
+        <p>
+          MDK Południe Katowice - Podlesie Ul. Sołtysia 25 – startuje w
+          poniedziałek 6 września 2021 o 16:10
+        </p>
+        <br />
+        <p>
+          Sp. nr 67 Katowice - Panewniki Ul. Zielona 5 - startuje w poniedziałek
+          6 września 2021 o 18:00
+        </p>
+        <p style={{ fontWeight: 600 }}>
+          UWAGA W PONIEDZIAŁKI NA 18:00 w środy na 17:15.
+        </p>
+        <br />
+        <p>
+          Sp. nr 35 Katowice- Ligota Ul. Zielonogórska 23 - startuje we wtorek 7
+          września 2021 o 17:45
+        </p>
+        <br />
+        <br />
+        <p style={{ fontWeight: 800 }}>GLIWICE</p>
+        <p>
+          Sp. nr 28 Gliwice - centrum startuje we wtorek 7 września 2021 o 18:00
+        </p>
+        <br />
+        <br />
         <p style={{ width: '100%', textAlign: 'center', fontWeight: 800 }}>
           Aktualny harmonogram zajęć znajdą państwo klikając na poniszy link:
         </p>
@@ -157,6 +210,11 @@ export const articles = [
             HARMONOGRAM ZAJĘĆ
           </a>
         </p>
+        <br />
+        <p style={{ width: '100%', textAlign: 'right' }}>
+          Do zobaczenia na Dojo/Sali
+        </p>
+        <p style={{ width: '100%', textAlign: 'right' }}>OSU!</p>
       </>
     )
   },

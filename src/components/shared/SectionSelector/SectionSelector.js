@@ -1,25 +1,9 @@
 import { useContext } from 'react';
+import { sectionPlaces } from '../../../configs/sectons-places';
 import SectionsContext from '../../../context/sections/SectionsContext';
 import './SectionSelector.scss';
 
-const places = [
-  {
-    id: 'LIGOTA',
-    title: 'Katowice Ligota'
-  },
-  {
-    id: 'PIOTROWICE',
-    title: 'Katowice Piotrowice'
-  },
-  {
-    id: 'PODLESIE',
-    title: 'Katowice Podlesie'
-  },
-  {
-    id: 'GLIWICE',
-    title: 'Gliwice'
-  }
-];
+const places = sectionPlaces;
 
 const generateSelectorItems = (sectionToDisplay, dispatch) => {
   let selectorItems = [];
