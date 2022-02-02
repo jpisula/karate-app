@@ -1,18 +1,20 @@
 import './YearCalendar.scss';
 import { useState } from 'react';
-import events from '../../../database/events';
+import events from '../../../configs/events';
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill
 } from 'react-icons/bs';
-import { useEffect } from 'react/cjs/react.development';
+import { useEffect } from 'react';
 
 const YearCalendar = () => {
   const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
 
-  const [startDay, setStartDay] = useState(6);
+  // const [startDay, setStartDay] = useState(6);
   const [startYearDay, setStartYearDay] = useState(6);
   const [currentYear, setCurrentYear] = useState(2022);
+
+  let startDay = 6;
 
   const isYearCommon = (y) => {
     if (y % 4 === 0 && y % 100 !== 0) {
@@ -46,48 +48,52 @@ const YearCalendar = () => {
     }
   };
 
-  const generateDayTiles = (numberOfTiles, startDay, currentEvents, month) => {
+  const generateDayTiles = (numberOfTiles, currentEvents, month) => {
     let dayTiles = [];
-    for (let i = 1; i <= numberOfTiles; i++) {
+    for (let i = 0; i < numberOfTiles; i++) {
       let day = (
         <div
           className='day-tile'
           style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
         >
-          {i}
+          {i + 1}
         </div>
       );
 
       // for (const event of currentEvents[month]) {
       //   if (
       //     event.dayStart === event.dayEnd
-      //       ? event.dayStart === i
-      //       : event.dayStart <= i && i <= event.dayEnd
+      //       ? event.dayStart === i + 1
+      //       : event.dayStart <= i + 1 && i + 1 <= event.dayEnd
       //   ) {
       //     day = (
       //       <div
       //         className={`day-tile event event-${event.type}`}
       //         style={{ gridColumnStart: `${startDay}` }}
       //       >
-      //         {i}
+      //         {i + 1}
       //       </div>
       //     );
       //   }
       //  }
       dayTiles.push(day);
     }
-    // setStartDay(((startDay + months[month].nrOfDays) % 7) + 1);
+    startDay += months[month].nrOfDays % 7;
+    startDay %= 7;
+    startDay = startDay === 0 ? 7 : startDay;
+    //((startDay + months[month].nrOfDays) % 7) + 1;
+    // console.log(startDay);
     return dayTiles;
   };
 
   const generateMonthTiles = (y) => {
     let monthTiles = [];
     let currentEvents = Array.apply(null, Array(12)).map(() => []);
-    // setStartDay(startYearDay);
+    startDay = startYearDay;
+    console.log(startDay, startYearDay);
 
     for (const event of events) {
       if (event.year === currentYear) {
-        console.log(event);
         currentEvents[event.month - 1].push(event);
       }
     }
@@ -96,8 +102,9 @@ const YearCalendar = () => {
       monthTiles.push(
         <div className='month-container'>
           <div className='month-name'>{months[i].name}</div>
+          <div className='week-days-names'>{generateWeekDays()}</div>
           <div className='day-tiles-container'>
-            {generateDayTiles(months[i].nrOfDays, startDay, currentEvents, i)}
+            {generateDayTiles(months[i].nrOfDays, currentEvents, i)}
           </div>
         </div>
       );
@@ -114,6 +121,8 @@ const YearCalendar = () => {
     return weekDays;
   };
 
+  useEffect(() => {}, [currentYear]);
+
   return (
     <main className='calendar-container'>
       <div className='year-arrows-container'>
@@ -122,7 +131,9 @@ const YearCalendar = () => {
             onClick={() => {
               setCurrentYear(currentYear - 1);
               setStartYearDay(
-                ((startYearDay - nrOfYearDays(currentYear)) % 7) + 1
+                startYearDay - ((nrOfYearDays(currentYear - 1) % 7) % 7) <= 0
+                  ? startYearDay - ((nrOfYearDays(currentYear - 1) % 7) % 7) + 7
+                  : startYearDay - ((nrOfYearDays(currentYear - 1) % 7) % 7)
               );
             }}
           />
@@ -132,7 +143,9 @@ const YearCalendar = () => {
           <BsFillArrowRightCircleFill
             onClick={() => {
               setStartYearDay(
-                ((startYearDay + nrOfYearDays(currentYear)) % 7) + 1
+                (startYearDay + (nrOfYearDays(currentYear) % 7)) % 7 === 0
+                  ? 7
+                  : (startYearDay + (nrOfYearDays(currentYear) % 7)) % 7
               );
               setCurrentYear(currentYear + 1);
             }}
