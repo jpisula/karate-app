@@ -34,7 +34,7 @@ $arrow-size: 50px;
   .months-container {
     width: 100%;
     display: grid;
-    grid-template: repeat(4, 250px) / repeat(3, 1fr);
+    grid-template: repeat(4, 270px) / repeat(3, 1fr);
     grid-gap: auto;
 
     .month-container {
@@ -54,6 +54,20 @@ $arrow-size: 50px;
       border-top-right-radius: 5px;
       font-weight: 600;
       letter-spacing: 0.5px;
+    }
+
+    .week-days-names {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+
+      .week-day {
+        @include flexCenter(row);
+        height: 30px;
+        background-color: white;
+        color: black;
+        font-size: $tiny-font;
+      }
     }
 
     .day-tiles-container {
