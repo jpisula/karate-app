@@ -32,11 +32,13 @@
       letter-spacing: 0.4px;
       box-sizing: border-box;
 
-      &:hover {
-        color: black;
-        transform: scale(1.1);
-        transition: 0.3s linear all;
-        cursor: pointer;
+      @include media('>=tablet-landscape') {
+        &:hover {
+          color: black;
+          transform: scale(1.1);
+          transition: 0.3s linear all;
+          cursor: pointer;
+        }
       }
 
       @include media('>=tablet-landscape', '<=desktop') {

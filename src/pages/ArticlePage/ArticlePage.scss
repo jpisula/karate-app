@@ -116,11 +116,13 @@
             margin-left: 25px;
           }
 
-          &:hover {
-            color: $red-color;
-            cursor: pointer;
-            transition: 0.3s;
-            transform: scale(1.2);
+          @include media('>=tablet-landscape') {
+            &:hover {
+              color: $red-color;
+              cursor: pointer;
+              transition: 0.3s;
+              transform: scale(1.2);
+            }
           }
         }
       }

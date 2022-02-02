@@ -14,12 +14,14 @@
   right: 25px;
   top: 25px;
 
-  &:hover {
-    border-color: #b7140b;
-    color: #b7140b;
-    transform: scale(1.3);
-    transition: 0.5s;
-    cursor: pointer;
+  @include media('>=tablet-landscape') {
+    &:hover {
+      border-color: #b7140b;
+      color: #b7140b;
+      transform: scale(1.3);
+      transition: 0.5s;
+      cursor: pointer;
+    }
   }
 
   @include media('<=mobile') {
@@ -78,10 +80,12 @@
       font-weight: 500;
       width: auto;
 
-      &:hover {
-        color: $red-color;
-        cursor: pointer;
-        transition: 0.5s;
+      @include media('>=tablet-landscape') {
+        &:hover {
+          color: $red-color;
+          cursor: pointer;
+          transition: 0.5s;
+        }
       }
 
       .nav-icon {
@@ -106,10 +110,13 @@
 
     svg {
       padding: 25px 25px 0 0;
-      &:hover {
-        color: $red-color;
-        cursor: pointer;
-        transition: 0.5s;
+
+      @include media('>=tablet-landscape') {
+        &:hover {
+          color: $red-color;
+          cursor: pointer;
+          transition: 0.5s;
+        }
       }
     }
   }
@@ -127,10 +134,12 @@
       height: auto;
       display: flex;
 
-      &:hover {
-        color: $red-color;
-        cursor: pointer;
-        transition: 0.5s;
+      @include media('>=tablet-landscape') {
+        &:hover {
+          color: $red-color;
+          cursor: pointer;
+          transition: 0.5s;
+        }
       }
 
       .nav-icon {

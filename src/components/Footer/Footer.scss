@@ -52,13 +52,16 @@
       span {
         color: #5cb25d;
       }
-      &:hover {
-        font-size: $small-font;
-        cursor: pointer;
-        transition: 0.5s;
 
-        @include media('>=tablet-portrait') {
-          font-size: $big-font;
+      @include media('>=tablet-landscape') {
+        &:hover {
+          font-size: $small-font;
+          cursor: pointer;
+          transition: 0.5s;
+
+          @include media('>=tablet-portrait') {
+            font-size: $big-font;
+          }
         }
       }
     }

@@ -45,9 +45,11 @@
     padding-top: 25px;
     margin: 0 auto;
 
-    &:hover {
-      color: $red-color;
-      transition: 0.3s;
+    @include media('>=tablet-landscape') {
+      &:hover {
+        color: $red-color;
+        transition: 0.3s;
+      }
     }
   }
 }

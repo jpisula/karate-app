@@ -60,10 +60,12 @@
       font-size: $big-font;
     }
 
-    &:hover {
-      cursor: pointer;
-      border-color: white;
-      color: $red-color;
+    @include media('>=tablet-landscape') {
+      &:hover {
+        cursor: pointer;
+        border-color: white;
+        color: $red-color;
+      }
     }
   }
 
@@ -153,9 +155,11 @@
         margin-left: 5px;
       }
 
-      &:hover {
-        color: $red-color;
-        cursor: pointer;
+      @include media('>=tablet-landscape') {
+        &:hover {
+          color: $red-color;
+          cursor: pointer;
+        }
       }
 
       @include media('>=tablet-portrait', '<=desktop') {

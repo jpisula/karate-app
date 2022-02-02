@@ -20,13 +20,15 @@
     font-size: $large-font;
   }
 
-  &:hover {
-    cursor: pointer;
-    div {
-      color: $red-color;
-    }
-    .special-text {
-      color: white;
+  @include media('>=tablet-landscape') {
+    &:hover {
+      cursor: pointer;
+      div {
+        color: $red-color;
+      }
+      .special-text {
+        color: white;
+      }
     }
   }
 

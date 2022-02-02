@@ -33,10 +33,12 @@
     text-align: center;
     text-decoration: underline;
 
-    &:hover {
-      cursor: pointer;
-      color: $red-color;
-      transition: 0.5s;
+    @include media('>=tablet-landscape') {
+      &:hover {
+        cursor: pointer;
+        color: $red-color;
+        transition: 0.5s;
+      }
     }
   }
 
