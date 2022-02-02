@@ -1,6 +1,8 @@
 {
   "name": "oyama-karate-eu-app",
+  "homepage": "http://oyama-karate.gancle-studio.pl",
   "version": "0.1.0",
+  "description": "React application for oyama-karate.eu",
   "private": true,
   "dependencies": {
     "@react-google-maps/api": "^2.7.0",

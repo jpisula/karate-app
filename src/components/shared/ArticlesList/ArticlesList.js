@@ -6,8 +6,6 @@ const generateArticleItems = (numberOfItems, currentArticleId, animation) => {
   const ArticleItems = [];
   for (let i = 0; i < numberOfItems; i++) {
     const article = articles[i];
-    console.log(currentArticleId);
-    console.log('i', i);
     if (i === Number.parseInt(currentArticleId)) {
       numberOfItems++;
     } else {
