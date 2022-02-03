@@ -2,9 +2,10 @@
 
 $arrow-size: 50px;
 
-.calendar-container {
-  width: 100%;
+.year-calendar-container {
+  width: 980px;
   height: auto;
+  margin: 40px auto 0 auto;
 
   .year-arrows-container {
     @include flexCenter(row);
@@ -84,5 +85,13 @@ $arrow-size: 50px;
         font-size: $small-font;
       }
     }
+  }
+}
+
+.event {
+  background-color: red;
+
+  &:hover {
+    cursor: pointer;
   }
 }

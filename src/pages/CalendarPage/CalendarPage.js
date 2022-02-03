@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Calendar from '../../components/shared/Calendar/Calendar';
 import { CalendarProvider } from '../../components/shared/Calendar/CalendarContext';
 import EventInfo from '../../components/shared/Calendar/EventInfo';
@@ -5,6 +6,32 @@ import YearCalendar from '../../components/shared/YearCalendar/YearCalendar';
 import './CalendarPage.scss';
 
 function CalendarPage() {
+  const [isCalendarDisplayed, setIsCalendarDisplayed] = useState(false);
+  const [isYearCalendarDisplayed, setIsYearCalendarDisplayed] = useState(false);
+
+  const setCalendarToDisplay = (width) => {
+    console.log(width);
+    if (width >= 1024) {
+      setIsYearCalendarDisplayed(true);
+      setIsCalendarDisplayed(false);
+    } else {
+      setIsYearCalendarDisplayed(false);
+      setIsCalendarDisplayed(true);
+    }
+  };
+
+  useEffect(() => {
+    setCalendarToDisplay(window.innerWidth);
+
+    const hadleResize = () => {
+      setCalendarToDisplay(window.innerWidth);
+    };
+
+    window.addEventListener('resize', hadleResize);
+
+    return () => window.removeEventListener('resize', hadleResize);
+  }, []);
+
   return (
     <CalendarProvider>
       <article className='container'>
@@ -18,19 +45,22 @@ function CalendarPage() {
           </span>
         </div>
 
-        <section className='calendar'>
-          <Calendar />
-        </section>
+        {isCalendarDisplayed && (
+          <>
+            <section className='calendar'>
+              <Calendar />
+            </section>
+            <section className='event-info'>
+              <EventInfo />
+            </section>
+          </>
+        )}
 
-        <section className='event-info'>
-          <EventInfo />
-        </section>
+        {isYearCalendarDisplayed && <YearCalendar />}
 
-        <YearCalendar />
-
-        <p className='event-switcher-instuction'>
+        {/* <p className='event-switcher-instuction'>
           Uzywaj strzałek, aby przeglądać kolejne wydarzenia!
-        </p>
+        </p> */}
 
         <div className='calendar-info'>
           <ul className='calendar-info-list'>
