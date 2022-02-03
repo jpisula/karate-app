@@ -239,6 +239,12 @@
   }
 }
 
+.event-type {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .event-type-tournament {
   background-color: red;
   position: relative;

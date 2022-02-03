@@ -12,6 +12,10 @@
   @include media('>=mobile', '<=tablet-landscape') {
     margin-top: 50px;
   }
+
+  @include media('>=desktop') {
+    margin-top: 60px;
+  }
 }
 
 .calendar-description {
@@ -32,6 +36,10 @@
   @include media('>=mobile', '<=tablet-landscape') {
     margin: 50px auto;
   }
+
+  @include media('>=desktop') {
+    margin: 40px auto;
+  }
 }
 
 .calendar-info {
@@ -48,7 +56,19 @@
 
   @include media('>=tablet-portrait', '<=tablet-landscape') {
     font-size: $big-font;
-    font-weight: 600;
+    font-weight: 400;
+  }
+
+  @include media('>=tablet-landscape', '<=desktop') {
+    margin: 30px auto;
+    font-size: $big-font;
+    font-weight: 400;
+  }
+
+  @include media('>=desktop') {
+    margin: 40px auto;
+    font-size: $big-font;
+    font-weight: 400;
   }
 
   .calendar-info-list {
@@ -67,6 +87,14 @@
 
       @include media('>=tablet-portrait', '<=tablet-landscape') {
         line-height: 24px;
+      }
+
+      @include media('>=tablet-landscape', '<=desktop') {
+        line-height: 28px;
+      }
+
+      @include media('>=desktop') {
+        line-height: 30px;
       }
     }
   }
