@@ -49,7 +49,7 @@ export const navConfig = {
         },
         {
           title: 'Nasi instruktorzy',
-          to: '/'
+          to: '/instructors'
         },
         {
           title: 'O OYAMA Karate',

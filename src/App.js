@@ -7,6 +7,8 @@ import { navConfig } from './configs/nav';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
 import Homepage from './pages/Homepage/Homepage';
+import InfoPageTemplate from './pages/info-pages/InfoPageTemplate/InfoPageTemplate';
+import Instructors from './pages/info-pages/Instructors/Instructors';
 import TrainingsSchedule from './pages/info-pages/TrainingsSchedule/TrainingsSchedule';
 import KinderPage from './pages/KinderPage/KinderPage';
 import NewsPage from './pages/NewsPage/NewsPage';
@@ -27,6 +29,14 @@ function App() {
             <Route path='/calendar' element={<CalendarPage />} />
             <Route path='/schedule' element={<TrainingsSchedule />} />
             <Route path='/schedule/:group' element={<TrainingsSchedule />} />
+            <Route
+              path='/instructors'
+              element={
+                <InfoPageTemplate>
+                  <Instructors />
+                </InfoPageTemplate>
+              }
+            />
             <Route path='/*' element={<Homepage />} />
           </Routes>
         </main>
