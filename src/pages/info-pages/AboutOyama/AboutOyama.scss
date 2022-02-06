@@ -23,7 +23,7 @@
   }
 
   @include media('>=desktop') {
-    font-size: $big-font;
+    font-size: $medder-font;
     padding: 40px 0;
   }
 
@@ -42,30 +42,44 @@
   }
 
   h2 {
-    font-size: $med-font;
+    font-size: $medder-font;
     font-weight: 600;
     margin-bottom: 25px;
+
+    @include media('>=tablet-portrait') {
+      font-size: $big-font;
+    }
   }
 
   .left-img {
     display: block;
     margin: 0 auto;
+    max-width: 80%;
 
     @include media('>=mobile') {
       float: left;
       max-width: 40%;
       margin-right: 20px;
     }
+
+    img {
+      width: 100%;
+    }
   }
 
   .right-img {
     display: block;
     margin: 0 auto;
+    max-width: 80%;
 
     @include media('>=mobile') {
       float: right;
       max-width: 40%;
       margin-left: 20px;
+    }
+
+    img {
+      width: 100%;
     }
   }
 

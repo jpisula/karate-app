@@ -162,7 +162,7 @@
       }
 
       @include media('>=desktop') {
-        font-size: $big-font;
+        font-size: $medder-font;
         padding: 40px 0;
       }
     }
