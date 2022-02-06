@@ -34,7 +34,10 @@ const EventInfo = () => {
   if (!isEmpty(event)) {
     return (
       <div className='edges'>
-        <div className='event-container'>
+        <div
+          className='event-container'
+          style={{ backgroundImage: `url(${imgSrc})` }}
+        >
           <div className='vignette'>
             {/* <img src={temporaryImg} alt='current event image' /> */}
             <h2 className='title'>{title}</h2>
