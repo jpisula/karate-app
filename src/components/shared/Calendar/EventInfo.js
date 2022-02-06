@@ -34,77 +34,86 @@ const EventInfo = () => {
     return (
       <div className='edges'>
         <div className='event-container'>
-          <img src={imgSrc} alt='' />
-          <h2 className='title'>{title}</h2>
-          <p className='date'>
-            {`${
-              dayStart === dayEnd
-                ? setDate(dayStart)
-                : `${setDate(dayStart)} - ${setDate(dayEnd)}`
-            }.${setDate(month)}.${year}`}
-          </p>
-          <p className='city'>{city}</p>
-          <p className='address'>{address}</p>
-          <p className='description'>{description}</p>
-          <div className='arrows-container'>
-            <BsFillArrowLeftSquareFill
-              className='arrow'
-              onClick={() => {
-                const eventIndex = events.indexOf(event);
-                if (
-                  eventIndex > 0 &&
-                  (chosenMonth !== events[eventIndex - 1].month ||
-                    chosenYear !== events[eventIndex - 1].year)
-                ) {
-                  dispatch({
-                    type: 'SET_EVENT',
-                    payload: events[eventIndex - 1]
-                  });
-                  dispatch({
-                    type: 'SET_YEAR',
-                    payload: events[eventIndex - 1].year
-                  });
-                  dispatch({
-                    type: 'SET_PREV_CHOSEN_MONTH',
-                    payload: chosenMonth
-                  });
-                  dispatch({
-                    type: 'SET_MONTH',
-                    payload: events[eventIndex - 1].month - 1
-                  });
-                  dispatch({ type: 'SET_LOUDER', payload: true });
-                }
-              }}
-            />
-            <BsFillArrowRightSquareFill
-              className='arrow'
-              onClick={() => {
-                const eventIndex = events.indexOf(event);
-                if (
-                  eventIndex + 1 < events.length &&
-                  (chosenMonth !== events[eventIndex + 1].month ||
-                    chosenYear !== events[eventIndex + 1].year)
-                ) {
-                  dispatch({
-                    type: 'SET_EVENT',
-                    payload: events[eventIndex + 1]
-                  });
-                  dispatch({
-                    type: 'SET_YEAR',
-                    payload: events[eventIndex + 1].year
-                  });
-                  dispatch({
-                    type: 'SET_PREV_CHOSEN_MONTH',
-                    payload: chosenMonth
-                  });
-                  dispatch({
-                    type: 'SET_MONTH',
-                    payload: events[eventIndex + 1].month - 1
-                  });
-                  dispatch({ type: 'SET_LOUDER', payload: true });
-                }
-              }}
-            />
+          <div className='vignette'>
+            <div className='cross-container'>
+              <ImCross
+                className='cross'
+                onClick={() => setIsEventModalDisplayed(!isEventModalDisplayed)}
+              />
+            </div>
+            {/* <img src={temporaryImg} alt='current event image' /> */}
+            <h2 className='title'>{title}</h2>
+            <p className='address'>{`${address}, ${city}`}</p>
+            <p className='date'>
+              {`${
+                dayStart === dayEnd
+                  ? setDate(dayStart)
+                  : `${setDate(dayStart)} - ${setDate(dayEnd)}`
+              }.${setDate(month)}.${year}`}
+            </p>
+            <p className='city'>{city}</p>
+            <p className='address'>{address}</p>
+            <p className='description'>{description}</p>
+            <div className='arrows-container'>
+              <BsFillArrowLeftSquareFill
+                className='arrow'
+                onClick={() => {
+                  const eventIndex = events.indexOf(event);
+                  if (
+                    eventIndex > 0 &&
+                    (chosenMonth !== events[eventIndex - 1].month ||
+                      chosenYear !== events[eventIndex - 1].year)
+                  ) {
+                    dispatch({
+                      type: 'SET_EVENT',
+                      payload: events[eventIndex - 1]
+                    });
+                    dispatch({
+                      type: 'SET_YEAR',
+                      payload: events[eventIndex - 1].year
+                    });
+                    dispatch({
+                      type: 'SET_PREV_CHOSEN_MONTH',
+                      payload: chosenMonth
+                    });
+                    dispatch({
+                      type: 'SET_MONTH',
+                      payload: events[eventIndex - 1].month - 1
+                    });
+                    dispatch({ type: 'SET_LOUDER', payload: true });
+                  }
+                }}
+              />
+              <BsFillArrowRightSquareFill
+                className='arrow'
+                onClick={() => {
+                  const eventIndex = events.indexOf(event);
+                  if (
+                    eventIndex + 1 < events.length &&
+                    (chosenMonth !== events[eventIndex + 1].month ||
+                      chosenYear !== events[eventIndex + 1].year)
+                  ) {
+                    dispatch({
+                      type: 'SET_EVENT',
+                      payload: events[eventIndex + 1]
+                    });
+                    dispatch({
+                      type: 'SET_YEAR',
+                      payload: events[eventIndex + 1].year
+                    });
+                    dispatch({
+                      type: 'SET_PREV_CHOSEN_MONTH',
+                      payload: chosenMonth
+                    });
+                    dispatch({
+                      type: 'SET_MONTH',
+                      payload: events[eventIndex + 1].month - 1
+                    });
+                    dispatch({ type: 'SET_LOUDER', payload: true });
+                  }
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -21,23 +21,28 @@ const Modal = ({ event, setIsEventModalDisplayed, isEventModalDisplayed }) => {
 
   return (
     <div className='modal-bg'>
-      <div className='event-info-container'>
-        <div className='cross-container'>
-          <ImCross
-            className='cross'
-            onClick={() => setIsEventModalDisplayed(!isEventModalDisplayed)}
-          />
+      <div
+        className='event-info-container'
+        style={{ backgroundImage: `url(${imgSrc})` }}
+      >
+        <div className='vignette'>
+          <div className='cross-container'>
+            <ImCross
+              className='cross'
+              onClick={() => setIsEventModalDisplayed(!isEventModalDisplayed)}
+            />
+          </div>
+          {/* <img src={temporaryImg} alt='current event image' /> */}
+          <h2 className='title'>{title}</h2>
+          <p className='address'>{`${address}, ${city}`}</p>
+          <p className='date'>{`${
+            dayStart === dayEnd
+              ? setDate(dayStart)
+              : `${setDate(dayStart)} - ${setDate(dayEnd)}`
+          }.${setDate(month)}.${year}`}</p>
+          <h2 className='description-title'>Opis wydarzenia: </h2>
+          <p className='description'>{description}</p>
         </div>
-        <img src={temporaryImg} alt='current event image' />
-        <h2 className='title'>{title}</h2>
-        <p className='date'>{`${
-          dayStart === dayEnd
-            ? setDate(dayStart)
-            : `${setDate(dayStart)} - ${setDate(dayEnd)}`
-        }.${setDate(month)}.${year}`}</p>
-        <p className='city'>{city}</p>
-        <p className='address'>{address}</p>
-        <p className='description'>{description}</p>
       </div>
     </div>
   );

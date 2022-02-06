@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { sectionPlaces } from '../../../configs/sectons-places';
+import { sectionPlaces } from '../../../configs/sections-places';
 import SectionsContext from '../../../context/sections/SectionsContext';
 import './SectionSelector.scss';
 
