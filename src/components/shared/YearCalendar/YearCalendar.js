@@ -13,7 +13,7 @@ const YearCalendar = () => {
   const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
 
   const [startYearDay, setStartYearDay] = useState(6);
-  const [currentYear, setCurrentYear] = useState(2022);
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   // const [isEventModalDisplayed, setIsEventModalDisplayed] = useState(false);
 
   let startDay = 6;
@@ -58,7 +58,13 @@ const YearCalendar = () => {
           event={undefined}
           startDay={startDay}
           i={i}
-          className={'day-tile'}
+          className={
+            i + 1 === new Date().getDate() &&
+            month === new Date().getMonth() &&
+            currentYear === new Date().getFullYear()
+              ? 'day-tile current-day'
+              : 'day-tile'
+          }
         />
       );
 
@@ -73,7 +79,7 @@ const YearCalendar = () => {
               event={event}
               startDay={startDay}
               i={i}
-              className={`day-tile event event-${event.type}`}
+              className={`day-tile event event-type-${event.category}`}
               // onClick={() => {
               //   setIsEventModalDisplayed(true);
               // }}
@@ -93,7 +99,6 @@ const YearCalendar = () => {
     let monthTiles = [];
     let currentEvents = Array.apply(null, Array(12)).map(() => []);
     startDay = startYearDay;
-    console.log(startDay, startYearDay);
 
     for (const event of events) {
       if (event.year === currentYear) {

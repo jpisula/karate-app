@@ -174,6 +174,13 @@ function Calendar() {
         <DayTile
           dataDay={i + 1}
           style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
+          className={
+            i + 1 === new Date().getDate() &&
+            chosenMonth === new Date().getMonth() &&
+            chosenYear === new Date().getFullYear()
+              ? 'day-tile current-day'
+              : 'day-tile'
+          }
           chosenMonth={chosenMonth}
           chosenYear={chosenYear}
           events={events}
