@@ -98,9 +98,21 @@ function Homepage() {
           <div className='container'>
             <h2 data-aos='zoom-in'>Instruktor i pomocnicy</h2>
             <div className='instructors-wrapper'>
-              <InstructorCard animation={'zoom-in'} name={'Michał Bodziony'} />
-              <InstructorCard animation={'zoom-in'} name={'Dawid Kłyż'} />
-              <InstructorCard animation={'zoom-in'} name={'Tomasz Kos'} />
+              <InstructorCard
+                animation={'zoom-in'}
+                name={'Michał Bodziony'}
+                id={0}
+              />
+              <InstructorCard
+                animation={'zoom-in'}
+                name={'Dawid Kłyż'}
+                id={1}
+              />
+              <InstructorCard
+                animation={'zoom-in'}
+                name={'Tomasz Kos'}
+                id={2}
+              />
             </div>
           </div>
         </section>

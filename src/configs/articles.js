@@ -51,7 +51,7 @@ export const articles = [
           odbędzie się sesja egzaminacyjna na kolejne stopnie kyu.
         </p>
         <p style={{ fontWeight: 800 }}>
-          Miejsce egzaminu: Gliwice , sala gimn. SP nr.28 Ul M.Srzody 4
+          Miejsce egzaminu: Gliwice, sala gimn. SP nr.28 Ul M.Srzody 4
         </p>
         <p>
           <span style={{ fontWeight: 800 }}>godz. 18.00 do 5 kyu włącznie</span>{' '}
@@ -106,11 +106,11 @@ export const articles = [
     date: '2021/08/30',
     imageUrl:
       'https://www.oyama-karate.eu/img/wo/5/44/Rozpoczecie-sezonu-2021-2022-Karate-Katowice-i-obrazek_sredni_5102544.jpg',
-    desc: 'Harmonogram dotyczy sekcji Karate Katowice Podlesie, Katowice Ligota , Katowice Panewniki oraz Gliwice Centrum zarówno dla dzieci młodzieży oraz dorosłych.',
+    desc: 'Harmonogram dotyczy sekcji Karate Katowice Podlesie, Katowice Ligota, Katowice Panewniki oraz Gliwice Centrum zarówno dla dzieci młodzieży oraz dorosłych.',
     text: (
       <>
         <p style={{ fontWeight: 800 }}>
-          Harmonogram dotyczy sekcji Karate Katowice Podlesie, Katowice Ligota ,
+          Harmonogram dotyczy sekcji Karate Katowice Podlesie, Katowice Ligota,
           Katowice Panewniki oraz Gliwice Centrum zarówno dla dzieci młodzieży
           oraz dorosłych.
         </p>

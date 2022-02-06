@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import instructorPhoto from '../../../assets/instruktor.jpeg';
 import './InstructorCard.scss';
 
-function InstructorCard({ animation, name }) {
+function InstructorCard({ animation, name, id }) {
   return (
     <div data-aos={animation} className='instructor-card'>
       <div className='image-wrapper'>
@@ -18,7 +18,7 @@ function InstructorCard({ animation, name }) {
         Jako instruktor wychowałem wielu utytułowanych zawodników, w tym
         Wicemistrza Europy, wielokrotnych Wicemistrzów i Mistrzów Polski...
       </p>
-      <Link className='instructor-link' to='/'>
+      <Link className='instructor-link' to={`/instructors/${id}`}>
         <Button text={'Czytaj dalej'} />
       </Link>
     </div>

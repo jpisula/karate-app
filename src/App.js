@@ -39,6 +39,14 @@ function App() {
               }
             />
             <Route
+              path='/instructors/:id'
+              element={
+                <InfoPageTemplate>
+                  <Instructors />
+                </InfoPageTemplate>
+              }
+            />
+            <Route
               path='/about-oyama'
               element={
                 <InfoPageTemplate>

@@ -8,22 +8,23 @@
   padding: 25px 18px;
   box-sizing: border-box;
   text-align: left;
-  letter-spacing: 0.5px;
-  line-height: 20px;
+  letter-spacing: 1px;
+  line-height: 25px;
   text-align: justify;
 
   @include media('>=tablet-portrait', '<=tablet-landscape') {
     padding: 40px 25px;
-    line-height: 19.2px;
     font-size: $med-font;
-    letter-spacing: 1px;
   }
 
   @include media('>=tablet-landscape') {
-    font-size: $medder-font;
-    line-height: 26px;
-    padding: 25px 0;
-    letter-spacing: 1px;
+    font-size: $med-font;
+    padding: 40px 0;
+  }
+
+  @include media('>=desktop') {
+    font-size: $big-font;
+    padding: 40px 0;
   }
 
   h1 {
