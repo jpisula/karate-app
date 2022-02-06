@@ -84,7 +84,6 @@ function Calendar() {
   }, [daysToMove]);
 
   const handleDateSwitcherClick = () => {
-    console.log(isYearSwitcherOpen);
     if (isMonthChosen) {
       dispatch({
         type: 'SET_DAYS_TO_MOVE',

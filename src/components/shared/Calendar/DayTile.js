@@ -30,14 +30,22 @@ const DayTile = ({
     }
   }
 
+  const currentDate = new Date();
+  const eventDate = currentEvent
+    ? new Date(
+        `${currentEvent.year}/${currentEvent.month}/${currentEvent.dayEnd}`
+      )
+    : null;
+  const classNames = currentEvent
+    ? eventDate < currentDate
+      ? 'event-type past-event'
+      : `event-type event-type-${currentEvent.category}`
+    : className;
+
   return (
     <div
       data-day={dataDay}
-      className={`day-tile ${
-        currentEvent
-          ? `event-type event-type-${currentEvent.category}`
-          : className
-      }`}
+      className={`day-tile ${classNames}`}
       style={style}
       onClick={() => {
         if (currentEvent) {
