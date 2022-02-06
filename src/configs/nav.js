@@ -53,7 +53,7 @@ export const navConfig = {
         },
         {
           title: 'O OYAMA Karate',
-          to: '/'
+          to: '/about-oyama'
         },
         {
           title: 'Stopnie karate',

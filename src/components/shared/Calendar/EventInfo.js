@@ -6,6 +6,7 @@ import {
   BsFillArrowRightSquareFill
 } from 'react-icons/bs';
 import events from '../../../configs/events.js';
+import { ImCross } from 'react-icons/im';
 
 const EventInfo = () => {
   const { event, dispatch, chosenMonth, chosenYear, currentEvents } =
@@ -35,12 +36,6 @@ const EventInfo = () => {
       <div className='edges'>
         <div className='event-container'>
           <div className='vignette'>
-            <div className='cross-container'>
-              <ImCross
-                className='cross'
-                onClick={() => setIsEventModalDisplayed(!isEventModalDisplayed)}
-              />
-            </div>
             {/* <img src={temporaryImg} alt='current event image' /> */}
             <h2 className='title'>{title}</h2>
             <p className='address'>{`${address}, ${city}`}</p>
