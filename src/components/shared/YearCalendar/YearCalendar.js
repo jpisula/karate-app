@@ -6,7 +6,7 @@ import {
   BsFillArrowRightCircleFill
 } from 'react-icons/bs';
 import { useEffect } from 'react';
-import Modal from './Modal';
+// import Modal from './Modal';
 import DayTile from './DayTile';
 
 const YearCalendar = () => {
