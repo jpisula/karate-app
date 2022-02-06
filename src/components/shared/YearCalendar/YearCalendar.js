@@ -1,20 +1,20 @@
-import './YearCalendar.scss';
-import { useState } from 'react';
-import events from '../../../configs/events';
+import { useContext, useEffect, useState } from 'react';
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill
 } from 'react-icons/bs';
 import { useEffect } from 'react';
 // import Modal from './Modal';
+import events from '../../../configs/events';
+import CalendarContext from '../Calendar/CalendarContext';
 import DayTile from './DayTile';
+import './YearCalendar.scss';
 
 const YearCalendar = () => {
   const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
 
   const [startYearDay, setStartYearDay] = useState(6);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  // const [isEventModalDisplayed, setIsEventModalDisplayed] = useState(false);
 
   let startDay = 6;
 

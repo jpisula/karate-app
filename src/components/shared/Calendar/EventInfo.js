@@ -6,6 +6,7 @@ import {
   BsFillArrowRightSquareFill
 } from 'react-icons/bs';
 import events from '../../../configs/events.js';
+import { ImCross } from 'react-icons/im';
 
 const EventInfo = () => {
   const { event, dispatch, chosenMonth, chosenYear, currentEvents } =
@@ -31,7 +32,6 @@ const EventInfo = () => {
   };
 
   if (!isEmpty(event)) {
-    console.log(event);
     return (
       <div className='edges'>
         <div
@@ -42,30 +42,33 @@ const EventInfo = () => {
             {/* <img src={temporaryImg} alt='current event image' /> */}
             <h2 className='title'>{title}</h2>
             <p className='address'>{`${address}, ${city}`}</p>
-            <p className='date'>{`${
-              dayStart === dayEnd
-                ? setDate(dayStart)
-                : `${setDate(dayStart)} - ${setDate(dayEnd)}`
-            }.${setDate(month)}.${year}`}</p>
-            <h2 className='description-title'>Opis wydarzenia: </h2>
+            <p className='date'>
+              {`${
+                dayStart === dayEnd
+                  ? setDate(dayStart)
+                  : `${setDate(dayStart)} - ${setDate(dayEnd)}`
+              }.${setDate(month)}.${year}`}
+            </p>
+            <p className='city'>{city}</p>
+            <p className='address'>{address}</p>
             <p className='description'>{description}</p>
             <div className='arrows-container'>
               <BsFillArrowLeftSquareFill
                 className='arrow'
                 onClick={() => {
-                  const eventIndex = currentEvents;
+                  const eventIndex = events.indexOf(event);
                   if (
-                    event.id - 2 >= 0 &&
-                    (chosenMonth !== events[event.id - 2].month ||
-                      chosenYear !== events[event.id - 2].year)
+                    eventIndex > 0 &&
+                    (chosenMonth !== events[eventIndex - 1].month ||
+                      chosenYear !== events[eventIndex - 1].year)
                   ) {
                     dispatch({
                       type: 'SET_EVENT',
-                      payload: events[event.id - 2]
+                      payload: events[eventIndex - 1]
                     });
                     dispatch({
                       type: 'SET_YEAR',
-                      payload: events[event.id - 2].year
+                      payload: events[eventIndex - 1].year
                     });
                     dispatch({
                       type: 'SET_PREV_CHOSEN_MONTH',
@@ -73,7 +76,7 @@ const EventInfo = () => {
                     });
                     dispatch({
                       type: 'SET_MONTH',
-                      payload: events[event.id - 2].month - 1
+                      payload: events[eventIndex - 1].month - 1
                     });
                     dispatch({ type: 'SET_LOUDER', payload: true });
                   }
@@ -82,15 +85,19 @@ const EventInfo = () => {
               <BsFillArrowRightSquareFill
                 className='arrow'
                 onClick={() => {
+                  const eventIndex = events.indexOf(event);
                   if (
-                    event.id < events.length &&
-                    (chosenMonth !== events[event.id].month ||
-                      chosenYear !== events[event.id].year)
+                    eventIndex + 1 < events.length &&
+                    (chosenMonth !== events[eventIndex + 1].month ||
+                      chosenYear !== events[eventIndex + 1].year)
                   ) {
-                    dispatch({ type: 'SET_EVENT', payload: events[event.id] });
+                    dispatch({
+                      type: 'SET_EVENT',
+                      payload: events[eventIndex + 1]
+                    });
                     dispatch({
                       type: 'SET_YEAR',
-                      payload: events[event.id].year
+                      payload: events[eventIndex + 1].year
                     });
                     dispatch({
                       type: 'SET_PREV_CHOSEN_MONTH',
@@ -98,7 +105,7 @@ const EventInfo = () => {
                     });
                     dispatch({
                       type: 'SET_MONTH',
-                      payload: events[event.id].month - 1
+                      payload: events[eventIndex + 1].month - 1
                     });
                     dispatch({ type: 'SET_LOUDER', payload: true });
                   }
