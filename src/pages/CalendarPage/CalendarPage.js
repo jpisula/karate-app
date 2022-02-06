@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Calendar from '../../components/shared/Calendar/Calendar';
 import { CalendarProvider } from '../../components/shared/Calendar/CalendarContext';
+import ColorsDescription from '../../components/shared/Calendar/ColorsDescription';
 import EventInfo from '../../components/shared/Calendar/EventInfo';
 import YearCalendar from '../../components/shared/YearCalendar/YearCalendar';
 import './CalendarPage.scss';
@@ -60,6 +61,8 @@ function CalendarPage() {
         {/* <p className='event-switcher-instuction'>
           Uzywaj strzałek, aby przeglądać kolejne wydarzenia!
         </p> */}
+
+        {window.innerWidth < 1024 && <ColorsDescription />}
 
         <div className='calendar-info'>
           <ul className='calendar-info-list'>

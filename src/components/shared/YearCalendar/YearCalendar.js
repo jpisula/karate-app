@@ -67,11 +67,19 @@ const YearCalendar = () => {
         />
       );
 
-      for (const event of currentEvents[month]) {
+      for (const event of events) {
+        //currentEvents[month]
         if (
-          event.dayStart === event.dayEnd
-            ? event.dayStart === i + 1
-            : event.dayStart <= i + 1 && i + 1 <= event.dayEnd
+          (event.monthEnd &&
+            month === event.month &&
+            i + 1 <= event.dayStart) ||
+          (event.monthEnd &&
+            month === event.month - 1 &&
+            i + 1 >= event.dayEnd) ||
+          (event.month - 1 === month &&
+            (event.dayStart === event.dayEnd
+              ? event.dayStart === i + 1
+              : event.dayStart <= i + 1 && i + 1 <= event.dayEnd))
         ) {
           day = (
             <DayTile
