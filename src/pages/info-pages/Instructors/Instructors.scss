@@ -3,7 +3,7 @@
 .instructors-page {
   width: 100%;
   height: auto;
-  font-size: $tiny-font;
+  font-size: $small-font;
   font-weight: 400;
   padding: 25px 18px;
   box-sizing: border-box;
@@ -15,12 +15,12 @@
   @include media('>=tablet-portrait', '<=tablet-landscape') {
     padding: 40px 25px;
     line-height: 19.2px;
-    font-size: $small-font;
+    font-size: $med-font;
     letter-spacing: 1px;
   }
 
   @include media('>=tablet-landscape') {
-    font-size: $med-font;
+    font-size: $medder-font;
     line-height: 26px;
     padding: 25px 0;
     letter-spacing: 1px;
@@ -41,7 +41,7 @@
   }
 
   h2 {
-    font-size: $med-font;
+    font-size: $big-font;
     font-weight: 600;
     text-align: center;
     margin-bottom: 25px;
@@ -56,6 +56,7 @@
   img {
     display: block;
     margin: 0 auto;
+    margin-bottom: 10px;
 
     @include media('>=mobile') {
       float: right;
