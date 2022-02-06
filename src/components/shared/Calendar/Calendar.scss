@@ -257,3 +257,23 @@
     box-sizing: border-box;
   }
 }
+
+.current-day {
+  background-color: $current-day-color;
+  color: $events-font-color !important;
+}
+
+.event-type-tournament {
+  background-color: $tournament-color;
+  color: $events-font-color !important;
+}
+
+.event-type-seminary {
+  background-color: $seminary-color;
+  color: $events-font-color !important;
+}
+
+.event-type-camp {
+  background-color: $camp-color;
+  color: $events-font-color !important;
+}

@@ -10,7 +10,6 @@ function CalendarPage() {
   const [isYearCalendarDisplayed, setIsYearCalendarDisplayed] = useState(false);
 
   const setCalendarToDisplay = (width) => {
-    console.log(width);
     if (width >= 1024) {
       setIsYearCalendarDisplayed(true);
       setIsCalendarDisplayed(false);

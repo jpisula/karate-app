@@ -8,7 +8,7 @@ import {
 import events from '../../../configs/events.js';
 
 const EventInfo = () => {
-  const { event, dispatch, chosenMonth, chosenYear } =
+  const { event, dispatch, chosenMonth, chosenYear, currentEvents } =
     useContext(CalendarContext);
   const {
     imgSrc,
@@ -51,6 +51,7 @@ const EventInfo = () => {
             <BsFillArrowLeftSquareFill
               className='arrow'
               onClick={() => {
+                const eventIndex = currentEvents;
                 if (
                   event.id - 2 >= 0 &&
                   (chosenMonth !== events[event.id - 2].month ||

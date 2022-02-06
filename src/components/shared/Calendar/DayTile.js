@@ -1,18 +1,32 @@
 import { useContext } from 'react';
 import CalendarContext from './CalendarContext';
 
-const DayTile = ({ dataDay, style, chosenMonth, chosenYear, events }) => {
+const DayTile = ({
+  dataDay,
+  style,
+  chosenMonth,
+  chosenYear,
+  events,
+  className
+}) => {
   let currentEvent;
   const { dispatch } = useContext(CalendarContext);
   for (const event of events) {
-    if (
-      event.year === chosenYear &&
-      event.month - 1 === chosenMonth &&
-      (event.dayStart === event.dayEnd
-        ? event.dayStart === dataDay
-        : event.dayStart <= dataDay && dataDay <= event.dayEnd)
-    ) {
-      currentEvent = event;
+    if (event.year === chosenYear) {
+      if (
+        (event.monthEnd &&
+          chosenMonth === event.month &&
+          dataDay <= event.dayStart) ||
+        (event.monthEnd &&
+          chosenMonth === event.month - 1 &&
+          dataDay >= event.dayEnd) ||
+        (event.month - 1 === chosenMonth &&
+          (event.dayStart === event.dayEnd
+            ? event.dayStart === dataDay
+            : event.dayStart <= dataDay && dataDay <= event.dayEnd))
+      ) {
+        currentEvent = event;
+      }
     }
   }
 
@@ -20,7 +34,9 @@ const DayTile = ({ dataDay, style, chosenMonth, chosenYear, events }) => {
     <div
       data-day={dataDay}
       className={`day-tile ${
-        currentEvent ? `event-type event-type-${currentEvent.category}` : ''
+        currentEvent
+          ? `event-type event-type-${currentEvent.category}`
+          : className
       }`}
       style={style}
       onClick={() => {

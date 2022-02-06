@@ -6,10 +6,14 @@ const CalendarContext = createContext();
 export const CalendarProvider = ({ children }) => {
   const initialState = {
     event: {},
-    chosenMonth: 0,
-    chosenYear: 2022,
+    chosenMonth: new Date().getMonth(),
+    chosenYear: new Date().getFullYear(),
     louderForOthers: false,
-    startDay: 6,
+    startDay: new Date(
+      new Date().getFullYear(),
+      new Date().getMonth(),
+      1
+    ).getDay(),
     isYearSwitcherOpen: false,
     isMonthSwitcherOpen: false,
     prevChosenYear: 2022,
