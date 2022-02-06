@@ -60,6 +60,11 @@ const CalendarReducer = (state, action) => {
         ...state,
         isMonthChosen: action.payload
       };
+    case 'SET_CURRENT_EVENTS':
+      return {
+        ...state,
+        currentEvents: action.payload
+      };
     default:
       return state;
   }

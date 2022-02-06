@@ -6,6 +6,7 @@ const CalendarContext = createContext();
 export const CalendarProvider = ({ children }) => {
   const initialState = {
     event: {},
+    currentEvents: [],
     chosenMonth: new Date().getMonth(),
     chosenYear: new Date().getFullYear(),
     louderForOthers: false,
@@ -29,6 +30,7 @@ export const CalendarProvider = ({ children }) => {
     <CalendarContext.Provider
       value={{
         event: state.event,
+        currentEvents: state.currentEvents,
         chosenYear: state.chosenYear,
         chosenMonth: state.chosenMonth,
         louderForOthers: state.louderForOthers,

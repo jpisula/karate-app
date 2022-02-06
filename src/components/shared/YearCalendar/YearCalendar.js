@@ -1,20 +1,19 @@
-import './YearCalendar.scss';
-import { useState } from 'react';
-import events from '../../../configs/events';
+import { useContext, useEffect, useState } from 'react';
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill
 } from 'react-icons/bs';
-import { useEffect } from 'react';
-import Modal from './Modal';
+import events from '../../../configs/events';
+import CalendarContext from '../Calendar/CalendarContext';
 import DayTile from './DayTile';
+import './YearCalendar.scss';
 
 const YearCalendar = () => {
   const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
 
   const [startYearDay, setStartYearDay] = useState(6);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  // const [isEventModalDisplayed, setIsEventModalDisplayed] = useState(false);
+  const { dispatch } = useContext(CalendarContext);
 
   let startDay = 6;
 
@@ -105,6 +104,7 @@ const YearCalendar = () => {
         currentEvents[event.month - 1].push(event);
       }
     }
+    dispatch({ type: 'SET_CURRENT_EVENTS', payload: currentEvents });
 
     for (let i = 0; i < 12; i++) {
       monthTiles.push(

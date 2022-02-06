@@ -31,7 +31,6 @@ const EventInfo = () => {
   };
 
   if (!isEmpty(event)) {
-    console.log(event);
     return (
       <div className='edges'>
         <div className='event-container'>
@@ -51,19 +50,19 @@ const EventInfo = () => {
             <BsFillArrowLeftSquareFill
               className='arrow'
               onClick={() => {
-                const eventIndex = currentEvents;
+                const eventIndex = events.indexOf(event);
                 if (
-                  event.id - 2 >= 0 &&
-                  (chosenMonth !== events[event.id - 2].month ||
-                    chosenYear !== events[event.id - 2].year)
+                  eventIndex > 0 &&
+                  (chosenMonth !== events[eventIndex - 1].month ||
+                    chosenYear !== events[eventIndex - 1].year)
                 ) {
                   dispatch({
                     type: 'SET_EVENT',
-                    payload: events[event.id - 2]
+                    payload: events[eventIndex - 1]
                   });
                   dispatch({
                     type: 'SET_YEAR',
-                    payload: events[event.id - 2].year
+                    payload: events[eventIndex - 1].year
                   });
                   dispatch({
                     type: 'SET_PREV_CHOSEN_MONTH',
@@ -71,7 +70,7 @@ const EventInfo = () => {
                   });
                   dispatch({
                     type: 'SET_MONTH',
-                    payload: events[event.id - 2].month - 1
+                    payload: events[eventIndex - 1].month - 1
                   });
                   dispatch({ type: 'SET_LOUDER', payload: true });
                 }
@@ -80,15 +79,19 @@ const EventInfo = () => {
             <BsFillArrowRightSquareFill
               className='arrow'
               onClick={() => {
+                const eventIndex = events.indexOf(event);
                 if (
-                  event.id < events.length &&
-                  (chosenMonth !== events[event.id].month ||
-                    chosenYear !== events[event.id].year)
+                  eventIndex + 1 < events.length &&
+                  (chosenMonth !== events[eventIndex + 1].month ||
+                    chosenYear !== events[eventIndex + 1].year)
                 ) {
-                  dispatch({ type: 'SET_EVENT', payload: events[event.id] });
+                  dispatch({
+                    type: 'SET_EVENT',
+                    payload: events[eventIndex + 1]
+                  });
                   dispatch({
                     type: 'SET_YEAR',
-                    payload: events[event.id].year
+                    payload: events[eventIndex + 1].year
                   });
                   dispatch({
                     type: 'SET_PREV_CHOSEN_MONTH',
@@ -96,7 +99,7 @@ const EventInfo = () => {
                   });
                   dispatch({
                     type: 'SET_MONTH',
-                    payload: events[event.id].month - 1
+                    payload: events[eventIndex + 1].month - 1
                   });
                   dispatch({ type: 'SET_LOUDER', payload: true });
                 }
