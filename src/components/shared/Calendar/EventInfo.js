@@ -39,7 +39,6 @@ const EventInfo = () => {
           style={{ backgroundImage: `url(${imgSrc})` }}
         >
           <div className='vignette'>
-            {/* <img src={temporaryImg} alt='current event image' /> */}
             <h2 className='title'>{title}</h2>
             <p className='address'>{`${address}, ${city}`}</p>
             <p className='date'>
@@ -49,8 +48,6 @@ const EventInfo = () => {
                   : `${setDate(dayStart)} - ${setDate(dayEnd)}`
               }.${setDate(month)}.${year}`}
             </p>
-            <p className='city'>{city}</p>
-            <p className='address'>{address}</p>
             <p className='description'>{description}</p>
             <div className='arrows-container'>
               <BsFillArrowLeftSquareFill
