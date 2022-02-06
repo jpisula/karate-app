@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import CalendarContext from './CalendarContext';
+import './DayTile.scss';
 
 const DayTile = ({
   dataDay,
@@ -30,22 +31,25 @@ const DayTile = ({
     }
   }
 
-  const currentDate = new Date();
+  let cls = `day-tile ${
+    currentEvent ? `event-type event-type-${currentEvent.category}` : className
+  }`;
+
+  let currentDate = new Date();
   const eventDate = currentEvent
     ? new Date(
-        `${currentEvent.year}/${currentEvent.month}/${currentEvent.dayEnd}`
+        `${currentEvent.year} / ${currentEvent.month} / ${currentEvent.dayEnd}`
       )
     : null;
-  const classNames = currentEvent
-    ? eventDate < currentDate
-      ? 'event-type past-event'
-      : `event-type event-type-${currentEvent.category}`
-    : className;
+  if (currentEvent) {
+    cls += currentDate > eventDate ? ' past-event' : '';
+  }
+  console.log(className, currentEvent);
 
   return (
     <div
       data-day={dataDay}
-      className={`day-tile ${classNames}`}
+      className={cls}
       style={style}
       onClick={() => {
         if (currentEvent) {
