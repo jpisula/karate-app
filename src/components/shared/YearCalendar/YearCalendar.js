@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill
 } from 'react-icons/bs';
-import { useEffect } from 'react';
 // import Modal from './Modal';
 import events from '../../../configs/events';
 import CalendarContext from '../Calendar/CalendarContext';
