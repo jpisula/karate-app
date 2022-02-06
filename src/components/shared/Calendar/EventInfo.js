@@ -5,7 +5,6 @@ import {
   BsFillArrowLeftSquareFill,
   BsFillArrowRightSquareFill
 } from 'react-icons/bs';
-import { ImCross } from 'react-icons/im';
 import events from '../../../configs/events.js';
 
 const EventInfo = () => {
