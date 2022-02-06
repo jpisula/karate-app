@@ -12,15 +12,19 @@ const DayTile = ({ event, startDay, i, className }) => {
       document.body.style.overflow = 'auto';
     }
   }, [isEventModalDisplayed]);
+
+  const currentDate = new Date();
+
   const eventDate = event
     ? new Date(`${event.year}/${event.month}/${event.dayEnd}`)
     : null;
+  console.log(new Date());
   return (
     <>
       <div
         className={
-          event && eventDate < new Date()
-            ? `${className} past-event`
+          event && eventDate < currentDate
+            ? `past-event ${className}`
             : className
         }
         style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
