@@ -1,6 +1,6 @@
 @import '../../../lib/sass/styles.scss';
 
-.about-oyama {
+.info-general {
   width: 100%;
   height: auto;
   font-size: $med-font;
@@ -49,6 +49,12 @@
     @include media('>=tablet-portrait') {
       font-size: $big-font;
     }
+  }
+
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: $red-color;
   }
 
   .left-img {

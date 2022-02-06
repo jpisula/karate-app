@@ -53,19 +53,19 @@ export const navConfig = {
         },
         {
           title: 'O OYAMA Karate',
-          to: '/about-oyama'
+          to: '/info-general/about-oyama'
         },
         {
           title: 'Stopnie karate',
-          to: '/'
+          to: '/info-general/karate-degrees'
         },
         {
           title: 'Przysięga dojo',
-          to: '/'
+          to: '/info-general/dojo-oath'
         },
         {
           title: 'Etykieta dojo',
-          to: '/'
+          to: '/info-general/dojo-label'
         },
         {
           title: 'Słownik pojęć',
@@ -77,11 +77,11 @@ export const navConfig = {
         },
         {
           title: 'Klub GOLIAT',
-          to: '/'
+          to: '/info-general/goliat'
         },
         {
           title: 'Karate a prawo',
-          to: '/'
+          to: '/info-general/karate-law'
         },
         {
           title: 'Dla sponsora',

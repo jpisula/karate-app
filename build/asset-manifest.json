@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.5644d2fa.css",
-    "main.js": "/static/js/main.b786124b.js",
+    "main.css": "/static/css/main.742b6469.css",
+    "main.js": "/static/js/main.7028c4ff.js",
     "static/js/787.c659086a.chunk.js": "/static/js/787.c659086a.chunk.js",
     "static/media/landing.jpeg": "/static/media/landing.98bf7fbcd7b585ff8bf3.jpeg",
     "static/media/family-karate.jpeg": "/static/media/family-karate.1d9f49efbc7a86724141.jpeg",
@@ -13,12 +13,12 @@
     "static/media/adults-karate.jpeg": "/static/media/adults-karate.862afd904a3d5103bb4a.jpeg",
     "static/media/instruktor.jpeg": "/static/media/instruktor.07893a1e6b5b9da0447a.jpeg",
     "index.html": "/index.html",
-    "main.5644d2fa.css.map": "/static/css/main.5644d2fa.css.map",
-    "main.b786124b.js.map": "/static/js/main.b786124b.js.map",
+    "main.742b6469.css.map": "/static/css/main.742b6469.css.map",
+    "main.7028c4ff.js.map": "/static/js/main.7028c4ff.js.map",
     "787.c659086a.chunk.js.map": "/static/js/787.c659086a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5644d2fa.css",
-    "static/js/main.b786124b.js"
+    "static/css/main.742b6469.css",
+    "static/js/main.7028c4ff.js"
   ]
 }

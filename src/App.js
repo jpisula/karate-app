@@ -7,7 +7,7 @@ import { navConfig } from './configs/nav';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
 import CalendarPage from './pages/CalendarPage/CalendarPage';
 import Homepage from './pages/Homepage/Homepage';
-import AboutOyama from './pages/info-pages/AboutOyama/AboutOyama';
+import InfoGeneral from './pages/info-pages/InfoGeneral/InfoGeneral';
 import InfoPageTemplate from './pages/info-pages/InfoPageTemplate/InfoPageTemplate';
 import Instructors from './pages/info-pages/Instructors/Instructors';
 import TrainingsSchedule from './pages/info-pages/TrainingsSchedule/TrainingsSchedule';
@@ -47,10 +47,10 @@ function App() {
               }
             />
             <Route
-              path='/about-oyama'
+              path='/info-general/:type'
               element={
                 <InfoPageTemplate>
-                  <AboutOyama />
+                  <InfoGeneral />
                 </InfoPageTemplate>
               }
             />
