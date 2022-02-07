@@ -143,26 +143,27 @@
     .article-text {
       width: 100%;
       height: auto;
-      font-size: $tiny-font;
+      font-size: $med-font;
       font-weight: 400;
       padding: 25px 18px;
       box-sizing: border-box;
       text-align: left;
-      letter-spacing: 0.5px;
-      line-height: 20px;
+      letter-spacing: 1px;
+      line-height: 25px;
 
       @include media('>=tablet-portrait', '<=tablet-landscape') {
         padding: 40px 25px;
-        line-height: 19.2px;
-        font-size: $small-font;
-        letter-spacing: 1px;
+        font-size: $med-font;
       }
 
       @include media('>=tablet-landscape') {
         font-size: $med-font;
-        line-height: 26px;
-        padding: 25px 0;
-        letter-spacing: 1px;
+        padding: 40px 0;
+      }
+
+      @include media('>=desktop') {
+        font-size: $medder-font;
+        padding: 40px 0;
       }
     }
   }

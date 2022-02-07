@@ -262,6 +262,10 @@
   background-color: $current-day-color;
 }
 
+.past-event {
+  background-color: $past-event !important;
+}
+
 .event-type-tournament {
   background-color: $tournament-color;
   color: $events-font-color !important;

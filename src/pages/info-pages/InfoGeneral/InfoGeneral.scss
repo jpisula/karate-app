@@ -1,29 +1,30 @@
 @import '../../../lib/sass/styles.scss';
 
-.about-oyama {
+.info-general {
   width: 100%;
   height: auto;
-  font-size: $tiny-font;
+  font-size: $med-font;
   font-weight: 400;
   padding: 25px 18px;
   box-sizing: border-box;
   text-align: left;
-  letter-spacing: 0.5px;
-  line-height: 20px;
+  letter-spacing: 1px;
+  line-height: 25px;
   text-align: justify;
 
   @include media('>=tablet-portrait', '<=tablet-landscape') {
     padding: 40px 25px;
-    line-height: 19.2px;
-    font-size: $small-font;
-    letter-spacing: 1px;
+    font-size: $med-font;
   }
 
   @include media('>=tablet-landscape') {
     font-size: $med-font;
-    line-height: 26px;
-    padding: 25px 0;
-    letter-spacing: 1px;
+    padding: 40px 0;
+  }
+
+  @include media('>=desktop') {
+    font-size: $medder-font;
+    padding: 40px 0;
   }
 
   h1 {
@@ -41,30 +42,50 @@
   }
 
   h2 {
-    font-size: $med-font;
+    font-size: $medder-font;
     font-weight: 600;
     margin-bottom: 25px;
+
+    @include media('>=tablet-portrait') {
+      font-size: $big-font;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+    cursor: pointer;
+    color: $red-color;
   }
 
   .left-img {
     display: block;
     margin: 0 auto;
+    max-width: 80%;
 
     @include media('>=mobile') {
       float: left;
       max-width: 40%;
       margin-right: 20px;
     }
+
+    img {
+      width: 100%;
+    }
   }
 
   .right-img {
     display: block;
     margin: 0 auto;
+    max-width: 80%;
 
     @include media('>=mobile') {
       float: right;
       max-width: 40%;
       margin-left: 20px;
+    }
+
+    img {
+      width: 100%;
     }
   }
 
