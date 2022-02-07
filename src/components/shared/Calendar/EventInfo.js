@@ -64,6 +64,10 @@ const EventInfo = () => {
                       payload: events[eventIndex - 1]
                     });
                     dispatch({
+                      type: 'SET_PREV_CHOSEN_YEAR',
+                      payload: chosenYear
+                    });
+                    dispatch({
                       type: 'SET_YEAR',
                       payload: events[eventIndex - 1].year
                     });
@@ -93,6 +97,10 @@ const EventInfo = () => {
                       payload: events[eventIndex + 1]
                     });
                     dispatch({
+                      type: 'SET_PREV_CHOSEN_YEAR',
+                      payload: chosenYear
+                    });
+                    dispatch({
                       type: 'SET_YEAR',
                       payload: events[eventIndex + 1].year
                     });
@@ -106,6 +114,7 @@ const EventInfo = () => {
                     });
                     dispatch({ type: 'SET_LOUDER', payload: true });
                   }
+                  console.log();
                 }}
               />
             </div>
