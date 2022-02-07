@@ -131,10 +131,16 @@ export const articles = [
         <br />
         <p style={{ width: '100%', textAlign: 'center', fontWeight: 800 }}>
           Nasz profil Fb będzie na bieżąco informował o wszystkich sprawach
-          związanych z treningami Kaate zarówno w Katowicach jak i Gliwicach
+          związanych z treningami Karate zarówno w Katowicach jak i Gliwicach
         </p>
         <br />
-        <p style={{ width: '100%', textAlign: 'center', fontWeight: 800 }}>
+        <p
+          style={{
+            textAlign: 'center',
+            fontWeight: 800,
+            overflowWrap: 'break-word'
+          }}
+        >
           https://www.facebook.com/Karate.Katowice.Gliwice
         </p>
         <br />

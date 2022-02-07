@@ -14,6 +14,14 @@ const Header = ({ navConfig }) => {
   const [isScrollButtonVisible, setIsScrollButtonVisible] = useState(false);
   const [offset, setOffset] = useState(0);
 
+  useEffect(() => {
+    if (isHamburgerDropdownOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isHamburgerDropdownOpen]);
+
   //resize handling useEffect
   useEffect(() => {
     setNavLinksDisplay(window.innerWidth);
