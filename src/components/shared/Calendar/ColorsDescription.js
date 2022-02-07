@@ -21,7 +21,7 @@ const ColorsDescription = ({ width }) => {
     },
     {
       color: 'rgb(141, 141, 141)',
-      meaning: ' - wydarzenie, które juz się odbyło'
+      meaning: ' - wydarzenie, które już się odbyło'
     }
   ];
 

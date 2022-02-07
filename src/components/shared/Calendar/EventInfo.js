@@ -31,6 +31,16 @@ const EventInfo = () => {
     return Object.keys(obj).length === 0;
   };
 
+  const eventDate = !isEmpty(event)
+    ? new Date(`${chosenYear}/${chosenMonth}/${dayEnd}`)
+    : {};
+  const currentDate = new Date();
+
+  const ifEventWas =
+    !isEmpty(event) && eventDate < currentDate
+      ? '(wydarzenie się juz odbyło)'
+      : '';
+
   if (!isEmpty(event)) {
     return (
       <div className='edges'>
@@ -46,7 +56,7 @@ const EventInfo = () => {
                 dayStart === dayEnd
                   ? setDate(dayStart)
                   : `${setDate(dayStart)} - ${setDate(dayEnd)}`
-              }.${setDate(month)}.${year}`}
+              }.${setDate(month)}.${year} ${ifEventWas}`}
             </p>
             <p className='description'>{description}</p>
             <div className='arrows-container'>
