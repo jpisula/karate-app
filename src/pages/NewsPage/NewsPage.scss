@@ -3,17 +3,18 @@
 .news-page-content {
   font-family: 'Roboto', sans-serif;
   line-height: 30px;
+
   h1 {
     font-size: $big-font;
     font-weight: 800;
     letter-spacing: 2px;
     color: white;
     text-align: center;
-    margin: 25px 0;
+    padding: 25px 0;
 
     @include media('>=tablet-portrait') {
       font-size: $large-font;
-      margin: 40px 0;
+      padding: 40px 0;
     }
   }
 

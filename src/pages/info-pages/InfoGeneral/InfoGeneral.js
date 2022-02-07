@@ -1,10 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { infoPages } from '../../../configs/infoPages';
+import NotFound from '../../NotFound/NotFound';
 import './InfoGeneral.scss';
 
 const InfoGeneral = () => {
   const { type } = useParams();
   const page = infoPages.find((el) => el.id === type);
+
+  if (!page) {
+    return <NotFound />;
+  }
 
   if (!page) {
     return <h1>Nie znaleziono strony</h1>;

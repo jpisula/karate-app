@@ -13,6 +13,7 @@ import Instructors from './pages/info-pages/Instructors/Instructors';
 import TrainingsSchedule from './pages/info-pages/TrainingsSchedule/TrainingsSchedule';
 import KinderPage from './pages/KinderPage/KinderPage';
 import NewsPage from './pages/NewsPage/NewsPage';
+import NotFound from './pages/NotFound/NotFound';
 import SectionsPage from './pages/SectionsPage/SectionsPage';
 
 function App() {
@@ -54,7 +55,7 @@ function App() {
                 </InfoPageTemplate>
               }
             />
-            <Route path='/*' element={<Homepage />} />
+            <Route path='/*' element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

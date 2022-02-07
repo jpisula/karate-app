@@ -69,11 +69,11 @@ export const navConfig = {
         },
         {
           title: 'Słownik pojęć',
-          to: '/'
+          to: '/info-general/dictionary'
         },
         {
           title: 'Galerie',
-          to: '/'
+          to: '/info-general/galery'
         },
         {
           title: 'Klub GOLIAT',
@@ -85,7 +85,7 @@ export const navConfig = {
         },
         {
           title: 'Dla sponsora',
-          to: '/'
+          to: '/info-general/sponsors'
         }
       ]
     },

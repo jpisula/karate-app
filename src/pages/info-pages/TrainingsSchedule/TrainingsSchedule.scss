@@ -47,7 +47,9 @@
     margin: 0 auto;
 
     table {
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+      @include media('>=tablet-landscape') {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+      }
     }
 
     @include media('>tablet-landscape') {
