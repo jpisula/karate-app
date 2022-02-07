@@ -19,6 +19,12 @@ const Modal = ({ event, setIsEventModalDisplayed, isEventModalDisplayed }) => {
     return date > 9 ? date : '0' + date;
   };
 
+  const eventDate = new Date(`${event.year}/${event.month}/${event.dayEnd}`);
+  const currentDate = new Date();
+
+  const ifEventWas =
+    eventDate < currentDate ? '(wydarzenie się już odbyło)' : '';
+
   return (
     <div className='modal-bg'>
       <div
@@ -39,7 +45,7 @@ const Modal = ({ event, setIsEventModalDisplayed, isEventModalDisplayed }) => {
             dayStart === dayEnd
               ? setDate(dayStart)
               : `${setDate(dayStart)} - ${setDate(dayEnd)}`
-          }.${setDate(month)}.${year}`}</p>
+          }.${setDate(month)}.${year} ${ifEventWas}`}</p>
           <h2 className='description-title'>Opis wydarzenia: </h2>
           <p className='description'>{description}</p>
         </div>

@@ -6,7 +6,6 @@ import {
   BsFillArrowRightSquareFill
 } from 'react-icons/bs';
 import events from '../../../configs/events.js';
-import { ImCross } from 'react-icons/im';
 
 const EventInfo = () => {
   const { event, dispatch, chosenMonth, chosenYear, currentEvents } =
@@ -31,17 +30,13 @@ const EventInfo = () => {
     return Object.keys(obj).length === 0;
   };
 
-  const eventDate = !isEmpty(event)
-    ? new Date(`${chosenYear}/${chosenMonth}/${dayEnd}`)
-    : {};
-  const currentDate = new Date();
-
-  const ifEventWas =
-    !isEmpty(event) && eventDate < currentDate
-      ? '(wydarzenie się juz odbyło)'
-      : '';
-
   if (!isEmpty(event)) {
+    const eventDate = new Date(`${event.year}/${event.month}/${event.dayEnd}`);
+    const currentDate = new Date();
+
+    const ifEventWas =
+      eventDate < currentDate ? '(wydarzenie się już odbyło)' : '';
+
     return (
       <div className='edges'>
         <div
