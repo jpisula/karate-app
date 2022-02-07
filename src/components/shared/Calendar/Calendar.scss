@@ -7,6 +7,7 @@
 
   .calendar-content {
     position: relative;
+    z-index: -1;
 
     .year-switcher {
       @include flexCenter(row);
