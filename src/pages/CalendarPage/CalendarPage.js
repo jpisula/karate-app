@@ -43,6 +43,9 @@ function CalendarPage() {
             Zawody Klubowe organizowane przez ŚKK "GOLIAT" zostaną uzupełnione w
             najbliższym czasie.
           </span>
+          <p className='event-click-instruction'>
+            Kliknij w kalendarzu na wydarzenie, aby dowiedzieć się o nim więcej!
+          </p>
         </div>
 
         {isCalendarDisplayed && (
@@ -62,7 +65,7 @@ function CalendarPage() {
           Uzywaj strzałek, aby przeglądać kolejne wydarzenia!
         </p> */}
 
-        {window.innerWidth < 1024 && <ColorsDescription />}
+        <ColorsDescription width={window.innerWidth} />
 
         <div className='calendar-info'>
           <ul className='calendar-info-list'>
