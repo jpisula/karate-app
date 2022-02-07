@@ -90,13 +90,13 @@ const Header = ({ navConfig }) => {
             )}
         </nav>
       </header>
-
+      {/* 
       <ScrollBtn
         items={items}
         hamburgerIcon={hamburgerIcon}
         closeIcon={closeIcon}
         isScrollButtonVisible={isScrollButtonVisible}
-      />
+      /> */}
     </>
   );
 };
