@@ -62,7 +62,7 @@ function CalendarPage() {
           Uzywaj strzałek, aby przeglądać kolejne wydarzenia!
         </p> */}
 
-        {window.innerWidth < 1024 && <ColorsDescription />}
+        <ColorsDescription width={window.innerWidth} />
 
         <div className='calendar-info'>
           <ul className='calendar-info-list'>

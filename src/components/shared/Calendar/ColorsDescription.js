@@ -1,7 +1,7 @@
 import React from 'react';
 import './ColorsDescription.scss';
 
-const ColorsDescription = () => {
+const ColorsDescription = ({ width }) => {
   const colors = [
     {
       color: 'rgb(175, 233, 175)',
@@ -30,7 +30,14 @@ const ColorsDescription = () => {
     let i = 1;
     for (const color of colors) {
       colorTiles.push(
-        <li className='color-list-item' style={{ gridRowStart: i }}>
+        <li
+          className='color-list-item'
+          style={
+            width >= 1024
+              ? { gridColumnStart: ((i - 1) % 3) + 1 }
+              : { gridRowStart: i }
+          }
+        >
           <div className='color' style={{ backgroundColor: color.color }}></div>
           <div className='meaning'>{color.meaning}</div>
         </li>
@@ -41,7 +48,14 @@ const ColorsDescription = () => {
     return colorTiles;
   };
 
-  return <ul className='colors-list'>{generateColorTiles()}</ul>;
+  return (
+    <ul
+      className={width >= 1024 ? 'year-colors-list' : 'colors-list'}
+      // style={width >= 1024 ? { gridTemplate: '100% / repeat(5, 1fr)' } : ''}
+    >
+      {generateColorTiles()}
+    </ul>
+  );
 };
 
 export default ColorsDescription;
