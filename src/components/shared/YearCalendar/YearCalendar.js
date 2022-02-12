@@ -72,11 +72,14 @@ const YearCalendar = () => {
         if (
           (event.monthEnd &&
             month === event.month &&
-            i + 1 <= event.dayStart) ||
+            i + 1 <= event.dayStart &&
+            event.year === currentYear) ||
           (event.monthEnd &&
             month === event.month - 1 &&
-            i + 1 >= event.dayEnd) ||
+            i + 1 >= event.dayEnd &&
+            event.year === currentYear) ||
           (event.month - 1 === month &&
+            event.year === currentYear &&
             (event.dayStart === event.dayEnd
               ? event.dayStart === i + 1
               : event.dayStart <= i + 1 && i + 1 <= event.dayEnd))
