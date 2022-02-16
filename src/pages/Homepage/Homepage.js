@@ -10,7 +10,7 @@ import ContactForm from '../../components/shared/ContactForm/ContactForm';
 import GroupsAd from '../../components/shared/GroupsAd/GroupsAd';
 import InstructorCard from '../../components/shared/InstructorCard/InstructorCard';
 import karateImg from '../../assets/karate.jpeg';
-import landingPhoto from '../../assets/landing.jpeg';
+import landingPhoto from '../../assets/landing.jpg';
 import './Homepage.scss';
 
 function Homepage() {

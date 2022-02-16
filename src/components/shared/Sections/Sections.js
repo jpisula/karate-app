@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import SectionsContext from '../../../context/sections/SectionsContext';
 import SectionInfo from '../SectionInfo/SectionInfo';
-import GroupPhoto from '../../../assets/landing.jpeg';
+import GroupPhoto from '../../../assets/landing.jpg';
 import './Sections.scss';
 import { sections } from '../../../configs/sections';
 
