@@ -2,11 +2,13 @@ import React from 'react';
 import './Main.scss';
 import { VscNewFile } from 'react-icons/vsc';
 import Article from './Article/Article';
+import LeftArrow from './ArrowsIcons/LeftArrow';
+import RightArrow from './ArrowsIcons/RightArrow';
 
 const Main = () => {
   return (
     <main>
-      <div className='container'>
+      <div className='news-container'>
         <h1>Aktualności</h1>
 
         <form className='inputs-container'>
@@ -22,7 +24,11 @@ const Main = () => {
 
           <div className='input-container'>
             <label htmlFor='sort'>sortuj po: </label>
-            <input type='text' name='tag' />
+            <select name='sorting' className='select'>
+              <option value='lol'>lol</option>
+              <option value='kol'>kol</option>
+              <option value='chujol'>chujol</option>
+            </select>
           </div>
         </form>
 
@@ -38,7 +44,29 @@ const Main = () => {
             </div>
           </div>
           <div className='belt'></div>
-          <Article />
+          <div className='main-articles-container'>
+            <Article />
+            <Article />
+            <Article />
+            <Article />
+            <Article />
+          </div>
+
+          <div className='pagination-container'>
+            <div className='pagination-content'>
+              <LeftArrow className='pagination-arrow' />
+              <div className='pagination'>
+                <div className='pagination-tile pagination-active'>1</div>
+                <div className='pagination-tile'>2</div>
+                <div className='pagination-tile'>3</div>
+                <div className='pagination-tile'>4</div>
+                <div className='pagination-tile'>5</div>
+                <div className='pagination-tile'>...</div>
+                <div className='pagination-tile'>10</div>
+              </div>
+              <RightArrow className='pagination-arrow' />
+            </div>
+          </div>
         </section>
       </div>
     </main>

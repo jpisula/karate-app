@@ -3,9 +3,10 @@
 main {
   background-color: white;
 
-  .container {
+  .news-container {
     @include flexCenter(column);
     justify-content: flex-start;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 35px;
@@ -29,9 +30,22 @@ main {
         height: 44px;
         padding: 0 40px 20px 0;
 
-        input {
+        input,
+        select {
           width: 200px;
           height: 100%;
+          filter: drop-shadow(-2px 2px 4px rgba(0, 0, 0, 0.25));
+          border: none;
+          border-radius: 5px;
+          padding: 0;
+
+          option::placeholder {
+            padding: 10px;
+          }
+
+          &::placeholder {
+            padding-left: 5px;
+          }
         }
       }
     }
@@ -42,6 +56,8 @@ main {
       .headers {
         @include flexCenter(row);
         height: 40px;
+        padding: 0 10px;
+        box-sizing: border-box;
 
         h3 {
           width: 19%;
@@ -59,6 +75,15 @@ main {
           height: 100%;
           color: white;
           border-radius: 5px;
+
+          &:hover {
+            background-color: white;
+            color: #5cb25d;
+            cursor: pointer;
+            border: 3px #5cb25d solid;
+            box-sizing: border-box;
+            transition: all 0.2s linear;
+          }
         }
       }
       .belt {
@@ -67,6 +92,47 @@ main {
         background-color: #4c4948;
         margin-top: 15px;
       }
+
+      .main-articles-container {
+        width: 100%;
+      }
+
+      .pagination-container {
+        @include flexCenter(row);
+        width: 100%;
+        justify-content: end;
+        padding-top: 5px;
+
+        .pagination-content {
+          @include flexCenter(row);
+          width: auto;
+
+          .pagination-arrow {
+            &:hover {
+              opacity: 0.5;
+              cursor: pointer;
+              transition: all 0.2s linear;
+            }
+          }
+
+          .pagination {
+            @include flexCenter(row);
+            padding: 0 16px;
+
+            .pagination-tile {
+              @include flexCenter(row);
+              height: 32px;
+              width: 32px;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
     }
   }
+}
+
+.pagination-active {
+  background-color: #5cb25d;
+  color: white;
 }
