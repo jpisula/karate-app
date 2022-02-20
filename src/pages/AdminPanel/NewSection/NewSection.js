@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import PlusIcon from '../Sections/icons/PlusIcon';
@@ -70,7 +70,6 @@ const AddDay = () => {
 
 const Group = ({ groupName }) => {
   const [days, setDays] = useState([]);
-  const [isLastNewDay, setIsLastNewDay] = useState(false);
 
   return (
     <div className='group'>
@@ -79,13 +78,18 @@ const Group = ({ groupName }) => {
         {days}
         <div
           className='new-day-container'
-          onClick={(event) => {
-            console.log(days);
-            console.log(days[days.length - 1]);
-            setDays((oldDays) =>
-              isLastNewDay ? [...oldDays] : [...oldDays, <NewDay days={days} />]
+          onClick={() => {
+            // console.log(days);
+            // console.log(days[days.length - 1]);
+            console.log(
+              days[days.length - 1]?.type.name,
+              days[days.length - 1]?.type.name === 'NewDay'
             );
-            setIsLastNewDay(true);
+            setDays(
+              days[days.length - 1]?.type.name === 'NewDay'
+                ? [...days]
+                : [...days, <NewDay days={days} setDays={setDays} />]
+            );
           }}
         >
           <AddDay />
@@ -95,7 +99,7 @@ const Group = ({ groupName }) => {
   );
 };
 
-const Day = (day, hours) => {
+const Day = ({ day, hours, days, setDays }) => {
   return (
     <div className='day'>
       <div className='day-info'>
@@ -107,7 +111,20 @@ const Day = (day, hours) => {
           <p>Edytuj</p>
           <EditIcon className='day-icon' />
         </div>
-        <div className='remove'>
+        <div
+          className='remove'
+          onClick={(event) => {
+            // console.log(event);
+            // console.log(days.findIndex(event.target.parentElement));
+            const newDaysArray = days.slice(
+              days.findIndex(
+                event.target.parentElement.parentElement.parentElement,
+                1
+              )
+            );
+            setDays(newDaysArray);
+          }}
+        >
           <p>Usuń</p>
           <RemoveIcon className='day-icon' />
         </div>
@@ -116,10 +133,9 @@ const Day = (day, hours) => {
   );
 };
 
-const NewDay = ({ days }) => {
+const NewDay = ({ days, setDays }) => {
   const [currentDay, setCurrentDay] = useState('');
   const [currentHours, setCurrentHours] = useState('');
-  const [addEl, setAddEl] = useState('lol');
 
   return (
     <div className='day'>
@@ -139,8 +155,18 @@ const NewDay = ({ days }) => {
       </div>
       <button
         onClick={() => {
-          days.slice(days.length - 1, 1);
-          days.push(<Day day={currentDay} hours={currentHours} />);
+          if (days[days.length - 1]?.type.name === 'NewDay') {
+            days.pop();
+          }
+          setDays([
+            ...days,
+            <Day
+              day={currentDay}
+              hours={currentHours}
+              days={days}
+              setDays={setDays}
+            />
+          ]);
           console.log(days);
         }}
       >
