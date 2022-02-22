@@ -87,12 +87,40 @@
             justify-content: space-between;
             align-items: flex-start;
             height: 100%;
+            // width: 190px;
+
+            .week-day-container,
+            .hours-container {
+              @include flexCenter(row);
+              justify-content: space-between;
+              width: 100%;
+
+              input {
+                width: 100px;
+              }
+            }
+
+            .week-day-container {
+              margin-top: 8px;
+            }
+
+            .hours-container {
+              margin-bottom: 8px;
+            }
+
+            .new-week-day,
+            .new-hours {
+              color: #4c4948;
+              padding-left: 10px;
+              font-size: 16px;
+            }
 
             .week-day,
             .hours {
               width: auto;
               color: #4c4948;
               padding-left: 10px;
+              font-size: 16px;
             }
 
             .week-day {
@@ -101,6 +129,29 @@
 
             .hours {
               padding-bottom: 10px;
+            }
+          }
+
+          .add-day-info {
+            width: 190px;
+          }
+
+          .save-btn {
+            @include flexCenter(row);
+            background-color: #4c4948;
+            border-radius: 5px;
+            border: 3px #4c4948 solid;
+            width: 100px;
+            height: 40px;
+            margin-right: 10px;
+            color: white;
+            box-sizing: border-box;
+
+            &:hover {
+              cursor: pointer;
+              color: #4c4948;
+              background-color: transparent;
+              transition: 0.2s all linear;
             }
           }
 
@@ -151,6 +202,16 @@
         padding: 30px 0;
         text-align: center;
         letter-spacing: 0.2px;
+      }
+
+      .x {
+        width: 30px;
+        height: 50px;
+        background-color: turquoise;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -216,5 +277,37 @@
 
   .new-day-icon {
     margin-right: 35px;
+  }
+}
+
+.add-section-tile {
+  @include flexCenter(column);
+  justify-content: start;
+  width: 400px;
+  height: 300px;
+  background-color: transparent;
+  border: 1px #5cb25d solid;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0 50px 50px 0;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform linear 0.2s;
+  }
+
+  h2 {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: auto;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+  }
+
+  .plus {
+    margin: 0 auto;
+    margin-top: 25px;
   }
 }

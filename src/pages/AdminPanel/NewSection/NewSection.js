@@ -6,7 +6,56 @@ import EditIcon from './Icons/EditIcon';
 import RemoveIcon from './Icons/RemoveIcon';
 import './NewSection.scss';
 
+const groupsData = {
+  groups: [
+    {
+      id: 0,
+      groupName: 'Dzieci',
+      schedule: [
+        {
+          day: 'Wtorek',
+          hours: '17:30-18:30'
+        }
+      ]
+    }
+  ]
+};
+
 const NewSection = () => {
+  const [grName, setGrName] = useState('');
+  const [oldGrName, setOldGrName] = useState('');
+  const [lodziomiodziochujamuja, setlodziomiodziochujamuja] = useState(false);
+
+  // useEffect(() => {
+  //   console.log('first');
+  // }, [grName]);
+
+  const abcd = () => {
+    console.log(
+      'aaaaa',
+      groupsData.groups.findIndex((el) => el.groupName === grName) !== -1
+    );
+    if (
+      groupsData.groups.findIndex((el) => el.groupName === grName) !== -1 ||
+      oldGrName === grName ||
+      grName === ''
+    ) {
+      return;
+    }
+    console.log('bbbb');
+    groupsData.groups.push({
+      id:
+        groupsData.groups.length - 1 >= 0
+          ? groupsData.groups[groupsData.groups.length - 1].id + 1
+          : 1,
+      groupName: `${grName}`,
+      schedule: []
+    });
+    setOldGrName(grName);
+
+    console.log(groupsData.groups, lodziomiodziochujamuja);
+  };
+
   return (
     <main>
       <div className='main-container'>
@@ -36,13 +85,35 @@ const NewSection = () => {
         <h4>Grafik zajęć:</h4>
 
         <div className='groups-container'>
-          <Group groupName={'Dzieci'}>
+          {/* {console.log('abchuj', groupsData)} */}
+          {groupsData.groups.map((group) => (
+            <Group
+              groupName={group.groupName}
+              schedule={group.schedule}
+              groups={groupsData.groups}
+              id={group.id}
+              grName={grName}
+              setGrName={setGrName}
+              oldGrName={oldGrName}
+              setOldGrName={setOldGrName}
+              lodziomiodziochujamuja={lodziomiodziochujamuja}
+              setlodziomiodziochujamuja={setlodziomiodziochujamuja}
+            ></Group>
+          ))}
+          <div className='add-section-tile'>
+            <h2>DODAJ NOWĄ GRUPĘ O NAZWIE: </h2>
+            <input onChange={(event) => setGrName(event.target.value)}></input>
+            <div onClick={() => abcd()}>
+              <PlusIcon className='plus' />
+            </div>
+          </div>
+          {/* <Group groupName={'Dzieci'}>
             <Day />
             <Day />
             <Day />
           </Group>
           <Group groupName={'Młodziez'}></Group>
-          <Group groupName={'Dorośli'}></Group>
+          <Group groupName={'Dorośli'}></Group> */}
         </div>
 
         <div className='buttons'>
@@ -68,28 +139,53 @@ const AddDay = () => {
   );
 };
 
-const Group = ({ groupName }) => {
-  const [days, setDays] = useState([]);
+const Group = ({
+  groupName,
+  schedule,
+  groups,
+  id,
+  grName,
+  setGrName,
+  oldGrName,
+  setOldGrName,
+  lodziomiodziochujamuja,
+  setlodziomiodziochujamuja
+}) => {
+  const [isNewDayVisible, setIsNewDayVisible] = useState(false);
 
   return (
     <div className='group'>
       <h3 className='group-name'>{groupName}</h3>
+      <div
+        className='x'
+        onClick={() => {
+          console.log(
+            'usunieto o indexie: ',
+            groups.findIndex((el) => el.id === id)
+          );
+          groups.splice(
+            groups.findIndex((el) => el.id === id),
+            1
+          );
+          console.log('after', groups);
+          console.log(oldGrName, grName);
+          setOldGrName(grName);
+          setlodziomiodziochujamuja(!lodziomiodziochujamuja);
+        }}
+      >
+        X
+      </div>
       <div className='days-container'>
-        {days}
+        {schedule.map((el) => (
+          <Day scheduleEl={el} />
+        ))}
+        {isNewDayVisible && (
+          <NewDay schedule={schedule} setIsNewDayVisible={setIsNewDayVisible} />
+        )}
         <div
           className='new-day-container'
           onClick={() => {
-            // console.log(days);
-            // console.log(days[days.length - 1]);
-            console.log(
-              days[days.length - 1]?.type.name,
-              days[days.length - 1]?.type.name === 'NewDay'
-            );
-            setDays(
-              days[days.length - 1]?.type.name === 'NewDay'
-                ? [...days]
-                : [...days, <NewDay days={days} setDays={setDays} />]
-            );
+            setIsNewDayVisible(true);
           }}
         >
           <AddDay />
@@ -99,12 +195,16 @@ const Group = ({ groupName }) => {
   );
 };
 
-const Day = ({ day, hours, days, setDays }) => {
+const Day = ({
+  scheduleEl,
+  lodziomiodziochujamuja,
+  setlodziomiodziochujamuja
+}) => {
   return (
     <div className='day'>
       <div className='day-info'>
-        <div className='week-day'>{`Dzien: ${day}`}</div>
-        <div className='hours'>{`Dzien: ${hours}`}</div>
+        <div className='week-day'>{`Dzien: ${scheduleEl.day}`}</div>
+        <div className='hours'>{`Dzien: ${scheduleEl.hours}`}</div>
       </div>
       <div className='buttons-container'>
         <div className='edit'>
@@ -114,15 +214,7 @@ const Day = ({ day, hours, days, setDays }) => {
         <div
           className='remove'
           onClick={(event) => {
-            // console.log(event);
-            // console.log(days.findIndex(event.target.parentElement));
-            const newDaysArray = days.slice(
-              days.findIndex(
-                event.target.parentElement.parentElement.parentElement,
-                1
-              )
-            );
-            setDays(newDaysArray);
+            console.log('chuj');
           }}
         >
           <p>Usuń</p>
@@ -133,44 +225,45 @@ const Day = ({ day, hours, days, setDays }) => {
   );
 };
 
-const NewDay = ({ days, setDays }) => {
+const NewDay = ({ schedule, setIsNewDayVisible }) => {
   const [currentDay, setCurrentDay] = useState('');
   const [currentHours, setCurrentHours] = useState('');
 
   return (
     <div className='day'>
-      <div className='day-info'>
-        <label htmlFor='week-day'>Dzien: </label>
-        <input
-          type='text'
-          name='week-day'
-          onChange={(event) => setCurrentDay(event.currentTarget.value)}
-        ></input>
-        <label htmlFor='hours'>Godziny: </label>
-        <input
-          type='text'
-          name='hours'
-          onChange={(event) => setCurrentHours(event.currentTarget.value)}
-        ></input>
+      <div className='add-day-info day-info'>
+        <div className='week-day-container'>
+          <label className='new-week-day' htmlFor='week-day'>
+            Dzien:{' '}
+          </label>
+          <input
+            type='text'
+            name='week-day'
+            onChange={(event) => setCurrentDay(event.currentTarget.value)}
+          ></input>
+        </div>
+        <div className='hours-container'>
+          <label className='new-hours' htmlFor='hours'>
+            Godziny:{' '}
+          </label>
+          <input
+            type='text'
+            name='hours'
+            onChange={(event) => setCurrentHours(event.currentTarget.value)}
+          ></input>
+        </div>
       </div>
       <button
+        className='save-btn'
         onClick={() => {
-          if (days[days.length - 1]?.type.name === 'NewDay') {
-            days.pop();
-          }
-          setDays([
-            ...days,
-            <Day
-              day={currentDay}
-              hours={currentHours}
-              days={days}
-              setDays={setDays}
-            />
-          ]);
-          console.log(days);
+          setIsNewDayVisible(false);
+          schedule.push({
+            day: currentDay,
+            hours: currentHours
+          });
         }}
       >
-        Wyślij
+        Zapisz
       </button>
     </div>
   );
