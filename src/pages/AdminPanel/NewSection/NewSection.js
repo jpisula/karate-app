@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import PlusIcon from '../Sections/icons/PlusIcon';
 import EditIcon from './Icons/EditIcon';
 import RemoveIcon from './Icons/RemoveIcon';
 import './NewSection.scss';
+import { IoMdClose } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
 const groupsData = {
   groups: [
@@ -13,6 +15,7 @@ const groupsData = {
       groupName: 'Dzieci',
       schedule: [
         {
+          id: 0,
           day: 'Wtorek',
           hours: '17:30-18:30'
         }
@@ -25,16 +28,10 @@ const NewSection = () => {
   const [grName, setGrName] = useState('');
   const [oldGrName, setOldGrName] = useState('');
   const [lodziomiodziochujamuja, setlodziomiodziochujamuja] = useState(false);
-
-  // useEffect(() => {
-  //   console.log('first');
-  // }, [grName]);
+  const inputRef = useRef();
 
   const abcd = () => {
-    console.log(
-      'aaaaa',
-      groupsData.groups.findIndex((el) => el.groupName === grName) !== -1
-    );
+    inputRef.current.value = '';
     if (
       groupsData.groups.findIndex((el) => el.groupName === grName) !== -1 ||
       oldGrName === grName ||
@@ -42,18 +39,15 @@ const NewSection = () => {
     ) {
       return;
     }
-    console.log('bbbb');
     groupsData.groups.push({
       id:
         groupsData.groups.length - 1 >= 0
           ? groupsData.groups[groupsData.groups.length - 1].id + 1
-          : 1,
+          : 0,
       groupName: `${grName}`,
       schedule: []
     });
     setOldGrName(grName);
-
-    console.log(groupsData.groups, lodziomiodziochujamuja);
   };
 
   return (
@@ -61,7 +55,9 @@ const NewSection = () => {
       <div className='main-container'>
         <h2>
           <p>Nasze sekcje - KATOWICE LIGOTA</p>
-          <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
+          <Link to='/admin/sekcje'>
+            <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
+          </Link>
         </h2>
 
         <Input label={'ID sekcji:'} className={''} />
@@ -85,7 +81,6 @@ const NewSection = () => {
         <h4>Grafik zajęć:</h4>
 
         <div className='groups-container'>
-          {/* {console.log('abchuj', groupsData)} */}
           {groupsData.groups.map((group) => (
             <Group
               groupName={group.groupName}
@@ -102,24 +97,27 @@ const NewSection = () => {
           ))}
           <div className='add-section-tile'>
             <h2>DODAJ NOWĄ GRUPĘ O NAZWIE: </h2>
-            <input onChange={(event) => setGrName(event.target.value)}></input>
+            <input
+              ref={inputRef}
+              onChange={(event) => setGrName(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.keyCode === 13) {
+                  abcd();
+                }
+              }}
+            ></input>
             <div onClick={() => abcd()}>
               <PlusIcon className='plus' />
             </div>
           </div>
-          {/* <Group groupName={'Dzieci'}>
-            <Day />
-            <Day />
-            <Day />
-          </Group>
-          <Group groupName={'Młodziez'}></Group>
-          <Group groupName={'Dorośli'}></Group> */}
         </div>
 
         <div className='buttons'>
           <div className='green-btns'>
             <Button text={'ZAPISZ ZMIANY'} />
-            <Button text={'POWRÓT (bez zapisu)'} />
+            <Link to='/admin/sekcje'>
+              <Button text={'POWRÓT (bez zapisu)'} />
+            </Link>
           </div>
           <Button text={'USUŃ SEKCJĘ'} />
         </div>
@@ -145,7 +143,6 @@ const Group = ({
   groups,
   id,
   grName,
-  setGrName,
   oldGrName,
   setOldGrName,
   lodziomiodziochujamuja,
@@ -157,30 +154,37 @@ const Group = ({
     <div className='group'>
       <h3 className='group-name'>{groupName}</h3>
       <div
-        className='x'
+        className='cross-container'
         onClick={() => {
-          console.log(
-            'usunieto o indexie: ',
-            groups.findIndex((el) => el.id === id)
-          );
           groups.splice(
             groups.findIndex((el) => el.id === id),
             1
           );
-          console.log('after', groups);
-          console.log(oldGrName, grName);
-          setOldGrName(grName);
+          setOldGrName(grName + '-deleted');
           setlodziomiodziochujamuja(!lodziomiodziochujamuja);
         }}
       >
-        X
+        <IoMdClose />
       </div>
       <div className='days-container'>
-        {schedule.map((el) => (
-          <Day scheduleEl={el} />
+        {schedule.map((el, index) => (
+          <Day
+            scheduleEl={el}
+            schedule={schedule}
+            id={schedule[index].id}
+            setlodziomiodziochujamuja={setlodziomiodziochujamuja}
+            lodziomiodziochujamuja={lodziomiodziochujamuja}
+            setIsNewDayVisible={setIsNewDayVisible}
+            isNewDayVisible={isNewDayVisible}
+          />
         ))}
         {isNewDayVisible && (
-          <NewDay schedule={schedule} setIsNewDayVisible={setIsNewDayVisible} />
+          <NewDay
+            schedule={schedule}
+            setIsNewDayVisible={setIsNewDayVisible}
+            defaultDay={''}
+            defaultHours={''}
+          />
         )}
         <div
           className='new-day-container'
@@ -197,50 +201,106 @@ const Group = ({
 
 const Day = ({
   scheduleEl,
+  schedule,
   lodziomiodziochujamuja,
-  setlodziomiodziochujamuja
+  setlodziomiodziochujamuja,
+  setIsNewDayVisible,
+  id
 }) => {
+  const [oldDay, setOldDay] = useState('');
+  const [oldHours, setOldHours] = useState('');
+  const [isNewDayShown, setIsNewDayShown] = useState(false);
+
   return (
-    <div className='day'>
-      <div className='day-info'>
-        <div className='week-day'>{`Dzien: ${scheduleEl.day}`}</div>
-        <div className='hours'>{`Dzien: ${scheduleEl.hours}`}</div>
-      </div>
-      <div className='buttons-container'>
-        <div className='edit'>
-          <p>Edytuj</p>
-          <EditIcon className='day-icon' />
+    <>
+      {isNewDayShown && (
+        <NewDay
+          schedule={schedule}
+          setIsNewDayVisible={setIsNewDayVisible}
+          defaultDay={oldDay}
+          defaultHours={oldHours}
+          setIsNewDayVisible={setIsNewDayVisible}
+          setIsNewDayShown={setIsNewDayShown}
+          id={id}
+        />
+      )}
+      {!isNewDayShown && (
+        <div className='day'>
+          <div className='day-info'>
+            <div className='week-day'>{`Dzień: ${scheduleEl.day}`}</div>
+            <div className='hours'>{`Godziny: ${scheduleEl.hours}`}</div>
+          </div>
+          <div className='buttons-container'>
+            <div
+              className='edit'
+              onClick={() => {
+                setIsNewDayShown(true);
+                setOldDay(scheduleEl.day);
+                setOldHours(scheduleEl.hours);
+              }}
+            >
+              <p>Edytuj</p>
+              <EditIcon className='day-icon' />
+            </div>
+            <div
+              className='remove'
+              onClick={() => {
+                schedule.splice(
+                  schedule.findIndex((el) => el.id === id),
+                  1
+                );
+                setlodziomiodziochujamuja(!lodziomiodziochujamuja);
+              }}
+            >
+              <p>Usuń</p>
+              <RemoveIcon className='day-icon' />
+            </div>
+          </div>
         </div>
-        <div
-          className='remove'
-          onClick={(event) => {
-            console.log('chuj');
-          }}
-        >
-          <p>Usuń</p>
-          <RemoveIcon className='day-icon' />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
-const NewDay = ({ schedule, setIsNewDayVisible }) => {
-  const [currentDay, setCurrentDay] = useState('');
-  const [currentHours, setCurrentHours] = useState('');
+const NewDay = ({
+  schedule,
+  setIsNewDayVisible,
+  defaultDay,
+  defaultHours,
+  setIsNewDayShown,
+  id
+}) => {
+  const dayRef = useRef();
+  const hoursRef = useRef();
+
+  const chuj1 = () => {
+    setIsNewDayVisible(false);
+    schedule.push({
+      id: schedule.length > 0 ? schedule[schedule.length - 1].id + 1 : 0,
+      day: dayRef.current.value,
+      hours: hoursRef.current.value
+    });
+  };
+
+  const chuj2 = () => {
+    schedule[id].day = dayRef.current.value;
+    schedule[id].hours = hoursRef.current.value;
+    setIsNewDayShown(false);
+  };
 
   return (
     <div className='day'>
       <div className='add-day-info day-info'>
         <div className='week-day-container'>
           <label className='new-week-day' htmlFor='week-day'>
-            Dzien:{' '}
+            Dzień:{' '}
           </label>
           <input
             type='text'
             name='week-day'
-            onChange={(event) => setCurrentDay(event.currentTarget.value)}
-          ></input>
+            ref={dayRef}
+            defaultValue={defaultDay}
+          />
         </div>
         <div className='hours-container'>
           <label className='new-hours' htmlFor='hours'>
@@ -249,18 +309,19 @@ const NewDay = ({ schedule, setIsNewDayVisible }) => {
           <input
             type='text'
             name='hours'
-            onChange={(event) => setCurrentHours(event.currentTarget.value)}
-          ></input>
+            ref={hoursRef}
+            defaultValue={defaultHours}
+          />
         </div>
       </div>
       <button
         className='save-btn'
         onClick={() => {
-          setIsNewDayVisible(false);
-          schedule.push({
-            day: currentDay,
-            hours: currentHours
-          });
+          if (setIsNewDayShown !== undefined) {
+            chuj2();
+          } else {
+            chuj1();
+          }
         }}
       >
         Zapisz

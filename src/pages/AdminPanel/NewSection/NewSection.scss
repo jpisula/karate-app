@@ -55,6 +55,7 @@
       border: 1px #5cb25d solid;
       box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
       margin: 0 50px 50px 0;
+      position: relative;
 
       .days-container {
         @include flexCenter(row);
@@ -204,13 +205,21 @@
         letter-spacing: 0.2px;
       }
 
-      .x {
-        width: 30px;
-        height: 50px;
-        background-color: turquoise;
+      .cross-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 26px;
+        color: #4c4948;
+        margin: 5px;
+        width: 26px;
+        height: 26px;
 
         &:hover {
           cursor: pointer;
+          // transform: scale(1.2);
+          transform: rotate(180deg);
+          transition: all linear 0.4s;
         }
       }
     }
@@ -290,12 +299,6 @@
   box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 0 50px 50px 0;
 
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.1);
-    transition: transform linear 0.2s;
-  }
-
   h2 {
     margin: 0 auto;
     margin-top: 50px;
@@ -309,5 +312,11 @@
   .plus {
     margin: 0 auto;
     margin-top: 25px;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.3);
+      transition: transform linear 0.2s;
+    }
   }
 }
