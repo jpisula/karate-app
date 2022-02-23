@@ -1,19 +1,28 @@
 import React from 'react';
-import './Article.scss';
+import './ArticleRow.scss';
 import { BiEdit } from 'react-icons/bi';
 import { CgFileRemove } from 'react-icons/cg';
 
-const ArticleRow = () => {
+const ArticleRow = ({ article }) => {
+  const {
+    name,
+    text,
+    bigImgUrl,
+    smallImgUrl,
+    tags,
+    shortenDesc,
+    category,
+    createDate
+  } = article;
   return (
     <div className='article'>
-      <div className='title'>
-        UWAGA AKTUALIZACJA - Zimowa Sesja Egzaminacyjna 2021
-      </div>
-      <div className='img'>LINK</div>
-      <div className='date'>18.01.2022</div>
+      <div className='title'>{name}</div>
+      <div className='img'>{bigImgUrl}</div>
+      <div className='date'>{createDate}</div>
       <div className='tags'>
-        <p>treningi</p>
-        <p>harmonogram</p>
+        {tags.map((el) => (
+          <p>{el}</p>
+        ))}
       </div>
       <div className='edit-or-remove'>
         <div>

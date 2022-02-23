@@ -45,15 +45,19 @@ const Aside = () => {
             </div>
           </Link>
 
-          <div className='preschoolers aside-btn'>
-            <PreschoolersIcon className='aside-btn-icon' />
-            Przedszkolaki
-          </div>
+          <Link to='/admin/przedszkolaki'>
+            <div className='preschoolers aside-btn'>
+              <PreschoolersIcon className='aside-btn-icon' />
+              Przedszkolaki
+            </div>
+          </Link>
 
-          <div className='calendar aside-btn'>
-            <CalendarIcon className='aside-btn-icon' />
-            Kalendarz
-          </div>
+          <Link to='/admin/kalendarz'>
+            <div className='calendar aside-btn'>
+              <CalendarIcon className='aside-btn-icon' />
+              Kalendarz
+            </div>
+          </Link>
 
           <div className='info-pages aside-btn'>
             <InfoPagesIcon className='aside-btn-icon' />

@@ -7,6 +7,8 @@ import RemoveIcon from './Icons/RemoveIcon';
 import './NewSection.scss';
 import { IoMdClose } from 'react-icons/io';
 import { Link } from 'react-router-dom';
+import InputFile from '../InputFile/InputFile';
+import InputTextArea from '../InputTextArea/InputTextArea';
 
 const groupsData = {
   groups: [
@@ -53,7 +55,7 @@ const NewSection = () => {
   return (
     <main>
       <div className='main-container'>
-        <h2>
+        <h2 className='header-container'>
           <p>Nasze sekcje - KATOWICE LIGOTA</p>
           <Link to='/admin/sekcje'>
             <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
@@ -63,17 +65,9 @@ const NewSection = () => {
         <Input label={'ID sekcji:'} className={''} />
         <Input label={'Nazwa sekcji:'} className={''} />
 
-        <div className='section-info'>
-          <p className='info'>Zdjęcie:</p>
-          <label htmlFor='file-input' className='file-input-container'>
-            <input type='file' name='file-input' />
-          </label>
-        </div>
+        <InputFile label={'Zdjęcie: '} className={''} />
 
-        <div className='section-info'>
-          <p className='info'>Opis sekcji:</p>
-          <textarea type='text' />
-        </div>
+        <InputTextArea label={'opis sekcji:'} />
 
         <Input label={'Adres:'} className={'wide-input'} />
         <Input label={'Link do Google Maps:'} className={'wide-input'} />

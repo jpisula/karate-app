@@ -1,11 +1,62 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Main.scss';
 import { VscNewFile } from 'react-icons/vsc';
 import Article from './Article/Article';
 import LeftArrow from './ArrowsIcons/LeftArrow';
 import RightArrow from './ArrowsIcons/RightArrow';
+import { Link } from 'react-router-dom';
+import ArticleRow from './subCoponents/ArticleRow';
 
 const Main = () => {
+  const [lodziomiodziochujamuja, setLodziomiodziochujamuja] = useState(false);
+  const articlesData = {
+    articles: [
+      {
+        id: 0,
+        createDate: '21/32/2022',
+        name: 'zawody',
+        text: 'ajkdgadgaskdfgadas',
+        bigImgUrl: 'asjdsad',
+        smallImgUrl: 'ajsdhaj',
+        tags: ['adsa', 'chuj', 'chuj2'],
+        category: 'tournament',
+        shortenDesc: 'klsd'
+      },
+      {
+        id: 1,
+        createDate: '21/32/2022',
+        name: 'zawody',
+        text: 'ajkdgadgaskdfgadas',
+        bigImgUrl: 'asjdsad',
+        smallImgUrl: 'ajsdhaj',
+        tags: ['adsa', 'chuj', 'chuj2'],
+        category: 'tournament',
+        shortenDesc: 'klsd'
+      },
+      {
+        id: 2,
+        createDate: '21/32/2022',
+        name: 'zawody',
+        text: 'ajkdgadgaskdfgadas',
+        bigImgUrl: 'asjdsad',
+        smallImgUrl: 'ajsdhaj',
+        tags: ['adsa', 'chuj', 'chuj2'],
+        category: 'tournament',
+        shortenDesc: 'klsd'
+      },
+      {
+        id: 3,
+        createDate: '21/32/2022',
+        name: 'zawody',
+        text: 'ajkdgadgaskdfgadas',
+        bigImgUrl: 'asjdsad',
+        smallImgUrl: 'ajsdhaj',
+        tags: ['adsa', 'chuj', 'chuj2'],
+        category: 'tournament',
+        shortenDesc: 'klsd'
+      }
+    ]
+  };
   return (
     <main>
       <div className='news-container'>
@@ -38,18 +89,16 @@ const Main = () => {
             <h3>zdjęcie</h3>
             <h3>dodano</h3>
             <h3>tagi</h3>
-            <div className='new-article'>
+            <Link to='/admin/aktualnosci/nowy' className='new-article'>
               <VscNewFile />
               <p>Nowy Artykuł</p>
-            </div>
+            </Link>
           </div>
           <div className='belt'></div>
           <div className='main-articles-container'>
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
+            {articlesData.articles.map((el) => (
+              <ArticleRow article={el} />
+            ))}
           </div>
 
           <div className='pagination-container'>

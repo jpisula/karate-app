@@ -14,42 +14,8 @@
     border-radius: 5px;
     filter: drop-shadow(-2px 2px 4px rgba(0, 0, 0, 0.25));
     border: none;
+    box-sizing: border-box;
   }
-
-  // input[type='file'] {
-  //   opacity: 0;
-  // }
-
-  // .file-input-container {
-  //   width: 300px;
-  //   height: 44px;
-  //   border: 1px solid rgb(255, 255, 255);
-  //   display: inline-block;
-  //   border-radius: 5px;
-  //   box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.25);
-  //   position: relative;
-  //   cursor: pointer;
-
-  //   input {
-  //     width: 100%;
-  //     height: 100%;
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     cursor: pointer;
-  //   }
-
-  //   p {
-  //     @include flexCenter(row);
-  //     // justify-content: start;
-  //     // padding-left: 5px;
-  //     box-sizing: border-box;
-  //     height: 100%;
-  //     color: rgb(138, 138, 138);
-  //     width: 100%;
-  //     cursor: pointer;
-  //   }
-  // }
 
   .wide-input {
     width: 500px;
