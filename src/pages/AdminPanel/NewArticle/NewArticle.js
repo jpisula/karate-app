@@ -31,7 +31,7 @@ const NewArticle = () => {
           <select name='sorting' className='select'>
             <option value='lol'>lol</option>
             <option value='kol'>kol</option>
-            <option value='chujol'>chujol</option>
+            <option value='chujol'>lol</option>
           </select>
         </form>
 

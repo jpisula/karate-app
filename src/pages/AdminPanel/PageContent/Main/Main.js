@@ -18,7 +18,7 @@ const Main = () => {
         text: 'ajkdgadgaskdfgadas',
         bigImgUrl: 'asjdsad',
         smallImgUrl: 'ajsdhaj',
-        tags: ['adsa', 'chuj', 'chuj2'],
+        tags: ['adsa', 'sadasd', 'chsdaj2'],
         category: 'tournament',
         shortenDesc: 'klsd'
       },
@@ -29,7 +29,7 @@ const Main = () => {
         text: 'ajkdgadgaskdfgadas',
         bigImgUrl: 'asjdsad',
         smallImgUrl: 'ajsdhaj',
-        tags: ['adsa', 'chuj', 'chuj2'],
+        tags: ['adsa', 'sadasd', 'sadasd'],
         category: 'tournament',
         shortenDesc: 'klsd'
       },
@@ -40,7 +40,7 @@ const Main = () => {
         text: 'ajkdgadgaskdfgadas',
         bigImgUrl: 'asjdsad',
         smallImgUrl: 'ajsdhaj',
-        tags: ['adsa', 'chuj', 'chuj2'],
+        tags: ['adsa', 'sadasd', 'sadasd'],
         category: 'tournament',
         shortenDesc: 'klsd'
       },
@@ -51,7 +51,7 @@ const Main = () => {
         text: 'ajkdgadgaskdfgadas',
         bigImgUrl: 'asjdsad',
         smallImgUrl: 'ajsdhaj',
-        tags: ['adsa', 'chuj', 'chuj2'],
+        tags: ['adsa', 'sadasd', 'sadasd'],
         category: 'tournament',
         shortenDesc: 'klsd'
       }

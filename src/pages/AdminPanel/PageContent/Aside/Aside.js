@@ -59,20 +59,26 @@ const Aside = () => {
             </div>
           </Link>
 
-          <div className='info-pages aside-btn'>
-            <InfoPagesIcon className='aside-btn-icon' />
-            Strony Informacyjne
-          </div>
+          <Link to='/admin/strony-informacyjne'>
+            <div className='info-pages aside-btn'>
+              <InfoPagesIcon className='aside-btn-icon' />
+              Strony Informacyjne
+            </div>
+          </Link>
 
-          <div className='schedule aside-btn'>
-            <ScheduleIcon className='aside-btn-icon' />
-            Harmonogram zajęć
-          </div>
+          <Link to='/admin/harmonogram'>
+            <div className='schedule aside-btn'>
+              <ScheduleIcon className='aside-btn-icon' />
+              Harmonogram zajęć
+            </div>
+          </Link>
 
-          <div className='instructors aside-btn'>
-            <InstructorsIcon className='aside-btn-icon' />
-            Instruktorzy i pomocnicy
-          </div>
+          <Link to='/admin/instruktorzy-i-pomocnicy'>
+            <div className='instructors aside-btn'>
+              <InstructorsIcon className='aside-btn-icon' />
+              Instruktorzy i pomocnicy
+            </div>
+          </Link>
 
           <div className='galeries aside-btn'>
             <GaleriesIcon className='aside-btn-icon' />

@@ -63,15 +63,31 @@ const Calendar = () => {
           </Link>
         </h2>
 
+        <form className='inputs-container'>
+          <div className='input-container'>
+            <label htmlFor='title'>wyszukaj po tytule: </label>
+            <input type='text' name='title' placeholder='podaj tytuł' />
+          </div>
+
+          <div className='input-container'>
+            <label htmlFor='sort'>sortuj po: </label>
+            <select name='sorting' className='select'>
+              <option value='lol'>lol</option>
+              <option value='kol'>kol</option>
+              <option value='chujol'>chujol</option>
+            </select>
+          </div>
+        </form>
+
         <section className='articles'>
           <div className='headers'>
             <h3>tytuł</h3>
             <h3>zdjęcie</h3>
             <h3>data rozpoczęcia</h3>
             <h3>data zakończenia</h3>
-            <Link to='/admin/aktualnosci/nowy' className='new-article'>
+            <Link to='/admin/kalendarz/nowe-wydarzenie' className='new-article'>
               <VscNewFile />
-              <p>Nowy Artykuł</p>
+              <p>Nowe wydarzenie</p>
             </Link>
           </div>
           <div className='belt'></div>
