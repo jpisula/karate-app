@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import ArticleRow from './subCoponents/ArticleRow';
 
 const Main = () => {
-  const [lodziomiodziochujamuja, setLodziomiodziochujamuja] = useState(false);
+  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
   const articlesData = {
     articles: [
       {

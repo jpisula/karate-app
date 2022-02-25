@@ -9,7 +9,7 @@ import './NewEvent.scss';
 
 const NewEvent = () => {
   const [tags, setTags] = useState([]);
-  const [lodziomiodziochujamuja, setlodziomiodziochujamuja] = useState(false);
+  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
   const inputRef = useRef();
   return (
     <main>

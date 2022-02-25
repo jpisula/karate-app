@@ -9,7 +9,7 @@ import Tag from './Tag';
 
 const NewArticle = () => {
   const [tags, setTags] = useState([]);
-  const [lodziomiodziochujamuja, setlodziomiodziochujamuja] = useState(false);
+  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
   const inputRef = useRef();
   return (
     <main>
@@ -60,8 +60,8 @@ const NewArticle = () => {
                 name={el.name}
                 id={el.id}
                 tags={tags}
-                lodziomiodziochujamuja={lodziomiodziochujamuja}
-                setlodziomiodziochujamuja={setlodziomiodziochujamuja}
+                ReloadVarchujamuja={ReloadVarchujamuja}
+                setReloadVarchujamuja={setReloadVarchujamuja}
               />
             ))}
           </div>

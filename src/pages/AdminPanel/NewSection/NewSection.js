@@ -29,7 +29,7 @@ const groupsData = {
 const NewSection = () => {
   const [grName, setGrName] = useState('');
   const [oldGrName, setOldGrName] = useState('');
-  const [lodziomiodziochujamuja, setlodziomiodziochujamuja] = useState(false);
+  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
   const inputRef = useRef();
 
   const abcd = () => {
@@ -85,8 +85,8 @@ const NewSection = () => {
               setGrName={setGrName}
               oldGrName={oldGrName}
               setOldGrName={setOldGrName}
-              lodziomiodziochujamuja={lodziomiodziochujamuja}
-              setlodziomiodziochujamuja={setlodziomiodziochujamuja}
+              ReloadVarchujamuja={ReloadVarchujamuja}
+              setReloadVarchujamuja={setReloadVarchujamuja}
             ></Group>
           ))}
           <div className='add-section-tile'>
@@ -139,8 +139,8 @@ const Group = ({
   grName,
   oldGrName,
   setOldGrName,
-  lodziomiodziochujamuja,
-  setlodziomiodziochujamuja
+  ReloadVarchujamuja,
+  setReloadVarchujamuja
 }) => {
   const [isNewDayVisible, setIsNewDayVisible] = useState(false);
 
@@ -155,7 +155,7 @@ const Group = ({
             1
           );
           setOldGrName(grName + '-deleted');
-          setlodziomiodziochujamuja(!lodziomiodziochujamuja);
+          setReloadVarchujamuja(!ReloadVarchujamuja);
         }}
       >
         <IoMdClose />
@@ -166,8 +166,8 @@ const Group = ({
             scheduleEl={el}
             schedule={schedule}
             id={schedule[index].id}
-            setlodziomiodziochujamuja={setlodziomiodziochujamuja}
-            lodziomiodziochujamuja={lodziomiodziochujamuja}
+            setReloadVarchujamuja={setReloadVarchujamuja}
+            ReloadVarchujamuja={ReloadVarchujamuja}
             setIsNewDayVisible={setIsNewDayVisible}
             isNewDayVisible={isNewDayVisible}
           />
@@ -196,8 +196,8 @@ const Group = ({
 const Day = ({
   scheduleEl,
   schedule,
-  lodziomiodziochujamuja,
-  setlodziomiodziochujamuja,
+  ReloadVarchujamuja,
+  setReloadVarchujamuja,
   setIsNewDayVisible,
   id
 }) => {
@@ -243,7 +243,7 @@ const Day = ({
                   schedule.findIndex((el) => el.id === id),
                   1
                 );
-                setlodziomiodziochujamuja(!lodziomiodziochujamuja);
+                setReloadVarchujamuja(!ReloadVarchujamuja);
               }}
             >
               <p>Usuń</p>

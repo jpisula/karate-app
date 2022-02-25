@@ -8,7 +8,7 @@ import RightArrow from '../PageContent/Main/ArrowsIcons/RightArrow';
 import EventRow from './subCoponents/EventRow';
 
 const Calendar = () => {
-  const [lodziomiodziochujamuja, setLodziomiodziochujamuja] = useState(false);
+  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
   const eventsData = {
     events: [
       {

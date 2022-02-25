@@ -15,7 +15,6 @@ import './Aside.scss';
 
 const Aside = () => {
   const { logo } = footerConfig;
-  console.log(logo);
   return (
     <aside>
       <div className='container'>

@@ -9,7 +9,7 @@ import './NewGroup.scss';
 import ScheduleRow from './SubComponents/ScheduleRow';
 
 const NewGroup = () => {
-  const [lodziomiodziochujamuja, setLodziomiodziochujamuja] = useState(false);
+  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
   const gropusData = {
     groups: [
       {
