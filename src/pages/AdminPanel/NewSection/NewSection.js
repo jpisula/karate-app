@@ -29,7 +29,7 @@ const groupsData = {
 const NewSection = () => {
   const [grName, setGrName] = useState('');
   const [oldGrName, setOldGrName] = useState('');
-  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
+  const [ReloadVar, setReloadVar] = useState(false);
   const inputRef = useRef();
 
   const abcd = () => {
@@ -85,8 +85,8 @@ const NewSection = () => {
               setGrName={setGrName}
               oldGrName={oldGrName}
               setOldGrName={setOldGrName}
-              ReloadVarchujamuja={ReloadVarchujamuja}
-              setReloadVarchujamuja={setReloadVarchujamuja}
+              ReloadVar={ReloadVar}
+              setReloadVar={setReloadVar}
             ></Group>
           ))}
           <div className='add-section-tile'>
@@ -139,8 +139,8 @@ const Group = ({
   grName,
   oldGrName,
   setOldGrName,
-  ReloadVarchujamuja,
-  setReloadVarchujamuja
+  ReloadVar,
+  setReloadVar
 }) => {
   const [isNewDayVisible, setIsNewDayVisible] = useState(false);
 
@@ -155,7 +155,7 @@ const Group = ({
             1
           );
           setOldGrName(grName + '-deleted');
-          setReloadVarchujamuja(!ReloadVarchujamuja);
+          setReloadVar(!ReloadVar);
         }}
       >
         <IoMdClose />
@@ -166,8 +166,8 @@ const Group = ({
             scheduleEl={el}
             schedule={schedule}
             id={schedule[index].id}
-            setReloadVarchujamuja={setReloadVarchujamuja}
-            ReloadVarchujamuja={ReloadVarchujamuja}
+            setReloadVar={setReloadVar}
+            ReloadVar={ReloadVar}
             setIsNewDayVisible={setIsNewDayVisible}
             isNewDayVisible={isNewDayVisible}
           />
@@ -196,8 +196,8 @@ const Group = ({
 const Day = ({
   scheduleEl,
   schedule,
-  ReloadVarchujamuja,
-  setReloadVarchujamuja,
+  ReloadVar,
+  setReloadVar,
   setIsNewDayVisible,
   id
 }) => {
@@ -243,7 +243,7 @@ const Day = ({
                   schedule.findIndex((el) => el.id === id),
                   1
                 );
-                setReloadVarchujamuja(!ReloadVarchujamuja);
+                setReloadVar(!ReloadVar);
               }}
             >
               <p>Usuń</p>
@@ -267,7 +267,7 @@ const NewDay = ({
   const dayRef = useRef();
   const hoursRef = useRef();
 
-  const chuj1 = () => {
+  const schowNewDay = () => {
     setIsNewDayVisible(false);
     schedule.push({
       id: schedule.length > 0 ? schedule[schedule.length - 1].id + 1 : 0,
@@ -276,7 +276,7 @@ const NewDay = ({
     });
   };
 
-  const chuj2 = () => {
+  const schowDay = () => {
     schedule[id].day = dayRef.current.value;
     schedule[id].hours = hoursRef.current.value;
     setIsNewDayShown(false);
@@ -312,9 +312,9 @@ const NewDay = ({
         className='save-btn'
         onClick={() => {
           if (setIsNewDayShown !== undefined) {
-            chuj2();
+            schowDay();
           } else {
-            chuj1();
+            schowNewDay();
           }
         }}
       >

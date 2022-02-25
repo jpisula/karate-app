@@ -9,7 +9,7 @@ import './NewEvent.scss';
 
 const NewEvent = () => {
   const [tags, setTags] = useState([]);
-  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
+  const [ReloadVar, setReloadVar] = useState(false);
   const inputRef = useRef();
   return (
     <main>
@@ -31,7 +31,7 @@ const NewEvent = () => {
           <select name='sorting' className='select'>
             <option value='lol'>lol</option>
             <option value='kol'>kol</option>
-            <option value='chujol'>lol</option>
+            <option value='koll'>lol</option>
           </select>
         </form>
 

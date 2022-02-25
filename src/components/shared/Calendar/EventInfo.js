@@ -119,7 +119,6 @@ const EventInfo = () => {
                     });
                     dispatch({ type: 'SET_LOUDER', payload: true });
                   }
-                  console.log();
                 }}
               />
             </div>

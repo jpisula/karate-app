@@ -2,7 +2,7 @@ import React from 'react';
 import './Tag.scss';
 import { IoMdClose } from 'react-icons/io';
 
-const Tag = ({ name, id, tags, ReloadVarchujamuja, setReloadVarchujamuja }) => {
+const Tag = ({ name, id, tags, ReloadVar, setReloadVar }) => {
   return (
     <>
       <div className='tag'>
@@ -14,7 +14,7 @@ const Tag = ({ name, id, tags, ReloadVarchujamuja, setReloadVarchujamuja }) => {
               tags.findIndex((el) => el.id === id),
               1
             );
-            setReloadVarchujamuja(!ReloadVarchujamuja);
+            setReloadVar(!ReloadVar);
           }}
         >
           <IoMdClose />

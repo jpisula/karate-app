@@ -9,7 +9,7 @@ import Tag from './Tag';
 
 const NewArticle = () => {
   const [tags, setTags] = useState([]);
-  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
+  const [ReloadVar, setReloadVar] = useState(false);
   const inputRef = useRef();
   return (
     <main>
@@ -31,7 +31,7 @@ const NewArticle = () => {
           <select name='sorting' className='select'>
             <option value='lol'>lol</option>
             <option value='kol'>kol</option>
-            <option value='chujol'>lol</option>
+            <option value='koll'>lol</option>
           </select>
         </form>
 
@@ -60,8 +60,8 @@ const NewArticle = () => {
                 name={el.name}
                 id={el.id}
                 tags={tags}
-                ReloadVarchujamuja={ReloadVarchujamuja}
-                setReloadVarchujamuja={setReloadVarchujamuja}
+                ReloadVar={ReloadVar}
+                setReloadVar={setReloadVar}
               />
             ))}
           </div>

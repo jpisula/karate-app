@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import ArticleRow from './subCoponents/ArticleRow';
 
 const Main = () => {
-  const [ReloadVarchujamuja, setReloadVarchujamuja] = useState(false);
+  const [ReloadVar, setReloadVar] = useState(false);
   const articlesData = {
     articles: [
       {
@@ -78,7 +78,7 @@ const Main = () => {
             <select name='sorting' className='select'>
               <option value='lol'>lol</option>
               <option value='kol'>kol</option>
-              <option value='chujol'>chujol</option>
+              <option value='koll'>koll</option>
             </select>
           </div>
         </form>

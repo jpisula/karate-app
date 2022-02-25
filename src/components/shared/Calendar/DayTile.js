@@ -44,7 +44,6 @@ const DayTile = ({
   if (currentEvent) {
     cls += currentDate > eventDate ? ' past-event' : '';
   }
-  console.log(className, currentEvent);
 
   return (
     <div
