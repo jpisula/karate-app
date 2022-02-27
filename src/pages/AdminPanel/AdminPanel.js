@@ -51,7 +51,15 @@ const AdminPanel = () => {
           <Route path='/admin/harmonogram' element={<Schedule />} />
           <Route path='/admin/harmonogram/dodaj' element={<NewGroup />} />
           <Route
-            path='/admin/harmonogram/dodaj/wiersz'
+            path='/admin/harmonogram/dodaj/:groupId'
+            element={<NewGroup />}
+          />
+          <Route
+            path='/admin/harmonogram/dodaj/wiersz/:groupId'
+            element={<NewScheduleRow isNewRow={true} />}
+          />
+          <Route
+            path='/admin/harmonogram/dodaj/wiersz/:groupId/:id'
             element={<NewScheduleRow />}
           />
           <Route

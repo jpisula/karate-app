@@ -8,7 +8,6 @@ import { Link, useParams } from 'react-router-dom';
 import Tag from './Tag';
 
 const NewArticle = () => {
-  const [tags, setTags] = useState([]);
   const [ReloadVar, setReloadVar] = useState(false);
   const inputRef = useRef();
   const { id } = useParams();
@@ -69,6 +68,15 @@ const NewArticle = () => {
       }
     ]
   };
+
+  const [tags, setTags] = useState(
+    articlesData.articles[id]?.tags.map((el, index) => {
+      return {
+        id: index,
+        name: el
+      };
+    }) || []
+  );
 
   return (
     <main>

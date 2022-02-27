@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { VscNewFile } from 'react-icons/vsc';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Button from '../Button/Button';
+import ModalPopup from '../ModalPopup/ModalPopup';
 import LeftArrow from '../PageContent/Main/ArrowsIcons/LeftArrow';
 import RightArrow from '../PageContent/Main/ArrowsIcons/RightArrow';
 import './NewGroup.scss';
@@ -9,6 +10,7 @@ import ScheduleRow from './SubComponents/ScheduleRow';
 
 const NewGroup = () => {
   const [ReloadVar, setReloadVar] = useState(false);
+  const { groupId } = useParams();
   const gropusData = {
     groups: [
       {
@@ -40,10 +42,17 @@ const NewGroup = () => {
       }
     ]
   };
+
+  console.log(groupId);
+
+  const handleRemoveClick = () => {
+    console.log(`Usunięto ${groupId} grupę`);
+  };
+
   return (
     <main>
       <div className='news-container'>
-        <h1>Harmonogram</h1>
+        <h1>Nowa Grupa</h1>
 
         <section className='articles'>
           <div className='headers'>
@@ -53,7 +62,10 @@ const NewGroup = () => {
             <h3>Dzień</h3>
             <h3>Instruktorzy</h3>
             <h3>Pomocnicy</h3>
-            <Link to='/admin/harmonogram/dodaj/wiersz' className='new-article'>
+            <Link
+              to={`/admin/harmonogram/dodaj/wiersz/${groupId}`}
+              className='new-article'
+            >
               <VscNewFile />
               <p>Dodaj wiersz</p>
             </Link>
@@ -61,7 +73,7 @@ const NewGroup = () => {
           <div className='belt'></div>
           <div className='main-articles-container'>
             {gropusData.groups.map((el) => (
-              <ScheduleRow group={el} />
+              <ScheduleRow groupId={groupId} group={el} />
             ))}
           </div>
 
@@ -87,6 +99,17 @@ const NewGroup = () => {
                 <Button text={'POWRÓT'} />
               </Link>
             </div>
+            {
+              <ModalPopup
+                trigger={
+                  <div>
+                    <Button text={'USUŃ GRUPĘ'} />
+                  </div>
+                }
+                text='Czy na pewno chcesz usunąć tę grupę?'
+                onYesClick={handleRemoveClick}
+              />
+            }
           </div>
         </section>
       </div>
