@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import './Main.scss';
+import './Articles.scss';
 import { VscNewFile } from 'react-icons/vsc';
-import Article from './Article/Article';
 import LeftArrow from './ArrowsIcons/LeftArrow';
 import RightArrow from './ArrowsIcons/RightArrow';
 import { Link } from 'react-router-dom';
 import ArticleRow from './subCoponents/ArticleRow';
 
-const Main = () => {
+const Articles = () => {
   const [ReloadVar, setReloadVar] = useState(false);
   const articlesData = {
     articles: [
@@ -18,6 +17,8 @@ const Main = () => {
         text: 'ajkdgadgaskdfgadas',
         bigImgUrl: 'asjdsad',
         smallImgUrl: 'ajsdhaj',
+        bigImgAlt: 'fsfsd',
+        smallImgAlt: 'dsfsd',
         tags: ['adsa', 'sadasd', 'chsdaj2'],
         category: 'tournament',
         shortenDesc: 'klsd'
@@ -29,6 +30,8 @@ const Main = () => {
         text: 'ajkdgadgaskdfgadas',
         bigImgUrl: 'asjdsad',
         smallImgUrl: 'ajsdhaj',
+        bigImgAlt: 'fsfsd',
+        smallImgAlt: 'dsfsd',
         tags: ['adsa', 'sadasd', 'sadasd'],
         category: 'tournament',
         shortenDesc: 'klsd'
@@ -40,6 +43,8 @@ const Main = () => {
         text: 'ajkdgadgaskdfgadas',
         bigImgUrl: 'asjdsad',
         smallImgUrl: 'ajsdhaj',
+        bigImgAlt: 'fsfsd',
+        smallImgAlt: 'dsfsd',
         tags: ['adsa', 'sadasd', 'sadasd'],
         category: 'tournament',
         shortenDesc: 'klsd'
@@ -51,6 +56,8 @@ const Main = () => {
         text: 'ajkdgadgaskdfgadas',
         bigImgUrl: 'asjdsad',
         smallImgUrl: 'ajsdhaj',
+        bigImgAlt: 'fsfsd',
+        smallImgAlt: 'dsfsd',
         tags: ['adsa', 'sadasd', 'sadasd'],
         category: 'tournament',
         shortenDesc: 'klsd'
@@ -122,4 +129,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Articles;

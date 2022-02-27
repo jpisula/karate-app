@@ -3,17 +3,38 @@ import { Link } from 'react-router-dom';
 import PlusIcon from '../Sections/icons/PlusIcon';
 import SectionTile from '../Sections/SectionTile/SectionTile';
 import './InfoPages.scss';
+import InfoPageTile from './InfoPageTile';
 
 const InfoPages = () => {
+  const InfoPagesData = {
+    infoPages: [
+      {
+        id: 0,
+        title: 'STOPNIE W KARATE'
+      },
+      {
+        id: 1,
+        title: 'SŁOWNIK POJĘĆ'
+      },
+      {
+        id: 2,
+        title: 'KARATE A PREAWO'
+      },
+      {
+        id: 3,
+        title: 'PRZYSIĘGA DOJO'
+      }
+    ]
+  };
+
   return (
     <main>
       <div className='container'>
         <h1>Strony informacyjne</h1>
         <div className='section-tiles'>
-          <SectionTile place={'STOPNIE W KARATE'} />
-          <SectionTile place={'SŁOWNIK POJĘĆ'} />
-          <SectionTile place={'KARATE A PREAWO'} />
-          <SectionTile place={'PRZYSIĘGA DOJO'} />
+          {InfoPagesData.infoPages.map((el) => (
+            <InfoPageTile title={el.title} id={el.id} />
+          ))}
 
           <Link to='/admin/strony-informacyjne/dodaj'>
             <div className='add-section-tile'>

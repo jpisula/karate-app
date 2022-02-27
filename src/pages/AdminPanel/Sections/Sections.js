@@ -5,15 +5,35 @@ import './Sections.scss';
 import SectionTile from './SectionTile/SectionTile';
 
 const Sections = () => {
+  const sectionsData = {
+    sections: [
+      {
+        id: 0,
+        place: 'dad'
+      },
+      {
+        id: 1,
+        place: 'KATOWICE LIGOTA'
+      },
+      {
+        id: 2,
+        place: 'KATOWICE LIGOTA'
+      },
+      {
+        id: 3,
+        place: 'KATOWICE LIGOTA'
+      }
+    ]
+  };
+
   return (
     <main>
       <div className='container'>
         <h1>Nasze Sekcje</h1>
         <div className='section-tiles'>
-          <SectionTile place={'KATOWICE LIGOTA'} />
-          <SectionTile place={'KATOWICE LIGOTA'} />
-          <SectionTile place={'KATOWICE LIGOTA'} />
-          <SectionTile place={'KATOWICE LIGOTA'} />
+          {sectionsData.sections.map((el) => (
+            <SectionTile place={el.place} id={el.id} />
+          ))}
 
           <Link to='/admin/sekcje/dodaj'>
             <div className='add-section-tile'>

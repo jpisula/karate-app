@@ -21,6 +21,7 @@
     "react-scroll-parallax": "^2.4.3",
     "react-super-responsive-table": "^5.2.0",
     "react-transition-group": "^4.4.2",
+    "reactjs-popup": "^2.0.5",
     "sass": "^1.45.2",
     "web-vitals": "^2.1.2"
   },

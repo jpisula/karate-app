@@ -6,22 +6,100 @@ import EditIcon from './Icons/EditIcon';
 import RemoveIcon from './Icons/RemoveIcon';
 import './NewSection.scss';
 import { IoMdClose } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import InputFile from '../InputFile/InputFile';
 import InputTextArea from '../InputTextArea/InputTextArea';
+import ModalPopup from '../ModalPopup/ModalPopup';
 
-const groupsData = {
-  groups: [
+const groupsData = [
+  {
+    sectionId: 0,
+    groups: [
+      {
+        id: 0,
+        groupName: 'Dzieci',
+        schedule: [
+          {
+            id: 0,
+            day: 'Wtorek',
+            hours: '17:30-18:30'
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    sectionId: 2,
+    groups: [
+      {
+        id: 0,
+        groupName: 'Dzieci',
+        schedule: [
+          {
+            id: 0,
+            day: 'Wtorek',
+            hours: '17:30-18:30'
+          }
+        ]
+      }
+    ]
+  },
+  {
+    sectionId: 3,
+    groups: [
+      {
+        id: 0,
+        groupName: 'Dzieci',
+        schedule: [
+          {
+            id: 0,
+            day: 'Wtorek',
+            hours: '17:30-18:30'
+          }
+        ]
+      }
+    ]
+  }
+];
+
+const sectionsData = {
+  sections: [
     {
       id: 0,
-      groupName: 'Dzieci',
-      schedule: [
-        {
-          id: 0,
-          day: 'Wtorek',
-          hours: '17:30-18:30'
-        }
-      ]
+      place: 'dad',
+      name: 'sdfrfe',
+      imgUrl: 'wrerwer',
+      description: 'fsfsdfsdfsfd',
+      address: 'efdffffffff',
+      googleMapsLink: 'nedhywgewt'
+    },
+    {
+      id: 1,
+      place: 'KATOWICE LIGOTA',
+      name: 'sdfrfe',
+      imgUrl: 'wrerwer',
+      description: 'fsfsdfsdfsfd',
+      address: 'efdffffffff',
+      googleMapsLink: 'nedhywgewt'
+    },
+    {
+      id: 2,
+      place: 'KATOWICE LIGOTA',
+      name: 'sdfrfe',
+      imgUrl: 'wrerwer',
+      description: 'fsfsdfsdfsfd',
+      address: 'efdffffffff',
+      googleMapsLink: 'nedhywgewt'
+    },
+    {
+      id: 3,
+      place: 'KATOWICE LIGOTA',
+      name: 'sdfrfe',
+      imgUrl: 'wrerwer',
+      description: 'fsfsdfsdfsfd',
+      address: 'efdffffffff',
+      googleMapsLink: 'nedhywgewt'
     }
   ]
 };
@@ -31,25 +109,36 @@ const NewSection = () => {
   const [oldGrName, setOldGrName] = useState('');
   const [ReloadVar, setReloadVar] = useState(false);
   const inputRef = useRef();
+  const { id } = useParams();
+
+  const currentSection = groupsData.find((el) => {
+    return el.sectionId === parseInt(id);
+  });
+  console.log(currentSection);
 
   const abcd = () => {
     inputRef.current.value = '';
+
     if (
-      groupsData.groups.findIndex((el) => el.groupName === grName) !== -1 ||
+      currentSection.groups.findIndex((el) => el.groupName === grName) !== -1 ||
       oldGrName === grName ||
       grName === ''
     ) {
       return;
     }
-    groupsData.groups.push({
+    currentSection.groups.push({
       id:
-        groupsData.groups.length - 1 >= 0
-          ? groupsData.groups[groupsData.groups.length - 1].id + 1
+        currentSection.groups.length - 1 >= 0
+          ? currentSection.groups[currentSection.groups.length - 1].id + 1
           : 0,
       groupName: `${grName}`,
       schedule: []
     });
     setOldGrName(grName);
+  };
+
+  const handleRemoveClick = () => {
+    console.log(`Usunięto ${id} sekcję`);
   };
 
   return (
@@ -62,20 +151,46 @@ const NewSection = () => {
           </Link>
         </h2>
 
-        <Input label={'ID sekcji:'} className={''} />
-        <Input label={'Nazwa sekcji:'} className={''} />
+        <Input
+          label={'Nazwa sekcji:'}
+          className={''}
+          value={
+            sectionsData.sections.find((el) => el.id === parseInt(id))?.name ||
+            ''
+          }
+        />
 
         <InputFile label={'Zdjęcie: '} className={''} />
 
-        <InputTextArea label={'opis sekcji:'} />
+        <InputTextArea
+          label={'opis sekcji:'}
+          value={
+            sectionsData.sections.find((el) => el.id === parseInt(id))
+              ?.description || ''
+          }
+        />
 
-        <Input label={'Adres:'} className={'wide-input'} />
-        <Input label={'Link do Google Maps:'} className={'wide-input'} />
+        <Input
+          label={'Adres:'}
+          className={'wide-input'}
+          value={
+            sectionsData.sections.find((el) => el.id === parseInt(id))
+              ?.address || ''
+          }
+        />
+        <Input
+          label={'Link do Google Maps:'}
+          className={'wide-input'}
+          value={
+            sectionsData.sections.find((el) => el.id === parseInt(id))
+              ?.googleMapsLink || ''
+          }
+        />
 
         <h4>Grafik zajęć:</h4>
 
         <div className='groups-container'>
-          {groupsData.groups.map((group) => (
+          {currentSection?.groups.map((group) => (
             <Group
               groupName={group.groupName}
               schedule={group.schedule}
@@ -113,7 +228,13 @@ const NewSection = () => {
               <Button text={'POWRÓT (bez zapisu)'} />
             </Link>
           </div>
-          <Button text={'USUŃ SEKCJĘ'} />
+          <ModalPopup
+            trigger={
+              id && <Button text={'USUŃ SEKCJĘ'} onclick={handleRemoveClick} />
+            }
+            text='Czy na pewno chcesz usunąć tę sekcję?'
+            onYesClick={handleRemoveClick}
+          />
         </div>
       </div>
     </main>

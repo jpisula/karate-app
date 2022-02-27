@@ -4,13 +4,72 @@ import Input from '../Input/Input.js';
 import InputFile from '../InputFile/InputFile';
 import InputTextArea from '../InputTextArea/InputTextArea';
 import Button from '../Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Tag from './Tag';
 
 const NewArticle = () => {
   const [tags, setTags] = useState([]);
   const [ReloadVar, setReloadVar] = useState(false);
   const inputRef = useRef();
+  const { id } = useParams();
+
+  const articlesData = {
+    articles: [
+      {
+        id: 0,
+        createDate: '21/32/2022',
+        name: 'zawody',
+        text: 'ajkdgadgaskdfgadas',
+        bigImgUrl: 'asjdsad',
+        smallImgUrl: 'ajsdhaj',
+        bigImgAlt: 'fsfsd',
+        smallImgAlt: 'dsfsd',
+        tags: ['adsa', 'sadasd', 'chsdaj2'],
+        category: 'tournament',
+        shortenDesc: 'klsd'
+      },
+      {
+        id: 1,
+        createDate: '21/32/2022',
+        name: 'zawody',
+        text: 'ajkdgadgaskdfgadas',
+        bigImgUrl: 'asjdsad',
+        smallImgUrl: 'ajsdhaj',
+        bigImgAlt: 'fsfsd',
+        smallImgAlt: 'dsfsd',
+        tags: ['adsa', 'sadasd', 'sadasd'],
+        category: 'tournament',
+        shortenDesc: 'klsd'
+      },
+      {
+        id: 2,
+        createDate: '21/32/2022',
+        name: 'zawody',
+        text: 'ajkdgadgaskdfgadas',
+        bigImgUrl: 'asjdsad',
+        smallImgUrl: 'ajsdhaj',
+        bigImgAlt: 'fsfsd',
+        smallImgAlt: 'dsfsd',
+        tags: ['adsa', 'sadasd', 'sadasd'],
+        category: 'tournament',
+        shortenDesc: 'klsd'
+      },
+      {
+        id: 3,
+        createDate: '21/32/2022',
+        name: 'zawody',
+        text: 'ajkdgadgaskdfgadas',
+        bigImgUrl: 'asjdsad',
+        smallImgUrl: 'ajsdhaj',
+        bigImgAlt: 'fsfsd',
+        smallImgAlt: 'dsfsd',
+        tags: ['adsa', 'sadasd', 'sadasd'],
+        category: 'tournament',
+        shortenDesc: 'klsd'
+      }
+    ]
+  };
+
   return (
     <main>
       <div className='new-article-container'>
@@ -20,11 +79,32 @@ const NewArticle = () => {
             <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
           </Link>
         </h2>
-        <Input label={'Tytuł:'} className={''} />
+        <Input
+          label={'Tytuł:'}
+          className={''}
+          value={
+            articlesData.articles.find((el) => el.id === parseInt(id))?.name ||
+            ''
+          }
+        />
         <InputFile label={'duze zdjęcie:'} className={''} />
-        <Input label={'alt do duzego zdjęcia:'} className={''} />
+        <Input
+          label={'alt do duzego zdjęcia:'}
+          className={''}
+          value={
+            articlesData.articles.find((el) => el.id === parseInt(id))
+              ?.bigImgAlt || ''
+          }
+        />
         <InputFile label={'małe zdjęcie:'} className={''} />
-        <Input label={'alt do małego zdjęcia:'} className={''} />
+        <Input
+          label={'alt do małego zdjęcia:'}
+          className={''}
+          value={
+            articlesData.articles.find((el) => el.id === parseInt(id))
+              ?.smallImgUrl || ''
+          }
+        />
 
         <form className='input-container'>
           <label htmlFor='sort'>wybierz kategorie artykulu: </label>
@@ -67,7 +147,13 @@ const NewArticle = () => {
           </div>
         </div>
 
-        <InputTextArea label={'treść artykułu:'} />
+        <InputTextArea
+          label={'treść artykułu:'}
+          value={
+            articlesData.articles.find((el) => el.id === parseInt(id))?.text ||
+            ''
+          }
+        />
 
         <div className='buttons'>
           <div className='green-btns'>

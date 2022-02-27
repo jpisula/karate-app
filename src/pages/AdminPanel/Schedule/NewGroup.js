@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Button from '../Button/Button';
 import LeftArrow from '../PageContent/Main/ArrowsIcons/LeftArrow';
 import RightArrow from '../PageContent/Main/ArrowsIcons/RightArrow';
-import ArticleRow from '../PageContent/Main/Article/Article';
 import './NewGroup.scss';
 import ScheduleRow from './SubComponents/ScheduleRow';
 
