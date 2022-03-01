@@ -55,11 +55,21 @@ const NewPerson = () => {
           label={'Zawartość:'}
           className={''}
           value={currentPerson?.content}
+          id='content'
         />
 
         <div className='buttons'>
           <div className='green-btns'>
-            <Button text={'ZAPISZ ZMIANY'} />
+            <Button
+              text={'ZAPISZ ZMIANY'}
+              onclick={() => {
+                const content = document.getElementById('content');
+
+                console.log(id, {
+                  content: content?.value
+                });
+              }}
+            />
             <Link to='/admin/instruktorzy-i-pomocnicy'>
               <Button text={'POWRÓT (bez zapisu)'} />
             </Link>

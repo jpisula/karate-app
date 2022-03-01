@@ -12,6 +12,8 @@ const ArticleRow = ({ article }) => {
     name,
     text,
     bigImgUrl,
+    bigImgAlt,
+    smallImgAlt,
     smallImgUrl,
     tags,
     shortenDesc,
@@ -36,7 +38,20 @@ const ArticleRow = ({ article }) => {
       </div>
       <div className='edit-or-remove'>
         <Link to={`/admin/aktualnosci/nowy/${id}`}>
-          <div>
+          <div
+          // onClick={() => {
+          //   console.log({
+          //     title: name,
+          //     text: text
+          //   });
+          //   console.log({
+          //     bigimg: bigImgUrl,
+          //     bigimgAlt: bigImgAlt,
+          //     smallimg: smallImgUrl,
+          //     smallimgAlt: smallImgAlt
+          //   });
+          // }}
+          >
             <p>edytuj</p>
             <BiEdit />
           </div>

@@ -52,16 +52,33 @@ const NewInfoPage = () => {
             <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
           </Link>
         </h2>
-        <Input label={'Tytuł:'} className={''} value={currentInfoPage?.title} />
+        <Input
+          label={'Tytuł:'}
+          className={''}
+          value={currentInfoPage?.title}
+          id='title'
+        />
         <InputTextArea
           label={'Tekst:'}
           className={''}
           value={currentInfoPage?.content}
+          id='content'
         />
 
         <div className='buttons'>
           <div className='green-btns'>
-            <Button text={'ZAPISZ ZMIANY'} />
+            <Button
+              text={'ZAPISZ ZMIANY'}
+              onclick={() => {
+                const title = document.getElementById('title');
+                const content = document.getElementById('content');
+
+                console.log(id, {
+                  title: title?.value,
+                  content: content?.value
+                });
+              }}
+            />
             <Link to='/admin/strony-informacyjne'>
               <Button text={'POWRÓT (bez zapisu)'} />
             </Link>
@@ -70,7 +87,7 @@ const NewInfoPage = () => {
             <ModalPopup
               trigger={
                 <div>
-                  <Button className='b' text={'USUŃ STRONĘ'} />
+                  <Button text={'USUŃ STRONĘ'} />
                 </div>
               }
               text='Czy na pewno chcesz usunąć tę stronę informacyją?'

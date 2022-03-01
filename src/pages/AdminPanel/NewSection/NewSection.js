@@ -10,6 +10,7 @@ import { Link, useParams } from 'react-router-dom';
 import InputFile from '../InputFile/InputFile';
 import InputTextArea from '../InputTextArea/InputTextArea';
 import ModalPopup from '../ModalPopup/ModalPopup';
+import Schedule from '../Schedule/Schedule';
 
 const groupsData = [
   {
@@ -111,10 +112,16 @@ const NewSection = () => {
   const inputRef = useRef();
   const { id } = useParams();
 
+  const sectionsContent = {
+    sectionsId: id,
+    groups: []
+  };
+
+  const groupsContent = [];
+
   const currentSection = groupsData.find((el) => {
     return el.sectionId === parseInt(id);
   });
-  console.log(currentSection);
 
   const abcd = () => {
     inputRef.current.value = '';
@@ -135,6 +142,10 @@ const NewSection = () => {
       schedule: []
     });
     setOldGrName(grName);
+    console.log({
+      sectionId: id,
+      groupName: grName
+    });
   };
 
   const handleRemoveClick = () => {
@@ -151,6 +162,8 @@ const NewSection = () => {
           </Link>
         </h2>
 
+        <Input label={'Nazwa selektora: '} className={''} id='label' />
+
         <Input
           label={'Nazwa sekcji:'}
           className={''}
@@ -158,9 +171,11 @@ const NewSection = () => {
             sectionsData.sections.find((el) => el.id === parseInt(id))?.name ||
             ''
           }
+          id='name'
         />
 
-        <InputFile label={'Zdjęcie: '} className={''} />
+        <InputFile label={'Zdjęcie: '} className={''} id='img' />
+        <Input label={'alt do zdjęcia: '} id='imgAlt' />
 
         <InputTextArea
           label={'opis sekcji:'}
@@ -168,6 +183,7 @@ const NewSection = () => {
             sectionsData.sections.find((el) => el.id === parseInt(id))
               ?.description || ''
           }
+          id='description'
         />
 
         <Input
@@ -177,6 +193,7 @@ const NewSection = () => {
             sectionsData.sections.find((el) => el.id === parseInt(id))
               ?.address || ''
           }
+          id='address'
         />
         <Input
           label={'Link do Google Maps:'}
@@ -185,7 +202,46 @@ const NewSection = () => {
             sectionsData.sections.find((el) => el.id === parseInt(id))
               ?.googleMapsLink || ''
           }
+          id='googleMapsLink'
         />
+
+        <div className='buttons'>
+          <div className='green-btns'>
+            <Button
+              text={'ZAPISZ ZMIANY'}
+              onclick={() => {
+                const name = document.getElementById('name');
+                const label = document.getElementById('label');
+                const img = document.getElementById('img');
+                const imgAlt = document.getElementById('imgAlt');
+                const description = document.getElementById('description');
+                const address = document.getElementById('address');
+                const googleMapsLink =
+                  document.getElementById('googleMapsLink');
+
+                console.log(id, {
+                  name: name?.value,
+                  label: label?.value,
+                  img: img?.value,
+                  imgAlt: imgAlt?.value,
+                  description: description?.value,
+                  googleMapsLink: googleMapsLink?.value,
+                  address: address?.value
+                });
+              }}
+            />
+            <Link to='/admin/sekcje'>
+              <Button text={'POWRÓT (bez zapisu)'} />
+            </Link>
+          </div>
+          <ModalPopup
+            trigger={
+              id && <Button text={'USUŃ SEKCJĘ'} onclick={handleRemoveClick} />
+            }
+            text='Czy na pewno chcesz usunąć tę sekcję?'
+            onYesClick={handleRemoveClick}
+          />
+        </div>
 
         <h4>Grafik zajęć:</h4>
 
@@ -195,13 +251,15 @@ const NewSection = () => {
               groupName={group.groupName}
               schedule={group.schedule}
               groups={groupsData.groups}
-              id={group.id}
+              groupId={group.id}
               grName={grName}
               setGrName={setGrName}
               oldGrName={oldGrName}
               setOldGrName={setOldGrName}
               ReloadVar={ReloadVar}
               setReloadVar={setReloadVar}
+              groupsContent={groupsContent}
+              id={id}
             ></Group>
           ))}
           <div className='add-section-tile'>
@@ -219,22 +277,6 @@ const NewSection = () => {
               <PlusIcon className='plus' />
             </div>
           </div>
-        </div>
-
-        <div className='buttons'>
-          <div className='green-btns'>
-            <Button text={'ZAPISZ ZMIANY'} />
-            <Link to='/admin/sekcje'>
-              <Button text={'POWRÓT (bez zapisu)'} />
-            </Link>
-          </div>
-          <ModalPopup
-            trigger={
-              id && <Button text={'USUŃ SEKCJĘ'} onclick={handleRemoveClick} />
-            }
-            text='Czy na pewno chcesz usunąć tę sekcję?'
-            onYesClick={handleRemoveClick}
-          />
         </div>
       </div>
     </main>
@@ -261,7 +303,9 @@ const Group = ({
   oldGrName,
   setOldGrName,
   ReloadVar,
-  setReloadVar
+  setReloadVar,
+  groupsContent,
+  groupId
 }) => {
   const [isNewDayVisible, setIsNewDayVisible] = useState(false);
 
@@ -272,7 +316,7 @@ const Group = ({
         className='cross-container'
         onClick={() => {
           groups.splice(
-            groups.findIndex((el) => el.id === id),
+            groups.findIndex((el) => el.id === groupId),
             1
           );
           setOldGrName(grName + '-deleted');
@@ -286,11 +330,14 @@ const Group = ({
           <Day
             scheduleEl={el}
             schedule={schedule}
-            id={schedule[index].id}
             setReloadVar={setReloadVar}
             ReloadVar={ReloadVar}
             setIsNewDayVisible={setIsNewDayVisible}
             isNewDayVisible={isNewDayVisible}
+            groupsContent={groupsContent}
+            dayId={schedule[index].id}
+            groupId={groupId}
+            id={id}
           />
         ))}
         {isNewDayVisible && (
@@ -299,6 +346,8 @@ const Group = ({
             setIsNewDayVisible={setIsNewDayVisible}
             defaultDay={''}
             defaultHours={''}
+            groupId={groupId}
+            id={id}
           />
         )}
         <div
@@ -320,7 +369,10 @@ const Day = ({
   ReloadVar,
   setReloadVar,
   setIsNewDayVisible,
-  id
+  groupId,
+  id,
+  dayId,
+  groupsContent
 }) => {
   const [oldDay, setOldDay] = useState('');
   const [oldHours, setOldHours] = useState('');
@@ -336,7 +388,9 @@ const Day = ({
           defaultHours={oldHours}
           setIsNewDayVisible={setIsNewDayVisible}
           setIsNewDayShown={setIsNewDayShown}
+          groupId={groupId}
           id={id}
+          groupsContent={groupsContent}
         />
       )}
       {!isNewDayShown && (
@@ -352,6 +406,10 @@ const Day = ({
                 setIsNewDayShown(true);
                 setOldDay(scheduleEl.day);
                 setOldHours(scheduleEl.hours);
+                console.log(dayId, {
+                  day: scheduleEl.day,
+                  hours: scheduleEl.hours
+                });
               }}
             >
               <p>Edytuj</p>
@@ -361,10 +419,11 @@ const Day = ({
               className='remove'
               onClick={() => {
                 schedule.splice(
-                  schedule.findIndex((el) => el.id === id),
+                  schedule.findIndex((el) => el.id === groupId),
                   1
                 );
                 setReloadVar(!ReloadVar);
+                console.log(`usunięto ${dayId} dzień`);
               }}
             >
               <p>Usuń</p>
@@ -383,7 +442,9 @@ const NewDay = ({
   defaultDay,
   defaultHours,
   setIsNewDayShown,
-  id
+  groupId,
+  id,
+  groupsContent
 }) => {
   const dayRef = useRef();
   const hoursRef = useRef();
@@ -398,8 +459,8 @@ const NewDay = ({
   };
 
   const schowDay = () => {
-    schedule[id].day = dayRef.current.value;
-    schedule[id].hours = hoursRef.current.value;
+    schedule[groupId].day = dayRef.current.value;
+    schedule[groupId].hours = hoursRef.current.value;
     setIsNewDayShown(false);
   };
 
@@ -437,6 +498,12 @@ const NewDay = ({
           } else {
             schowNewDay();
           }
+          console.log({
+            sectionId: id,
+            groupId: groupId,
+            day: dayRef.current.value,
+            hours: hoursRef.current.value
+          });
         }}
       >
         Zapisz

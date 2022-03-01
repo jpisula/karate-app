@@ -43,8 +43,6 @@ const NewGroup = () => {
     ]
   };
 
-  console.log(groupId);
-
   const handleRemoveClick = () => {
     console.log(`Usunięto ${groupId} grupę`);
   };

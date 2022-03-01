@@ -54,36 +54,61 @@ const NewScheduleRow = ({ isNewRow }) => {
           label={'Nazwa:'}
           className={''}
           value={isNewRow ? '' : currentGroup?.name}
+          id='name'
         />
         <Input
           label={'Miejsce:'}
           className={''}
           value={isNewRow ? '' : currentGroup?.place}
+          id='place'
         />
         <Input
           label={'Dzień:'}
           className={''}
           value={isNewRow ? '' : currentGroup?.day}
+          id='day'
         />
         <Input
           label={'Adres:'}
           className={''}
           value={isNewRow ? '' : currentGroup?.address}
+          id='address'
         />
         <InputTextArea
           label={'Instruktorzy:'}
           className={''}
           value={isNewRow ? '' : currentGroup?.instructors}
+          id='instructors'
         />
         <InputTextArea
           label={'Pomocnicy:'}
           className={''}
           value={isNewRow ? '' : currentGroup?.helpers}
+          id='helpers'
         />
 
         <div className='buttons'>
           <div className='green-btns'>
-            <Button text={'ZAPISZ ZMIANY'} />
+            <Button
+              text={'ZAPISZ ZMIANY'}
+              onclick={() => {
+                const name = document.getElementById('name');
+                const place = document.getElementById('place');
+                const day = document.getElementById('day');
+                const address = document.getElementById('address');
+                const instructors = document.getElementById('instructors');
+                const helpers = document.getElementById('helpers');
+
+                console.log(groupId, id, {
+                  name: name?.value,
+                  place: place?.value,
+                  day: day?.value,
+                  instructors: instructors?.value,
+                  helpers: helpers?.value,
+                  address: address?.value
+                });
+              }}
+            />
             <Link to={`/admin/harmonogram/dodaj/${groupId}`}>
               <Button text={'POWRÓT (bez zapisu)'} />
             </Link>

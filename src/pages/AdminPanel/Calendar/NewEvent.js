@@ -77,43 +77,78 @@ const NewEvent = () => {
             <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
           </Link>
         </h2>
-        <Input label={'Tytuł:'} className={''} value={currentEvent?.name} />
-        <Input label={'Adres:'} className={''} value={currentEvent?.address} />
+        <Input
+          label={'Tytuł:'}
+          className={''}
+          value={currentEvent?.name}
+          id='title'
+        />
+        <Input
+          label={'Adres:'}
+          className={''}
+          value={currentEvent?.address}
+          id='address'
+        />
         <Input
           label={'Data rozpoczęcia:'}
           className={''}
           value={currentEvent?.startDate}
+          id='startDate'
         />
         <Input
           label={'Data zakończenia:'}
           className={''}
           value={currentEvent?.endDate}
+          id='endDate'
         />
         <Input
           label={'Opis wydarzenia:'}
           className={''}
           value={currentEvent?.description}
+          id='description'
         />
 
         <form className='input-container'>
           <label htmlFor='sort'>wybierz kategorie wydarzenia: </label>
-          <select name='sorting' className='select'>
+          <select name='sorting' className='select' id='category'>
             <option value='lol'>lol</option>
             <option value='kol'>kol</option>
             <option value='koll'>lol</option>
           </select>
         </form>
 
-        <InputFile label={'Zdjęcie:'} className={''} />
+        <InputFile label={'Zdjęcie:'} className={''} id='img' />
         <Input
           label={'alt do zdjęcia:'}
           className={''}
           value={currentEvent?.imgAlt}
+          id='imgAlt'
         />
 
         <div className='buttons'>
           <div className='green-btns'>
-            <Button text={'ZAPISZ ZMIANY'} />
+            <Button
+              text={'ZAPISZ ZMIANY'}
+              onclick={() => {
+                const title = document.getElementById('title');
+                const address = document.getElementById('address');
+                const startDate = document.getElementById('startDate');
+                const endDate = document.getElementById('endDate');
+                const img = document.getElementById('img');
+                const imgAlt = document.getElementById('imgAlt');
+                const category = document.getElementById('category');
+
+                console.log(id, {
+                  title: title?.value,
+                  address: address?.value,
+                  startDate: startDate?.value,
+                  endDate: endDate?.value,
+                  img: img?.value,
+                  imgAlt: imgAlt?.value,
+                  category: category?.value
+                });
+              }}
+            />
             <Link to='/admin/kalendarz'>
               <Button text={'POWRÓT (bez zapisu)'} />
             </Link>
