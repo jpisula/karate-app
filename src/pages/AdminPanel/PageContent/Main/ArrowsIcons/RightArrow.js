@@ -14,16 +14,16 @@ const RightArrow = ({ className }) => (
     <path
       d='M16 22H30'
       stroke='white'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
     />
     <path
       d='M23 15L30 22L23 29'
       stroke='white'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
     />
   </svg>
 );

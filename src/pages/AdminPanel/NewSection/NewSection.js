@@ -10,100 +10,10 @@ import { Link, useParams } from 'react-router-dom';
 import InputFile from '../InputFile/InputFile';
 import InputTextArea from '../InputTextArea/InputTextArea';
 import ModalPopup from '../ModalPopup/ModalPopup';
-import Schedule from '../Schedule/Schedule';
+import axios from 'axios';
+import Loader from '../Loader/Loader';
 
-const groupsData = [
-  {
-    sectionId: 0,
-    groups: [
-      {
-        id: 0,
-        groupName: 'Dzieci',
-        schedule: [
-          {
-            id: 0,
-            day: 'Wtorek',
-            hours: '17:30-18:30'
-          }
-        ]
-      }
-    ]
-  },
-
-  {
-    sectionId: 2,
-    groups: [
-      {
-        id: 0,
-        groupName: 'Dzieci',
-        schedule: [
-          {
-            id: 0,
-            day: 'Wtorek',
-            hours: '17:30-18:30'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    sectionId: 3,
-    groups: [
-      {
-        id: 0,
-        groupName: 'Dzieci',
-        schedule: [
-          {
-            id: 0,
-            day: 'Wtorek',
-            hours: '17:30-18:30'
-          }
-        ]
-      }
-    ]
-  }
-];
-
-const sectionsData = {
-  sections: [
-    {
-      id: 0,
-      place: 'dad',
-      name: 'sdfrfe',
-      imgUrl: 'wrerwer',
-      description: 'fsfsdfsdfsfd',
-      address: 'efdffffffff',
-      googleMapsLink: 'nedhywgewt'
-    },
-    {
-      id: 1,
-      place: 'KATOWICE LIGOTA',
-      name: 'sdfrfe',
-      imgUrl: 'wrerwer',
-      description: 'fsfsdfsdfsfd',
-      address: 'efdffffffff',
-      googleMapsLink: 'nedhywgewt'
-    },
-    {
-      id: 2,
-      place: 'KATOWICE LIGOTA',
-      name: 'sdfrfe',
-      imgUrl: 'wrerwer',
-      description: 'fsfsdfsdfsfd',
-      address: 'efdffffffff',
-      googleMapsLink: 'nedhywgewt'
-    },
-    {
-      id: 3,
-      place: 'KATOWICE LIGOTA',
-      name: 'sdfrfe',
-      imgUrl: 'wrerwer',
-      description: 'fsfsdfsdfsfd',
-      address: 'efdffffffff',
-      googleMapsLink: 'nedhywgewt'
-    }
-  ]
-};
+const API_URL = 'http://api.gancle-studio.pl/api/v1';
 
 const NewSection = () => {
   const [grName, setGrName] = useState('');
@@ -111,19 +21,44 @@ const NewSection = () => {
   const [ReloadVar, setReloadVar] = useState(false);
   const inputRef = useRef();
   const { id } = useParams();
+  const [loader, setLoader] = useState(true);
+  const [currentSection, setCurrentSection] = useState({});
+  const [deleted, setDeleted] = useState(false);
+  const [sectionGroupId, setSectionGroupId] = useState('');
+  const [deletVar, setDeleteVar] = useState(false);
+  const [areGroupsVisible, setAreGroupsVisible] = useState(false);
 
-  const sectionsContent = {
-    sectionsId: id,
-    groups: []
+  useEffect(async () => {
+    if (id) {
+      const sectionsContent = await axios.get(`${API_URL}/sections/${id}`);
+      setCurrentSection(sectionsContent.data.data);
+    } else {
+      setCurrentSection({});
+    }
+
+    setLoader(false);
+  }, []);
+
+  useEffect(async () => {
+    if (id) {
+      const sectionsContent = await axios.get(`${API_URL}/sections/${id}`);
+      setCurrentSection(sectionsContent.data.data);
+    } else {
+      setCurrentSection({});
+    }
+
+    setLoader(false);
+  }, [ReloadVar]);
+
+  const handleDelete = async (id) => {
+    await axios.delete(`${API_URL}/sectionsgroup/${id}`);
+    setReloadVar(!ReloadVar);
+    setOldGrName(grName + '-deleted');
   };
 
-  const groupsContent = [];
+  // useEffect(, [deletVar]);
 
-  const currentSection = groupsData.find((el) => {
-    return el.sectionId === parseInt(id);
-  });
-
-  const abcd = () => {
+  const addGroup = async () => {
     inputRef.current.value = '';
 
     if (
@@ -133,153 +68,175 @@ const NewSection = () => {
     ) {
       return;
     }
-    currentSection.groups.push({
-      id:
-        currentSection.groups.length - 1 >= 0
-          ? currentSection.groups[currentSection.groups.length - 1].id + 1
-          : 0,
-      groupName: `${grName}`,
-      schedule: []
+    await axios.post(`${API_URL}/sectionsgroup/add`, {
+      sectionId: currentSection.id,
+      groupName: `${grName}`
     });
     setOldGrName(grName);
-    console.log({
-      sectionId: id,
-      groupName: grName
-    });
+    setReloadVar(!ReloadVar);
   };
 
-  const handleRemoveClick = () => {
-    console.log(`Usunięto ${id} sekcję`);
+  const handleRemoveClick = async () => {
+    await axios.delete(`${API_URL}/sections/${id}`);
+    setDeleted(true);
   };
+
+  if (deleted) {
+    window.location.href = `/admin/sekcje/`;
+    return null;
+  }
 
   return (
-    <main>
-      <div className='main-container'>
-        <h2 className='header-container'>
-          <p>Nasze sekcje - KATOWICE LIGOTA</p>
-          <Link to='/admin/sekcje'>
-            <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
-          </Link>
-        </h2>
+    <>
+      {loader && <Loader />}
+      {!loader && (
+        <main>
+          <div className='main-container'>
+            <h2 className='header-container'>
+              <p>Nasze sekcje - KATOWICE LIGOTA</p>
+              <Link to='/admin/sekcje'>
+                <Button text={'POWRÓT (bez zapisu)'} className='back-btn' />
+              </Link>
+            </h2>
 
-        <Input label={'Nazwa selektora: '} className={''} id='label' />
-
-        <Input
-          label={'Nazwa sekcji:'}
-          className={''}
-          value={
-            sectionsData.sections.find((el) => el.id === parseInt(id))?.name ||
-            ''
-          }
-          id='name'
-        />
-
-        <InputFile label={'Zdjęcie: '} className={''} id='img' />
-        <Input label={'alt do zdjęcia: '} id='imgAlt' />
-
-        <InputTextArea
-          label={'opis sekcji:'}
-          value={
-            sectionsData.sections.find((el) => el.id === parseInt(id))
-              ?.description || ''
-          }
-          id='description'
-        />
-
-        <Input
-          label={'Adres:'}
-          className={'wide-input'}
-          value={
-            sectionsData.sections.find((el) => el.id === parseInt(id))
-              ?.address || ''
-          }
-          id='address'
-        />
-        <Input
-          label={'Link do Google Maps:'}
-          className={'wide-input'}
-          value={
-            sectionsData.sections.find((el) => el.id === parseInt(id))
-              ?.googleMapsLink || ''
-          }
-          id='googleMapsLink'
-        />
-
-        <div className='buttons'>
-          <div className='green-btns'>
-            <Button
-              text={'ZAPISZ ZMIANY'}
-              onclick={() => {
-                const name = document.getElementById('name');
-                const label = document.getElementById('label');
-                const img = document.getElementById('img');
-                const imgAlt = document.getElementById('imgAlt');
-                const description = document.getElementById('description');
-                const address = document.getElementById('address');
-                const googleMapsLink =
-                  document.getElementById('googleMapsLink');
-
-                console.log(id, {
-                  name: name?.value,
-                  label: label?.value,
-                  img: img?.value,
-                  imgAlt: imgAlt?.value,
-                  description: description?.value,
-                  googleMapsLink: googleMapsLink?.value,
-                  address: address?.value
-                });
-              }}
+            <Input
+              label={'Nazwa selektora: '}
+              className={''}
+              id='label'
+              value={currentSection?.label || ''}
             />
-            <Link to='/admin/sekcje'>
-              <Button text={'POWRÓT (bez zapisu)'} />
-            </Link>
-          </div>
-          <ModalPopup
-            trigger={
-              id && <Button text={'USUŃ SEKCJĘ'} onclick={handleRemoveClick} />
-            }
-            text='Czy na pewno chcesz usunąć tę sekcję?'
-            onYesClick={handleRemoveClick}
-          />
-        </div>
 
-        <h4>Grafik zajęć:</h4>
+            <Input
+              label={'Nazwa sekcji:'}
+              className={''}
+              value={currentSection?.name || ''}
+              id='name'
+            />
 
-        <div className='groups-container'>
-          {currentSection?.groups.map((group) => (
-            <Group
-              groupName={group.groupName}
-              schedule={group.schedule}
-              groups={groupsData.groups}
-              groupId={group.id}
-              grName={grName}
-              setGrName={setGrName}
-              oldGrName={oldGrName}
-              setOldGrName={setOldGrName}
-              ReloadVar={ReloadVar}
-              setReloadVar={setReloadVar}
-              groupsContent={groupsContent}
-              id={id}
-            ></Group>
-          ))}
-          <div className='add-section-tile'>
-            <h2>DODAJ NOWĄ GRUPĘ O NAZWIE: </h2>
-            <input
-              ref={inputRef}
-              onChange={(event) => setGrName(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.keyCode === 13) {
-                  abcd();
+            <InputFile label={'Duze zdjęcie: '} className={''} id='bigImg' />
+            <Input
+              label={'alt do duzego zdjęcia: '}
+              id='bigImgAlt'
+              value={currentSection?.bigImgAlt || ''}
+            />
+            <InputFile label={'Małe zdjęcie: '} className={''} id='smallImg' />
+            <Input
+              label={'alt do małego zdjęcia: '}
+              id='smallImgAlt'
+              value={currentSection?.smallImgAlt || ''}
+            />
+
+            <InputTextArea
+              label={'opis sekcji:'}
+              value={currentSection?.description || ''}
+              id='description'
+            />
+
+            <Input
+              label={'Adres:'}
+              className={'wide-input'}
+              value={currentSection?.address || ''}
+              id='address'
+            />
+            <Input
+              label={'Link do Google Maps:'}
+              className={'wide-input'}
+              value={currentSection?.googleMapsLink || ''}
+              id='googleMapsLink'
+            />
+
+            <div className='buttons'>
+              <div className='green-btns'>
+                <Button
+                  text={'ZAPISZ ZMIANY'}
+                  onclick={async () => {
+                    const name = document.getElementById('name');
+                    const label = document.getElementById('label');
+                    const bigImg = document.getElementById('bigimg');
+                    const bigImgAlt = document.getElementById('bigImgAlt');
+                    const smallImg = document.getElementById('smallImg');
+                    const smallImgAlt = document.getElementById('smallImgAlt');
+                    const description = document.getElementById('description');
+                    const address = document.getElementById('address');
+                    const googleMapsLink =
+                      document.getElementById('googleMapsLink');
+
+                    const section = await axios.post(`${API_URL}/sections`, {
+                      name: name?.value,
+                      label: label?.value,
+                      bigImgUrl: bigImg?.value,
+                      bigImgAlt: bigImgAlt?.value,
+                      smallImgUrl: smallImg?.value,
+                      smallImgAlt: smallImgAlt?.value,
+                      description: description?.value,
+                      googleMapsLink: googleMapsLink?.value,
+                      address: address?.value
+                    });
+                    if (!id) {
+                      window.location.href = `${window.location.href}/${section.data.data.id}`;
+                    }
+                  }}
+                />
+                <Link to='/admin/sekcje'>
+                  <Button text={'POWRÓT (bez zapisu)'} />
+                </Link>
+              </div>
+              <ModalPopup
+                trigger={
+                  id && (
+                    <Button text={'USUŃ SEKCJĘ'} onclick={handleRemoveClick} />
+                  )
                 }
-              }}
-            ></input>
-            <div onClick={() => abcd()}>
-              <PlusIcon className='plus' />
+                text='Czy na pewno chcesz usunąć tę sekcję?'
+                onYesClick={handleRemoveClick}
+              />
             </div>
+
+            {id && (
+              <>
+                <h4>Grafik zajęć:</h4>
+                <div className='groups-container'>
+                  {currentSection?.groups?.map((group) => (
+                    <Group
+                      groupName={group.groupName}
+                      schedule={group.schedule}
+                      groups={currentSection.groups}
+                      groupId={group.id}
+                      grName={grName}
+                      setGrName={setGrName}
+                      oldGrName={oldGrName}
+                      setOldGrName={setOldGrName}
+                      ReloadVar={ReloadVar}
+                      setReloadVar={setReloadVar}
+                      deletVar={deletVar}
+                      setDeleteVar={setDeleteVar}
+                      handleDelete={handleDelete}
+                      id={id}
+                      key={group.id}
+                    ></Group>
+                  ))}
+                  <div className='add-section-tile'>
+                    <h2>DODAJ NOWĄ GRUPĘ O NAZWIE: </h2>
+                    <input
+                      ref={inputRef}
+                      onChange={(event) => setGrName(event.target.value)}
+                      onKeyDown={(event) => {
+                        if (event.keyCode === 13) {
+                          addGroup();
+                        }
+                      }}
+                    ></input>
+                    <div onClick={() => addGroup()}>
+                      <PlusIcon className='plus' />
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
-        </div>
-      </div>
-    </main>
+        </main>
+      )}
+    </>
   );
 };
 
@@ -304,8 +261,11 @@ const Group = ({
   setOldGrName,
   ReloadVar,
   setReloadVar,
-  groupsContent,
-  groupId
+  groupId,
+  sectionGroupId,
+  deletVar,
+  setDeleteVar,
+  handleDelete
 }) => {
   const [isNewDayVisible, setIsNewDayVisible] = useState(false);
 
@@ -315,18 +275,14 @@ const Group = ({
       <div
         className='cross-container'
         onClick={() => {
-          groups.splice(
-            groups.findIndex((el) => el.id === groupId),
-            1
-          );
-          setOldGrName(grName + '-deleted');
-          setReloadVar(!ReloadVar);
+          handleDelete(groupId);
+          setDeleteVar(!deletVar);
         }}
       >
         <IoMdClose />
       </div>
       <div className='days-container'>
-        {schedule.map((el, index) => (
+        {schedule.map((el) => (
           <Day
             scheduleEl={el}
             schedule={schedule}
@@ -334,10 +290,11 @@ const Group = ({
             ReloadVar={ReloadVar}
             setIsNewDayVisible={setIsNewDayVisible}
             isNewDayVisible={isNewDayVisible}
-            groupsContent={groupsContent}
-            dayId={schedule[index].id}
+            dayId={el.id}
             groupId={groupId}
             id={id}
+            sectionGroupId={sectionGroupId}
+            key={el.id}
           />
         ))}
         {isNewDayVisible && (
@@ -348,6 +305,9 @@ const Group = ({
             defaultHours={''}
             groupId={groupId}
             id={id}
+            sectionGroupId={sectionGroupId}
+            setReloadVar={setReloadVar}
+            ReloadVar={ReloadVar}
           />
         )}
         <div
@@ -371,12 +331,12 @@ const Day = ({
   setIsNewDayVisible,
   groupId,
   id,
-  dayId,
-  groupsContent
+  dayId
 }) => {
   const [oldDay, setOldDay] = useState('');
   const [oldHours, setOldHours] = useState('');
   const [isNewDayShown, setIsNewDayShown] = useState(false);
+  const [ifEdit, setIfEdit] = useState(false);
 
   return (
     <>
@@ -390,7 +350,11 @@ const Day = ({
           setIsNewDayShown={setIsNewDayShown}
           groupId={groupId}
           id={id}
-          groupsContent={groupsContent}
+          ReloadVar={ReloadVar}
+          setReloadVar={setReloadVar}
+          ifEdit={ifEdit}
+          setIfEdit={setIfEdit}
+          dayId={dayId}
         />
       )}
       {!isNewDayShown && (
@@ -402,14 +366,11 @@ const Day = ({
           <div className='buttons-container'>
             <div
               className='edit'
-              onClick={() => {
+              onClick={async () => {
+                setIfEdit(true);
                 setIsNewDayShown(true);
                 setOldDay(scheduleEl.day);
                 setOldHours(scheduleEl.hours);
-                console.log(dayId, {
-                  day: scheduleEl.day,
-                  hours: scheduleEl.hours
-                });
               }}
             >
               <p>Edytuj</p>
@@ -417,10 +378,9 @@ const Day = ({
             </div>
             <div
               className='remove'
-              onClick={() => {
-                schedule.splice(
-                  schedule.findIndex((el) => el.id === groupId),
-                  1
+              onClick={async () => {
+                await axios.delete(
+                  `${API_URL}/sectionsgroup/schedule/${dayId}`
                 );
                 setReloadVar(!ReloadVar);
                 console.log(`usunięto ${dayId} dzień`);
@@ -444,23 +404,22 @@ const NewDay = ({
   setIsNewDayShown,
   groupId,
   id,
-  groupsContent
+  ReloadVar,
+  setReloadVar,
+  ifEdit,
+  setIfEdit,
+  dayId
 }) => {
   const dayRef = useRef();
   const hoursRef = useRef();
 
-  const schowNewDay = () => {
+  const showNewDay = () => {
     setIsNewDayVisible(false);
-    schedule.push({
-      id: schedule.length > 0 ? schedule[schedule.length - 1].id + 1 : 0,
-      day: dayRef.current.value,
-      hours: hoursRef.current.value
-    });
   };
 
-  const schowDay = () => {
-    schedule[groupId].day = dayRef.current.value;
-    schedule[groupId].hours = hoursRef.current.value;
+  const showDay = () => {
+    // schedule[groupId].day = dayRef.current.value;
+    // schedule[groupId].hours = hoursRef.current.value;
     setIsNewDayShown(false);
   };
 
@@ -492,18 +451,28 @@ const NewDay = ({
       </div>
       <button
         className='save-btn'
-        onClick={() => {
-          if (setIsNewDayShown !== undefined) {
-            schowDay();
+        onClick={async () => {
+          if (ifEdit) {
+            await axios.post(`${API_URL}/sectionsgroup/schedule/${dayId}`, {
+              day: dayRef.current.value,
+              hours: hoursRef.current.value
+            });
+            setIfEdit(false);
           } else {
-            schowNewDay();
+            await axios.post(`${API_URL}/sectionsgroup/schedule/add`, {
+              sectionId: id,
+              sectionsGroupId: groupId,
+              day: dayRef.current.value,
+              hours: hoursRef.current.value
+            });
           }
-          console.log({
-            sectionId: id,
-            groupId: groupId,
-            day: dayRef.current.value,
-            hours: hoursRef.current.value
-          });
+
+          setReloadVar(!ReloadVar);
+          if (setIsNewDayShown !== undefined) {
+            showDay();
+          } else {
+            showNewDay();
+          }
         }}
       >
         Zapisz

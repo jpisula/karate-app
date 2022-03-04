@@ -40,6 +40,16 @@
       @include flexCenter(row);
       justify-content: space-between;
       width: 70px;
+
+      &:hover {
+        color: #5cb25d;
+      }
+    }
+
+    .remove-btn {
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

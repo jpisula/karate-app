@@ -1,12 +1,12 @@
 import React from 'react';
 import './InputFile.scss';
 
-const InputFile = ({ label, className, value, ref }) => {
+const InputFile = ({ label, className, value, id }) => {
   return (
     <div className='section-info'>
-      <p className='info'>{label}</p>
+      <p className={`info ${className}`}>{label}</p>
       <label htmlFor='file-input' className='file-input-container'>
-        <input type='file' name='file-input' value={value} ref={ref} />
+        <input type='file' name='file-input' value={value} id={id} />
       </label>
     </div>
   );

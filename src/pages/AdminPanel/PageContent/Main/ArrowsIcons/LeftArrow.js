@@ -10,21 +10,21 @@ export const LeftArrow = ({ className }) => (
     <path
       d='M0 4C0 1.79086 1.79086 0 4 0H42C44.2091 0 46 1.79086 46 4V40C46 42.2091 44.2091 44 42 44H4C1.79086 44 0 42.2091 0 40V4Z'
       fill='#5CB25D'
-      fill-opacity='1'
+      fillOpacity='1'
     />
     <path
       d='M30 22H16'
       stroke='white'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
     />
     <path
       d='M23 29L16 22L23 15'
       stroke='white'
-      stroke-width='2'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
     />
   </svg>
 );

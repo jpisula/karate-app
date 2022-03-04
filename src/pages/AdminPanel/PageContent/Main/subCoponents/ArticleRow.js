@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ArticleRow.scss';
 import { BiEdit } from 'react-icons/bi';
 import { CgFileRemove } from 'react-icons/cg';
@@ -6,10 +6,14 @@ import { Link } from 'react-router-dom';
 import 'reactjs-popup/dist/index.css';
 import Button from '../../../Button/Button';
 import ModalPopup from '../../../ModalPopup/ModalPopup';
+import { TiArrowMaximiseOutline } from 'react-icons/ti';
+import axios from 'axios';
+
+const API_URL = 'http://api.gancle-studio.pl/api/v1';
 
 const ArticleRow = ({ article }) => {
   const {
-    name,
+    title,
     text,
     bigImgUrl,
     bigImgAlt,
@@ -19,21 +23,36 @@ const ArticleRow = ({ article }) => {
     shortenDesc,
     category,
     id,
-    createDate
+    createdAt
   } = article;
 
-  const handleRemoveClick = () => {
+  const [deleted, setDeleted] = useState(false);
+
+  const handleRemoveClick = async () => {
     console.log(`Usunięto ${id} Artykuł`);
+    await axios.delete(`${API_URL}/articles/${id}`);
+    setDeleted(true);
   };
+
+  if (deleted) {
+    return null;
+  }
 
   return (
     <div className='article'>
-      <div className='title'>{name}</div>
-      <div className='img'>{bigImgUrl}</div>
-      <div className='date'>{createDate}</div>
+      <div className='title'>{title}</div>
+      <div className='img'>
+        <a
+          href={`http://api.gancle-studio.pl/uploads/photos/articles/${bigImgUrl}`}
+          target={'_blank'}
+        >
+          LINK
+        </a>
+      </div>
+      <div className='date'>{createdAt}</div>
       <div className='tags'>
-        {tags.map((el) => (
-          <p>{el}</p>
+        {tags.map((el, index) => (
+          <p key={`p-${id}-${index}`}>{el}</p>
         ))}
       </div>
       <div className='edit-or-remove'>
@@ -58,7 +77,7 @@ const ArticleRow = ({ article }) => {
         </Link>
         <ModalPopup
           trigger={
-            <div>
+            <div className='remove-btn'>
               <p>usuń</p>
               <CgFileRemove />
             </div>

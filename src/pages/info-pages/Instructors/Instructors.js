@@ -23,7 +23,7 @@ const Instructors = () => {
                   <BsChevronDown /> <h2>{`${title} ${name}, ${degree}`}</h2>
                 </>
               }
-              open={instructorId && instructorId == id}
+              open={instructorId && instructorId === parseInt(id)}
             >
               <div className='text'>{text}</div>
             </Collapsible>

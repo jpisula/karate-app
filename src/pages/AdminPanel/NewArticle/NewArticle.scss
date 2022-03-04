@@ -116,3 +116,12 @@
     }
   }
 }
+
+.empty-field-warning {
+  width: 100%;
+  height: auto;
+  font-size: $med-font;
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
