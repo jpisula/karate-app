@@ -19,7 +19,7 @@ const Preschoolers = () => {
     const data = await axios.get(`${API_URL}/preschooler`);
     setPreschoolersData(data.data.data[0]);
     setLouder(false);
-  });
+  }, []);
 
   return (
     <>
@@ -95,21 +95,12 @@ const Preschoolers = () => {
                       document.getElementById('secondImgAlt');
                     const thirdImg = document.getElementById('thirdImg');
                     const thirdImgAlt = document.getElementById('thirdImgAlt');
-                    console.log({
-                      title: title?.value,
-                      description: content?.value,
-                      firstImgUrl: firstImg?.value,
-                      firstImgAlt: firsImgAlt?.value,
-                      secondImgUrl: secondImg?.value,
-                      secondImgAlt: secondImgAlt?.value,
-                      thirdImgUrl: thirdImg?.value,
-                      thirdImgAlt: thirdImgAlt?.value
-                    });
+
                     await axios.post(
                       `${API_URL}/preschooler/${preschoolersData.id}`,
                       {
                         title: title?.value,
-                        description: content?.value,
+                        content: content?.value,
                         firstImgUrl: firstImg?.value,
                         firstImgAlt: firsImgAlt?.value,
                         secondImgUrl: secondImg?.value,
