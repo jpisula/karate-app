@@ -1,31 +1,38 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Collapsible from 'react-collapsible';
 import { BsChevronDown } from 'react-icons/bs';
 import { useParams } from 'react-router-dom';
-import { instructors } from '../../../configs/instructors';
 import './Instructors.scss';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:49153/api/v1';
 
 const Instructors = () => {
-  const instructorsList = instructors;
   const params = useParams();
   const instructorId = params.id;
+  const [instructors, setInstructors] = useState([]);
+
+  useEffect(async () => {
+    const data = await axios.get(`${API_URL}/instructors`);
+    setInstructors(data.data.data);
+  }, []);
 
   return (
     <div className='instructors-page'>
       <div className='container'>
         <h1>Nasi instruktorzy i pomocnicy</h1>
         <h2>Wybierz instruktora, o którym chcesz przeczytać: </h2>
-        {instructorsList.map(({ id, title, degree, name, imageUrl, text }) => (
-          <Fragment key={`instructor-collapse-${id}`}>
+        {instructors.map((el) => (
+          <Fragment key={`instructor-collapse-${el.id}`}>
             <Collapsible
               trigger={
                 <>
-                  <BsChevronDown /> <h2>{`${title} ${name}, ${degree}`}</h2>
+                  <BsChevronDown /> <h2>{` ${el.name}, ${el.degree}`}</h2>
                 </>
               }
-              open={instructorId && instructorId == id}
+              open={instructorId && instructorId == el.id}
             >
-              <div className='text'>{text}</div>
+              <div className='text'>{el.content}</div>
             </Collapsible>
           </Fragment>
         ))}

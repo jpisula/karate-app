@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import ArticlesList from '../ArticlesList/ArticlesList';
 import Button from '../Button/Button';
 import './ArticleListContainer.scss';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:49153/api/v1';
 
 function ArticleListContainer({ currentArticleId }) {
   const navigate = useNavigate();
@@ -21,6 +24,7 @@ function ArticleListContainer({ currentArticleId }) {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
   return (
     <section className='article-list-container'>
       <header className='news-title-container'>

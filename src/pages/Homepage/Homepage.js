@@ -12,9 +12,18 @@ import InstructorCard from '../../components/shared/InstructorCard/InstructorCar
 import karateImg from '../../assets/karate.jpeg';
 import landingPhoto from '../../assets/landing.jpg';
 import './Homepage.scss';
+import axios from 'axios';
 
-function Homepage() {
+const API_URL = 'http://localhost:49153/api/v1';
+
+const Homepage = () => {
   const navigate = useNavigate();
+  const [instructors, setInstructors] = useState([]);
+
+  useEffect(async () => {
+    const data = await axios.get(`${API_URL}/instructors`);
+    setInstructors(data.data.data);
+  }, []);
 
   const [numOfArticleItems, setNumOfArticleItems] = useState(
     window.innerWidth > 1440 ? 6 : 4
@@ -96,23 +105,17 @@ function Homepage() {
 
         <section className='instructor'>
           <div className='container'>
-            <h2 data-aos='zoom-in'>Instruktor i pomocnicy</h2>
+            <h2 data-aos='zoom-in' className='instructors-header'>
+              Instruktor i pomocnicy
+            </h2>
             <div className='instructors-wrapper'>
-              <InstructorCard
-                animation={'zoom-in'}
-                name={'Michał Bodziony'}
-                id={0}
-              />
-              <InstructorCard
-                animation={'zoom-in'}
-                name={'Dawid Kłyż'}
-                id={1}
-              />
-              <InstructorCard
-                animation={'zoom-in'}
-                name={'Tomasz Kos'}
-                id={2}
-              />
+              {instructors.map((el) => (
+                <InstructorCard
+                  key={el.id}
+                  animation={'zoom-in'}
+                  instructor={el}
+                />
+              ))}
             </div>
           </div>
         </section>
@@ -136,6 +139,6 @@ function Homepage() {
       </div>
     </>
   );
-}
+};
 
 export default Homepage;

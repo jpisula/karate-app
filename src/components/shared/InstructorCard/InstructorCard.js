@@ -3,7 +3,8 @@ import Button from '../Button/Button';
 import instructorPhoto from '../../../assets/instruktor.jpeg';
 import './InstructorCard.scss';
 
-function InstructorCard({ animation, name, id }) {
+function InstructorCard({ animation, instructor }) {
+  const { id, name, description, degree } = instructor;
   return (
     <div className='card'>
       <img
@@ -13,14 +14,15 @@ function InstructorCard({ animation, name, id }) {
       />
       <div className='vignette'>
         <div className='instructor-info'>
-          <h3>Sensei {name}, 3 DAN</h3>
-          <p>
-            Jako instruktor wychowałem wielu utytułowanych zawodników, w tym
-            Wicemistrza Europy, wielokrotnych Wicemistrzów i Mistrzów Polski...
-          </p>
+          <h3>
+            Sensei {name}, {degree}
+          </h3>
+          <p>{description}</p>
         </div>
         <Link className='instructor-link' to={`/instructors/${id}`}>
-          <Button text={'Czytaj dalej'} />
+          <div className='btn-container'>
+            <Button text={'Czytaj dalej'} />
+          </div>
         </Link>
       </div>
     </div>
