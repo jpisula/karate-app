@@ -15,16 +15,24 @@ const DayTile = ({
   for (const event of events) {
     if (event.year === chosenYear) {
       if (
-        (event.monthEnd &&
-          chosenMonth === event.month &&
-          dataDay <= event.dayStart) ||
-        (event.monthEnd &&
-          chosenMonth === event.month - 1 &&
-          dataDay >= event.dayEnd) ||
-        (event.month - 1 === chosenMonth &&
+        (event.month < event.monthEnd &&
+          chosenMonth + 1 < event.monthEnd &&
+          chosenMonth + 1 > event.month &&
+          event.year === chosenYear) ||
+        (event.month < event.monthEnd &&
+          chosenMonth + 1 === event.month &&
+          dataDay + 1 >= event.dayStart &&
+          event.year === chosenYear) ||
+        (event.month < event.monthEnd &&
+          chosenMonth + 1 === event.monthEnd &&
+          dataDay + 1 <= event.dayEnd &&
+          event.year === chosenYear) ||
+        (event.month === event.monthEnd &&
+          event.month === chosenMonth + 1 &&
+          event.year === chosenYear &&
           (event.dayStart === event.dayEnd
-            ? event.dayStart === dataDay
-            : event.dayStart <= dataDay && dataDay <= event.dayEnd))
+            ? event.dayStart === dataDay + 1
+            : event.dayStart <= dataDay + 1 && dataDay + 1 <= event.dayEnd))
       ) {
         currentEvent = event;
       }
@@ -32,7 +40,9 @@ const DayTile = ({
   }
 
   let cls = `day-tile ${
-    currentEvent ? `event-type event-type-${currentEvent.category}` : className
+    currentEvent
+      ? `event-type event-type-${currentEvent.categoryName}`
+      : className
   }`;
 
   let currentDate = new Date();
@@ -44,7 +54,6 @@ const DayTile = ({
   if (currentEvent) {
     cls += currentDate > eventDate ? ' past-event' : '';
   }
-  console.log(className, currentEvent);
 
   return (
     <div

@@ -12,7 +12,7 @@ function ArticleListContainer({ currentArticleId }) {
   const [numOfItems, setNumOfItems] = useState(
     window.innerWidth >= 768 && window.innerWidth < 1440 ? 4 : 3
   );
-  //resize handling useEffect
+
   useEffect(() => {
     const handleResize = () => {
       setNumOfItems(
@@ -38,7 +38,7 @@ function ArticleListContainer({ currentArticleId }) {
         />
         <Button
           text='Więcej aktualności'
-          onClick={() => navigate('/newslist', { replace: true })}
+          onClick={() => navigate('/wszystkie-aktualnosci', { replace: true })}
         />
       </main>
     </section>

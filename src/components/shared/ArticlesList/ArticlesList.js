@@ -1,19 +1,27 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ArticleItem from '../ArticleItem/ArticleItem';
 import './ArticlesList.scss';
+import axios from 'axios';
 
 const API_URL = 'http://localhost:49153/api/v1';
 
-const ArticlesList = ({ animation, numberOfItems, currentArticleId }) => {
+const ArticlesList = ({
+  animation,
+  numberOfItems,
+  currentArticleId,
+  articlesToShow
+}) => {
   const [articles, setArtciles] = useState([]);
 
   useEffect(async () => {
-    const data = await axios.get(
-      `${API_URL}/articles?page=1&perpage=${numberOfItems}`
-    );
-    setArtciles(data.data.data);
-    console.log(data.data.data);
+    if (articlesToShow) {
+      setArtciles(articlesToShow);
+    } else {
+      const data = await axios.get(
+        `${API_URL}/articles?page=1&perpage=${numberOfItems}`
+      );
+      setArtciles(data.data.data);
+    }
   }, []);
 
   const generateArticleItems = (numberOfItems, currentArticleId, animation) => {

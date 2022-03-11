@@ -21,10 +21,11 @@
       grid-column-start: 1;
 
       @include media('>=desktop') {
-        padding-right: 100px;
+        padding: 0 100px;
+        box-sizing: border-box;
         justify-content: right;
         margin: 0 0 0 auto;
-        max-width: 80%;
+        width: 100%;
       }
 
       header {

@@ -18,7 +18,6 @@ const DayTile = ({ event, startDay, i, className }) => {
   const eventDate = event
     ? new Date(`${event.year}/${event.month}/${event.dayEnd}`)
     : null;
-  console.log(new Date());
   return (
     <>
       <div

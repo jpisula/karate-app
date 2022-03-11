@@ -1,14 +1,19 @@
-import { useContext, useEffect } from 'react';
-import events from '../../../configs/events.js';
+import { useContext, useEffect, useState } from 'react';
 import './Calendar.scss';
 import CalendarContext from './CalendarContext';
 import CalendarView from './CalendarView';
 import DayTile from './DayTile.js';
 import { countDays } from './helpers.js';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:49153/api/v1';
 
 function Calendar() {
   let nrOfFebDays = 28;
   let nrOfAllDays = 0;
+
+  const [events, setEvents] = useState([]);
+  const [loader, setLoader] = useState(true);
 
   const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
 
@@ -26,6 +31,23 @@ function Calendar() {
     daysToMove,
     isMonthChosen
   } = useContext(CalendarContext);
+
+  useEffect(async () => {
+    let data = await axios.get(`${API_URL}/calendar`);
+    setEvents(
+      data.data.data.map((el) => {
+        return {
+          ...el,
+          year: parseInt(el.startDate.slice(0, 4)),
+          month: parseInt(el.startDate.slice(5, 7)),
+          monthEnd: parseInt(el.endDate.slice(5, 7)),
+          dayStart: parseInt(el.startDate.slice(8, 10)),
+          dayEnd: parseInt(el.endDate.slice(8, 10))
+        };
+      })
+    );
+    setLoader(false);
+  }, []);
 
   const months = [
     { name: 'STYCZEŃ', nrOfDays: 31 },
@@ -175,7 +197,7 @@ function Calendar() {
           style={{ gridColumnStart: `${((startDay + i - 1) % 7) + 1}` }}
           className={
             i + 1 === new Date().getDate() &&
-            chosenMonth === new Date().getMonth() &&
+            chosenMonth + 1 === new Date().getMonth() &&
             chosenYear === new Date().getFullYear()
               ? 'day-tile current-day'
               : 'day-tile'

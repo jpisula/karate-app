@@ -4,16 +4,42 @@ import {
   BsFillArrowRightCircleFill
 } from 'react-icons/bs';
 // import Modal from './Modal';
-import events from '../../../configs/events';
+// import events from '../../../configs/events';
 import CalendarContext from '../Calendar/CalendarContext';
 import DayTile from './DayTile';
 import './YearCalendar.scss';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:49153/api/v1';
 
 const YearCalendar = () => {
   const weekDaysNames = ['Pon', 'Wt', 'Śr', 'Czw', 'Pt', 'Sob', 'Ndz'];
 
   const [startYearDay, setStartYearDay] = useState(6);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [events, setEvents] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  useEffect(async () => {
+    let data = await axios.get(`${API_URL}/calendar`);
+    setEvents(
+      data.data.data.map((el) => {
+        return {
+          ...el,
+          year: parseInt(el.startDate.slice(0, 4)),
+          month: parseInt(el.startDate.slice(5, 7)),
+          monthEnd: parseInt(el.endDate.slice(5, 7)),
+          dayStart: parseInt(el.startDate.slice(8, 10)),
+          dayEnd: parseInt(el.endDate.slice(8, 10))
+        };
+      })
+    );
+    setLoader(false);
+  }, []);
+
+  useEffect(() => {
+    console.log(events);
+  }, [events]);
 
   let startDay = 6;
 
@@ -68,22 +94,27 @@ const YearCalendar = () => {
       );
 
       for (const event of events) {
-        //currentEvents[month]
         if (
-          (event.monthEnd &&
-            month === event.month &&
-            i + 1 <= event.dayStart &&
+          (event.month < event.monthEnd &&
+            month + 1 < event.monthEnd &&
+            month + 1 > event.month &&
             event.year === currentYear) ||
-          (event.monthEnd &&
-            month === event.month - 1 &&
-            i + 1 >= event.dayEnd &&
+          (event.month < event.monthEnd &&
+            month + 1 === event.month &&
+            i + 1 >= event.dayStart &&
             event.year === currentYear) ||
-          (event.month - 1 === month &&
+          (event.month < event.monthEnd &&
+            month + 1 === event.monthEnd &&
+            i + 1 <= event.dayEnd &&
+            event.year === currentYear) ||
+          (event.month === event.monthEnd &&
+            event.month === month + 1 &&
             event.year === currentYear &&
             (event.dayStart === event.dayEnd
               ? event.dayStart === i + 1
               : event.dayStart <= i + 1 && i + 1 <= event.dayEnd))
         ) {
+          console.log(month);
           day = (
             <DayTile
               event={event}

@@ -19,7 +19,7 @@ function InstructorCard({ animation, instructor }) {
           </h3>
           <p>{description}</p>
         </div>
-        <Link className='instructor-link' to={`/instructors/${id}`}>
+        <Link className='instructor-link' to={`/instruktorzy/${id}`}>
           <div className='btn-container'>
             <Button text={'Czytaj dalej'} />
           </div>

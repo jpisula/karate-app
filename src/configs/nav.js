@@ -2,96 +2,80 @@ import { AiFillCaretDown } from 'react-icons/ai';
 import { TiThMenuOutline } from 'react-icons/ti';
 import { VscChromeClose } from 'react-icons/vsc';
 import logo from '../assets/logo.png';
+import axios from 'axios';
 
-export const navConfig = {
-  styles: {
-    bgColor: '',
-    secondBgColor: '',
-    mainTextColor: '',
-    secondColorText: '',
-    hoverColor: '',
-    secondHoverColor: ''
-  },
-  logo: {
-    src: logo,
-    title: '',
-    titleHTML: (
-      <>
-        <span className='special-text'>oyama-</span>karate
-        <span className='special-text'>.</span>eu
-      </>
-    )
-  },
-  widthToShowItems: 768,
-  hamburgerIcon: <TiThMenuOutline />,
-  closeIcon: <VscChromeClose />,
-  items: [
-    {
-      title: 'Nasze sekcje',
-      to: '/sections'
+const API_URL = 'http://localhost:49153/api/v1';
+
+export const getNavConfig = async () => {
+  const data = await axios.get(`${API_URL}/infopages`);
+  const infoPages = data.data.data;
+
+  const navConfig = {
+    styles: {
+      bgColor: '',
+      secondBgColor: '',
+      mainTextColor: '',
+      secondColorText: '',
+      hoverColor: '',
+      secondHoverColor: ''
     },
-    {
-      title: 'Przedszkolaki',
-      to: '/kinder'
+    logo: {
+      src: logo,
+      title: '',
+      titleHTML: (
+        <>
+          <span className='special-text'>oyama-</span>karate
+          <span className='special-text'>.</span>eu
+        </>
+      )
     },
-    {
-      title: 'Informacje',
-      to: '/',
-      icon: <AiFillCaretDown />,
-      subItems: [
-        {
-          title: 'Aktualności',
-          to: '/newslist'
-        },
-        {
-          title: 'Harmonogram zajęć',
-          to: '/schedule'
-        },
-        {
-          title: 'Nasi instruktorzy',
-          to: '/instructors'
-        },
-        {
-          title: 'O OYAMA Karate',
-          to: '/info-general/about-oyama'
-        },
-        {
-          title: 'Stopnie karate',
-          to: '/info-general/karate-degrees'
-        },
-        {
-          title: 'Przysięga dojo',
-          to: '/info-general/dojo-oath'
-        },
-        {
-          title: 'Etykieta dojo',
-          to: '/info-general/dojo-label'
-        },
-        {
-          title: 'Słownik pojęć',
-          to: '/info-general/dictionary'
-        },
-        {
-          title: 'Galerie',
-          to: '/info-general/galery'
-        },
-        {
-          title: 'Klub GOLIAT',
-          to: '/info-general/goliat'
-        },
-        {
-          title: 'Karate a prawo',
-          to: '/info-general/karate-law'
-        },
-        {
-          title: 'Dla sponsora',
-          to: '/info-general/sponsors'
-        }
-      ]
-    },
-    {
-      title: 'Kalendarz',
-      to: '/calendar'
-    }
-  ]
+    widthToShowItems: 768,
+    hamburgerIcon: <TiThMenuOutline />,
+    closeIcon: <VscChromeClose />,
+    items: [
+      {
+        title: 'Nasze sekcje',
+        to: '/nasze-sekcje'
+      },
+      {
+        title: 'Przedszkolaki',
+        to: '/zajecia-karate-dla-przedszkolakow-katowice'
+      },
+      {
+        title: 'Informacje',
+        to: '/',
+        icon: <AiFillCaretDown />,
+        subItems: [
+          {
+            title: 'Aktualności',
+            to: '/wszystkie-aktualnosci'
+          },
+          {
+            title: 'Harmonogram zajęć',
+            to: '/harmonogram-zajec'
+          },
+          {
+            title: 'Nasi instruktorzy',
+            to: '/instruktorzy'
+          },
+          {
+            title: 'Galerie',
+            to: '/galerie'
+          }
+        ]
+      },
+      {
+        title: 'Kalendarz',
+        to: '/kalendarz'
+      }
+    ]
+  };
+
+  infoPages.map((element) =>
+    navConfig.items
+      .find((el) => el.title === 'Informacje')
+      .subItems.push({ title: element.title, to: `/info/${element.id}` })
+  );
+
+  return navConfig;
 };

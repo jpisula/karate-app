@@ -4,6 +4,7 @@ import { BsChevronDown } from 'react-icons/bs';
 import { useParams } from 'react-router-dom';
 import './Instructors.scss';
 import axios from 'axios';
+import 'react-quill/dist/quill.core.css';
 
 const API_URL = 'http://localhost:49153/api/v1';
 
@@ -32,7 +33,10 @@ const Instructors = () => {
               }
               open={instructorId && instructorId == el.id}
             >
-              <div className='text'>{el.content}</div>
+              <div
+                className='text ql-editor'
+                dangerouslySetInnerHTML={{ __html: el.content }}
+              ></div>
             </Collapsible>
           </Fragment>
         ))}

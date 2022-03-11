@@ -245,7 +245,7 @@
   }
 }
 
-.event-type-tournament {
+.event-type-zawody {
   background-color: red;
   position: relative;
 
@@ -266,17 +266,17 @@
   background-color: $past-event !important;
 }
 
-.event-type-tournament {
+.event-type-zawody {
   background-color: $tournament-color;
   color: $events-font-color !important;
 }
 
-.event-type-seminary {
+.event-type-seminarium {
   background-color: $seminary-color;
   color: $events-font-color !important;
 }
 
-.event-type-camp {
+.event-type-obóz {
   background-color: $camp-color;
   color: $events-font-color !important;
 }

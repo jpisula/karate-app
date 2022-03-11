@@ -13,28 +13,28 @@ const GroupsAd = ({ animation }) => {
         imgSrc={kidsKarateImg}
         XImgPosition={-26}
         animation={animation}
-        to='/schedule/kinder'
+        to='/zajecia-karate-dla-przedszkolakow-katowice'
       />
       <GroupAdItem
         title='MŁODZIEŻY'
         imgSrc={teenagersKarateImg}
         XImgPosition={-3}
         animation={animation}
-        to='/schedule/children'
+        to='/nasze-sekcje'
       />
       <GroupAdItem
         title='DOROSŁYCH'
         imgSrc={adultsKarateImg}
         XImgPosition={0}
         animation={animation}
-        to='/schedule/adults'
+        to='/nasze-sekcje'
       />
       <GroupAdItem
         title='RODZIN'
         imgSrc={familyKarateImg}
         XImgPosition={-50}
         animation={animation}
-        to='/schedule/adults'
+        to='/nasze-sekcje'
       />
     </div>
   );

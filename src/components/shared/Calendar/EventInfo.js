@@ -1,15 +1,37 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CalendarContext from './CalendarContext';
 import './EventInfo.scss';
 import {
   BsFillArrowLeftSquareFill,
   BsFillArrowRightSquareFill
 } from 'react-icons/bs';
-import events from '../../../configs/events.js';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:49153/api/v1';
 
 const EventInfo = () => {
   const { event, dispatch, chosenMonth, chosenYear, currentEvents } =
     useContext(CalendarContext);
+  const [events, setEvents] = useState([]);
+  const [loader, setLoader] = useState(true);
+
+  useEffect(async () => {
+    let data = await axios.get(`${API_URL}/calendar`);
+    setEvents(
+      data.data.data.map((el) => {
+        return {
+          ...el,
+          year: parseInt(el.startDate.slice(0, 4)),
+          month: parseInt(el.startDate.slice(5, 7)),
+          monthEnd: parseInt(el.endDate.slice(5, 7)),
+          dayStart: parseInt(el.startDate.slice(8, 10)),
+          dayEnd: parseInt(el.endDate.slice(8, 10))
+        };
+      })
+    );
+    setLoader(false);
+  }, []);
+
   const {
     imgSrc,
     title,

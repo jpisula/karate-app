@@ -4,57 +4,74 @@ import { ParallaxBanner, ParallaxProvider } from 'react-scroll-parallax';
 import karateImg from '../../../assets/karate.jpeg';
 import dojo from '../../../assets/treningi-sala.webp';
 import { BsFillTelephoneFill } from 'react-icons/bs';
+import { useEffect, useState } from 'react';
 
-function SectionInfo({ section }) {
+const SectionInfo = ({ section }) => {
+  const generateDayNames = () => {
+    let days = [];
+    let usedDays = [];
+    section.groups.map((gr) => {
+      gr.schedule.map((el) => {
+        if (!usedDays.find((element) => element === el.day)) {
+          usedDays.push(el.day);
+          days.push(<th key={el.day}>{el.day}</th>);
+        }
+      });
+    });
+
+    return days;
+  };
   return (
     <>
       <div className='container'>
-        <div className='group-description'>{section.description}</div>
+        <div
+          className='group-description ql-editor'
+          dangerouslySetInnerHTML={{ __html: section.description }}
+        ></div>
       </div>
 
-      <section className='schedule-wrapper'>
-        <ParallaxProvider>
-          <ParallaxBanner
-            className='schedule-parallax'
-            layers={[
-              {
-                image: dojo,
-                amount: 0.5
-              }
-            ]}
-            style={{
-              height: '100%',
-              padding: ''
-            }}
-          >
-            <div className='container'>
-              <div className='schedule-info-wrapper'>
-                <h2 className='schedule-title'>ZAJĘCIA</h2>
-                <p className='location'>{section.address}</p>
-                <table className='schedule'>
-                  <thead>
-                    <tr className='days-row'>
-                      <th></th>
-                      {section.days.map((day) => (
-                        <th key={day}>{day}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {section.groups.map((group) => (
-                      <tr key={group.name} className='group-row'>
-                        <td className='group'>{group.name}</td>
-                        {group.schedule.map((sched) => (
-                          <td
-                            key={`${sched.hours}-${sched.day}`}
-                            className='hours'
-                          >
-                            {sched.hours}
-                          </td>
-                        ))}
+      <div className='container'>
+        <section className='schedule-wrapper'>
+          <ParallaxProvider>
+            <ParallaxBanner
+              className='schedule-parallax'
+              layers={[
+                {
+                  image: dojo,
+                  amount: 0.5
+                }
+              ]}
+              style={{
+                height: '100%',
+                padding: ''
+              }}
+            >
+              <div className='container'>
+                <div className='schedule-info-wrapper'>
+                  <h2 className='schedule-title'>ZAJĘCIA</h2>
+                  <p className='location'>{section.address}</p>
+                  <table className='schedule'>
+                    <thead>
+                      <tr className='days-row'>
+                        <th></th>
+                        {generateDayNames()}
                       </tr>
-                    ))}
-                    {/* <tr className='group-row'>
+                    </thead>
+                    <tbody>
+                      {section.groups.map((group) => (
+                        <tr key={group.groupName} className='group-row'>
+                          <td className='group'>{group.groupName}</td>
+                          {group.schedule.map((sched) => (
+                            <td
+                              key={`${sched.hours}-${sched.day}`}
+                              className='hours'
+                            >
+                              {sched.hours}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                      {/* <tr className='group-row'>
                       <td className='group'>Dzieci</td>
                       <td className='hours'>17:30 - 18:30</td>
                       <td className='hours'>17:30 - 18:30</td>
@@ -64,16 +81,26 @@ function SectionInfo({ section }) {
                       <td className='hours'>18:30 - 20:30</td>
                       <td className='hours'>18:30 - 20:30</td>
                     </tr> */}
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </div>
-          </ParallaxBanner>
-        </ParallaxProvider>
-      </section>
+            </ParallaxBanner>
+          </ParallaxProvider>
+        </section>
+      </div>
 
       <div className='google-maps-localisation'>
-        <div className='container'>{section.googleMaps}</div>
+        <div className='container'>
+          <iframe
+            title={section.name}
+            src={section.googleMapsLink}
+            width='100%'
+            height='100%'
+            allowFullScreen=''
+            loading='lazy'
+          ></iframe>
+        </div>
       </div>
 
       <section className='contact'>
@@ -104,6 +131,6 @@ function SectionInfo({ section }) {
       </section>
     </>
   );
-}
+};
 
 export default SectionInfo;

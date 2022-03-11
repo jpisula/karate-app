@@ -132,7 +132,9 @@ const Homepage = () => {
             />
             <Button
               text='Więcej aktualności'
-              onClick={() => navigate('/newslist', { replace: true })}
+              onClick={() =>
+                navigate('/wszystkie-aktualnosci', { replace: true })
+              }
             />
           </div>
         </section>
