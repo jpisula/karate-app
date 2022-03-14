@@ -20,6 +20,7 @@
     }
     .sections-content {
       grid-column-start: 1;
+      width: 100%;
 
       @include media('>=desktop') {
         padding-right: 100px;

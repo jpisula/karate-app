@@ -4,6 +4,7 @@ import './InfoGeneral.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Loader from '../../../components/shared/Loader/Loader';
+import 'react-quill/dist/quill.core.css';
 
 const API_URL = 'http://localhost:49153/api/v1';
 
@@ -34,7 +35,10 @@ const InfoGeneral = () => {
         <div className='info-general'>
           <div className='container'>
             <h1>{page.title}</h1>
-            <div className='text'>{page.content}</div>
+            <div
+              className='text ql-editor'
+              dangerouslySetInnerHTML={{ __html: page.content }}
+            />
           </div>
         </div>
       )}

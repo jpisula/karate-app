@@ -1,3 +1,5 @@
+@import '../../../lib/sass/styles.scss';
+
 .loader-container {
   background-color: white;
   display: flex;
@@ -7,6 +9,11 @@
   font-size: 32px;
   height: 100vh;
   width: 100%;
+  background-color: $bg-color;
+
+  .spinner-grow {
+    padding: 60px;
+  }
 
   h1 {
     display: flex;
